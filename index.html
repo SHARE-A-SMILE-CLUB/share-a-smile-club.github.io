@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Share a Smile Charity Club</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      line-height: 1.6;
+      color: #1e293b;
+      background-color: #f8fafc;
+    }
+
+    /* Navigation */
+    header {
+      background-color: #0f766e;
+      color: white;
+      padding: 16px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    }
+
+    nav {
+      max-width: 1040px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .logo {
+      font-size: 1.3rem;
+      font-weight: bold;
+      letter-spacing: 0.4px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin-left: 18px;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(rgba(15, 118, 110, 0.78), rgba(15, 118, 110, 0.85)),
+                  url('https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 95px 20px;
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+      margin-bottom: 14px;
+    }
+
+    .hero p {
+      max-width: 640px;
+      margin: 0 auto 28px;
+      font-size: 1.12rem;
+      opacity: 0.96;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: #f59e0b;
+      color: #1e293b;
+      font-weight: bold;
+      padding: 12px 26px;
+      border-radius: 8px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .btn:hover {
+      background-color: #d97706;
+      color: white;
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+
+    .btn-outline:hover {
+      background-color: white;
+      color: #0f766e;
+    }
+
+    /* Sections */
+    section {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+
+    section h2 {
+      text-align: center;
+      color: #0f766e;
+      font-size: 1.9rem;
+      margin-bottom: 32px;
+    }
+
+    /* Cards Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      border-top: 4px solid #14b8a6;
+    }
+
+    .card img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-body {
+      padding: 22px;
+    }
+
+    .card h3 {
+      color: #0f766e;
+      margin-bottom: 10px;
+    }
+
+    /* Contributions Box */
+    .contribute-box {
+      max-width: 680px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, #ecfdf5, #f0fdfa);
+      border: 2px solid #14b8a6;
+      border-radius: 14px;
+      padding: 32px 24px;
+      text-align: center;
+      box-shadow: 0 4px 14px rgba(15, 118, 110, 0.08);
+    }
+
+    .mpesa-badge {
+      display: inline-block;
+      background-color: #16a34a;
+      color: white;
+      font-weight: bold;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      margin-bottom: 14px;
+    }
+
+    .mpesa-number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0f766e;
+      letter-spacing: 1px;
+      margin: 10px 0;
+    }
+
+    .copy-btn {
+      background-color: #0f766e;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+
+    .copy-btn:hover {
+      background-color: #115e59;
+    }
+
+    #copyStatus {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #16a34a;
+      font-weight: 600;
+    }
+
+    /* Join Form */
+    .form-box {
+      max-width: 540px;
+      margin: 0 auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #1e293b;
+      color: #cbd5e1;
+      text-align: center;
+      padding: 28px 20px;
+      margin-top: 40px;
+    }
+
+    footer a {
+      color: #5eead4;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header>
+    <nav>
+      <div class="logo">Share a Smile Charity Club</div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#activities">Activities</a>
+        <a href="#contribute">Contribute</a>
+        <a href="#join">Join Us</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <h1>Small Acts, Big Smiles</h1>
+    <p>A student-led charity club dedicated to community outreach, environmental action, and supporting those in need with compassion and unity.</p>
+    <div class="hero-buttons">
+      <a href="#join" class="btn">Become a Member</a>
+      <a href="#contribute" class="btn btn-outline">Support a Drive</a>
+    </div>
+  </div>
+
+  <!-- About Section -->
+  <section id="about">
+    <h2>Who We Are</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="card-body">
+          <h3>Our Mission</h3>
+          <p>To mobilize students and well-wishers to uplift vulnerable communities through practical charity drives, mentorship, and solidarity.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h3>Our Vision</h3>
+          <p>A compassionate campus and community where every person feels supported, valued, and empowered to thrive.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h3>Core Values</h3>
+          <p>Empathy, transparency, teamwork, and consistent service—believing that even small daily contributions create lasting impact.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Activities Section -->
+  <section id="activities">
+    <h2>What We Do</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80" alt="Community outreach and charity support">
+        <div class="card-body">
+          <h3>Community Outreach</h3>
+          <p>Organizing visits to children's homes, schools, and local families to share essential supplies, food, and encouragement.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80" alt="Tree planting and environmental conservation">
+        <div class="card-body">
+          <h3>Environmental Action</h3>
+          <p>Partnering with campus clubs for tree-planting drives and clean-up campaigns to build a greener, healthier environment.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80" alt="Student solidarity and teamwork">
+        <div class="card-body">
+          <h3>Student Solidarity</h3>
+          <p>Standing together during tough times through member welfare drives, awareness campaigns, and peer mentorship.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contributions Section -->
+  <section id="contribute">
+    <h2>Support Our Charity Drives</h2>
+    <div class="contribute-box">
+      <div class="mpesa-badge">M-PESA CONTRIBUTIONS</div>
+      <p>Every shilling helps us reach more people through outreach visits, welfare support, and community projects. Send your contribution directly via M-PESA to:</p>
+      <div class="mpesa-number" id="mpesaNum">0769529801</div>
+      <button class="copy-btn" onclick="copyMpesa()">Copy M-PESA Number</button>
+      <p id="copyStatus"></p>
+    </div>
+  </section>
+
+  <!-- Join Form Section (Emails directly to rooneyogongo343@gmail.com) -->
+  <section id="join">
+    <h2>Join Share a Smile</h2>
+    <div class="form-box">
+      <form action="https://formsubmit.co/rooneyogongo343@gmail.com" method="POST">
+        <!-- Email formatting settings -->
+        <input type="hidden" name="_subject" value="New Share a Smile Club Member Registration!">
+        <input type="hidden" name="_template" value="table">
+
+        <div class="form-group">
+          <label for="memberName">Full Name</label>
+          <input type="text" id="memberName" name="Full Name" placeholder="Enter your full name" required>
+        </div>
+        <div class="form-group">
+          <label for="regNumber">Registration Number</label>
+          <input type="text" id="regNumber" name="Registration Number" placeholder="e.g. ED/ART/1591/24" required>
+        </div>
+        <div class="form-group">
+          <label for="yearOfStudy">Year of Study</label>
+          <select id="yearOfStudy" name="Year of Study" required>
+            <option value="">-- Select Year of Study --</option>
+            <option value="Year 1">Year 1</option>
+            <option value="Year 2">Year 2</option>
+            <option value="Year 3">Year 3</option>
+            <option value="Year 4">Year 4</option>
+            <option value="Postgraduate / Alumni">Postgraduate / Alumni</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="memberPhone">Phone / WhatsApp Number</label>
+          <input type="tel" id="memberPhone" name="Phone / WhatsApp" placeholder="e.g. 0712 345 678" required>
+        </div>
+        <div class="form-group">
+          <label for="memberRole">How would you like to help?</label>
+          <select id="memberRole" name="Role">
+            <option value="Active Volunteer">Active Volunteer</option>
+            <option value="Well-Wisher / Donor">Well-Wisher / Donor</option>
+            <option value="Event & Outreach Organizing">Event & Outreach Organizing</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn" style="width: 100%;">Submit Registration</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer / Contact -->
+  <footer id="contact">
+    <p><strong>Share a Smile Charity Club</strong></p>
+    <p>Contributions & WhatsApp: <a href="tel:+254769529801">0769 529 801</a> | Email: <a href="mailto:rooneyogongo343@gmail.com">rooneyogongo343@gmail.com</a></p>
+    <p style="margin-top: 10px; font-size: 0.85rem;">&copy; 2026 Share a Smile Charity Club. All rights reserved.</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    function copyMpesa() {
+      let number = document.getElementById("mpesaNum").innerText;
+      navigator.clipboard.writeText(number).then(function() {
+        document.getElementById("copyStatus").innerText = "Copied 0769529801 to clipboard!";
+      });
+    }
+  </script>
+
+</body>
+</html>
