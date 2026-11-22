@@ -384,6 +384,151 @@
     <div style="font-size: 0.9rem; color: #475569; font-weight: 600;">Official Student Chapter</div>
   </div>
 </div>
+
+  <!-- ===== MEMBERSHIP VERIFICATION SECTION ===== -->
+<section id="verify-membership" style="padding: 60px 20px; background: #f4f7f5; font-family: Arial, sans-serif;">
+  <div style="max-width: 600px; margin: 0 auto; background: #ffffff; padding: 35px 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); text-align: center; border-top: 5px solid #14532d;">
+    
+    <h2 style="color: #14532d; margin-top: 0; margin-bottom: 10px; font-size: 26px;">
+      Verify Your Membership
+    </h2>
+    <p style="color: #555; margin-bottom: 25px; font-size: 15px;">
+      Enter your Laikipia University registration number to confirm your official status in the Share a Smile Charity Club.
+    </p>
+
+    <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+      <input 
+        type="text" 
+        id="regInput" 
+        placeholder="e.g. ED/ART/1591/24" 
+        style="flex: 1; min-width: 220px; padding: 12px 15px; font-size: 16px; border: 2px solid #d1d5db; border-radius: 8px; outline: none; text-transform: uppercase;"
+      />
+      <button 
+        onclick="checkMembership()" 
+        style="padding: 12px 24px; font-size: 16px; font-weight: bold; background: #14532d; color: #ffffff; border: none; border-radius: 8px; cursor: pointer;">
+        Check Status
+      </button>
+    </div>
+
+    <!-- Result Box -->
+    <div id="verifyResult" style="margin-top: 20px; display: none; padding: 16px; border-radius: 8px; font-size: 15px; text-align: left;"></div>
+
+  </div>
+</section>
+
+<script>
+  // Official Share a Smile Charity Club Register (64 Members)
+  const registeredMembers = {
+    "ED/ART/3618/24": "Abigael Wanjiru",
+    "ED/ART/1571/24": "Brian James",
+    "ED/ART/1670/24": "Caleb Mbata Orobo",
+    "ED/ART/3330/24": "Joycaren Njogu",
+    "ED/ART/1326/24": "Catherine Wangui",
+    "ED/ART/3367/24": "Collens Nyamwaka",
+    "ED/ART/1713/24": "Cyprian King'oina",
+    "ED/ART/1480/24": "Damaris Molyne",
+    "ED/ART/0483/22": "Dancan Njiri",
+    "HD/KIC/2454/23": "Diana Muya",
+    "ED/ART/0924/24": "Douglas Yego",
+    "ED/ART/2079/24": "Ebenezer Kiprutoh",
+    "ED/ART/1699/24": "Elvins Otieno Odeyo",
+    "ED/ART/1412/24": "Ezekiel Kipsang",
+    "HD/COM/3205/26": "Ezekiel Ombati",
+    "ED/ART/1593/24": "Faith Kwamboka Matongo",
+    "BE/CMC/0576/24": "Festus Kiprotich",
+    "ED/ART/1793/24": "Hellen Mokeira",
+    "ED/ART/1530/25": "Hilder Ongondi",
+    "BE/EST/2495/24": "Immanuel Mesocho",
+    "ED/ART/4377/25": "Ivy Bundi",
+    "ED/ART/0849/24": "James Mwendwa",
+    "ED/ART/0361/22": "Jamesdavidson Mukhwana",
+    "ED/ART/4466/25": "Jenipher Nenkai",
+    "ED/ART/4575/26": "Jimmie Muange",
+    "ED/ART/0217/23": "Joseph Gitahi",
+    "ED/SCI/2175/24": "Joshua Mark",
+    "ED/ART/3665/24": "Joshua Ndiema",
+    "ED/ART/0956/25": "Kipkemoi Rotich",
+    "ED/ART/0923/24": "Kiplagat Ethel",
+    "ED/ART/1574/24": "Lavender Omwange",
+    "ED/ART/1158/25": "Lee Bungei",
+    "ED/ART/3644/24": "Lewis Gaitho",
+    "ED/ART/1807/24": "Lewis Ogachi",
+    "ED/ART/1678/24": "Lucas Okeyo Oganda",
+    "ED/ART/2676/24": "Maria Juma",
+    "ED/ART/3403/24": "Melvin Goga",
+    "ED/ART/1451/24": "Mical Jepchumba",
+    "ED/ART/1595/25": "Mildred Nyaboke",
+    "ED/ART/4510/26": "Millicent Wambui",
+    "ED/ART/1026/24": "Perpetual Ivonne",
+    "ED/ART/0824/24": "Phineas Muriungi",
+    "ED/ART/1670/25": "Phoebe Nyaboke",
+    "ED/ART/0877/24": "Risper Mukami",
+    "ED/ART/1591/24": "Rooney David Ogongo",
+    "ED/ART/0431/24": "Rose Khembu",
+    "ED/ART/1684/24": "Ruth Oseheri",
+    "ED/AGD/3012/24": "Rutto Mark",
+    "ED/ART/3720/24": "Saviour Oboo",
+    "BE/CMC/0641/24": "Sharon Mong'are",
+    "BE/EST/2494/24": "Sharon Moraa",
+    "ED/ART/1127/24": "Sheila Moraa",
+    "ED/ART/1792/24": "Sophia Kerubo",
+    "ED/ART/1847/24": "Stephen Okioth",
+    "BE/EST/2454/24": "Susan Cheroich",
+    "ED/ART/1580/25": "Sylvia Ratandi",
+    "ED/ART/1658/24": "Sylvia Osore",
+    "ED/ART/1664/24": "Valaria Mokamba",
+    "ED/ART/0092/24": "Vincent Kipkemboi",
+    "ED/ART/1519/24": "Wakili Zablon",
+    "ED/ART/1219/24": "Wilfred Korir",
+    "ED/ART/2783/24": "Yvonne Mueni",
+    "ED/ART/2675/24": "Yvonne Ndanu",
+    "ED/ART/1638/24": "Zawadii"
+  };
+
+  function checkMembership() {
+    const input = document.getElementById("regInput").value.trim().toUpperCase().replace(/\s+/g, "");
+    const resultBox = document.getElementById("verifyResult");
+
+    if (!input) {
+      resultBox.style.display = "block";
+      resultBox.style.background = "#fef3c7";
+      resultBox.style.border = "1px solid #f59e0b";
+      resultBox.style.color = "#92400e";
+      resultBox.innerHTML = "⚠️ Please enter your registration number first.";
+      return;
+    }
+
+    if (registeredMembers[input]) {
+      resultBox.style.display = "block";
+      resultBox.style.background = "#ecfdf5";
+      resultBox.style.border = "1px solid #10b981";
+      resultBox.style.color = "#065f46";
+      resultBox.innerHTML = `
+        <strong>✅ Officially Registered!</strong><br>
+        <strong>Name:</strong> ${registeredMembers[input]}<br>
+        <strong>Reg No:</strong> ${input}<br>
+        <strong>Status:</strong> Active Member — Share a Smile Charity Club
+      `;
+    } else {
+      resultBox.style.display = "block";
+      resultBox.style.background = "#fef2f2";
+      resultBox.style.border = "1px solid #ef4444";
+      resultBox.style.color = "#991b1b";
+      resultBox.innerHTML = `
+        <strong>❌ Record Not Found</strong><br>
+        We couldn't find <strong>${input}</strong> in the current register. Please check the format (e.g., <code>ED/ART/1591/24</code>) or contact the club leadership to be added.
+      `;
+    }
+  }
+
+  // Allow pressing Enter to search
+  document.getElementById("regInput").addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+      checkMembership();
+    }
+  });
+</script>
+<!-- ===== END MEMBERSHIP VERIFICATION SECTION ===== -->
   <!-- About Section -->
   <section id="about">
     <h2>Who We Are</h2>
