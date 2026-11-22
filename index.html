@@ -263,6 +263,89 @@
   </style>
 </head>
 <body>
+  <!-- Sticky Navigation Bar -->
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+  section[id] {
+    scroll-margin-top: 75px;
+  }
+  .sas-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    padding: 10px 20px;
+  }
+  .sas-nav-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .sas-nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: #0f766e;
+    font-weight: 800;
+    font-size: 1rem;
+  }
+  .sas-nav-brand img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .sas-nav-links {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .sas-nav-links a {
+    text-decoration: none;
+    color: #334155;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  .sas-nav-links a:hover {
+    color: #0f766e;
+  }
+  .sas-nav-donate {
+    background: #0f766e;
+    color: white !important;
+    padding: 6px 14px;
+    border-radius: 20px;
+  }
+  .sas-nav-donate:hover {
+    background: #115e59;
+  }
+</style>
+
+<nav class="sas-navbar">
+  <div class="sas-nav-inner">
+    <a href="#" class="sas-nav-brand">
+      <img src="logo scc.jpeg" alt="Share a Smile Logo">
+      <span>Share a Smile</span>
+    </a>
+    <div class="sas-nav-links">
+      <a href="#about">About</a>
+      <a href="#events">Events</a>
+      <a href="#leadership">Leadership</a>
+      <a href="#merch">Merch</a>
+      <a href="#join">Join Us</a>
+      <a href="#contribute" class="sas-nav-donate">Donate</a>
+    </div>
+  </div>
+</nav>
 
   <!-- Navigation Bar -->
   <header>
