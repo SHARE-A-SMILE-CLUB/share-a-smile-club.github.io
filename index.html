@@ -384,7 +384,7 @@
     <div style="font-size: 0.9rem; color: #475569; font-weight: 600;">Official Student Chapter</div>
   </div>
 </div>
-
+<div id="joinError" style="display:none; margin: 12px 0; padding: 12px; background: #fef2f2; border: 1px solid #ef4444; color: #991b1b; border-radius: 8px; font-size: 14px;"></div>
   <!-- ===== MEMBERSHIP VERIFICATION SECTION ===== -->
 <section id="verify-membership" style="padding: 60px 20px; background: #f4f7f5; font-family: Arial, sans-serif;">
   <div style="max-width: 600px; margin: 0 auto; background: #ffffff; padding: 35px 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); text-align: center; border-top: 5px solid #14532d;">
@@ -675,7 +675,7 @@
   <section id="join">
     <h2>Join Share a Smile</h2>
     <div class="form-box">
-      <form action="https://formsubmit.co/rooneyogongo343@gmail.com" method="POST">
+      <form id="joinForm" action="https://formsubmit.co/rooneyogongo343@gmail.com" method="POST">
         <!-- Email formatting settings -->
         <input type="hidden" name="_subject" value="New Share a Smile Club Member Registration!">
         <input type="hidden" name="_template" value="table">
@@ -711,6 +711,7 @@
             <option value="Event & Outreach Organizing">Event & Outreach Organizing</option>
           </select>
         </div>
+        <div id="joinError" style="display:none; margin: 12px 0; padding: 12px; background: #fef2f2; border: 1px solid #ef4444; color: #991b1b; border-radius: 8px; font-size: 14px;"></div>
 
         <button type="submit" class="btn" style="width: 100%;">Submit Registration</button>
       </form>
@@ -864,6 +865,23 @@
     addSasMsg(text, "user");
     setTimeout(() => addSasMsg(getSasReply(text), "bot"), 300);
   }
+</script>
+    <script>
+  document.getElementById("joinForm").addEventListener("submit", function(e) {
+    const regInput = document.getElementById("regNumber").value.trim().toUpperCase().replace(/\s+/g, "");
+    const errorBox = document.getElementById("joinError");
+
+    if (typeof registeredMembers !== "undefined" && registeredMembers[regInput]) {
+      e.preventDefault();
+      errorBox.style.display = "block";
+      errorBox.innerHTML = `
+        <strong>⚠️ Registration Denied:</strong><br>
+        <strong>${registeredMembers[regInput]}</strong> (${regInput}) is already officially registered in the Share a Smile Charity Club. You do not need to register again.
+      `;
+    } else {
+      errorBox.style.display = "none";
+    }
+  });
 </script>
 </body>
 </html>
