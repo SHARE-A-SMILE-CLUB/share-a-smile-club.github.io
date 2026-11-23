@@ -698,6 +698,63 @@
   }
 </script>
 <!-- ==================== END HIGHLIGHTED ANNOUNCEMENT BAR & CALENDAR MODAL ==================== -->
+  <!-- Meeting Announcement Banner -->
+<div class="sas-meeting-banner">
+  <div class="sas-meeting-inner">
+    <span class="sas-bell-icon" aria-hidden="true">&#128276;</span>
+    <span class="sas-meeting-text">
+      <strong>MEETING NOTICE:</strong> All members are invited to our club meeting on <strong>Saturday, 28th November 2026 at 1:00 PM</strong> at <strong>Serene Court Grounds, Nyumba Tatu</strong>.
+    </span>
+    <a href="#verify-membership" class="sas-meeting-cta">Verify Status</a>
+  </div>
+</div>
+
+<style>
+  .sas-meeting-banner {
+    background: linear-gradient(90deg, #fef3c7, #fde68a);
+    color: #78350f;
+    padding: 11px 16px;
+    border-bottom: 2px solid #f59e0b;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .sas-meeting-inner {
+    max-width: 1040px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px 14px;
+    font-size: 14px;
+    text-align: center;
+  }
+  .sas-bell-icon {
+    font-size: 20px;
+    display: inline-block;
+    animation: sasBellRing 2.2s ease-in-out infinite;
+    transform-origin: top center;
+  }
+  @keyframes sasBellRing {
+    0%, 100% { transform: rotate(0deg); }
+    10% { transform: rotate(16deg); }
+    20% { transform: rotate(-14deg); }
+    30% { transform: rotate(10deg); }
+    40% { transform: rotate(-8deg); }
+    50% { transform: rotate(0deg); }
+  }
+  .sas-meeting-cta {
+    background-color: #0f766e;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 12.5px;
+    padding: 5px 12px;
+    border-radius: 16px;
+  }
+  .sas-meeting-cta:hover {
+    background-color: #115e59;
+  }
+</style>
 <!-- Impact Snapshot Strip -->
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; max-width: 1000px; margin: 24px auto; padding: 0 20px; text-align: center;">
   <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
