@@ -407,16 +407,356 @@
     background-color: #fbbf24;
   }
 </style>
-<!-- ==================== END HIGHLIGHTED ANNOUNCEMENT BAR ==================== -->
-  <!-- Hero Section -->
-  <div class="hero">
-    <h1>Small Acts, Big Smiles</h1>
-    <p>A student-led charity club dedicated to community outreach, environmental action, and supporting those in need with compassion and unity.</p>
-    <div class="hero-buttons">
-      <a href="#join" class="btn">Become a Member</a>
-      <a href="#contribute" class="btn btn-outline">Support a Drive</a>
-    </div>
+<!-- ==================== HIGHLIGHTED ANNOUNCEMENT BAR & CALENDAR MODAL ==================== -->
+<div class="sas-highlight-bar">
+  <div class="sas-highlight-content">
+    <span class="sas-highlight-tag">NEW</span>
+    <span class="sas-highlight-text">
+      <strong>2027 Calendar of Activities</strong> is out! Elections set for late February 2027.
+    </span>
+    <button type="button" class="sas-highlight-btn" onclick="openSasCalendar()">
+      View 2027 Calendar &rarr;
+    </button>
   </div>
+</div>
+
+<!-- Calendar Popup Modal -->
+<div id="sas-calendar-modal" class="sas-cal-overlay" onclick="closeSasCalendarOutside(event)">
+  <div class="sas-cal-box">
+    <div class="sas-cal-topbar">
+      <button type="button" class="sas-cal-print-btn" onclick="window.print()">Print / Save PDF</button>
+      <button type="button" class="sas-cal-close-btn" onclick="closeSasCalendar()" aria-label="Close">&times;</button>
+    </div>
+
+    <div class="sas-cal-header">
+      <img src="logo scc.jpeg" alt="Share a Smile Charity Club Logo" />
+      <h2>Laikipia University — Share a Smile Charity Club</h2>
+      <h3>2027 Calendar of Activities (January – December)</h3>
+      <p>One Smile, One Heart, One Community.</p>
+    </div>
+
+    <div class="sas-cal-table-wrap">
+      <table class="sas-cal-table">
+        <thead>
+          <tr>
+            <th>Month</th>
+            <th>Timing</th>
+            <th>Activity</th>
+            <th>Key Deliverable / Lead</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>January</strong></td>
+            <td>Mid-Month</td>
+            <td><strong>Membership Drive &amp; Merch Distribution</strong></td>
+            <td>Reopen for Semester 2, verify member Reg. Numbers on the club website, and distribute club t-shirts/hoodies.</td>
+          </tr>
+          <tr>
+            <td><strong>January</strong></td>
+            <td>Late Month</td>
+            <td><strong>Electoral Committee Setup &amp; Nominations</strong></td>
+            <td>Appoint the 3-member Independent Electoral Committee and open nominations for all seats.</td>
+          </tr>
+          <tr>
+            <td><strong>February</strong></td>
+            <td>Early Month</td>
+            <td><strong>First Charity Outreach Visit</strong></td>
+            <td>Deliver food, clothing, and mentorship to a selected beneficiary.</td>
+          </tr>
+          <tr>
+            <td><strong>February</strong></td>
+            <td>Mid-Month</td>
+            <td><strong>Vetting, Campaigns &amp; Voter Register</strong></td>
+            <td>Vet candidates, run issue-based campaigns, and publish the verified voter register 48 hours before voting day.</td>
+          </tr>
+          <tr>
+            <td><strong>February</strong></td>
+            <td>Late Month</td>
+            <td><strong>First Official Elections &amp; Handover</strong></td>
+            <td>Conduct secret-ballot voting, announce verified results, and hand over from the interim executive to the newly elected committee.</td>
+          </tr>
+          <tr>
+            <td><strong>March</strong></td>
+            <td>Mid-Month</td>
+            <td><strong>Campus Fundraising Drive</strong></td>
+            <td>Newly elected committee runs a student fundraiser (movie night, car wash, or merch push) to build the outreach kitty.</td>
+          </tr>
+          <tr>
+            <td><strong>April</strong></td>
+            <td>Early Month</td>
+            <td><strong>Semester 2 Audit &amp; Exam Break</strong></td>
+            <td>Treasurer, Club Auditor, and Storekeeper publish financial and donations reports before exams begin.</td>
+          </tr>
+          <tr>
+            <td><strong>May</strong></td>
+            <td>Mid-Month</td>
+            <td><strong>Online Impact &amp; Accountability Report</strong></td>
+            <td>Publish outreach photos, impact numbers, and financial summaries on the club website and socials.</td>
+          </tr>
+          <tr>
+            <td><strong>June</strong></td>
+            <td>Mid-Month</td>
+            <td><strong>Sponsor &amp; Well-Wisher Outreach</strong></td>
+            <td>Executive team pitches local businesses and well-wishers for cash or in-kind pledges.</td>
+          </tr>
+          <tr>
+            <td><strong>July</strong></td>
+            <td>All Month</td>
+            <td><strong>"Smile at Home" Holiday Challenge</strong></td>
+            <td>Members carry out small acts of kindness in their home counties and share updates on club channels.</td>
+          </tr>
+          <tr>
+            <td><strong>August</strong></td>
+            <td>Late Month</td>
+            <td><strong>Virtual Executive Strategy Meeting</strong></td>
+            <td>Finalize the Semester 1 budget, freshers' recruitment plan, and outreach targets ahead of reopening.</td>
+          </tr>
+          <tr>
+            <td><strong>September</strong></td>
+            <td>Mid-Month</td>
+            <td><strong>Freshers' Orientation &amp; Recruitment</strong></td>
+            <td>Run a registration desk during orientation week and host a welcome meetup for new members.</td>
+          </tr>
+          <tr>
+            <td><strong>October</strong></td>
+            <td>Mid-Month</td>
+            <td><strong>Campus &amp; Community Service Day</strong></td>
+            <td>Partner with other university clubs for a tree-planting drive, clean-up, or awareness walk.</td>
+          </tr>
+          <tr>
+            <td><strong>November</strong></td>
+            <td>Mid-Month</td>
+            <td><strong>End-of-Year Charity Drive &amp; Outreach</strong></td>
+            <td>Major festive-season donation collection and outreach visit to a selected beneficiary.</td>
+          </tr>
+          <tr>
+            <td><strong>December</strong></td>
+            <td>Early Month</td>
+            <td><strong>Annual General Meeting (AGM) &amp; Audit</strong></td>
+            <td>Present the full 2027 audited financial report, inventory logs, and 2028 plans before exams and holidays.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="sas-cal-note">
+      * Specific dates and outreach venues are confirmed by the Executive Committee ahead of each activity.
+    </p>
+  </div>
+</div>
+
+<style>
+  .sas-highlight-bar {
+    background: linear-gradient(90deg, #1b5e20, #2e7d32);
+    color: #ffffff;
+    padding: 12px 16px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    border-bottom: 3px solid #f59e0b;
+  }
+
+  .sas-highlight-content {
+    max-width: 1040px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px 14px;
+    font-size: 14px;
+  }
+
+  .sas-highlight-tag {
+    background-color: #e53935;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.8px;
+  }
+
+  .sas-highlight-btn {
+    background-color: #f59e0b;
+    color: #1a1a1a;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    transition: background-color 0.2s ease;
+  }
+
+  .sas-highlight-btn:hover {
+    background-color: #fbbf24;
+  }
+
+  /* Modal Styles */
+  .sas-cal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.72);
+    z-index: 9999;
+    padding: 20px 12px;
+    overflow-y: auto;
+  }
+
+  .sas-cal-overlay.open {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .sas-cal-box {
+    background: #ffffff;
+    color: #111111;
+    width: 100%;
+    max-width: 900px;
+    border-radius: 8px;
+    padding: 24px 28px;
+    font-family: "Times New Roman", Times, serif;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    margin: auto;
+  }
+
+  .sas-cal-topbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .sas-cal-print-btn {
+    background: #1b5e20;
+    color: #ffffff;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .sas-cal-close-btn {
+    background: #e5e7eb;
+    color: #111111;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .sas-cal-header {
+    text-align: center;
+    border-bottom: 2px solid #000000;
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+  }
+
+  .sas-cal-header img {
+    height: 75px;
+    width: auto;
+    margin-bottom: 6px;
+  }
+
+  .sas-cal-header h2 {
+    margin: 0;
+    font-size: 19px;
+    text-transform: uppercase;
+  }
+
+  .sas-cal-header h3 {
+    margin: 4px 0;
+    font-size: 16px;
+    text-transform: uppercase;
+  }
+
+  .sas-cal-header p {
+    margin: 4px 0 0;
+    font-size: 13px;
+    font-style: italic;
+  }
+
+  .sas-cal-table-wrap {
+    overflow-x: auto;
+  }
+
+  .sas-cal-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+  }
+
+  .sas-cal-table th,
+  .sas-cal-table td {
+    border: 1px solid #000000;
+    padding: 7px 9px;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .sas-cal-table th {
+    background: #f0f0f0;
+  }
+
+  .sas-cal-note {
+    margin-top: 14px;
+    font-size: 12.5px;
+    text-align: center;
+    color: #333333;
+  }
+
+  @media print {
+    body * {
+      visibility: hidden;
+    }
+    #sas-calendar-modal,
+    #sas-calendar-modal * {
+      visibility: visible;
+    }
+    #sas-calendar-modal {
+      position: absolute;
+      inset: 0;
+      background: #ffffff;
+      padding: 0;
+    }
+    .sas-cal-topbar {
+      display: none;
+    }
+    .sas-cal-box {
+      box-shadow: none;
+      padding: 0;
+      max-width: 100%;
+    }
+  }
+</style>
+
+<script>
+  function openSasCalendar() {
+    document.getElementById('sas-calendar-modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeSasCalendar() {
+    document.getElementById('sas-calendar-modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function closeSasCalendarOutside(event) {
+    if (event.target.id === 'sas-calendar-modal') {
+      closeSasCalendar();
+    }
+  }
+</script>
+<!-- ==================== END HIGHLIGHTED ANNOUNCEMENT BAR & CALENDAR MODAL ==================== -->
 <!-- Impact Snapshot Strip -->
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; max-width: 1000px; margin: 24px auto; padding: 0 20px; text-align: center;">
   <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
