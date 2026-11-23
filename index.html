@@ -699,7 +699,7 @@
 </script>
 <!-- ==================== END HIGHLIGHTED ANNOUNCEMENT BAR & CALENDAR MODAL ==================== -->
   <!-- Meeting Announcement Banner -->
-<div class="sas-meeting-banner">
+<div class="sas-meeting-banner" id="sasMeetingBanner" data-expires="2026-11-28T17:00:00+03:00">
   <div class="sas-meeting-inner">
     <span class="sas-bell-icon" aria-hidden="true">&#128276;</span>
     <span class="sas-meeting-text">
@@ -755,6 +755,16 @@
     background-color: #115e59;
   }
 </style>
+  <script>
+  (function () {
+    const banner = document.getElementById("sasMeetingBanner");
+    if (!banner) return;
+    const expiry = new Date(banner.getAttribute("data-expires"));
+    if (!isNaN(expiry) && new Date() > expiry) {
+      banner.style.display = "none";
+    }
+  })();
+</script>
 <!-- Impact Snapshot Strip -->
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; max-width: 1000px; margin: 24px auto; padding: 0 20px; text-align: center;">
   <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
