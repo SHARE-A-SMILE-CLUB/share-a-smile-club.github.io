@@ -1286,8 +1286,40 @@
   </footer>
 
   <script>
-
 (function () {
+
+  function keepScrollStable(fn) {
+    const prevY = window.scrollY || window.pageYOffset || 0;
+    const prevBehavior = document.documentElement.style.scrollBehavior;
+    document.documentElement.style.scrollBehavior = "auto";
+    try {
+      fn();
+    } finally {
+      window.scrollTo({ top: prevY, left: 0, behavior: "instant" });
+      setTimeout(function () {
+        window.scrollTo(0, prevY);
+        document.documentElement.style.scrollBehavior = prevBehavior || "";
+      }, 0);
+    }
+  }
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key !== "Enter") return;
+    const active = document.activeElement;
+    if (!active) return;
+    const tag = active.tagName ? active.tagName.toUpperCase() : "";
+    if (tag === "TEXTAREA") return;
+    const form = active.closest ? active.closest("form") : null;
+    if (form && tag === "INPUT") {
+      e.preventDefault();
+      if (typeof form.requestSubmit === "function") {
+        form.requestSubmit();
+      } else {
+        form.dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
+      }
+    }
+  }, true);
+
   const WA_URL = "https://chat.whatsapp.com/Dty1LdhdHwv1JTfGJETtdW";
   const STORE_KEY = "sas_club_structured_v3";
   const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
@@ -2095,18 +2127,20 @@ const state = loadState();
           saveState();
 
           msgEl.className = "msg-note msg-ok";
-          msgEl.textContent =
-            "Registration completed for " + name + " (" + reg + ") • " + feePlan +
-            " • M-Pesa Ref: " + mpesaRef + ". Click the button below to join WhatsApp.";
+          keepScrollStable(function () {
+            msgEl.textContent =
+              "Registration completed for " + name + " (" + reg + ") • " + feePlan +
+              " • M-Pesa Ref: " + mpesaRef + ". Click the button below to join WhatsApp.";
 
-          const bar = document.getElementById("afterRegWaBar");
-          const txt = document.getElementById("afterRegText");
-          const btn = document.getElementById("afterRegWaBtn");
-          bar.classList.remove("muted");
-          txt.textContent = "Registration complete (Ref: " + mpesaRef + ")! Next step — join the group:";
-          btn.href = WA_URL;
-          joinForm.reset();
-          updateFeeSummary();
+            const bar = document.getElementById("afterRegWaBar");
+            const txt = document.getElementById("afterRegText");
+            const btn = document.getElementById("afterRegWaBtn");
+            bar.classList.remove("muted");
+            txt.textContent = "Registration complete (Ref: " + mpesaRef + ")! Next step — join the group:";
+            btn.href = WA_URL;
+            joinForm.reset();
+            updateFeeSummary();
+          });
         });
       }
 
@@ -2163,10 +2197,12 @@ const state = loadState();
           saveState();
 
           msgEl.className = "msg-note msg-ok";
-          msgEl.textContent =
-            "Payment recorded for " + state.members[idx].name + " (" + (state.members[idx].reg || "—") + ") • " +
-            feePlan + " • M-Pesa Ref: " + mpesaRef + ".";
-          existingPayForm.reset();
+          keepScrollStable(function () {
+            msgEl.textContent =
+              "Payment recorded for " + state.members[idx].name + " (" + (state.members[idx].reg || "—") + ") • " +
+              feePlan + " • M-Pesa Ref: " + mpesaRef + ".";
+            existingPayForm.reset();
+          });
         });
       }
 
@@ -2273,8 +2309,10 @@ const state = loadState();
                 });
               }
               saveState();
-              if (inputEl) inputEl.value = cleanReg;
-              window.verifyMember(null);
+              keepScrollStable(function () {
+                if (inputEl) inputEl.value = cleanReg;
+                window.verifyMember(null);
+              });
             });
           }
         }
@@ -3290,6 +3328,7 @@ const state = loadState();
       }
     });
   }
+
 })();
 </script>
 </body>
