@@ -927,60 +927,7 @@
 <!-- ===== END MEMBERSHIP VERIFICATION SECTION ===== -->
  
 
-      <!-- VIEW (b): INDIVIDUAL OFFICER DESK ACCESS (STRICT SINGLE-OFFICE) -->
-      <div id="sasDeskView" class="sas-hidden">
-        <!-- Sign-In Form (Shown when not signed in to an office) -->
-        <div id="sasLoginPanel" class="sas-auth-panel">
-          <h3>Single-Office Sign-In</h3>
-          <p class="sas-item-sub" style="margin-bottom:16px;">
-            Enter your official <strong>Reg. Number</strong>, <strong>Phone No.</strong>, or <strong>Office ID</strong> along with your personal <strong>4-digit PIN</strong>. Your session will be strictly locked to your own single office.
-          </p>
-
-          <div id="sasAuthMessage" class="sas-alert sas-alert-error sas-hidden" role="alert"></div>
-
-          <form id="sasLoginForm">
-            <div class="sas-form-group">
-              <label for="sasLoginIdentifier" class="sas-label">Reg. Number, Phone No., or Office ID</label>
-              <input type="text" id="sasLoginIdentifier" class="sas-input" placeholder="e.g. ED/ART/1591/24, 0769529801, or PATRON-MALA" required="">
-            </div>
-
-            <div class="sas-form-group">
-              <label for="sasLoginPin" class="sas-label">Personal 4-Digit PIN</label>
-              <input type="password" id="sasLoginPin" class="sas-input" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" placeholder="Enter your 4-digit PIN" required="">
-            </div>
-
-            <div style="display:flex; flex-wrap:wrap; gap:10px; align-items:center;">
-              <button type="submit" class="sas-btn sas-btn-primary">
-                Sign In to My Office
-              </button>
-            </div>
-          </form>
-        </div>
-
-        <!-- Authenticated Single-Office Workspace (Shown only after valid login) -->
-        <div id="sasActiveDeskPanel" class="sas-hidden"></div>
-      </div>
-
-      <!-- Institutional Footer Note -->
-      <div class="sas-footer-note">
-        <span>
-          <strong>Mandate Note:</strong> All ten constitutional executive offices and the Faculty Patron serve the Share a Smile Charity Club (Laikipia University) for the <strong>2026/2027 academic year</strong> under Office of the Dean of Students regulations.
-        </span>
-        <span>
-          Faculty Patron: Dr. Hannington Mala • Signatories: Rooney Ogongo (Chairperson) &amp; Immanuel Mesocho (Secretary General)
-        </span>
-      </div>
-    </div>
-  </div>
-
-  
-  <script>
-    (function () {
-      "use strict";
-
-      var STORAGE_KEY = "sas_lu_2026_2027_exec_desk_v2";
-      var CHAIR_MASTER_PIN = "1591";
-
+      <!
       // Official 10 Executive Committee Members + Faculty Patron (2026/2027 Academic Year)
       var OFFICIALS = [
         {
