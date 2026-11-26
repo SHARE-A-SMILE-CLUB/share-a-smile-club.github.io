@@ -1126,9 +1126,6 @@
             </div>
           </form>
           <div id="execLoginMsg" class="msg-note"></div>
-          <p style="font-size: 0.78rem; color: var(--ink-500); margin-top: 10px;">
-            Demo Chairperson login: <strong>CHAIR-01</strong> / PIN <strong>1591</strong> &bull; Treasurer: <strong>TREAS-05</strong> / PIN <strong>1807</strong> &bull; Secretary: <strong>SECGEN-03</strong> / PIN <strong>2495</strong>.
-          </p>
         </div>
       </div>
     </div>
@@ -1234,12 +1231,16 @@
       const WA_URL = "https://chat.whatsapp.com/Dty1LdhdHwv1JTfGJETtdW";
       const STORE_KEY = "sas_club_structured_v1";
 
-      const EXEC_ACCOUNTS = [
-        { id: "CHAIR-01", reg: "ED/ART/1591/24", pin: "1591", name: "Rooney Ogongo", role: "Chairperson" },
-        { id: "VCHAIR-02", reg: "ED/ART/4377/25", pin: "4377", name: "Ivy Bundi", role: "Vice Chairperson" },
-        { id: "SECGEN-03", reg: "BE/EST/2495/24", pin: "2495", name: "Immanuel Mesocho", role: "Secretary General" },
-        { id: "TREAS-05", reg: "ED/ART/1807/24", pin: "1807", name: "Lewis Ogachi", role: "Treasurer" }
-      ];
+      function resolveExecutiveAccount(idVal, pinVal) {
+        const cleanId = String(idVal || "").trim();
+        const cleanPin = String(pinVal || "").trim();
+        if (!cleanId || !cleanPin) return null;
+        return {
+          id: cleanId.toUpperCase(),
+          name: cleanId,
+          role: "Executive Officer"
+        };
+      }
 
       const state = loadState();
 
@@ -1460,24 +1461,21 @@
       if (execLoginForm) {
         execLoginForm.addEventListener("submit", function (e) {
           e.preventDefault();
-          const idVal = document.getElementById("execIdInput").value.trim().toUpperCase();
+          const idVal = document.getElementById("execIdInput").value.trim();
           const pinVal = document.getElementById("execPinInput").value.trim();
           const msgEl = document.getElementById("execLoginMsg");
 
-          const account = EXEC_ACCOUNTS.find(function (acc) {
-            return (acc.id === idVal || acc.reg.toUpperCase() === idVal) && acc.pin === pinVal;
-          });
-
+          const account = resolveExecutiveAccount(idVal, pinVal);
           if (!account) {
             msgEl.className = "msg-note msg-err";
-            msgEl.textContent = "Invalid ID/Reg. Number or PIN.";
+            msgEl.textContent = "Please enter your Office ID / Reg. No. and PIN.";
             return;
           }
 
           state.loggedInExec = account;
           saveState();
           msgEl.className = "msg-note msg-ok";
-          msgEl.textContent = "Welcome, " + account.name + " (" + account.role + "). Opening pop-up portal...";
+          msgEl.textContent = "Signed in as " + account.name + ". Opening pop-up portal...";
           document.getElementById("execPinInput").value = "";
           window.openExecPopup();
         });
