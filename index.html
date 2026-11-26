@@ -71,6 +71,7 @@
       padding: 0 20px;
     }
 
+    /* Top Announcement Ribbon */
     .top-ribbon {
       background: linear-gradient(90deg, #0f172a 0%, #0f766e 55%, #0d9488 100%);
       color: #ffffff;
@@ -90,6 +91,7 @@
       text-transform: uppercase;
     }
 
+    /* Navigation */
     header.site-nav {
       position: sticky;
       top: 0;
@@ -161,6 +163,7 @@
       color: #ffffff;
     }
 
+    /* Hero */
     .hero {
       background: linear-gradient(125deg, #0f172a 0%, #115e59 55%, #0284c7 100%);
       color: #ffffff;
@@ -309,6 +312,7 @@
       color: #f1f5f9;
     }
 
+    /* Sections */
     section.band {
       padding: 58px 0;
       border-bottom: 1px solid var(--border);
@@ -348,6 +352,7 @@
       font-size: 0.98rem;
     }
 
+    /* Grids & Cards */
     .grid-3 {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -393,6 +398,7 @@
       color: var(--ink-700);
     }
 
+    /* Priority Strip */
     .priority-row {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -420,6 +426,7 @@
       margin-bottom: 4px;
     }
 
+    /* Forms & Registration */
     .form-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -458,6 +465,7 @@
       border-color: var(--teal-600);
     }
 
+    /* Compact Next-Step WhatsApp Button Strip After Registration */
     .post-reg-wa-bar {
       margin-top: 16px;
       padding: 14px 16px;
@@ -485,6 +493,7 @@
     .msg-ok { color: var(--wa-700); }
     .msg-err { color: var(--rose-600); }
 
+    /* Colorful Executive Portal Section */
     .colorful-portal-banner {
       background: linear-gradient(120deg, #1e1b4b 0%, #0f766e 52%, #b45309 100%);
       color: #ffffff;
@@ -515,14 +524,15 @@
     .chip-rose { background: var(--rose-100); }
 
     .portal-login-box {
-      background: rgba(255, 255, 255, 0.98);
+      background: rgba(255, 255, 255, 0.97);
       color: var(--ink-900);
       border-radius: var(--radius-md);
       padding: 22px;
-      max-width: 600px;
+      max-width: 540px;
       box-shadow: var(--shadow-md);
     }
 
+    /* Full-Screen / Pop-Up Executive Workspace Modal */
     .popup-backdrop {
       position: fixed;
       inset: 0;
@@ -586,6 +596,7 @@
       margin-bottom: 4px;
     }
 
+    /* Floating & Docked Chatbot */
     .chatbot-fab {
       position: fixed;
       right: 20px;
@@ -846,6 +857,7 @@
     </div>
   </header>
 
+  <!-- Hero -->
   <section class="hero">
     <div class="container hero-inner">
       <div>
@@ -875,6 +887,7 @@
     </div>
   </section>
 
+  <!-- 1. WHO WE ARE -->
   <section id="who-we-are" class="band white">
     <div class="container">
       <div class="band-head">
@@ -903,6 +916,7 @@
     </div>
   </section>
 
+  <!-- 2. OUTREACH PHOTOS -->
   <section id="outreach-photos" class="band">
     <div class="container">
       <div class="band-head">
@@ -931,6 +945,7 @@
     </div>
   </section>
 
+  <!-- 3. PRIORITIES -->
   <section id="priorities" class="band white">
     <div class="container">
       <div class="band-head">
@@ -964,6 +979,7 @@
     </div>
   </section>
 
+  <!-- 3B. CLUB CALENDAR & SATURDAY MEETING ANNOUNCEMENT -->
   <section id="club-calendar" class="band">
     <div class="container">
       <div class="band-head">
@@ -1004,6 +1020,7 @@
     </div>
   </section>
 
+  <!-- 4. JOIN US -->
   <section id="join" class="band">
     <div class="container">
       <div class="band-head">
@@ -1022,69 +1039,6 @@
           <div class="priority-num">Semester Option</div>
           <h3>KES 50 Subscription / Semester</h3>
           <p>Optional recurring subscription of <strong>KES 50 per semester</strong> to support ongoing club activities.</p>
-        </div>
-      </div>
-
-      <div class="card" style="max-width: 720px;">
-        <form id="joinForm" class="form-grid" novalidate>
-          <div class="field">
-            <label for="regName">Full Name *</label>
-            <input type="text" id="regName" placeholder="e.g. Amina Wanjiku" required />
-          </div>
-          <div class="field">
-            <label for="regNo">Registration Number *</label>
-            <input type="text" id="regNo" placeholder="e.g. ED/ART/1591/24" required />
-          </div>
-          <div class="field">
-            <label for="regPhone">Phone / WhatsApp Number *</label>
-            <input type="tel" id="regPhone" placeholder="e.g. 0712345678" required />
-          </div>
-          <div class="field">
-            <label for="regRole">Interest Area</label>
-            <select id="regRole">
-              <option value="General Member">General Member</option>
-              <option value="Outreach & Field Team">Outreach &amp; Field Team</option>
-              <option value="Mentorship Team">Mentorship Team</option>
-              <option value="Media & Publicity">Media &amp; Publicity</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="regFeePlan">Fee / Subscription Option *</label>
-            <select id="regFeePlan">
-              <option value="KES 100 One-Time Registration Fee" data-amount="KES 100">KES 100 One-Time Registration Fee</option>
-              <option value="KES 100 One-Time + KES 50 / Semester Subscription" data-amount="KES 150">KES 100 One-Time + KES 50 / Semester Subscription</option>
-              <option value="KES 50 / Semester Subscription Option" data-amount="KES 50">KES 50 / Semester Subscription Option</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="regMpesaRef">M-Pesa Reference Number *</label>
-            <input type="text" id="regMpesaRef" placeholder="e.g. TKL89ABC12" maxlength="14" style="text-transform: uppercase;" required />
-          </div>
-          <div class="field full">
-            <div id="feeSummaryBadge" style="font-size: 0.86rem; font-weight: 700; color: var(--teal-800); background: var(--teal-100); padding: 8px 12px; border-radius: 8px;">
-              Selected Payable Amount: KES 100
-            </div>
-          </div>
-          <div class="field full">
-            <button type="submit" class="btn btn-teal">Submit Registration</button>
-          </div>
-        </form>
-
-        <div id="joinMsg" class="msg-note"></div>
-
-        <div id="afterRegWaBar" class="post-reg-wa-bar muted">
-          <span id="afterRegText" style="font-size: 0.9rem; font-weight: 600;">
-            Complete registration above or join the group directly:
-          </span>
-          <a
-            id="afterRegWaBtn"
-            href="https://chat.whatsapp.com/Dty1LdhdHwv1JTfGJETtdW"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn btn-wa btn-sm"
-          >
-            Join WhatsApp Group
-          </a>
         </div>
       </div>
 
@@ -1120,6 +1074,7 @@
     </div>
   </section>
 
+  <!-- 5. VERIFY MEMBER & MERCHANDISE -->
   <section id="verify-member" class="band white">
     <div class="container">
       <div class="band-head">
@@ -1173,13 +1128,14 @@
     </div>
   </section>
 
+  <!-- 6. EXECUTIVE OFFICE PORTAL (Executives Only) -->
   <section id="executive-portal" class="band white">
     <div class="container">
       <div class="colorful-portal-banner">
         <span class="badge" style="background: var(--amber-500); color: var(--ink-900);">06 • Executives Only</span>
         <h2 style="font-size: clamp(1.6rem, 3vw, 2.2rem); margin-top: 8px;">Executive Office Portal</h2>
         <p style="color: #f1f5f9; max-width: 65ch; margin-top: 6px;">
-          Restricted to executive officials. Sign in with your Office ID or Registration Number and PIN to open your dedicated office portal in a pop-up window.
+          Restricted to executive officials. Sign in with your Office ID or Registration Number and PIN to open your own dedicated office portal in a pop-up window with department-specific tools.
         </p>
 
         <div class="portal-color-chips">
@@ -1200,23 +1156,23 @@
           <form id="execPopupLoginForm" class="form-grid" novalidate>
             <div class="field">
               <label for="execIdInput">Office ID or Reg. No.</label>
-              <input type="text" id="execIdInput" placeholder="e.g. EXEC-01 or ED/ART/1591/24" required />
+              <input type="text" id="execIdInput" placeholder="Enter Office ID or Reg. No." required />
             </div>
             <div class="field">
               <label for="execPinInput">Office PIN</label>
               <input type="password" id="execPinInput" placeholder="Enter PIN" required />
             </div>
             <div class="field full" style="display: flex; gap: 10px; flex-wrap: wrap;">
-              <button type="submit" id="execLoginSubmitBtn" class="btn btn-indigo">Sign In &amp; Open My Office Portal</button>
-              <button type="button" id="execResetStateBtn" class="btn btn-secondary btn-sm">Reset Portal Data</button>
+              <button type="submit" class="btn btn-indigo">Sign In &amp; Open My Office Portal</button>
             </div>
           </form>
-          <div id="execLoginMsg" class="msg-note" role="status" aria-live="polite"></div>
+          <div id="execLoginMsg" class="msg-note"></div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- WEEKLY REPORT OVERDUE POP-UP NOTIFICATION -->
   <div id="overdueNotifyBackdrop" class="overdue-alert-backdrop" role="dialog" aria-modal="true" aria-labelledby="overdueNotifyTitle">
     <div class="overdue-alert-card">
       <div class="overdue-alert-head">
@@ -1230,6 +1186,7 @@
     </div>
   </div>
 
+  <!-- POP-UP EXECUTIVE OFFICE WINDOW -->
   <div id="execPopupBackdrop" class="popup-backdrop" role="dialog" aria-modal="true" aria-labelledby="popupTitle">
     <div class="popup-window">
       <div class="popup-topbar">
@@ -1249,6 +1206,7 @@
     </div>
   </div>
 
+  <!-- CHATBOT -->
   <button type="button" class="chatbot-fab" onclick="toggleChatbot()">Club Chatbot</button>
 
   <div id="chatbotPanel" class="chatbot-panel" role="region" aria-label="Share a Smile Club Chatbot">
@@ -1286,77 +1244,12 @@
   </footer>
 
   <script>
-(function () {
+    (function () {
+      const WA_URL = "https://chat.whatsapp.com/Dty1LdhdHwv1JTfGJETtdW";
+      const STORE_KEY = "sas_club_structured_v3";
+      const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
 
-
-
-  function preserveScroll(fn) {
-    const y = window.scrollY || window.pageYOffset || 0;
-    const htmlEl = document.documentElement;
-    const prevBehavior = htmlEl.style.scrollBehavior;
-    htmlEl.style.scrollBehavior = "auto";
-    try {
-      return fn();
-    } finally {
-      window.scrollTo(0, y);
-      requestAnimationFrame(function () {
-        window.scrollTo(0, y);
-        htmlEl.style.scrollBehavior = prevBehavior || "";
-      });
-    }
-  }
-
-  document.addEventListener("keydown", function (e) {
-    if (e.key !== "Enter") return;
-    const el = e.target;
-    if (!el || !el.tagName) return;
-    const tag = el.tagName.toUpperCase();
-    if (tag === "TEXTAREA" || tag === "BUTTON" || tag === "A") return;
-
-    const form = el.closest ? el.closest("form") : null;
-    if (form) {
-      // Allow normal form submission without forcing synthetic duplicate submits
-      return;
-    }
-
-    const card = el.closest ? el.closest(".card, .portal-login-box, .chatbot-panel") : null;
-    if (card) {
-      const actionBtn = card.querySelector("button[type='submit'], button.btn-teal, button.btn-indigo, button.btn-amber");
-      if (actionBtn) {
-        e.preventDefault();
-        preserveScroll(function () {
-          actionBtn.click();
-        });
-      }
-    }
-  });
-
-  const WA_URL = "https://chat.whatsapp.com/Dty1LdhdHwv1JTfGJETtdW";
-  const STORE_KEY = "sas_club_structured_v3";
-  const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
-
-  let memoryStorage = {};
-  function readStorage(key) {
-    try {
-      return window.localStorage.getItem(key);
-    } catch (e) {
-      return Object.prototype.hasOwnProperty.call(memoryStorage, key) ? memoryStorage[key] : null;
-    }
-  }
-  function writeStorage(key, val) {
-    try {
-      window.localStorage.setItem(key, val);
-    } catch (e) {
-      memoryStorage[key] = val;
-    }
-  }
-  function clearStorage(key) {
-    try {
-      window.localStorage.removeItem(key);
-    } catch (e) {}
-    delete memoryStorage[key];
-  }
-const EXEC_OFFICES = [
+      const EXEC_OFFICES = [
         {
           id: "EXEC-01",
           reg: "ED/ART1591//24",
@@ -1883,14 +1776,6 @@ const EXEC_OFFICES = [
         return String(val || "").trim().toUpperCase().replace(/[^A-Z0-9]/g, "");
       }
 
-      function getActivePin(account) {
-        if (!account) return "";
-        if (state.customPins && typeof state.customPins[account.id] === "string" && state.customPins[account.id].trim()) {
-          return state.customPins[account.id].trim();
-        }
-        return account.pin;
-      }
-
       function resolveExecutiveAccount(idVal, pinVal) {
         const cleanId = normalizeReg(idVal);
         const cleanPin = String(pinVal || "").trim();
@@ -1900,7 +1785,7 @@ const EXEC_OFFICES = [
             normalizeReg(acc.id) === cleanId ||
             normalizeReg(acc.reg) === cleanId ||
             (acc.altReg && normalizeReg(acc.altReg) === cleanId);
-          return matchesId && getActivePin(acc) === cleanPin;
+          return matchesId && acc.pin === cleanPin;
         }) || null;
       }
 
@@ -1934,8 +1819,7 @@ const EXEC_OFFICES = [
           ],
           budgetTarget: 15000,
           deptRecords: {},
-          customPins: {},
-          perfCadence: "Daily (Every 24 Hours)",
+          perfCadence: "Weekly (Every 7 Days)",
           perfReviews: {},
           chairReports: [],
           lastReportSubmittedAt: {
@@ -1946,39 +1830,38 @@ const EXEC_OFFICES = [
         };
       }
 
-      
-  function loadState() {
-    try {
-      const raw = readStorage(STORE_KEY);
-      if (!raw) return defaultState();
-      const parsed = JSON.parse(raw);
-      const base = defaultState();
-      return {
-        members: mergeSeedMembers(parsed.members),
-        officeNotes: parsed.officeNotes && typeof parsed.officeNotes === "object" ? parsed.officeNotes : {},
-        budgetItems: Array.isArray(parsed.budgetItems) ? parsed.budgetItems : base.budgetItems,
-        budgetTarget: typeof parsed.budgetTarget === "number" && parsed.budgetTarget > 0 ? parsed.budgetTarget : base.budgetTarget,
-        deptRecords: parsed.deptRecords && typeof parsed.deptRecords === "object" ? parsed.deptRecords : {},
-        customPins: parsed.customPins && typeof parsed.customPins === "object" ? parsed.customPins : {},
-        perfCadence: typeof parsed.perfCadence === "string" && parsed.perfCadence ? parsed.perfCadence : base.perfCadence,
-        perfReviews: parsed.perfReviews && typeof parsed.perfReviews === "object" ? parsed.perfReviews : {},
-        chairReports: Array.isArray(parsed.chairReports) ? parsed.chairReports : [],
-        lastReportSubmittedAt: parsed.lastReportSubmittedAt && typeof parsed.lastReportSubmittedAt === "object"
-          ? Object.assign(base.lastReportSubmittedAt, parsed.lastReportSubmittedAt)
-          : base.lastReportSubmittedAt,
-        loggedInExec: parsed.loggedInExec || null
-      };
-    } catch (e) {
-      return defaultState();
-    }
-  }
+      function loadState() {
+        try {
+          const raw = localStorage.getItem(STORE_KEY);
+          if (!raw) return defaultState();
+          const parsed = JSON.parse(raw);
+          const base = defaultState();
+          return {
+            members: mergeSeedMembers(parsed.members),
+            officeNotes: parsed.officeNotes && typeof parsed.officeNotes === "object" ? parsed.officeNotes : {},
+            budgetItems: Array.isArray(parsed.budgetItems) ? parsed.budgetItems : base.budgetItems,
+            budgetTarget: typeof parsed.budgetTarget === "number" && parsed.budgetTarget > 0 ? parsed.budgetTarget : base.budgetTarget,
+            deptRecords: parsed.deptRecords && typeof parsed.deptRecords === "object" ? parsed.deptRecords : {},
+            perfCadence: typeof parsed.perfCadence === "string" && parsed.perfCadence ? parsed.perfCadence : base.perfCadence,
+            perfReviews: parsed.perfReviews && typeof parsed.perfReviews === "object" ? parsed.perfReviews : {},
+            chairReports: Array.isArray(parsed.chairReports) ? parsed.chairReports : [],
+            lastReportSubmittedAt: parsed.lastReportSubmittedAt && typeof parsed.lastReportSubmittedAt === "object"
+              ? Object.assign(base.lastReportSubmittedAt, parsed.lastReportSubmittedAt)
+              : base.lastReportSubmittedAt,
+            loggedInExec: parsed.loggedInExec || null
+          };
+        } catch (e) {
+          return defaultState();
+        }
+      }
 
-  function saveState() {
-    try {
-      writeStorage(STORE_KEY, JSON.stringify(state));
-    } catch (e) {}
-  }
-const state = loadState();
+      function saveState() {
+        try {
+          localStorage.setItem(STORE_KEY, JSON.stringify(state));
+        } catch (e) {}
+      }
+
+      const state = loadState();
 
       function esc(str) {
         return String(str || "")
@@ -2138,20 +2021,18 @@ const state = loadState();
           saveState();
 
           msgEl.className = "msg-note msg-ok";
-          preserveScroll(function () {
-            msgEl.textContent =
-              "Registration completed for " + name + " (" + reg + ") • " + feePlan +
-              " • M-Pesa Ref: " + mpesaRef + ". Click the button below to join WhatsApp.";
+          msgEl.textContent =
+            "Registration completed for " + name + " (" + reg + ") • " + feePlan +
+            " • M-Pesa Ref: " + mpesaRef + ". Click the button below to join WhatsApp.";
 
-            const bar = document.getElementById("afterRegWaBar");
-            const txt = document.getElementById("afterRegText");
-            const btn = document.getElementById("afterRegWaBtn");
-            bar.classList.remove("muted");
-            txt.textContent = "Registration complete (Ref: " + mpesaRef + ")! Next step — join the group:";
-            btn.href = WA_URL;
-            joinForm.reset();
-            updateFeeSummary();
-          });
+          const bar = document.getElementById("afterRegWaBar");
+          const txt = document.getElementById("afterRegText");
+          const btn = document.getElementById("afterRegWaBtn");
+          bar.classList.remove("muted");
+          txt.textContent = "Registration complete (Ref: " + mpesaRef + ")! Next step — join the group:";
+          btn.href = WA_URL;
+          joinForm.reset();
+          updateFeeSummary();
         });
       }
 
@@ -2208,12 +2089,10 @@ const state = loadState();
           saveState();
 
           msgEl.className = "msg-note msg-ok";
-          preserveScroll(function () {
-            msgEl.textContent =
-              "Payment recorded for " + state.members[idx].name + " (" + (state.members[idx].reg || "—") + ") • " +
-              feePlan + " • M-Pesa Ref: " + mpesaRef + ".";
-            existingPayForm.reset();
-          });
+          msgEl.textContent =
+            "Payment recorded for " + state.members[idx].name + " (" + (state.members[idx].reg || "—") + ") • " +
+            feePlan + " • M-Pesa Ref: " + mpesaRef + ".";
+          existingPayForm.reset();
         });
       }
 
@@ -2320,10 +2199,8 @@ const state = loadState();
                 });
               }
               saveState();
-              preserveScroll(function () {
-                if (inputEl) inputEl.value = cleanReg;
-                window.verifyMember(null);
-              });
+              if (inputEl) inputEl.value = cleanReg;
+              window.verifyMember(null);
             });
           }
         }
@@ -2720,7 +2597,7 @@ const state = loadState();
           return (
             "<tr style='border-bottom:1px solid var(--border);'>" +
               "<td style='padding:8px;'><strong>" + esc(off.name) + "</strong><br><span style='font-size:0.78rem; color:var(--ink-500);'>" + esc(off.role) + "</span></td>" +
-              "<td style='padding:8px; font-size:0.82rem;'>ID: <strong>" + esc(off.id) + "</strong><br>Reg: " + esc(off.reg) + "<br>PIN: <code>" + esc(getActivePin(off)) + "</code></td>" +
+              "<td style='padding:8px; font-size:0.82rem;'>ID: <strong>" + esc(off.id) + "</strong><br>Reg: " + esc(off.reg) + "<br>PIN: <code>" + esc(off.pin) + "</code></td>" +
               "<td style='padding:8px; font-size:0.82rem;'>Notes: " + notesCount + " &bull; Dept Logs: " + deptCount + " &bull; Reports: " + reportsCount + "<br><strong>Total Logged: " + activityScore + "</strong></td>" +
               "<td style='padding:8px; font-size:0.8rem;'>" +
                 (lastReview
@@ -2750,8 +2627,7 @@ const state = loadState();
                 "<h3 style='font-size:1rem;'>Current Cadence: " + esc(cadence) + "</h3>" +
                 "<form id='perfCadenceForm' style='display:flex; gap:8px; flex-wrap:wrap; margin-top:8px;'>" +
                   "<select id='perfCadenceSelect' style='flex:1; min-width:170px; padding:7px 10px; font-size:0.85rem;'>" +
-                    "<option value='Daily (Every 24 Hours)'" + (cadence === "Daily (Every 24 Hours)" ? " selected" : "") + ">Daily (Every 24 Hours)</option>
-                    <option value='Weekly (Every 7 Days)'" + (cadence === "Weekly (Every 7 Days)" ? " selected" : "") + ">Weekly (Every 7 Days)</option>" +
+                    "<option value='Weekly (Every 7 Days)'" + (cadence === "Weekly (Every 7 Days)" ? " selected" : "") + ">Weekly (Every 7 Days)</option>" +
                     "<option value='Bi-Weekly (Every 14 Days)'" + (cadence === "Bi-Weekly (Every 14 Days)" ? " selected" : "") + ">Bi-Weekly (Every 14 Days)</option>" +
                     "<option value='Monthly (Every 30 Days)'" + (cadence === "Monthly (Every 30 Days)" ? " selected" : "") + ">Monthly (Every 30 Days)</option>" +
                     "<option value='Before Every General / Outreach Event'" + (cadence === "Before Every General / Outreach Event" ? " selected" : "") + ">Before Every General / Outreach Event</option>" +
@@ -2777,9 +2653,8 @@ const state = loadState();
                 "<label for='perfNoteInput'>Review Note (" + esc(cadence) + ")</label>" +
                 "<input type='text' id='perfNoteInput' placeholder='e.g. Minutes and weekly report submitted on time' required />" +
               "</div>" +
-              "<div class='field full' style='display:flex; gap:10px; flex-wrap:wrap;'>" +
+              "<div class='field full'>" +
                 "<button type='submit' class='btn btn-teal btn-sm'>Log Performance Check</button>" +
-                "<button type='button' id='downloadDailyPerfPdfBtn' class='btn btn-indigo btn-sm'>Download Daily Performance PDF</button>" +
               "</div>" +
             "</form>" +
             "<div style='overflow-x:auto;'>" +
@@ -2829,136 +2704,6 @@ const state = loadState();
             };
             saveState();
             renderOfficeWorkspace(account);
-          });
-        }
-        const dlPerfBtn = document.getElementById("downloadDailyPerfPdfBtn");
-        if (dlPerfBtn) {
-          dlPerfBtn.addEventListener("click", function () {
-            const cadenceVal = state.perfCadence || "Daily (Every 24 Hours)";
-            const otherExecs = EXEC_OFFICES.filter(function (o) { return o.role !== "Chairperson"; });
-            const lines = [
-              "SHARE A SMILE CHARITY CLUB - LAIKIPIA UNIVERSITY",
-              "OFFICE OF THE CHAIRPERSON - DAILY EXECUTIVE PERFORMANCE REPORT",
-              "Chairperson: " + account.name + " (" + account.reg + ")",
-              "Report Date & Time: " + new Date().toLocaleString(),
-              "Review Frequency: " + cadenceVal,
-              "----------------------------------------------------------------------"
-            ];
-            otherExecs.forEach(function (off) {
-              const notesCount = Array.isArray(state.officeNotes[off.id]) ? state.officeNotes[off.id].length : 0;
-              const deptCount = Array.isArray(state.deptRecords[off.id]) ? state.deptRecords[off.id].length : 0;
-              const reportsCount = state.chairReports.filter(function (r) {
-                return r.role === off.role || r.reg === off.reg;
-              }).length;
-              const totalLogged = notesCount + deptCount + reportsCount;
-              const rev = state.perfReviews && state.perfReviews[off.id] ? state.perfReviews[off.id] : null;
-              const statusText = rev ? (rev.rating + " (" + rev.date + ") - " + rev.note) : "Pending daily check";
-              lines.push(off.name + " | " + off.role + " | ID: " + off.id + " | Logged: " + totalLogged + " | " + statusText);
-            });
-            const pdfBlob = buildSimplePdfBlob(lines);
-            const url = URL.createObjectURL(pdfBlob);
-            const link = document.createElement("a");
-            link.href = url;
-            link.download = "daily-executive-performance-report.pdf";
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
-          });
-        }
-      }
-
-      function renderChangePinCard(account) {
-        if (!account) return "";
-        const currentPin = getActivePin(account);
-        return (
-          "<div class='card' style='margin-bottom:18px; border-top:4px solid var(--amber-500);'>" +
-            "<h3>Change My Login PIN</h3>" +
-            "<p style='font-size:0.86rem; color:var(--ink-500); margin-bottom:12px;'>Current PIN: <code>" + esc(currentPin) + "</code>. Update your 4–8 digit login PIN for future sign-ins.</p>" +
-            "<form id='changePinForm' class='form-grid' novalidate>" +
-              "<div class='field'>" +
-                "<label for='currentPinInput'>Current PIN</label>" +
-                "<input type='password' id='currentPinInput' placeholder='Enter current PIN' required />" +
-              "</div>" +
-              "<div class='field'>" +
-                "<label for='newPinInput'>New PIN (4–8 digits)</label>" +
-                "<input type='password' id='newPinInput' maxlength='8' placeholder='e.g. 2026' required />" +
-              "</div>" +
-              "<div class='field full'>" +
-                "<label for='confirmPinInput'>Confirm New PIN</label>" +
-                "<input type='password' id='confirmPinInput' maxlength='8' placeholder='Re-enter new PIN' required />" +
-              "</div>" +
-              "<div class='field full'>" +
-                "<div style='display:flex; gap:8px; flex-wrap:wrap;'><button type='submit' class='btn btn-amber btn-sm'>Update Login PIN</button>" + (state.customPins && state.customPins[account.id] ? "<button type='button' id='resetDefaultPinBtn' class='btn btn-secondary btn-sm'>Reset to Default PIN</button>" : "") + "</div>" +
-              "</div>" +
-            "</form>" +
-            "<div id='changePinMsg' class='msg-note'></div>" +
-          "</div>"
-        );
-      }
-
-      function bindChangePinHandler(account) {
-        const form = document.getElementById("changePinForm");
-        if (!form || !account) return;
-        form.addEventListener("submit", function (e) {
-          e.preventDefault();
-          const curVal = (document.getElementById("currentPinInput").value || "").trim();
-          const newVal = (document.getElementById("newPinInput").value || "").trim();
-          const confVal = (document.getElementById("confirmPinInput").value || "").trim();
-          const msgEl = document.getElementById("changePinMsg");
-
-          if (curVal !== getActivePin(account)) {
-            if (msgEl) {
-              msgEl.className = "msg-note msg-err";
-              msgEl.textContent = "Current PIN is incorrect.";
-            }
-            return;
-          }
-          if (!/^[0-9]{4,8}$/.test(newVal)) {
-            if (msgEl) {
-              msgEl.className = "msg-note msg-err";
-              msgEl.textContent = "New PIN must be 4 to 8 digits.";
-            }
-            return;
-          }
-          if (newVal !== confVal) {
-            if (msgEl) {
-              msgEl.className = "msg-note msg-err";
-              msgEl.textContent = "New PIN and confirmation PIN do not match.";
-            }
-            return;
-          }
-
-          state.customPins[account.id] = newVal;
-          if (state.loggedInExec && state.loggedInExec.id === account.id) {
-            state.loggedInExec = Object.assign({}, state.loggedInExec, { pin: newVal });
-          }
-          saveState();
-          renderOfficeWorkspace(Object.assign({}, account, { pin: newVal }));
-          const updatedMsg = document.getElementById("changePinMsg");
-          if (updatedMsg) {
-            updatedMsg.className = "msg-note msg-ok";
-            updatedMsg.textContent = "Login PIN updated successfully. Use your new PIN next time you sign in.";
-          }
-        });
-
-        const resetBtn = document.getElementById("resetDefaultPinBtn");
-        if (resetBtn) {
-          resetBtn.addEventListener("click", function () {
-            if (state.customPins && Object.prototype.hasOwnProperty.call(state.customPins, account.id)) {
-              delete state.customPins[account.id];
-            }
-            const defPin = account.pin;
-            if (state.loggedInExec && state.loggedInExec.id === account.id) {
-              state.loggedInExec = Object.assign({}, state.loggedInExec, { pin: defPin });
-            }
-            saveState();
-            renderOfficeWorkspace(Object.assign({}, account, { pin: defPin }));
-            const updatedMsg = document.getElementById("changePinMsg");
-            if (updatedMsg) {
-              updatedMsg.className = "msg-note msg-ok";
-              updatedMsg.textContent = "Login PIN reset to default PIN (" + defPin + ").";
-            }
           });
         }
       }
@@ -3067,7 +2812,6 @@ const state = loadState();
               '</form>' +
             '</div>' +
           '</div>' +
-          renderChangePinCard(account) +
           renderChairpersonOversightSummary(account) +
           renderDeptSpecificTools(account) +
           weeklyReportCardHtml +
@@ -3079,7 +2823,6 @@ const state = loadState();
 
         bindDepartmentHandlers(account);
         bindChairpersonOversightHandlers(account);
-        bindChangePinHandler(account);
 
         const noteForm = document.getElementById("officeNoteForm");
         if (noteForm) {
@@ -3325,22 +3068,7 @@ const state = loadState();
           window.verifyMember(e);
         });
       }
-    
-  const resetPortalBtn = document.getElementById("execResetStateBtn");
-  if (resetPortalBtn) {
-    resetPortalBtn.addEventListener("click", function () {
-      clearStorage(STORE_KEY);
-      const fresh = defaultState();
-      Object.keys(fresh).forEach(function (k) { state[k] = fresh[k]; });
-      const msgEl = document.getElementById("execLoginMsg");
-      if (msgEl) {
-        msgEl.className = "msg-note msg-ok";
-        msgEl.textContent = "Portal storage cleared. Enter your Office ID / Reg. No. and PIN and sign in again.";
-      }
-    });
-  }
-
-
-})();
-</script>
+    })();
+  </script>
 </body>
+</html>
