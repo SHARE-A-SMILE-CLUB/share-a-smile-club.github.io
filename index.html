@@ -1135,7 +1135,7 @@
         <span class="badge" style="background: var(--amber-500); color: var(--ink-900);">06 • Executives Only</span>
         <h2 style="font-size: clamp(1.6rem, 3vw, 2.2rem); margin-top: 8px;">Executive Office Portal</h2>
         <p style="color: #f1f5f9; max-width: 65ch; margin-top: 6px;">
-          One shared general portal for all executive officials. Sign in with your Office ID or Registration Number and PIN to open the General Executive Portal in a pop-up window.
+          Restricted to executive officials. Sign in with your Office ID or Registration Number and PIN to open your own dedicated office portal in a pop-up window with department-specific tools.
         </p>
 
         <div class="portal-color-chips">
@@ -1163,7 +1163,7 @@
               <input type="password" id="execPinInput" placeholder="Enter PIN" required />
             </div>
             <div class="field full" style="display: flex; gap: 10px; flex-wrap: wrap;">
-              <button type="submit" class="btn btn-indigo">Sign In &amp; Open General Portal</button>
+              <button type="submit" class="btn btn-indigo">Sign In &amp; Open My Office Portal</button>
             </div>
           </form>
           <div id="execLoginMsg" class="msg-note"></div>
@@ -1813,6 +1813,12 @@
         return {
           members: mergeSeedMembers([]),
           officeNotes: {},
+          budgetItems: [
+            { id: "BDG-1", type: "Income", category: "Registration & Dues", title: "Initial Member Registration & Subscriptions", amount: 3250, ref: "SAS-INIT", date: "Nov 25, 2026" },
+            { id: "BDG-2", type: "Expense", category: "Meeting & Venue", title: "Serene Court Grounds Logistics & Printing", amount: 1200, ref: "EXP-01", date: "Nov 26, 2026" }
+          ],
+          budgetTarget: 15000,
+          deptRecords: {},
           chairReports: [],
           lastReportSubmittedAt: {
             "Secretary General": null,
@@ -1831,6 +1837,9 @@
           return {
             members: mergeSeedMembers(parsed.members),
             officeNotes: parsed.officeNotes && typeof parsed.officeNotes === "object" ? parsed.officeNotes : {},
+            budgetItems: Array.isArray(parsed.budgetItems) ? parsed.budgetItems : base.budgetItems,
+            budgetTarget: typeof parsed.budgetTarget === "number" && parsed.budgetTarget > 0 ? parsed.budgetTarget : base.budgetTarget,
+            deptRecords: parsed.deptRecords && typeof parsed.deptRecords === "object" ? parsed.deptRecords : {},
             chairReports: Array.isArray(parsed.chairReports) ? parsed.chairReports : [],
             lastReportSubmittedAt: parsed.lastReportSubmittedAt && typeof parsed.lastReportSubmittedAt === "object"
               ? Object.assign(base.lastReportSubmittedAt, parsed.lastReportSubmittedAt)
@@ -2194,127 +2203,491 @@
         return false;
       };
 
-      // 3. Shared General Executive Portal Pop-Up Window (Accessible to All Executives)
+      // 3. Individual Executive Office Portal Pop-Up Window with Department Tools
+      function getDeptList(key) {
+        if (!state.deptRecords[key] || !Array.isArray(state.deptRecords[key])) {
+          state.deptRecords[key] = [];
+        }
+        return state.deptRecords[key];
+      }
+
+      function renderTreasurerTools(account) {
+        const items = Array.isArray(state.budgetItems) ? state.budgetItems : [];
+        let totalIncome = 0;
+        let totalExpense = 0;
+        items.forEach(function (it) {
+          const amt = Number(it.amount) || 0;
+          if (it.type === "Income") totalIncome += amt;
+          else totalExpense += amt;
+        });
+        const netBalance = totalIncome - totalExpense;
+        const target = Number(state.budgetTarget) || 15000;
+        const pct = Math.max(0, Math.min(100, Math.round((totalIncome / target) * 100)));
+
+        const rowsHtml = items.length === 0
+          ? "<tr><td colspan='6' style='padding:10px; color:var(--ink-500);'>No budget or ledger entries yet.</td></tr>"
+          : items.map(function (it) {
+              const isInc = it.type === "Income";
+              return (
+                "<tr style='border-bottom:1px solid var(--border);'>" +
+                  "<td style='padding:8px; font-weight:700; color:" + (isInc ? "var(--wa-700)" : "var(--rose-600)") + ";'>" + esc(it.type) + "</td>" +
+                  "<td style='padding:8px;'>" + esc(it.category) + "</td>" +
+                  "<td style='padding:8px;'>" + esc(it.title) + "</td>" +
+                  "<td style='padding:8px; font-size:0.82rem; color:var(--ink-500);'>" + esc(it.ref || "—") + "</td>" +
+                  "<td style='padding:8px; font-weight:700;'>KES " + Number(it.amount || 0).toLocaleString() + "</td>" +
+                  "<td style='padding:8px;'><button type='button' class='btn btn-secondary btn-sm' data-del-budget='" + esc(it.id) + "'>Remove</button></td>" +
+                "</tr>"
+              );
+            }).join("");
+
+        return (
+          "<div class='card' style='margin-bottom:18px; border-top:4px solid var(--wa-600);'>" +
+            "<h3>Treasurer Budget &amp; Financial Ledger Tool</h3>" +
+            "<p style='font-size:0.86rem; color:var(--ink-500); margin-bottom:14px;'>Track semester budget target, record income and expenses, compute net balance, and export a PDF financial statement.</p>" +
+            "<div class='grid-3' style='margin-bottom:14px;'>" +
+              "<div class='card' style='padding:14px;'>" +
+                "<div class='priority-num'>Total Inflows</div>" +
+                "<h3 style='color:var(--wa-700);'>KES " + totalIncome.toLocaleString() + "</h3>" +
+                "<p style='font-size:0.8rem;'>" + pct + "% of KES " + target.toLocaleString() + " term budget target</p>" +
+              "</div>" +
+              "<div class='card' style='padding:14px;'>" +
+                "<div class='priority-num'>Total Outflows</div>" +
+                "<h3 style='color:var(--rose-600);'>KES " + totalExpense.toLocaleString() + "</h3>" +
+                "<p style='font-size:0.8rem;'>Recorded club expenses</p>" +
+              "</div>" +
+              "<div class='card' style='padding:14px;'>" +
+                "<div class='priority-num'>Net Cash Balance</div>" +
+                "<h3>KES " + netBalance.toLocaleString() + "</h3>" +
+                "<p style='font-size:0.8rem;'>Income minus expenses</p>" +
+              "</div>" +
+            "</div>" +
+            "<form id='budgetTargetForm' style='display:flex; gap:8px; flex-wrap:wrap; align-items:flex-end; margin-bottom:16px;'>" +
+              "<div style='flex:1; min-width:190px;'>" +
+                "<label for='budgetTargetInput'>Term Budget Target (KES)</label>" +
+                "<input type='number' id='budgetTargetInput' min='100' step='100' value='" + esc(target) + "' />" +
+              "</div>" +
+              "<button type='submit' class='btn btn-secondary btn-sm'>Update Target</button>" +
+              "<button type='button' id='exportBudgetPdfBtn' class='btn btn-teal btn-sm'>Download Budget PDF</button>" +
+            "</form>" +
+            "<form id='budgetEntryForm' class='form-grid' novalidate style='margin-bottom:16px;'>" +
+              "<div class='field'>" +
+                "<label for='budgetType'>Entry Type</label>" +
+                "<select id='budgetType'>" +
+                  "<option value='Income'>Income (Inflow)</option>" +
+                  "<option value='Expense'>Expense (Outflow)</option>" +
+                "</select>" +
+              "</div>" +
+              "<div class='field'>" +
+                "<label for='budgetCategory'>Budget Line / Category</label>" +
+                "<select id='budgetCategory'>" +
+                  "<option value='Registration & Dues'>Registration &amp; Dues</option>" +
+                  "<option value='Outreach & Donations'>Outreach &amp; Donations</option>" +
+                  "<option value='Meeting & Venue'>Meeting &amp; Venue</option>" +
+                  "<option value='Printing & Publicity'>Printing &amp; Publicity</option>" +
+                  "<option value='Transport & Logistics'>Transport &amp; Logistics</option>" +
+                  "<option value='Merchandise'>Merchandise</option>" +
+                "</select>" +
+              "</div>" +
+              "<div class='field'>" +
+                "<label for='budgetTitle'>Description</label>" +
+                "<input type='text' id='budgetTitle' placeholder='e.g. Outreach supplies or member dues' required />" +
+              "</div>" +
+              "<div class='field'>" +
+                "<label for='budgetAmount'>Amount (KES)</label>" +
+                "<input type='number' id='budgetAmount' min='1' step='1' placeholder='e.g. 1500' required />" +
+              "</div>" +
+              "<div class='field full'>" +
+                "<label for='budgetRef'>M-Pesa / Receipt Reference (Optional)</label>" +
+                "<input type='text' id='budgetRef' placeholder='e.g. TKL89ABC12' />" +
+              "</div>" +
+              "<div class='field full'>" +
+                "<button type='submit' class='btn btn-indigo btn-sm'>Add Budget Entry</button>" +
+              "</div>" +
+            "</form>" +
+            "<div style='overflow-x:auto;'>" +
+              "<table style='width:100%; border-collapse:collapse; font-size:0.88rem;'>" +
+                "<thead>" +
+                  "<tr style='background:var(--bg-subtle); text-align:left; border-bottom:2px solid var(--border);'>" +
+                    "<th style='padding:8px;'>Type</th>" +
+                    "<th style='padding:8px;'>Category</th>" +
+                    "<th style='padding:8px;'>Description</th>" +
+                    "<th style='padding:8px;'>Ref</th>" +
+                    "<th style='padding:8px;'>Amount</th>" +
+                    "<th style='padding:8px;'>Action</th>" +
+                  "</tr>" +
+                "</thead>" +
+                "<tbody>" + rowsHtml + "</tbody>" +
+              "</table>" +
+            "</div>" +
+          "</div>"
+        );
+      }
+
+      function renderDeptSpecificTools(account) {
+        const role = account.role;
+        const key = account.id;
+        const records = getDeptList(key);
+
+        if (role === "Treasurer") {
+          return renderTreasurerTools(account);
+        }
+
+        const deptConfigMap = {
+          "Chairperson": {
+            title: "Chairperson Governance &amp; Action Tracker",
+            desc: "Track executive directives, Dean of Students compliance items, and general meeting resolutions.",
+            field1Label: "Directive / Resolution Title",
+            field1Placeholder: "e.g. Approve Nov 28 General Meeting agenda",
+            field2Label: "Owner / Action Notes",
+            field2Placeholder: "Assign follow-up officer and deadline...",
+            btnText: "Log Governance Directive"
+          },
+          "Vice Chairperson": {
+            title: "Vice Chairperson Mobilization &amp; Readiness Log",
+            desc: "Track member mobilization targets, deputy assignments, and outreach readiness checks.",
+            field1Label: "Mobilization / Readiness Item",
+            field1Placeholder: "e.g. Confirm member attendance for Saturday meeting",
+            field2Label: "Status &amp; Notes",
+            field2Placeholder: "Enter mobilization details...",
+            btnText: "Save Mobilization Item"
+          },
+          "Secretary General": {
+            title: "Secretary General Minutes &amp; Correspondence Log",
+            desc: "Draft and log meeting minutes, official correspondence, and notices.",
+            field1Label: "Minutes / Correspondence Subject",
+            field1Placeholder: "e.g. Executive Pre-Meeting Minutes — Nov 2026",
+            field2Label: "Key Resolutions / Summary",
+            field2Placeholder: "Record key decisions and action points...",
+            btnText: "Save Minutes Record"
+          },
+          "Assistant Secretary": {
+            title: "Assistant Secretary Attendance &amp; Records Log",
+            desc: "Record attendance registers, supporting notes, and document checklists.",
+            field1Label: "Session / Record Title",
+            field1Placeholder: "e.g. General Meeting Attendance Checklist",
+            field2Label: "Attendance &amp; Record Notes",
+            field2Placeholder: "Record counts, absences, or filing updates...",
+            btnText: "Save Attendance Record"
+          },
+          "Organising Secretary": {
+            title: "Organising Secretary Event &amp; Venue Planner",
+            desc: "Plan meeting venues, seating/sound/logistics, and outreach schedules.",
+            field1Label: "Event / Venue Task",
+            field1Placeholder: "e.g. Serene Court Grounds setup &amp; time schedule",
+            field2Label: "Logistics &amp; Checklist",
+            field2Placeholder: "List equipment, venue contact, or timeline...",
+            btnText: "Add Logistics Item"
+          },
+          "Publicity Officer": {
+            title: "Publicity &amp; Announcements Planner",
+            desc: "Draft announcements, event posters/captions, and member communication schedules.",
+            field1Label: "Announcement / Campaign Title",
+            field1Placeholder: "e.g. Saturday General Meeting Poster &amp; WhatsApp Broadcast",
+            field2Label: "Message Copy &amp; Channel",
+            field2Placeholder: "Write announcement copy and target channel...",
+            btnText: "Save Publicity Item"
+          },
+          "Projects Coordinator": {
+            title: "Projects &amp; Outreach Activity Tracker",
+            desc: "Track community outreach drives, mentorship sessions, and project milestones.",
+            field1Label: "Project / Outreach Activity",
+            field1Placeholder: "e.g. Mentorship &amp; Donation Drive",
+            field2Label: "Milestones, Beneficiaries &amp; Needs",
+            field2Placeholder: "Record target group, supplies needed, and timeline...",
+            btnText: "Add Project Milestone"
+          },
+          "Welfare Coordinator": {
+            title: "Welfare &amp; Member Care Log",
+            desc: "Track member welfare check-ins, peer support cases, and safety/care arrangements.",
+            field1Label: "Welfare Check-In / Support Case",
+            field1Placeholder: "e.g. Member welfare follow-up &amp; event first-aid kit",
+            field2Label: "Support Action &amp; Follow-Up",
+            field2Placeholder: "Record support provided or next step...",
+            btnText: "Log Welfare Record"
+          },
+          "Partnership Coordinator": {
+            title: "Partnerships &amp; Resource Mobilization Log",
+            desc: "Track outreach partners, sponsors, school/institution contacts, and pledges.",
+            field1Label: "Partner / Sponsor / Institution",
+            field1Placeholder: "e.g. Local School / Community Partner",
+            field2Label: "Partnership Scope &amp; Follow-Up",
+            field2Placeholder: "Record contact notes, pledges, or next meeting...",
+            btnText: "Save Partnership Record"
+          }
+        };
+
+        const cfg = deptConfigMap[role] || {
+          title: account.officeName + " — Department Tool",
+          desc: "Manage department tasks and records for your office.",
+          field1Label: "Item Title",
+          field1Placeholder: "Enter item title",
+          field2Label: "Details",
+          field2Placeholder: "Enter details",
+          btnText: "Save Record"
+        };
+
+        const listHtml = records.length === 0
+          ? "<p style='color:var(--ink-500); font-size:0.88rem;'>No department records logged yet.</p>"
+          : records.map(function (r, idx) {
+              return (
+                "<div class='wall-post'>" +
+                  "<div class='wall-post-meta'>" + esc(r.title) + " &bull; " + esc(r.time) + "</div>" +
+                  "<div style='font-size:0.9rem;'>" + esc(r.details) + "</div>" +
+                  "<div style='margin-top:6px;'><button type='button' class='btn btn-secondary btn-sm' data-del-dept='" + idx + "'>Delete</button></div>" +
+                "</div>"
+              );
+            }).join("");
+
+        return (
+          "<div class='card' style='margin-bottom:18px; border-top:4px solid var(--teal-600);'>" +
+            "<h3>" + cfg.title + "</h3>" +
+            "<p style='font-size:0.86rem; color:var(--ink-500); margin-bottom:12px;'>" + cfg.desc + "</p>" +
+            "<form id='deptToolForm' class='form-grid' novalidate style='margin-bottom:14px;'>" +
+              "<div class='field full'>" +
+                "<label for='deptField1'>" + cfg.field1Label + "</label>" +
+                "<input type='text' id='deptField1' placeholder='" + cfg.field1Placeholder + "' required />" +
+              "</div>" +
+              "<div class='field full'>" +
+                "<label for='deptField2'>" + cfg.field2Label + "</label>" +
+                "<textarea id='deptField2' rows='3' placeholder='" + cfg.field2Placeholder + "' required></textarea>" +
+              "</div>" +
+              "<div class='field full'>" +
+                "<button type='submit' class='btn btn-teal btn-sm'>" + cfg.btnText + "</button>" +
+              "</div>" +
+            "</form>" +
+            listHtml +
+          "</div>"
+        );
+      }
+
+      function bindDepartmentHandlers(account) {
+        if (account.role === "Treasurer") {
+          const targetForm = document.getElementById("budgetTargetForm");
+          if (targetForm) {
+            targetForm.addEventListener("submit", function (e) {
+              e.preventDefault();
+              const val = Number(document.getElementById("budgetTargetInput").value);
+              if (val > 0) {
+                state.budgetTarget = val;
+                saveState();
+                renderOfficeWorkspace(account);
+              }
+            });
+          }
+
+          const entryForm = document.getElementById("budgetEntryForm");
+          if (entryForm) {
+            entryForm.addEventListener("submit", function (e) {
+              e.preventDefault();
+              const typeVal = document.getElementById("budgetType").value;
+              const catVal = document.getElementById("budgetCategory").value;
+              const titleVal = document.getElementById("budgetTitle").value.trim();
+              const amtVal = Number(document.getElementById("budgetAmount").value);
+              const refVal = document.getElementById("budgetRef").value.trim().toUpperCase();
+              if (!titleVal || !(amtVal > 0)) return;
+
+              state.budgetItems.unshift({
+                id: "BDG-" + Date.now(),
+                type: typeVal,
+                category: catVal,
+                title: titleVal,
+                amount: amtVal,
+                ref: refVal || "—",
+                date: new Date().toLocaleDateString()
+              });
+              saveState();
+              renderOfficeWorkspace(account);
+            });
+          }
+
+          document.querySelectorAll("[data-del-budget]").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+              const delId = btn.getAttribute("data-del-budget");
+              state.budgetItems = state.budgetItems.filter(function (it) { return it.id !== delId; });
+              saveState();
+              renderOfficeWorkspace(account);
+            });
+          });
+
+          const exportPdfBtn = document.getElementById("exportBudgetPdfBtn");
+          if (exportPdfBtn) {
+            exportPdfBtn.addEventListener("click", function () {
+              let inc = 0;
+              let exp = 0;
+              const lines = [
+                "SHARE A SMILE CHARITY CLUB - LAIKIPIA UNIVERSITY",
+                "OFFICE OF THE TREASURER - BUDGET & FINANCIAL STATEMENT",
+                "Prepared By: " + account.name + " (" + account.role + ")",
+                "Term Budget Target: KES " + Number(state.budgetTarget || 15000).toLocaleString(),
+                "------------------------------------------------------------"
+              ];
+              state.budgetItems.forEach(function (it) {
+                const a = Number(it.amount) || 0;
+                if (it.type === "Income") inc += a; else exp += a;
+                lines.push("[" + it.type + "] " + it.category + " | " + it.title + " | KES " + a.toLocaleString() + " | Ref: " + (it.ref || "-"));
+              });
+              lines.push("------------------------------------------------------------");
+              lines.push("Total Inflows: KES " + inc.toLocaleString());
+              lines.push("Total Outflows: KES " + exp.toLocaleString());
+              lines.push("Net Balance: KES " + (inc - exp).toLocaleString());
+
+              const pdfBlob = buildSimplePdfBlob(lines);
+              const url = URL.createObjectURL(pdfBlob);
+              const link = document.createElement("a");
+              link.href = url;
+              link.download = "treasurer-budget-statement.pdf";
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+              setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+            });
+          }
+        } else {
+          const deptForm = document.getElementById("deptToolForm");
+          if (deptForm) {
+            deptForm.addEventListener("submit", function (e) {
+              e.preventDefault();
+              const f1 = document.getElementById("deptField1").value.trim();
+              const f2 = document.getElementById("deptField2").value.trim();
+              if (!f1 || !f2) return;
+              const list = getDeptList(account.id);
+              list.unshift({
+                title: f1,
+                details: f2,
+                time: new Date().toLocaleString()
+              });
+              saveState();
+              renderOfficeWorkspace(account);
+            });
+          }
+
+          document.querySelectorAll("[data-del-dept]").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+              const idx = Number(btn.getAttribute("data-del-dept"));
+              const list = getDeptList(account.id);
+              if (!Number.isNaN(idx) && idx >= 0 && idx < list.length) {
+                list.splice(idx, 1);
+                saveState();
+                renderOfficeWorkspace(account);
+              }
+            });
+          });
+        }
+      }
+
       function renderOfficeWorkspace(account) {
         const container = document.getElementById("officeWorkspaceContent");
         if (!container || !account) return;
 
-        const sharedNotes = Array.isArray(state.officeNotes["GENERAL_EXEC"]) ? state.officeNotes["GENERAL_EXEC"] : [];
-
-        const execDirectoryHtml = EXEC_OFFICES.map(function (off) {
-          const isCurrent = off.id === account.id;
-          return (
-            '<div style="padding:10px 12px; border:1px solid var(--border); border-radius:8px; background:' + (isCurrent ? '#f0fdfa' : '#ffffff') + ';">' +
-              '<div style="font-weight:700; font-size:0.9rem;">' + esc(off.role) + ' — ' + esc(off.name) + (isCurrent ? ' <span style="color:var(--teal-700);">(Signed In)</span>' : '') + '</div>' +
-              '<div style="font-size:0.8rem; color:var(--ink-500);">' + esc(off.officeName) + ' &bull; Reg: ' + esc(off.reg) + ' &bull; ' + esc(off.phone) + '</div>' +
-            '</div>'
-          );
+        const savedNotes = Array.isArray(state.officeNotes[account.id]) ? state.officeNotes[account.id] : [];
+        const dutiesHtml = account.responsibilities.map(function (item) {
+          return "<li>" + esc(item) + "</li>";
         }).join("");
 
-        const notesHtml = sharedNotes.length === 0
-          ? "<p style='color:var(--ink-500); font-size:0.9rem;'>No general executive notes recorded yet.</p>"
-          : sharedNotes.map(function (n) {
+        const notesHtml = savedNotes.length === 0
+          ? "<p style='color:var(--ink-500); font-size:0.9rem;'>No office notes recorded yet.</p>"
+          : savedNotes.map(function (n) {
               return (
                 '<div class="wall-post">' +
-                  '<div class="wall-post-meta">' + esc(n.title) + ' &bull; By ' + esc(n.author || account.name) + ' &bull; ' + esc(n.time) + '</div>' +
+                  '<div class="wall-post-meta">' + esc(n.title) + ' &bull; ' + esc(n.time) + '</div>' +
                   '<div style="font-size:0.9rem;">' + esc(n.body) + '</div>' +
                 '</div>'
               );
             }).join("");
 
-        const paidMembers = state.members.filter(function (m) { return Boolean(m.mpesaRef); });
-        const unpaidMembers = state.members.filter(function (m) { return !m.mpesaRef; });
+        const isWeeklyReporter = account.role === "Secretary General" || account.role === "Treasurer";
+        const isChairperson = account.role === "Chairperson";
 
-        const weeklyReportCardHtml =
-          '<div class="card" style="margin-bottom:18px; border-top:4px solid var(--indigo-600);">' +
-            '<h3>General Weekly Report — Download PDF &amp; Submit to Chairperson</h3>' +
-            '<p style="font-size:0.86rem; color:var(--ink-500); margin-bottom:12px;">Available to all executive members in the shared portal. Active session: <strong>' + esc(account.name) + ' (' + esc(account.role) + ')</strong></p>' +
-            '<form id="weeklyReportForm" class="form-grid" novalidate>' +
-              '<div class="field">' +
-                '<label for="repWeekLabel">Reporting Week</label>' +
-                '<input type="text" id="repWeekLabel" placeholder="e.g. Week of Nov 26, 2026" required />' +
-              '</div>' +
-              '<div class="field">' +
-                '<label for="repTitle">Report Title</label>' +
-                '<input type="text" id="repTitle" placeholder="Weekly Executive / Secretariat / Finance Report" required />' +
-              '</div>' +
-              '<div class="field full">' +
-                '<label for="repSummary">Weekly Report Summary</label>' +
-                '<textarea id="repSummary" rows="3" placeholder="Enter key activities, figures, or updates for the Chairperson..." required></textarea>' +
-              '</div>' +
-              '<div class="field full" style="display:flex; gap:10px; flex-wrap:wrap;">' +
-                '<button type="button" class="btn btn-secondary btn-sm" id="downloadReportPdfBtn">Download Report PDF</button>' +
-                '<button type="submit" class="btn btn-indigo btn-sm">Submit Weekly Report to Chairperson</button>' +
-              '</div>' +
-            '</form>' +
-            '<div id="weeklyReportMsg" class="msg-note"></div>' +
-          '</div>';
+        let weeklyReportCardHtml = "";
+        if (isWeeklyReporter) {
+          const lastTs = state.lastReportSubmittedAt ? state.lastReportSubmittedAt[account.role] : null;
+          const isOverdue = !lastTs || (Date.now() - Number(lastTs)) >= WEEK_MS;
+          const statusLabel = lastTs
+            ? (isOverdue ? "Overdue (7+ days since last submission)" : "Up to date (" + new Date(Number(lastTs)).toLocaleString() + ")")
+            : "No weekly report submitted yet";
 
-        const chairSubmissionsListHtml = state.chairReports.length === 0
-          ? "<p style='color:var(--ink-500); font-size:0.9rem;'>No weekly reports submitted yet.</p>"
-          : state.chairReports.map(function (r) {
-              return (
-                '<div class="wall-post">' +
-                  '<div class="wall-post-meta">' + esc(r.submittedBy) + ' (' + esc(r.role) + ') &bull; ' + esc(r.weekLabel) + ' &bull; ' + esc(r.submittedAt) + '</div>' +
-                  '<div style="font-weight:700; margin-bottom:4px;">' + esc(r.title) + '</div>' +
-                  '<div style="font-size:0.9rem;">' + esc(r.summary) + '</div>' +
-                '</div>'
-              );
-            }).join("");
+          weeklyReportCardHtml =
+            '<div class="card" style="margin-bottom:18px; border-top:4px solid var(--indigo-600);">' +
+              '<h3>Weekly Report — Download PDF &amp; Submit to Chairperson</h3>' +
+              '<p style="font-size:0.86rem; color:var(--ink-500); margin-bottom:12px;">Status: <strong>' + esc(statusLabel) + '</strong></p>' +
+              '<form id="weeklyReportForm" class="form-grid" novalidate>' +
+                '<div class="field">' +
+                  '<label for="repWeekLabel">Reporting Week</label>' +
+                  '<input type="text" id="repWeekLabel" placeholder="e.g. Week of Nov 26, 2026" required />' +
+                '</div>' +
+                '<div class="field">' +
+                  '<label for="repTitle">Report Title</label>' +
+                  '<input type="text" id="repTitle" placeholder="' + (account.role === "Treasurer" ? "Weekly Financial Summary" : "Weekly Secretariat & Minutes Report") + '" required />' +
+                '</div>' +
+                '<div class="field full">' +
+                  '<label for="repSummary">Weekly Report Summary</label>' +
+                  '<textarea id="repSummary" rows="3" placeholder="Enter key activities, figures, or updates for the Chairperson..." required></textarea>' +
+                '</div>' +
+                '<div class="field full" style="display:flex; gap:10px; flex-wrap:wrap;">' +
+                  '<button type="button" class="btn btn-secondary btn-sm" id="downloadReportPdfBtn">Download Report PDF</button>' +
+                  '<button type="submit" class="btn btn-indigo btn-sm">Submit Weekly Report to Chairperson</button>' +
+                '</div>' +
+              '</form>' +
+              '<div id="weeklyReportMsg" class="msg-note"></div>' +
+            '</div>';
+        }
 
-        const chairSubmissionsCardHtml =
-          '<div class="card" style="margin-bottom:18px; border-top:4px solid var(--amber-500);">' +
-            '<h3>Submitted Weekly Reports Log (' + state.chairReports.length + ')</h3>' +
-            chairSubmissionsListHtml +
-          '</div>';
+        let chairSubmissionsCardHtml = "";
+        if (isChairperson) {
+          const listHtml = state.chairReports.length === 0
+            ? "<p style='color:var(--ink-500); font-size:0.9rem;'>No weekly reports submitted to the Chairperson yet.</p>"
+            : state.chairReports.map(function (r) {
+                return (
+                  '<div class="wall-post">' +
+                    '<div class="wall-post-meta">' + esc(r.submittedBy) + ' (' + esc(r.role) + ') &bull; ' + esc(r.weekLabel) + ' &bull; ' + esc(r.submittedAt) + '</div>' +
+                    '<div style="font-weight:700; margin-bottom:4px;">' + esc(r.title) + '</div>' +
+                    '<div style="font-size:0.9rem;">' + esc(r.summary) + '</div>' +
+                  '</div>'
+                );
+              }).join("");
+
+          chairSubmissionsCardHtml =
+            '<div class="card" style="margin-bottom:18px; border-top:4px solid var(--amber-500);">' +
+              '<h3>Weekly Reports Submitted to Chairperson</h3>' +
+              listHtml +
+            '</div>';
+        }
 
         container.innerHTML =
-          '<div class="grid-3" style="margin-bottom:18px;">' +
-            '<div class="card">' +
-              '<div class="priority-num">Total Roster</div>' +
-              '<h3>' + state.members.length + ' Registered Members</h3>' +
-              '<p>All active and founding members on record.</p>' +
-            '</div>' +
-            '<div class="card">' +
-              '<div class="priority-num">M-Pesa Ref Submitted</div>' +
-              '<h3>' + paidMembers.length + ' Members</h3>' +
-              '<p>Members with an M-Pesa reference code recorded.</p>' +
-            '</div>' +
-            '<div class="card">' +
-              '<div class="priority-num">Awaiting M-Pesa Ref</div>' +
-              '<h3>' + unpaidMembers.length + ' Members</h3>' +
-              '<p>Members yet to submit an M-Pesa reference code.</p>' +
-            '</div>' +
-          '</div>' +
           '<div class="grid-2" style="margin-bottom:18px;">' +
             '<div class="card">' +
-              '<h3>General Executive Committee (' + EXEC_OFFICES.length + ' Offices)</h3>' +
-              '<p style="font-size:0.86rem; color:var(--ink-500); margin-bottom:10px;">Shared access across all executive officials in one portal.</p>' +
-              '<div style="display:grid; gap:8px; max-height:320px; overflow-y:auto;">' + execDirectoryHtml + '</div>' +
+              '<h3>' + esc(account.officeName) + '</h3>' +
+              '<p style="margin-bottom:8px;"><strong>Officer:</strong> ' + esc(account.name) + ' (' + esc(account.role) + ')</p>' +
+              '<p style="margin-bottom:8px;"><strong>Reg. No.:</strong> ' + esc(account.reg) + ' &bull; <strong>Phone:</strong> ' + esc(account.phone) + '</p>' +
+              '<p style="font-weight:700; margin-bottom:6px;">Role &amp; Office Mandate:</p>' +
+              '<ul style="padding-left:18px; display:grid; gap:6px; font-size:0.9rem; color:var(--ink-700);">' + dutiesHtml + '</ul>' +
             '</div>' +
             '<div class="card">' +
-              '<h3>Post to General Executive Board</h3>' +
+              '<h3>Save Office Record / Note</h3>' +
               '<form id="officeNoteForm" class="form-grid" novalidate>' +
                 '<div class="field full">' +
                   '<label for="officeNoteTitle">Subject</label>' +
-                  '<input type="text" id="officeNoteTitle" placeholder="e.g. Saturday meeting logistics or outreach update" required />' +
+                  '<input type="text" id="officeNoteTitle" placeholder="e.g. Action item or schedule note" required />' +
                 '</div>' +
                 '<div class="field full">' +
                   '<label for="officeNoteBody">Details</label>' +
-                  '<textarea id="officeNoteBody" rows="3" placeholder="Share an update visible to all executive members..." required></textarea>' +
+                  '<textarea id="officeNoteBody" rows="3" placeholder="Record an office note..." required></textarea>' +
                 '</div>' +
                 '<div class="field full">' +
-                  '<button type="submit" class="btn btn-teal btn-sm">Post to General Portal</button>' +
+                  '<button type="submit" class="btn btn-teal btn-sm">Save to My Office</button>' +
                 '</div>' +
               '</form>' +
             '</div>' +
           '</div>' +
+          renderDeptSpecificTools(account) +
           weeklyReportCardHtml +
           chairSubmissionsCardHtml +
           '<div class="card">' +
-            '<h3 style="margin-bottom:10px;">General Executive Board — Shared Notes &amp; Updates</h3>' +
+            '<h3 style="margin-bottom:10px;">' + esc(account.officeName) + ' — Saved Notes</h3>' +
             notesHtml +
           '</div>';
+
+        bindDepartmentHandlers(account);
 
         const noteForm = document.getElementById("officeNoteForm");
         if (noteForm) {
@@ -2324,82 +2697,81 @@
             const body = document.getElementById("officeNoteBody").value.trim();
             if (!title || !body) return;
 
-            const current = Array.isArray(state.officeNotes["GENERAL_EXEC"]) ? state.officeNotes["GENERAL_EXEC"] : [];
+            const current = Array.isArray(state.officeNotes[account.id]) ? state.officeNotes[account.id] : [];
             current.unshift({
               title: title,
               body: body,
-              author: account.name + " (" + account.role + ")",
               time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
             });
-            state.officeNotes["GENERAL_EXEC"] = current;
+            state.officeNotes[account.id] = current;
             saveState();
             renderOfficeWorkspace(account);
           });
         }
 
-        const dlBtn = document.getElementById("downloadReportPdfBtn");
-        const repForm = document.getElementById("weeklyReportForm");
+        if (isWeeklyReporter) {
+          const dlBtn = document.getElementById("downloadReportPdfBtn");
+          const repForm = document.getElementById("weeklyReportForm");
 
-        function getReportFields() {
-          return {
-            weekLabel: (document.getElementById("repWeekLabel").value || "Current Week").trim(),
-            title: (document.getElementById("repTitle").value || (account.role + " Weekly Report")).trim(),
-            summary: (document.getElementById("repSummary").value || "Weekly update submitted to Chairperson.").trim()
-          };
-        }
+          function getReportFields() {
+            return {
+              weekLabel: (document.getElementById("repWeekLabel").value || "Current Week").trim(),
+              title: (document.getElementById("repTitle").value || (account.role + " Weekly Report")).trim(),
+              summary: (document.getElementById("repSummary").value || "Weekly update submitted to Chairperson.").trim()
+            };
+          }
 
-        if (dlBtn) {
-          dlBtn.addEventListener("click", function () {
-            const data = getReportFields();
-            const pdfBlob = buildSimplePdfBlob([
-              "SHARE A SMILE CHARITY CLUB - LAIKIPIA UNIVERSITY",
-              "GENERAL EXECUTIVE PORTAL - WEEKLY REPORT",
-              "Submitted By: " + account.name + " (" + account.role + ")",
-              "Reg. Number: " + account.reg,
-              "To: Chairperson (Rooney Ogongo)",
-              "Reporting Week: " + data.weekLabel,
-              "Report Title: " + data.title,
-              "------------------------------------------------------------",
-              "Summary:",
-              data.summary
-            ]);
-            const url = URL.createObjectURL(pdfBlob);
-            const link = document.createElement("a");
-            link.href = url;
-            link.download = "general-executive-weekly-report.pdf";
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
-          });
-        }
-
-        if (repForm) {
-          repForm.addEventListener("submit", function (e) {
-            e.preventDefault();
-            const data = getReportFields();
-            const msgEl = document.getElementById("weeklyReportMsg");
-
-            state.chairReports.unshift({
-              submittedBy: account.name,
-              role: account.role,
-              reg: account.reg,
-              weekLabel: data.weekLabel,
-              title: data.title,
-              summary: data.summary,
-              submittedAt: new Date().toLocaleString()
+          if (dlBtn) {
+            dlBtn.addEventListener("click", function () {
+              const data = getReportFields();
+              const pdfBlob = buildSimplePdfBlob([
+                "SHARE A SMILE CHARITY CLUB - LAIKIPIA UNIVERSITY",
+                account.officeName.toUpperCase() + " - WEEKLY REPORT",
+                "Submitted By: " + account.name + " (" + account.role + ")",
+                "Reg. Number: " + account.reg,
+                "To: Chairperson (Rooney Ogongo)",
+                "Reporting Week: " + data.weekLabel,
+                "Report Title: " + data.title,
+                "------------------------------------------------------------",
+                "Summary:",
+                data.summary
+              ]);
+              const url = URL.createObjectURL(pdfBlob);
+              const link = document.createElement("a");
+              link.href = url;
+              link.download = account.role.toLowerCase().replace(/\s+/g, "-") + "-weekly-report.pdf";
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+              setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
             });
-            if (state.lastReportSubmittedAt && Object.prototype.hasOwnProperty.call(state.lastReportSubmittedAt, account.role)) {
-              state.lastReportSubmittedAt[account.role] = Date.now();
-            }
-            saveState();
+          }
 
-            if (msgEl) {
-              msgEl.className = "msg-note msg-ok";
-              msgEl.textContent = "Weekly report submitted to Chairperson (Rooney Ogongo).";
-            }
-            renderOfficeWorkspace(account);
-          });
+          if (repForm) {
+            repForm.addEventListener("submit", function (e) {
+              e.preventDefault();
+              const data = getReportFields();
+              const msgEl = document.getElementById("weeklyReportMsg");
+
+              state.chairReports.unshift({
+                submittedBy: account.name,
+                role: account.role,
+                reg: account.reg,
+                weekLabel: data.weekLabel,
+                title: data.title,
+                summary: data.summary,
+                submittedAt: new Date().toLocaleString()
+              });
+              state.lastReportSubmittedAt[account.role] = Date.now();
+              saveState();
+
+              if (msgEl) {
+                msgEl.className = "msg-note msg-ok";
+                msgEl.textContent = "Weekly report submitted to Chairperson (Rooney Ogongo).";
+              }
+              renderOfficeWorkspace(account);
+            });
+          }
         }
       }
 
@@ -2415,8 +2787,8 @@
         const backdrop = document.getElementById("execPopupBackdrop");
         const title = document.getElementById("popupTitle");
         const sub = document.getElementById("popupSubtitle");
-        if (title) title.textContent = "General Executive Portal";
-        if (sub) sub.textContent = "Signed in as " + state.loggedInExec.name + " (" + state.loggedInExec.role + ") • Shared Access for All Executives";
+        if (title) title.textContent = state.loggedInExec.officeName;
+        if (sub) sub.textContent = state.loggedInExec.name + " (" + state.loggedInExec.role + ") — " + state.loggedInExec.reg;
         renderOfficeWorkspace(state.loggedInExec);
         backdrop.classList.add("open");
 
