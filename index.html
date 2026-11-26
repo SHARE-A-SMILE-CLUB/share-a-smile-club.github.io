@@ -1776,6 +1776,14 @@
         return String(val || "").trim().toUpperCase().replace(/[^A-Z0-9]/g, "");
       }
 
+      function getActivePin(account) {
+        if (!account) return "";
+        if (state.customPins && typeof state.customPins[account.id] === "string" && state.customPins[account.id].trim()) {
+          return state.customPins[account.id].trim();
+        }
+        return account.pin;
+      }
+
       function resolveExecutiveAccount(idVal, pinVal) {
         const cleanId = normalizeReg(idVal);
         const cleanPin = String(pinVal || "").trim();
@@ -1785,7 +1793,7 @@
             normalizeReg(acc.id) === cleanId ||
             normalizeReg(acc.reg) === cleanId ||
             (acc.altReg && normalizeReg(acc.altReg) === cleanId);
-          return matchesId && acc.pin === cleanPin;
+          return matchesId && getActivePin(acc) === cleanPin;
         }) || null;
       }
 
@@ -1819,7 +1827,8 @@
           ],
           budgetTarget: 15000,
           deptRecords: {},
-          perfCadence: "Weekly (Every 7 Days)",
+          customPins: {},
+          perfCadence: "Daily (Every 24 Hours)",
           perfReviews: {},
           chairReports: [],
           lastReportSubmittedAt: {
@@ -1842,6 +1851,7 @@
             budgetItems: Array.isArray(parsed.budgetItems) ? parsed.budgetItems : base.budgetItems,
             budgetTarget: typeof parsed.budgetTarget === "number" && parsed.budgetTarget > 0 ? parsed.budgetTarget : base.budgetTarget,
             deptRecords: parsed.deptRecords && typeof parsed.deptRecords === "object" ? parsed.deptRecords : {},
+            customPins: parsed.customPins && typeof parsed.customPins === "object" ? parsed.customPins : {},
             perfCadence: typeof parsed.perfCadence === "string" && parsed.perfCadence ? parsed.perfCadence : base.perfCadence,
             perfReviews: parsed.perfReviews && typeof parsed.perfReviews === "object" ? parsed.perfReviews : {},
             chairReports: Array.isArray(parsed.chairReports) ? parsed.chairReports : [],
@@ -2597,7 +2607,7 @@
           return (
             "<tr style='border-bottom:1px solid var(--border);'>" +
               "<td style='padding:8px;'><strong>" + esc(off.name) + "</strong><br><span style='font-size:0.78rem; color:var(--ink-500);'>" + esc(off.role) + "</span></td>" +
-              "<td style='padding:8px; font-size:0.82rem;'>ID: <strong>" + esc(off.id) + "</strong><br>Reg: " + esc(off.reg) + "<br>PIN: <code>" + esc(off.pin) + "</code></td>" +
+              "<td style='padding:8px; font-size:0.82rem;'>ID: <strong>" + esc(off.id) + "</strong><br>Reg: " + esc(off.reg) + "<br>PIN: <code>" + esc(getActivePin(off)) + "</code></td>" +
               "<td style='padding:8px; font-size:0.82rem;'>Notes: " + notesCount + " &bull; Dept Logs: " + deptCount + " &bull; Reports: " + reportsCount + "<br><strong>Total Logged: " + activityScore + "</strong></td>" +
               "<td style='padding:8px; font-size:0.8rem;'>" +
                 (lastReview
@@ -2627,7 +2637,8 @@
                 "<h3 style='font-size:1rem;'>Current Cadence: " + esc(cadence) + "</h3>" +
                 "<form id='perfCadenceForm' style='display:flex; gap:8px; flex-wrap:wrap; margin-top:8px;'>" +
                   "<select id='perfCadenceSelect' style='flex:1; min-width:170px; padding:7px 10px; font-size:0.85rem;'>" +
-                    "<option value='Weekly (Every 7 Days)'" + (cadence === "Weekly (Every 7 Days)" ? " selected" : "") + ">Weekly (Every 7 Days)</option>" +
+                    "<option value='Daily (Every 24 Hours)'" + (cadence === "Daily (Every 24 Hours)" ? " selected" : "") + ">Daily (Every 24 Hours)</option>
+                    <option value='Weekly (Every 7 Days)'" + (cadence === "Weekly (Every 7 Days)" ? " selected" : "") + ">Weekly (Every 7 Days)</option>" +
                     "<option value='Bi-Weekly (Every 14 Days)'" + (cadence === "Bi-Weekly (Every 14 Days)" ? " selected" : "") + ">Bi-Weekly (Every 14 Days)</option>" +
                     "<option value='Monthly (Every 30 Days)'" + (cadence === "Monthly (Every 30 Days)" ? " selected" : "") + ">Monthly (Every 30 Days)</option>" +
                     "<option value='Before Every General / Outreach Event'" + (cadence === "Before Every General / Outreach Event" ? " selected" : "") + ">Before Every General / Outreach Event</option>" +
@@ -2653,8 +2664,9 @@
                 "<label for='perfNoteInput'>Review Note (" + esc(cadence) + ")</label>" +
                 "<input type='text' id='perfNoteInput' placeholder='e.g. Minutes and weekly report submitted on time' required />" +
               "</div>" +
-              "<div class='field full'>" +
+              "<div class='field full' style='display:flex; gap:10px; flex-wrap:wrap;'>" +
                 "<button type='submit' class='btn btn-teal btn-sm'>Log Performance Check</button>" +
+                "<button type='button' id='downloadDailyPerfPdfBtn' class='btn btn-indigo btn-sm'>Download Daily Performance PDF</button>" +
               "</div>" +
             "</form>" +
             "<div style='overflow-x:auto;'>" +
@@ -2704,6 +2716,136 @@
             };
             saveState();
             renderOfficeWorkspace(account);
+          });
+        }
+        const dlPerfBtn = document.getElementById("downloadDailyPerfPdfBtn");
+        if (dlPerfBtn) {
+          dlPerfBtn.addEventListener("click", function () {
+            const cadenceVal = state.perfCadence || "Daily (Every 24 Hours)";
+            const otherExecs = EXEC_OFFICES.filter(function (o) { return o.role !== "Chairperson"; });
+            const lines = [
+              "SHARE A SMILE CHARITY CLUB - LAIKIPIA UNIVERSITY",
+              "OFFICE OF THE CHAIRPERSON - DAILY EXECUTIVE PERFORMANCE REPORT",
+              "Chairperson: " + account.name + " (" + account.reg + ")",
+              "Report Date & Time: " + new Date().toLocaleString(),
+              "Review Frequency: " + cadenceVal,
+              "----------------------------------------------------------------------"
+            ];
+            otherExecs.forEach(function (off) {
+              const notesCount = Array.isArray(state.officeNotes[off.id]) ? state.officeNotes[off.id].length : 0;
+              const deptCount = Array.isArray(state.deptRecords[off.id]) ? state.deptRecords[off.id].length : 0;
+              const reportsCount = state.chairReports.filter(function (r) {
+                return r.role === off.role || r.reg === off.reg;
+              }).length;
+              const totalLogged = notesCount + deptCount + reportsCount;
+              const rev = state.perfReviews && state.perfReviews[off.id] ? state.perfReviews[off.id] : null;
+              const statusText = rev ? (rev.rating + " (" + rev.date + ") - " + rev.note) : "Pending daily check";
+              lines.push(off.name + " | " + off.role + " | ID: " + off.id + " | Logged: " + totalLogged + " | " + statusText);
+            });
+            const pdfBlob = buildSimplePdfBlob(lines);
+            const url = URL.createObjectURL(pdfBlob);
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = "daily-executive-performance-report.pdf";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+          });
+        }
+      }
+
+      function renderChangePinCard(account) {
+        if (!account) return "";
+        const currentPin = getActivePin(account);
+        return (
+          "<div class='card' style='margin-bottom:18px; border-top:4px solid var(--amber-500);'>" +
+            "<h3>Change My Login PIN</h3>" +
+            "<p style='font-size:0.86rem; color:var(--ink-500); margin-bottom:12px;'>Current PIN: <code>" + esc(currentPin) + "</code>. Update your 4–8 digit login PIN for future sign-ins.</p>" +
+            "<form id='changePinForm' class='form-grid' novalidate>" +
+              "<div class='field'>" +
+                "<label for='currentPinInput'>Current PIN</label>" +
+                "<input type='password' id='currentPinInput' placeholder='Enter current PIN' required />" +
+              "</div>" +
+              "<div class='field'>" +
+                "<label for='newPinInput'>New PIN (4–8 digits)</label>" +
+                "<input type='password' id='newPinInput' maxlength='8' placeholder='e.g. 2026' required />" +
+              "</div>" +
+              "<div class='field full'>" +
+                "<label for='confirmPinInput'>Confirm New PIN</label>" +
+                "<input type='password' id='confirmPinInput' maxlength='8' placeholder='Re-enter new PIN' required />" +
+              "</div>" +
+              "<div class='field full'>" +
+                "<div style='display:flex; gap:8px; flex-wrap:wrap;'><button type='submit' class='btn btn-amber btn-sm'>Update Login PIN</button>" + (state.customPins && state.customPins[account.id] ? "<button type='button' id='resetDefaultPinBtn' class='btn btn-secondary btn-sm'>Reset to Default PIN</button>" : "") + "</div>" +
+              "</div>" +
+            "</form>" +
+            "<div id='changePinMsg' class='msg-note'></div>" +
+          "</div>"
+        );
+      }
+
+      function bindChangePinHandler(account) {
+        const form = document.getElementById("changePinForm");
+        if (!form || !account) return;
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          const curVal = (document.getElementById("currentPinInput").value || "").trim();
+          const newVal = (document.getElementById("newPinInput").value || "").trim();
+          const confVal = (document.getElementById("confirmPinInput").value || "").trim();
+          const msgEl = document.getElementById("changePinMsg");
+
+          if (curVal !== getActivePin(account)) {
+            if (msgEl) {
+              msgEl.className = "msg-note msg-err";
+              msgEl.textContent = "Current PIN is incorrect.";
+            }
+            return;
+          }
+          if (!/^[0-9]{4,8}$/.test(newVal)) {
+            if (msgEl) {
+              msgEl.className = "msg-note msg-err";
+              msgEl.textContent = "New PIN must be 4 to 8 digits.";
+            }
+            return;
+          }
+          if (newVal !== confVal) {
+            if (msgEl) {
+              msgEl.className = "msg-note msg-err";
+              msgEl.textContent = "New PIN and confirmation PIN do not match.";
+            }
+            return;
+          }
+
+          state.customPins[account.id] = newVal;
+          if (state.loggedInExec && state.loggedInExec.id === account.id) {
+            state.loggedInExec = Object.assign({}, state.loggedInExec, { pin: newVal });
+          }
+          saveState();
+          renderOfficeWorkspace(Object.assign({}, account, { pin: newVal }));
+          const updatedMsg = document.getElementById("changePinMsg");
+          if (updatedMsg) {
+            updatedMsg.className = "msg-note msg-ok";
+            updatedMsg.textContent = "Login PIN updated successfully. Use your new PIN next time you sign in.";
+          }
+        });
+
+        const resetBtn = document.getElementById("resetDefaultPinBtn");
+        if (resetBtn) {
+          resetBtn.addEventListener("click", function () {
+            if (state.customPins && Object.prototype.hasOwnProperty.call(state.customPins, account.id)) {
+              delete state.customPins[account.id];
+            }
+            const defPin = account.pin;
+            if (state.loggedInExec && state.loggedInExec.id === account.id) {
+              state.loggedInExec = Object.assign({}, state.loggedInExec, { pin: defPin });
+            }
+            saveState();
+            renderOfficeWorkspace(Object.assign({}, account, { pin: defPin }));
+            const updatedMsg = document.getElementById("changePinMsg");
+            if (updatedMsg) {
+              updatedMsg.className = "msg-note msg-ok";
+              updatedMsg.textContent = "Login PIN reset to default PIN (" + defPin + ").";
+            }
           });
         }
       }
@@ -2812,6 +2954,7 @@
               '</form>' +
             '</div>' +
           '</div>' +
+          renderChangePinCard(account) +
           renderChairpersonOversightSummary(account) +
           renderDeptSpecificTools(account) +
           weeklyReportCardHtml +
@@ -2823,6 +2966,7 @@
 
         bindDepartmentHandlers(account);
         bindChairpersonOversightHandlers(account);
+        bindChangePinHandler(account);
 
         const noteForm = document.getElementById("officeNoteForm");
         if (noteForm) {
