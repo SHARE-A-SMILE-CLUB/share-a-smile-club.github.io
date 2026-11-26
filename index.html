@@ -973,56 +973,7 @@
     </div>
   </div>
 
-  <!-- CHAIRPERSON-ONLY MASTER PIN & WHATSAPP DISPATCH MODAL -->
-  <div id="sasChairVaultModal" class="sas-hidden" role="dialog" aria-modal="true" aria-labelledby="sasVaultModalTitle" style="position:fixed;inset:0;z-index:9999;background:rgba(15,23,42,0.72);display:flex;align-items:center;justify-content:center;padding:16px;">
-    <div style="background:#ffffff;color:#0f172a;width:100%;max-width:820px;max-height:90vh;overflow-y:auto;border-radius:16px;border:2px solid #064e3b;box-shadow:0 25px 50px -12px rgba(0,0,0,0.45);padding:24px;">
-      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;border-bottom:1px solid #e2e8f0;padding-bottom:14px;margin-bottom:16px;">
-        <div>
-          <span style="display:inline-block;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.06em;color:#92400e;background:#fef3c7;padding:3px 9px;border-radius:999px;">Chairperson Restricted Vault</span>
-          <h3 id="sasVaultModalTitle" style="margin:6px 0 2px;font-size:20px;font-weight:800;color:#0f172a;">Master PIN &amp; WhatsApp Credential Dispatch</h3>
-          <p style="margin:0;font-size:12px;color:#475569;">Only the Chairperson (Rooney Ogongo) with the Master PIN can view officer PINs and send formatted WhatsApp login details.</p>
-        </div>
-        <button type="button" id="sasCloseVaultBtn" class="sas-btn sas-btn-outline sas-btn-sm">Close</button>
-      </div>
-
-      <!-- Step 1: Chairperson Master PIN Gate -->
-      <div id="sasVaultGateBox" style="background:#f8fafc;border:1px solid #cbd5e1;border-radius:12px;padding:18px;">
-        <p style="margin:0 0 12px;font-size:13px;color:#334155;">
-          Enter the <strong>Chairperson Master PIN</strong> (default: <code>1591</code>) to unlock the Master PIN Vault.
-        </p>
-        <div id="sasVaultErrorMsg" class="sas-alert sas-alert-error sas-hidden"></div>
-        <form id="sasVaultUnlockForm" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
-          <input type="password" id="sasMasterPinInput" class="sas-input" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" placeholder="Chairperson Master PIN" style="max-width:220px;" required="">
-          <button type="submit" class="sas-btn sas-btn-primary">Unlock Master PIN Vault</button>
-        </form>
-      </div>
-
-      <!-- Step 2: Unlocked Master PIN & WhatsApp Dispatch Table -->
-      <div id="sasVaultUnlockedBox" class="sas-hidden">
-        <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;background:#ecfdf5;border:1px solid #6ee7b7;border-radius:10px;padding:12px 14px;margin-bottom:14px;">
-          <span style="font-size:13px;font-weight:700;color:#064e3b;">Master Vault Unlocked — Chairperson (Rooney Ogongo)</span>
-          <button type="button" id="sasLockVaultBtn" class="sas-btn sas-btn-outline sas-btn-sm">Lock Vault</button>
-        </div>
-
-        <div id="sasVaultDispatchFeedback" class="sas-alert sas-alert-success sas-hidden"></div>
-
-        <div class="sas-table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Office &amp; Official</th>
-                <th>Login ID / Phone</th>
-                <th>PIN</th>
-                <th>WhatsApp Dispatch</th>
-              </tr>
-            </thead>
-            <tbody id="sasVaultTableBody"></tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-
+  
   <script>
     (function () {
       "use strict";
