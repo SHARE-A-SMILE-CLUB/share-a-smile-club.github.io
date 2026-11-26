@@ -801,7 +801,6 @@
         <a href="#priorities">Priorities</a>
         <a href="#join">Join Us</a>
         <a href="#verify-member">Verify</a>
-        <a href="#feedback-desk">Complaints &amp; Ideas</a>
         <a href="https://chat.whatsapp.com/Dty1LdhdHwv1JTfGJETtdW" target="_blank" rel="noopener noreferrer" class="nav-wa-btn">WhatsApp Group</a>
         <a href="#executive-portal" class="nav-portal-btn">Executive Portal</a>
       </nav>
@@ -832,7 +831,7 @@
           <li>Outreach Photos &amp; Field Action</li>
           <li>Ordered Club Priorities</li>
           <li>Member Sign-Up + WhatsApp Button</li>
-          <li>Complaints, Suggestions &amp; Executive Pop-Up Portal</li>
+          <li>Executive Office Pop-Up Portal</li>
         </ol>
       </div>
     </div>
@@ -1041,88 +1040,36 @@
     </div>
   </section>
 
-  <!-- 6. COMPLAINTS & SUGGESTIONS -->
-  <section id="feedback-desk" class="band">
-    <div class="container">
-      <div class="band-head">
-        <span class="band-tag">06 • Complaints &amp; Suggestions</span>
-        <h2>File a Complaint or Suggestion</h2>
-        <p>
-          Share constructive suggestions or raise a concern/complaint. Submissions are saved and visible
-          inside the Executive Portal so leaders can review and respond.
-        </p>
-      </div>
-
-      <div class="grid-2">
-        <form id="feedbackForm" class="card" novalidate>
-          <h3 style="margin-bottom: 14px;">Submit Feedback</h3>
-          <div class="form-grid">
-            <div class="field">
-              <label for="fbType">Type *</label>
-              <select id="fbType">
-                <option value="Suggestion">Suggestion</option>
-                <option value="Complaint">Complaint</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="fbName">Your Name / Reg. No. (Optional)</label>
-              <input type="text" id="fbName" placeholder="Anonymous or e.g. ED/ART/1591/24" />
-            </div>
-            <div class="field full">
-              <label for="fbSubject">Subject *</label>
-              <input type="text" id="fbSubject" placeholder="Short summary..." required />
-            </div>
-            <div class="field full">
-              <label for="fbDetails">Details *</label>
-              <textarea id="fbDetails" rows="3" placeholder="Write your suggestion or complaint clearly..." required></textarea>
-            </div>
-            <div class="field full">
-              <button type="submit" class="btn btn-indigo">Submit to Executive Desk</button>
-            </div>
-          </div>
-          <div id="fbMsg" class="msg-note"></div>
-        </form>
-
-        <div class="card">
-          <h3 style="margin-bottom: 12px;">Recent Submissions Log</h3>
-          <div id="publicFeedbackList"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 7. COLORFUL EXECUTIVE PORTAL SECTION (Opens Pop-Up Window on Login) -->
+  <!-- 6. EXECUTIVE OFFICE PORTAL (Executives Only) -->
   <section id="executive-portal" class="band white">
     <div class="container">
       <div class="colorful-portal-banner">
-        <span class="badge" style="background: var(--amber-500); color: var(--ink-900);">07 • Executive Portal</span>
-        <h2 style="font-size: clamp(1.6rem, 3vw, 2.2rem); margin-top: 8px;">Executive Governance Portal</h2>
+        <span class="badge" style="background: var(--amber-500); color: var(--ink-900);">06 • Executives Only</span>
+        <h2 style="font-size: clamp(1.6rem, 3vw, 2.2rem); margin-top: 8px;">Executive Office Portal</h2>
         <p style="color: #f1f5f9; max-width: 65ch; margin-top: 6px;">
-          Sign in below to open the <strong>Executive Pop-Up Workspace</strong> with a shared
-          <strong>Executive Common Wall</strong> and a <strong>Complaints &amp; Suggestions</strong> queue.
+          Restricted to executive officials. Sign in with your Office ID or Registration Number and PIN to open your respective office in a pop-up window.
         </p>
 
         <div class="portal-color-chips">
-          <span class="chip chip-amber">Pop-Up Executive Window</span>
-          <span class="chip chip-indigo">Executive Common Wall</span>
-          <span class="chip chip-rose">Complaints &amp; Suggestions Inbox</span>
-          <span class="chip chip-teal">Role Access</span>
+          <span class="chip chip-amber">Chairperson Office</span>
+          <span class="chip chip-indigo">Vice Chairperson Office</span>
+          <span class="chip chip-rose">Secretary General Office</span>
+          <span class="chip chip-teal">Treasurer Office</span>
         </div>
 
         <div class="portal-login-box">
-          <h3 style="margin-bottom: 12px;">Executive Sign-In</h3>
+          <h3 style="margin-bottom: 12px;">Executive Office Sign-In</h3>
           <form id="execPopupLoginForm" class="form-grid" novalidate>
             <div class="field">
               <label for="execIdInput">Office ID or Reg. No.</label>
-              <input type="text" id="execIdInput" placeholder="e.g. CHAIR-01 or ED/ART/1591/24" required />
+              <input type="text" id="execIdInput" placeholder="Enter Office ID or Reg. No." required />
             </div>
             <div class="field">
-              <label for="execPinInput">PIN</label>
+              <label for="execPinInput">Office PIN</label>
               <input type="password" id="execPinInput" placeholder="Enter PIN" required />
             </div>
             <div class="field full" style="display: flex; gap: 10px; flex-wrap: wrap;">
-              <button type="submit" class="btn btn-indigo">Login &amp; Open Pop-Up Portal</button>
-              <button type="button" class="btn btn-secondary" onclick="openExecPopup()">Open Pop-Up Window</button>
+              <button type="submit" class="btn btn-indigo">Sign In &amp; Open My Office</button>
             </div>
           </form>
           <div id="execLoginMsg" class="msg-note"></div>
@@ -1131,60 +1078,22 @@
     </div>
   </section>
 
-  <!-- POP-UP EXECUTIVE WORKSPACE PAGE -->
+  <!-- POP-UP EXECUTIVE OFFICE WINDOW -->
   <div id="execPopupBackdrop" class="popup-backdrop" role="dialog" aria-modal="true" aria-labelledby="popupTitle">
     <div class="popup-window">
       <div class="popup-topbar">
         <div>
-          <div id="popupTitle" style="font-size: 1.15rem; font-weight: 800;">Executive Pop-Up Workspace</div>
-          <div id="popupSubtitle" style="font-size: 0.82rem; color: #e2e8f0;">Share a Smile Charity Club — Common Wall &amp; Feedback</div>
+          <div id="popupTitle" style="font-size: 1.15rem; font-weight: 800;">Executive Office</div>
+          <div id="popupSubtitle" style="font-size: 0.82rem; color: #e2e8f0;">Share a Smile Charity Club — Authorized Office Access</div>
         </div>
         <div style="display: flex; gap: 8px; align-items: center;">
           <button type="button" class="btn btn-amber btn-sm" onclick="logoutExecPopup()">Sign Out</button>
-          <button type="button" class="btn btn-secondary btn-sm" onclick="closeExecPopup()">Close Pop-Up &times;</button>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="closeExecPopup()">Close Office &times;</button>
         </div>
       </div>
 
       <div class="popup-body">
-        <div class="popup-tabs">
-          <button type="button" class="tab-btn active" id="tabWallBtn" onclick="switchExecTab('wall')">Executive Common Wall</button>
-          <button type="button" class="tab-btn" id="tabFeedbackBtn" onclick="switchExecTab('feedback')">Complaints &amp; Suggestions</button>
-        </div>
-
-        <!-- Common Wall Tab -->
-        <div id="panelCommonWall">
-          <div class="card" style="margin-bottom: 16px;">
-            <h3 style="margin-bottom: 10px;">Post to Executive Common Wall</h3>
-            <form id="commonWallForm" class="form-grid" novalidate>
-              <div class="field">
-                <label for="wallAuthor">Executive Name / Office</label>
-                <input type="text" id="wallAuthor" placeholder="e.g. Chairperson — Rooney Ogongo" required />
-              </div>
-              <div class="field">
-                <label for="wallTopic">Topic / Priority</label>
-                <input type="text" id="wallTopic" placeholder="e.g. Outreach & 2027 Prep" required />
-              </div>
-              <div class="field full">
-                <label for="wallMessage">Announcement / Update for All Executives</label>
-                <textarea id="wallMessage" rows="2" placeholder="Share an update on the common wall..." required></textarea>
-              </div>
-              <div class="field full">
-                <button type="submit" class="btn btn-indigo btn-sm">Publish to Common Wall</button>
-              </div>
-            </form>
-          </div>
-
-          <h3 style="margin-bottom: 10px;">Common Wall Feed</h3>
-          <div id="commonWallFeed"></div>
-        </div>
-
-        <!-- Complaints & Suggestions Tab -->
-        <div id="panelExecFeedback" style="display: none;">
-          <div class="card">
-            <h3 style="margin-bottom: 10px;">Member Complaints &amp; Suggestions</h3>
-            <div id="execFeedbackFeed"></div>
-          </div>
-        </div>
+        <div id="officeWorkspaceContent"></div>
       </div>
     </div>
   </div>
@@ -1199,13 +1108,12 @@
     </div>
     <div id="chatbotMessages" class="chatbot-messages">
       <div class="chat-bubble bot">
-        Hi! Ask me about <strong>who we are</strong>, <strong>outreach</strong>, <strong>joining &amp; WhatsApp</strong>, <strong>complaints/suggestions</strong>, or the <strong>Executive Portal</strong>.
+        Hi! Ask me about <strong>who we are</strong>, <strong>outreach</strong>, <strong>joining &amp; WhatsApp</strong>, or the <strong>Executive Office Portal</strong>.
       </div>
     </div>
     <div class="chat-quick-row">
       <button type="button" class="chat-chip" onclick="sendQuickChat('Who we are')">Who we are</button>
       <button type="button" class="chat-chip" onclick="sendQuickChat('WhatsApp link')">WhatsApp link</button>
-      <button type="button" class="chat-chip" onclick="sendQuickChat('File complaint')">File complaint</button>
       <button type="button" class="chat-chip" onclick="sendQuickChat('Executive portal')">Executive portal</button>
     </div>
     <form id="chatbotForm" class="chat-input-form">
@@ -1231,15 +1139,68 @@
       const WA_URL = "https://chat.whatsapp.com/Dty1LdhdHwv1JTfGJETtdW";
       const STORE_KEY = "sas_club_structured_v1";
 
+      const EXEC_OFFICES = [
+        {
+          id: "CHAIR-01",
+          reg: "ED/ART/1591/24",
+          pin: "1591",
+          name: "Rooney Ogongo",
+          role: "Chairperson",
+          officeName: "Office of the Chairperson",
+          responsibilities: [
+            "Preside over executive and general club meetings",
+            "Oversee club governance, representation, and strategic planning",
+            "Coordinate outreach schedules and official club correspondence"
+          ]
+        },
+        {
+          id: "VCHAIR-02",
+          reg: "ED/ART/4377/25",
+          pin: "4377",
+          name: "Ivy Bundi",
+          role: "Vice Chairperson",
+          officeName: "Office of the Vice Chairperson",
+          responsibilities: [
+            "Assist and deputize for the Chairperson",
+            "Coordinate committee activities and member engagement",
+            "Support logistics for campus and field outreach programs"
+          ]
+        },
+        {
+          id: "SECGEN-03",
+          reg: "BE/EST/2495/24",
+          pin: "2495",
+          name: "Immanuel Mesocho",
+          role: "Secretary General",
+          officeName: "Office of the Secretary General",
+          responsibilities: [
+            "Maintain official minutes, records, and club correspondence",
+            "Manage membership registers and meeting notices",
+            "Archive club documents and activity reports"
+          ]
+        },
+        {
+          id: "TREAS-05",
+          reg: "ED/ART/1807/24",
+          pin: "1807",
+          name: "Lewis Ogachi",
+          role: "Treasurer",
+          officeName: "Office of the Treasurer",
+          responsibilities: [
+            "Manage club funds, budgets, and financial records",
+            "Track contributions, expenses, and disbursement approvals",
+            "Prepare financial summaries for executive review"
+          ]
+        }
+      ];
+
       function resolveExecutiveAccount(idVal, pinVal) {
-        const cleanId = String(idVal || "").trim();
+        const cleanId = String(idVal || "").trim().toUpperCase();
         const cleanPin = String(pinVal || "").trim();
         if (!cleanId || !cleanPin) return null;
-        return {
-          id: cleanId.toUpperCase(),
-          name: cleanId,
-          role: "Executive Officer"
-        };
+        return EXEC_OFFICES.find(function (acc) {
+          return (acc.id === cleanId || acc.reg.toUpperCase() === cleanId) && acc.pin === cleanPin;
+        }) || null;
       }
 
       const state = loadState();
@@ -1249,23 +1210,7 @@
           members: [
             { name: "Rooney David Ogongo", reg: "ED/ART/1591/24", role: "Outreach & Visits" }
           ],
-          feedback: [
-            {
-              type: "Suggestion",
-              author: "Member",
-              subject: "Share outreach dates early",
-              details: "Posting outreach dates at least a week ahead helps more students plan.",
-              time: "Today"
-            }
-          ],
-          wallPosts: [
-            {
-              author: "Chairperson — Rooney Ogongo",
-              topic: "Common Wall Active",
-              message: "Welcome to the Executive Common Wall. Use this space for shared coordination, meeting notes, and action updates.",
-              time: "Today"
-            }
-          ],
+          officeNotes: {},
           loggedInExec: null
         };
       }
@@ -1278,8 +1223,7 @@
           const base = defaultState();
           return {
             members: Array.isArray(parsed.members) ? parsed.members : base.members,
-            feedback: Array.isArray(parsed.feedback) ? parsed.feedback : base.feedback,
-            wallPosts: Array.isArray(parsed.wallPosts) ? parsed.wallPosts : base.wallPosts,
+            officeNotes: parsed.officeNotes && typeof parsed.officeNotes === "object" ? parsed.officeNotes : {},
             loggedInExec: parsed.loggedInExec || null
           };
         } catch (e) {
@@ -1355,86 +1299,94 @@
         }
       };
 
-      // 3. Complaints & Suggestions
-      function renderFeedbackLists() {
-        const pubList = document.getElementById("publicFeedbackList");
-        const execList = document.getElementById("execFeedbackFeed");
+      // 3. Executive Office Pop-Up Window
+      function renderOfficeWorkspace(account) {
+        const container = document.getElementById("officeWorkspaceContent");
+        if (!container || !account) return;
 
-        const html = state.feedback.length === 0
-          ? "<p>No complaints or suggestions submitted yet.</p>"
-          : state.feedback.map(function (item) {
-              const cls = item.type === "Complaint" ? "feedback-item complaint" : "feedback-item";
-              const tagCls = item.type === "Complaint" ? "tag-pill tag-complaint" : "tag-pill tag-suggestion";
+        const savedNotes = Array.isArray(state.officeNotes[account.id]) ? state.officeNotes[account.id] : [];
+        const dutiesHtml = account.responsibilities.map(function (item) {
+          return "<li>" + esc(item) + "</li>";
+        }).join("");
+
+        const notesHtml = savedNotes.length === 0
+          ? "<p style='color:var(--ink-500); font-size:0.9rem;'>No office notes recorded yet.</p>"
+          : savedNotes.map(function (n) {
               return (
-                '<div class="' + cls + '">' +
-                  '<div><span class="' + tagCls + '">' + esc(item.type) + '</span><strong>' + esc(item.subject) + '</strong></div>' +
-                  '<div style="font-size:0.78rem; color:var(--ink-500); margin:3px 0 6px;">From: ' + esc(item.author || "Anonymous") + ' &bull; ' + esc(item.time) + '</div>' +
-                  '<p style="font-size:0.88rem;">' + esc(item.details) + '</p>' +
+                '<div class="wall-post">' +
+                  '<div class="wall-post-meta">' + esc(n.title) + ' &bull; ' + esc(n.time) + '</div>' +
+                  '<div style="font-size:0.9rem;">' + esc(n.body) + '</div>' +
                 '</div>'
               );
             }).join("");
 
-        if (pubList) pubList.innerHTML = html;
-        if (execList) execList.innerHTML = html;
-      }
+        container.innerHTML =
+          '<div class="grid-2" style="margin-bottom:18px;">' +
+            '<div class="card">' +
+              '<h3>' + esc(account.officeName) + '</h3>' +
+              '<p style="margin-bottom:10px;"><strong>Officer:</strong> ' + esc(account.name) + ' (' + esc(account.role) + ')</p>' +
+              '<p style="margin-bottom:10px;"><strong>Office ID:</strong> ' + esc(account.id) + ' &bull; <strong>Reg. No.:</strong> ' + esc(account.reg) + '</p>' +
+              '<p style="font-weight:700; margin-bottom:6px;">Core Office Mandate:</p>' +
+              '<ul style="padding-left:18px; display:grid; gap:6px; font-size:0.9rem; color:var(--ink-700);">' + dutiesHtml + '</ul>' +
+            '</div>' +
+            '<div class="card">' +
+              '<h3>Save Office Record / Note</h3>' +
+              '<form id="officeNoteForm" class="form-grid" novalidate>' +
+                '<div class="field full">' +
+                  '<label for="officeNoteTitle">Subject</label>' +
+                  '<input type="text" id="officeNoteTitle" placeholder="e.g. Action item or schedule note" required />' +
+                '</div>' +
+                '<div class="field full">' +
+                  '<label for="officeNoteBody">Details</label>' +
+                  '<textarea id="officeNoteBody" rows="3" placeholder="Record an office note..." required></textarea>' +
+                '</div>' +
+                '<div class="field full">' +
+                  '<button type="submit" class="btn btn-teal btn-sm">Save to My Office</button>' +
+                '</div>' +
+              '</form>' +
+            '</div>' +
+          '</div>' +
+          '<div class="card">' +
+            '<h3 style="margin-bottom:10px;">' + esc(account.officeName) + ' — Saved Notes</h3>' +
+            notesHtml +
+          '</div>';
 
-      const fbForm = document.getElementById("feedbackForm");
-      if (fbForm) {
-        fbForm.addEventListener("submit", function (e) {
-          e.preventDefault();
-          const type = document.getElementById("fbType").value;
-          const author = document.getElementById("fbName").value.trim() || "Anonymous";
-          const subject = document.getElementById("fbSubject").value.trim();
-          const details = document.getElementById("fbDetails").value.trim();
-          const fbMsg = document.getElementById("fbMsg");
+        const noteForm = document.getElementById("officeNoteForm");
+        if (noteForm) {
+          noteForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const title = document.getElementById("officeNoteTitle").value.trim();
+            const body = document.getElementById("officeNoteBody").value.trim();
+            if (!title || !body) return;
 
-          if (!subject || !details) {
-            fbMsg.className = "msg-note msg-err";
-            fbMsg.textContent = "Please add a subject and details.";
-            return;
-          }
-
-          state.feedback.unshift({
-            type: type,
-            author: author,
-            subject: subject,
-            details: details,
-            time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+            const current = Array.isArray(state.officeNotes[account.id]) ? state.officeNotes[account.id] : [];
+            current.unshift({
+              title: title,
+              body: body,
+              time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+            });
+            state.officeNotes[account.id] = current;
+            saveState();
+            renderOfficeWorkspace(account);
           });
-          saveState();
-          renderFeedbackLists();
-          fbForm.reset();
-          fbMsg.className = "msg-note msg-ok";
-          fbMsg.textContent = type + " submitted and sent to the Executive Portal.";
-        });
-      }
-
-      // 4. Pop-Up Executive Portal & Common Wall
-      function renderCommonWall() {
-        const feed = document.getElementById("commonWallFeed");
-        if (!feed) return;
-        feed.innerHTML = state.wallPosts.map(function (post) {
-          return (
-            '<div class="wall-post">' +
-              '<div class="wall-post-meta">' + esc(post.author) + ' &bull; ' + esc(post.topic) + ' &bull; ' + esc(post.time) + '</div>' +
-              '<div style="font-size:0.9rem;">' + esc(post.message) + '</div>' +
-            '</div>'
-          );
-        }).join("");
+        }
       }
 
       window.openExecPopup = function () {
-        const backdrop = document.getElementById("execPopupBackdrop");
-        const sub = document.getElementById("popupSubtitle");
-        if (state.loggedInExec) {
-          sub.textContent = "Signed in as " + state.loggedInExec.name + " (" + state.loggedInExec.role + ")";
-          const authorInput = document.getElementById("wallAuthor");
-          if (authorInput) authorInput.value = state.loggedInExec.role + " — " + state.loggedInExec.name;
-        } else {
-          sub.textContent = "Executive Pop-Up View — Common Wall & Feedback";
+        if (!state.loggedInExec) {
+          const msgEl = document.getElementById("execLoginMsg");
+          if (msgEl) {
+            msgEl.className = "msg-note msg-err";
+            msgEl.textContent = "Executive sign-in required. Enter your Office ID / Reg. No. and PIN.";
+          }
+          return;
         }
-        renderCommonWall();
-        renderFeedbackLists();
+        const backdrop = document.getElementById("execPopupBackdrop");
+        const title = document.getElementById("popupTitle");
+        const sub = document.getElementById("popupSubtitle");
+        if (title) title.textContent = state.loggedInExec.officeName;
+        if (sub) sub.textContent = state.loggedInExec.name + " (" + state.loggedInExec.role + ") — Authorized Executive Office";
+        renderOfficeWorkspace(state.loggedInExec);
         backdrop.classList.add("open");
       };
 
@@ -1445,16 +1397,12 @@
       window.logoutExecPopup = function () {
         state.loggedInExec = null;
         saveState();
-        document.getElementById("execLoginMsg").textContent = "Signed out.";
+        const msgEl = document.getElementById("execLoginMsg");
+        if (msgEl) {
+          msgEl.className = "msg-note";
+          msgEl.textContent = "Signed out of executive office.";
+        }
         window.closeExecPopup();
-      };
-
-      window.switchExecTab = function (tab) {
-        const isWall = tab === "wall";
-        document.getElementById("panelCommonWall").style.display = isWall ? "block" : "none";
-        document.getElementById("panelExecFeedback").style.display = isWall ? "none" : "block";
-        document.getElementById("tabWallBtn").classList.toggle("active", isWall);
-        document.getElementById("tabFeedbackBtn").classList.toggle("active", !isWall);
       };
 
       const execLoginForm = document.getElementById("execPopupLoginForm");
@@ -1467,39 +1415,19 @@
 
           const account = resolveExecutiveAccount(idVal, pinVal);
           if (!account) {
+            state.loggedInExec = null;
+            saveState();
             msgEl.className = "msg-note msg-err";
-            msgEl.textContent = "Please enter your Office ID / Reg. No. and PIN.";
+            msgEl.textContent = "Access denied. Check your Office ID / Reg. No. and PIN.";
             return;
           }
 
           state.loggedInExec = account;
           saveState();
           msgEl.className = "msg-note msg-ok";
-          msgEl.textContent = "Signed in as " + account.name + ". Opening pop-up portal...";
+          msgEl.textContent = "Authenticated: " + account.officeName + ". Opening pop-up office...";
           document.getElementById("execPinInput").value = "";
           window.openExecPopup();
-        });
-      }
-
-      const wallForm = document.getElementById("commonWallForm");
-      if (wallForm) {
-        wallForm.addEventListener("submit", function (e) {
-          e.preventDefault();
-          const author = document.getElementById("wallAuthor").value.trim();
-          const topic = document.getElementById("wallTopic").value.trim();
-          const message = document.getElementById("wallMessage").value.trim();
-          if (!author || !topic || !message) return;
-
-          state.wallPosts.unshift({
-            author: author,
-            topic: topic,
-            message: message,
-            time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
-          });
-          saveState();
-          renderCommonWall();
-          document.getElementById("wallTopic").value = "";
-          document.getElementById("wallMessage").value = "";
         });
       }
 
@@ -1530,13 +1458,10 @@
         if (q.includes("whatsapp") || q.includes("join") || q.includes("register")) {
           return "Register in the Join Us section first, then click the WhatsApp Group button right below or at the top to join: " + WA_URL;
         }
-        if (q.includes("complaint") || q.includes("suggest") || q.includes("idea")) {
-          return "You can submit a complaint or suggestion in the Complaints & Suggestions section (#feedback-desk), and executives can view it in the pop-up portal.";
+        if (q.includes("portal") || q.includes("exec") || q.includes("office")) {
+          return "The Executive Office Portal is for executives only. Sign in with your Office ID or Registration Number and PIN to open your office in a pop-up window.";
         }
-        if (q.includes("portal") || q.includes("exec") || q.includes("wall")) {
-          return "Logging into the Executive Portal opens a pop-up workspace featuring the Executive Common Wall and Complaints & Suggestions.";
-        }
-        return "You can explore Who We Are, Outreach Photos, Priorities, Join Us, Complaints & Suggestions, or the Executive Portal on this page.";
+        return "You can explore Who We Are, Outreach Photos, Priorities, Join Us, or the Executive Office Portal on this page.";
       }
 
       window.sendQuickChat = function (text) {
@@ -1557,8 +1482,6 @@
         });
       }
 
-      renderFeedbackLists();
-      renderCommonWall();
     })();
   </script>
 </body>
