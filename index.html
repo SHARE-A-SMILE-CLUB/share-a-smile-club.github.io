@@ -1933,13 +1933,23 @@
             return;
           }
 
+          const cleanDigits = phone.replace(/[^0-9]/g, "");
           const existingIdx = state.members.findIndex(function (m) {
-            return normalizeReg(m.reg) === normalizeReg(reg) || (m.altReg && normalizeReg(m.altReg) === normalizeReg(reg));
+            const sameReg = normalizeReg(m.reg) === normalizeReg(reg) || (m.altReg && normalizeReg(m.altReg) === normalizeReg(reg));
+            const sameName = m.name && m.name.toLowerCase() === name.toLowerCase();
+            const mDigits = m.phone ? String(m.phone).replace(/[^0-9]/g, "") : "";
+            const samePhone = cleanDigits.length >= 9 && mDigits.includes(cleanDigits);
+            return sameReg || sameName || samePhone;
           });
           if (existingIdx >= 0) {
+            const prevReg = state.members[existingIdx].reg;
             state.members[existingIdx].name = name;
             state.members[existingIdx].phone = phone;
             state.members[existingIdx].role = role;
+            if (prevReg && normalizeReg(prevReg) !== normalizeReg(reg)) {
+              state.members[existingIdx].altReg = prevReg;
+            }
+            state.members[existingIdx].reg = reg;
           } else {
             state.members.push({ name: name, reg: reg, phone: phone, role: role });
           }
