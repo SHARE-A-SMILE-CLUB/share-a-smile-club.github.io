@@ -1151,12 +1151,12 @@
       <div class="grid-2" style="margin-bottom: 24px;">
         <div class="card">
           <h3>Verify Member Status</h3>
-          <p style="margin-bottom: 12px;">Search by name or registration number.</p>
-          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-            <input type="text" id="verifyQuery" placeholder="e.g. ED/ART/1591/24" style="flex: 1; min-width: 180px;" />
-            <button type="button" class="btn btn-teal" onclick="verifyMember()">Verify</button>
-          </div>
-          <div id="verifyOut" class="msg-note"></div>
+          <p style="margin-bottom: 12px;">Enter your full name, phone number, or registration/reference number to check your status privately.</p>
+          <form id="verifyMemberForm" onsubmit="return verifyMember(event);" style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <input type="text" id="verifyQuery" placeholder="e.g. Name, 0769529801, or ED/ART/1591/24" style="flex: 1; min-width: 180px;" />
+            <button type="submit" id="verifyMemberBtn" class="btn btn-teal">Verify</button>
+          </form>
+          <div id="verifyOut" class="msg-note" aria-live="polite" style="display:none;"></div>
         </div>
 
         <div class="card">
@@ -1173,33 +1173,7 @@
         </div>
       </div>
 
-      <div class="card" style="margin-bottom: 24px;">
-        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
-          <h3 style="margin:0;">Uploaded Club Member Records</h3>
-          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-            <select id="memberRoleFilter" onchange="renderMemberDirectory()" style="width:auto; padding:6px 10px; font-size:0.84rem;">
-              <option value="ALL">All Roles</option>
-              <option value="ORDINARY">General Members (50)</option>
-              <option value="EXEC">Executive Officials (10)</option>
-            </select>
-            <span id="memberCountBadge" class="badge" style="background:var(--teal-100); color:var(--teal-800); padding:4px 10px; border-radius:999px; font-size:0.78rem; font-weight:700;">60 Registered Members</span>
-          </div>
-        </div>
-        <div style="overflow-x:auto;">
-          <table style="width:100%; border-collapse:collapse; text-align:left; font-size:0.9rem;">
-            <thead>
-              <tr style="background:var(--bg-subtle); border-bottom:2px solid var(--border);">
-                <th style="padding:8px 10px;">#</th>
-                <th style="padding:8px 10px;">Member Name</th>
-                <th style="padding:8px 10px;">Phone Number</th>
-                <th style="padding:8px 10px;">Reg. / Ref. No.</th>
-                <th style="padding:8px 10px;">Role</th>
-              </tr>
-            </thead>
-            <tbody id="memberDirectoryBody"></tbody>
-          </table>
-        </div>
-      </div>
+
 
       <div class="grid-3">
         <div class="card">
@@ -2048,59 +2022,41 @@ const OFFICIAL_SEED_MEMBERS = [
       }
 
       window.renderMemberDirectory = function () {
-        const tbody = document.getElementById("memberDirectoryBody");
-        const countBadge = document.getElementById("memberCountBadge");
-        const filterEl = document.getElementById("memberRoleFilter");
-        const mode = filterEl ? filterEl.value : "ALL";
-
-        const execRoles = [
-          "Chairperson", "Vice Chairperson", "Secretary General", "Assistant Secretary",
-          "Treasurer", "Organising Secretary", "Publicity Officer", "Projects Coordinator",
-          "Welfare Coordinator", "Partnership Coordinator"
-        ];
-
-        const filtered = state.members.filter(function (m) {
-          if (mode === "EXEC") return execRoles.indexOf(m.role) !== -1;
-          if (mode === "ORDINARY") return execRoles.indexOf(m.role) === -1;
-          return true;
-        });
-
-        const ordinaryCount = state.members.filter(function (m) {
-          return execRoles.indexOf(m.role) === -1;
-        }).length;
-
-        if (countBadge) {
-          countBadge.textContent = state.members.length + " Total (" + ordinaryCount + " Ordinary)";
-        }
-        if (!tbody) return;
-        tbody.innerHTML = filtered.map(function (m, idx) {
-          return (
-            '<tr style="border-bottom:1px solid var(--border);">' +
-              '<td style="padding:8px 10px;">' + (idx + 1) + '</td>' +
-              '<td style="padding:8px 10px; font-weight:600;">' + esc(m.name) + '</td>' +
-              '<td style="padding:8px 10px;">' + esc(m.phone || "—") + '</td>' +
-              '<td style="padding:8px 10px;">' + esc(m.reg || "—") + '</td>' +
-              '<td style="padding:8px 10px;">' + esc(m.role || "Member") + '</td>' +
-            '</tr>'
-          );
-        }).join("");
+        // Public member list intentionally hidden for member privacy; verification remains active.
       };
 
-      window.verifyMember = function () {
-        const rawQ = document.getElementById("verifyQuery").value.trim();
+      window.verifyMember = function (ev) {
+        if (ev && typeof ev.preventDefault === "function") {
+          ev.preventDefault();
+        }
+        const inputEl = document.getElementById("verifyQuery");
+        const out = document.getElementById("verifyOut");
+        const rawQ = inputEl ? String(inputEl.value || "").trim() : "";
         const q = rawQ.toLowerCase();
         const qClean = stripSlashes(rawQ);
         const digitsOnly = rawQ.replace(/[^0-9]/g, "");
-        const out = document.getElementById("verifyOut");
+
+        if (!out) return false;
+        out.style.display = "block";
+        out.style.padding = "10px 12px";
+        out.style.borderRadius = "8px";
+
         if (!q) {
           out.className = "msg-note msg-err";
-          out.textContent = "Enter a name, registration number, or phone number.";
-          return;
+          out.style.background = "#ffe4e6";
+          out.textContent = "Please enter your name, phone number, or registration/reference number.";
+          return false;
         }
-        const found = state.members.find(function (m) {
-          const nameMatch = m.name.toLowerCase().includes(q);
-          const regMatch = (m.reg && m.reg.toLowerCase().includes(q)) || (m.altReg && m.altReg.toLowerCase().includes(q));
-          const compactRegMatch = qClean.length >= 4 && (
+
+        const roster = Array.isArray(state.members) && state.members.length > 0
+          ? state.members
+          : OFFICIAL_SEED_MEMBERS;
+
+        const found = roster.find(function (m) {
+          const nameMatch = m.name && m.name.toLowerCase().includes(q);
+          const regMatch = (m.reg && m.reg.toLowerCase().includes(q)) ||
+            (m.altReg && m.altReg.toLowerCase().includes(q));
+          const compactRegMatch = qClean.length >= 2 && (
             (m.reg && stripSlashes(m.reg).includes(qClean)) ||
             (m.altReg && stripSlashes(m.altReg).includes(qClean))
           );
@@ -2108,9 +2064,11 @@ const OFFICIAL_SEED_MEMBERS = [
           const phoneMatch = digitsOnly.length >= 4 && memberDigits.includes(digitsOnly);
           return nameMatch || regMatch || compactRegMatch || phoneMatch;
         });
+
         if (found) {
-          const memberIdx = state.members.indexOf(found) + 1;
+          const memberIdx = roster.indexOf(found) + 1;
           out.className = "msg-note msg-ok";
+          out.style.background = "#dcfce7";
           out.textContent =
             "You're already registered! Member #" + memberIdx +
             " — Name: " + found.name +
@@ -2119,8 +2077,10 @@ const OFFICIAL_SEED_MEMBERS = [
             " | Role: " + (found.role || "Member") + ".";
         } else {
           out.className = "msg-note msg-err";
-          out.textContent = "Member not found in club records.";
+          out.style.background = "#ffe4e6";
+          out.textContent = "Member not found in club records. You can register using the New Member Registration form above.";
         }
+        return false;
       };
 
       renderMemberDirectory();
