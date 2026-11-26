@@ -1025,8 +1025,21 @@
     <div class="container">
       <div class="band-head">
         <span class="band-tag">04 • Join the Club</span>
-        <h2>New Member Registration</h2>
+        <h2>New Member Registration &amp; Dues</h2>
         <p>Register below. After submitting, a clean <strong>Join WhatsApp Group</strong> button appears right below.</p>
+      </div>
+
+      <div class="grid-2" style="max-width: 720px; margin-bottom: 18px;">
+        <div class="card" style="border-top: 4px solid var(--amber-500);">
+          <div class="priority-num">One-Time Fee</div>
+          <h3>KES 100 Registration Fee</h3>
+          <p>A one-time registration fee of <strong>KES 100</strong> upon joining Share a Smile Charity Club.</p>
+        </div>
+        <div class="card" style="border-top: 4px solid var(--teal-600);">
+          <div class="priority-num">Semester Option</div>
+          <h3>KES 50 Subscription / Semester</h3>
+          <p>Optional recurring subscription of <strong>KES 50 per semester</strong> to support ongoing club activities.</p>
+        </div>
       </div>
 
       <div class="card" style="max-width: 720px;">
@@ -1049,6 +1062,14 @@
               <option value="Outreach & Visits">Outreach &amp; Visits</option>
               <option value="Mentorship">Mentorship</option>
               <option value="Welfare & Logistics">Welfare &amp; Logistics</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label for="regFeePlan">Fee / Subscription Option</label>
+            <select id="regFeePlan">
+              <option value="KES 100 One-Time Registration Fee">KES 100 One-Time Registration Fee</option>
+              <option value="KES 100 One-Time + KES 50 / Semester Subscription">KES 100 One-Time + KES 50 / Semester Subscription</option>
+              <option value="KES 50 / Semester Subscription Option">KES 50 / Semester Subscription Option</option>
             </select>
           </div>
           <div class="field full">
@@ -1949,6 +1970,7 @@
           const reg = document.getElementById("regNo").value.trim().toUpperCase();
           const phone = document.getElementById("regPhone").value.trim();
           const role = document.getElementById("regRole").value;
+          const feePlan = document.getElementById("regFeePlan") ? document.getElementById("regFeePlan").value : "KES 100 One-Time Registration Fee";
           const msgEl = document.getElementById("joinMsg");
 
           if (!name || !reg || !phone) {
@@ -1970,17 +1992,18 @@
             state.members[existingIdx].name = name;
             state.members[existingIdx].phone = phone;
             state.members[existingIdx].role = role;
+            state.members[existingIdx].feePlan = feePlan;
             if (prevReg && normalizeReg(prevReg) !== normalizeReg(reg)) {
               state.members[existingIdx].altReg = prevReg;
             }
             state.members[existingIdx].reg = reg;
           } else {
-            state.members.push({ name: name, reg: reg, phone: phone, role: role });
+            state.members.push({ name: name, reg: reg, phone: phone, role: role, feePlan: feePlan });
           }
           saveState();
 
           msgEl.className = "msg-note msg-ok";
-          msgEl.textContent = "Registered " + name + " (" + reg + "). Click the button below to join WhatsApp.";
+          msgEl.textContent = "Registered " + name + " (" + reg + ") • " + feePlan + ". Click the button below to join WhatsApp.";
 
           const bar = document.getElementById("afterRegWaBar");
           const txt = document.getElementById("afterRegText");
