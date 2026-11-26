@@ -1287,12 +1287,33 @@
 
   <script>
 
-    (function () {
-      const WA_URL = "https://chat.whatsapp.com/Dty1LdhdHwv1JTfGJETtdW";
-      const STORE_KEY = "sas_club_structured_v3";
-      const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
+(function () {
+  const WA_URL = "https://chat.whatsapp.com/Dty1LdhdHwv1JTfGJETtdW";
+  const STORE_KEY = "sas_club_structured_v3";
+  const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
 
-      const EXEC_OFFICES = [
+  let memoryStorage = {};
+  function readStorage(key) {
+    try {
+      return window.localStorage.getItem(key);
+    } catch (e) {
+      return Object.prototype.hasOwnProperty.call(memoryStorage, key) ? memoryStorage[key] : null;
+    }
+  }
+  function writeStorage(key, val) {
+    try {
+      window.localStorage.setItem(key, val);
+    } catch (e) {
+      memoryStorage[key] = val;
+    }
+  }
+  function clearStorage(key) {
+    try {
+      window.localStorage.removeItem(key);
+    } catch (e) {}
+    delete memoryStorage[key];
+  }
+const EXEC_OFFICES = [
         {
           id: "EXEC-01",
           reg: "ED/ART1591//24",
@@ -1882,39 +1903,39 @@
         };
       }
 
-      function loadState() {
-        try {
-          const raw = localStorage.getItem(STORE_KEY);
-          if (!raw) return defaultState();
-          const parsed = JSON.parse(raw);
-          const base = defaultState();
-          return {
-            members: mergeSeedMembers(parsed.members),
-            officeNotes: parsed.officeNotes && typeof parsed.officeNotes === "object" ? parsed.officeNotes : {},
-            budgetItems: Array.isArray(parsed.budgetItems) ? parsed.budgetItems : base.budgetItems,
-            budgetTarget: typeof parsed.budgetTarget === "number" && parsed.budgetTarget > 0 ? parsed.budgetTarget : base.budgetTarget,
-            deptRecords: parsed.deptRecords && typeof parsed.deptRecords === "object" ? parsed.deptRecords : {},
-            customPins: parsed.customPins && typeof parsed.customPins === "object" ? parsed.customPins : {},
-            perfCadence: typeof parsed.perfCadence === "string" && parsed.perfCadence ? parsed.perfCadence : base.perfCadence,
-            perfReviews: parsed.perfReviews && typeof parsed.perfReviews === "object" ? parsed.perfReviews : {},
-            chairReports: Array.isArray(parsed.chairReports) ? parsed.chairReports : [],
-            lastReportSubmittedAt: parsed.lastReportSubmittedAt && typeof parsed.lastReportSubmittedAt === "object"
-              ? Object.assign(base.lastReportSubmittedAt, parsed.lastReportSubmittedAt)
-              : base.lastReportSubmittedAt,
-            loggedInExec: parsed.loggedInExec || null
-          };
-        } catch (e) {
-          return defaultState();
-        }
-      }
+      
+  function loadState() {
+    try {
+      const raw = readStorage(STORE_KEY);
+      if (!raw) return defaultState();
+      const parsed = JSON.parse(raw);
+      const base = defaultState();
+      return {
+        members: mergeSeedMembers(parsed.members),
+        officeNotes: parsed.officeNotes && typeof parsed.officeNotes === "object" ? parsed.officeNotes : {},
+        budgetItems: Array.isArray(parsed.budgetItems) ? parsed.budgetItems : base.budgetItems,
+        budgetTarget: typeof parsed.budgetTarget === "number" && parsed.budgetTarget > 0 ? parsed.budgetTarget : base.budgetTarget,
+        deptRecords: parsed.deptRecords && typeof parsed.deptRecords === "object" ? parsed.deptRecords : {},
+        customPins: parsed.customPins && typeof parsed.customPins === "object" ? parsed.customPins : {},
+        perfCadence: typeof parsed.perfCadence === "string" && parsed.perfCadence ? parsed.perfCadence : base.perfCadence,
+        perfReviews: parsed.perfReviews && typeof parsed.perfReviews === "object" ? parsed.perfReviews : {},
+        chairReports: Array.isArray(parsed.chairReports) ? parsed.chairReports : [],
+        lastReportSubmittedAt: parsed.lastReportSubmittedAt && typeof parsed.lastReportSubmittedAt === "object"
+          ? Object.assign(base.lastReportSubmittedAt, parsed.lastReportSubmittedAt)
+          : base.lastReportSubmittedAt,
+        loggedInExec: parsed.loggedInExec || null
+      };
+    } catch (e) {
+      return defaultState();
+    }
+  }
 
-      function saveState() {
-        try {
-          localStorage.setItem(STORE_KEY, JSON.stringify(state));
-        } catch (e) {}
-      }
-
-      const state = loadState();
+  function saveState() {
+    try {
+      writeStorage(STORE_KEY, JSON.stringify(state));
+    } catch (e) {}
+  }
+const state = loadState();
 
       function esc(str) {
         return String(str || "")
@@ -3255,21 +3276,21 @@
           window.verifyMember(e);
         });
       }
-    })();
-  
-    const resetPortalBtn = document.getElementById("execResetStateBtn");
-    if (resetPortalBtn) {
-      resetPortalBtn.addEventListener("click", function () {
-        try {
-          localStorage.removeItem("sas_club_structured_v3");
-        } catch (err) {}
-        const msgEl = document.getElementById("execLoginMsg");
-        if (msgEl) {
-          msgEl.className = "msg-note msg-ok";
-          msgEl.textContent = "Portal storage cleared. Enter your Office ID / Reg. No. and PIN and sign in again.";
-        }
-      });
-    }
-  </script>
+    
+  const resetPortalBtn = document.getElementById("execResetStateBtn");
+  if (resetPortalBtn) {
+    resetPortalBtn.addEventListener("click", function () {
+      clearStorage(STORE_KEY);
+      const fresh = defaultState();
+      Object.keys(fresh).forEach(function (k) { state[k] = fresh[k]; });
+      const msgEl = document.getElementById("execLoginMsg");
+      if (msgEl) {
+        msgEl.className = "msg-note msg-ok";
+        msgEl.textContent = "Portal storage cleared. Enter your Office ID / Reg. No. and PIN and sign in again.";
+      }
+    });
+  }
+})();
+</script>
 </body>
 </html>
