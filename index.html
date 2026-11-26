@@ -1203,7 +1203,7 @@
         </div>
       </div>
 
-      <!-- Sign-In View -->
+      <!-- Sign-In & Member Verification View -->
       <div id="portalAuthView" class="sas-auth-grid">
         <div class="sas-panel">
           <h4>Officer Sign-In</h4>
@@ -1239,6 +1239,27 @@
         </div>
 
         <div class="sas-panel">
+          <h4>Member Verification Desk</h4>
+          <p class="sas-panel-sub">
+            Members can verify their Laikipia University registration number directly here in the portal.
+          </p>
+          <div class="form-group">
+            <label for="portalMemberRegInput">Member Registration Number</label>
+            <input
+              type="text"
+              id="portalMemberRegInput"
+              placeholder="e.g. ED/ART/1591/24"
+              autocomplete="off"
+              style="text-transform: uppercase; font-weight: 600;"
+            />
+          </div>
+          <button type="button" class="btn btn-teal" style="width: 100%;" onclick="checkPortalMembership()">
+            Verify Membership
+          </button>
+          <div id="portalMemberVerifyResult" class="verify-result sas-hidden"></div>
+        </div>
+
+        <div class="sas-panel">
           <h4>2026/2027 Executive Committee &amp; Patron Directory</h4>
           <p class="sas-panel-sub">
             Official 10-seat executive line-up plus Faculty Patron. PINs are not displayed publicly;
@@ -1258,6 +1279,9 @@
           </button>
           <button type="button" id="navMyOfficeBtn" class="sas-nav-btn" onclick="switchDeskTab('my_office')">
             My Assigned Office
+          </button>
+          <button type="button" id="navVerifyMemberBtn" class="sas-nav-btn" onclick="switchDeskTab('verify_member')">
+            Verify Member
           </button>
         </aside>
 
@@ -1724,39 +1748,10 @@
       };
 
       window.checkMembership = function () {
-        const inputEl = document.getElementById("regInput");
-        const resultEl = document.getElementById("verifyResult");
-        if (!inputEl || !resultEl) return;
-
-        const code = normCode(inputEl.value);
-        const members = getAllMembers();
-
-        resultEl.classList.remove("sas-hidden");
-        if (!code) {
-          resultEl.style.background = "#fef3c7";
-          resultEl.style.border = "1px solid #f59e0b";
-          resultEl.style.color = "#92400e";
-          resultEl.innerHTML = "Please enter a registration number first (for example: <strong>ED/ART/1591/24</strong>).";
-          return;
-        }
-
-        if (members[code]) {
-          resultEl.style.background = "#ecfdf5";
-          resultEl.style.border = "1px solid #10b981";
-          resultEl.style.color = "#065f46";
-          resultEl.innerHTML =
-            "<strong>Verified Member Record</strong><br>" +
-            "<strong>Name:</strong> " + esc(members[code]) + "<br>" +
-            "<strong>Reg. Number:</strong> " + esc(code) + "<br>" +
-            "<strong>Club:</strong> Share a Smile Charity Club (Laikipia University)";
-        } else {
-          resultEl.style.background = "#fef2f2";
-          resultEl.style.border = "1px solid #ef4444";
-          resultEl.style.color = "#991b1b";
-          resultEl.innerHTML =
-            "<strong>Record Not Found</strong><br>" +
-            "No record matching <strong>" + esc(code) + "</strong> was found. Check the format or submit a request below.";
-        }
+        runMembershipLookup(
+          document.getElementById("regInput"),
+          document.getElementById("verifyResult")
+        );
       };
 
       const regInputEl = document.getElementById("regInput");
@@ -1765,6 +1760,16 @@
           if (e.key === "Enter") {
             e.preventDefault();
             window.checkMembership();
+          }
+        });
+      }
+
+      const portalMemberRegEl = document.getElementById("portalMemberRegInput");
+      if (portalMemberRegEl) {
+        portalMemberRegEl.addEventListener("keypress", function (e) {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            window.checkPortalMembership();
           }
         });
       }
@@ -1911,9 +1916,13 @@
 
         const navOverview = document.getElementById("navOverviewBtn");
         const navMyOffice = document.getElementById("navMyOfficeBtn");
+        const navVerifyMember = document.getElementById("navVerifyMemberBtn");
         if (navOverview && navMyOffice) {
           navOverview.classList.toggle("active", state.session.tab === "overview");
           navMyOffice.classList.toggle("active", state.session.tab === "my_office");
+          if (navVerifyMember) {
+            navVerifyMember.classList.toggle("active", state.session.tab === "verify_member");
+          }
         }
 
         const mainEl = document.getElementById("deskMainContent");
@@ -1921,6 +1930,8 @@
 
         if (state.session.tab === "my_office") {
           mainEl.innerHTML = renderAssignedOfficeHtml(official);
+        } else if (state.session.tab === "verify_member") {
+          mainEl.innerHTML = renderDeskMemberVerifyHtml();
         } else {
           mainEl.innerHTML = renderOverviewHtml(official);
         }
@@ -2057,8 +2068,81 @@
         renderPortalUI();
       };
 
+      function renderMemberLookupCardHtml(inputId, resultId, btnHandlerName) {
+        return (
+          '<div class="sas-card">' +
+            '<h4>Member Registration Verification</h4>' +
+            '<p style="font-size:0.88rem; color:var(--slate-600); margin-bottom:12px;">' +
+              'Enter a member registration number to confirm active status on the Share a Smile register.' +
+            '</p>' +
+            '<div class="verify-row" style="margin-top:8px; justify-content:flex-start;">' +
+              '<input type="text" id="' + inputId + '" placeholder="e.g. ED/ART/1591/24" autocomplete="off" />' +
+              '<button type="button" class="btn btn-teal" onclick="' + btnHandlerName + '()">Check Status</button>' +
+            '</div>' +
+            '<div id="' + resultId + '" class="verify-result sas-hidden"></div>' +
+          '</div>'
+        );
+      }
+
+      function runMembershipLookup(inputEl, resultEl) {
+        if (!inputEl || !resultEl) return;
+        const code = normCode(inputEl.value);
+        const members = getAllMembers();
+
+        resultEl.classList.remove("sas-hidden");
+        if (!code) {
+          resultEl.style.background = "#fef3c7";
+          resultEl.style.border = "1px solid #f59e0b";
+          resultEl.style.color = "#92400e";
+          resultEl.innerHTML = "Please enter a registration number first (for example: <strong>ED/ART/1591/24</strong>).";
+          return;
+        }
+
+        if (members[code]) {
+          resultEl.style.background = "#ecfdf5";
+          resultEl.style.border = "1px solid #10b981";
+          resultEl.style.color = "#065f46";
+          resultEl.innerHTML =
+            "<strong>Verified Member Record</strong><br>" +
+            "<strong>Name:</strong> " + esc(members[code]) + "<br>" +
+            "<strong>Reg. Number:</strong> " + esc(code) + "<br>" +
+            "<strong>Club:</strong> Share a Smile Charity Club (Laikipia University)";
+        } else {
+          resultEl.style.background = "#fef2f2";
+          resultEl.style.border = "1px solid #ef4444";
+          resultEl.style.color = "#991b1b";
+          resultEl.innerHTML =
+            "<strong>Record Not Found</strong><br>" +
+            "No record matching <strong>" + esc(code) + "</strong> was found. Check the format or submit a membership request.";
+        }
+      }
+
+      window.checkPortalMembership = function () {
+        runMembershipLookup(
+          document.getElementById("portalMemberRegInput"),
+          document.getElementById("portalMemberVerifyResult")
+        );
+      };
+
+      window.checkDeskMembership = function () {
+        runMembershipLookup(
+          document.getElementById("deskMemberRegInput"),
+          document.getElementById("deskMemberVerifyResult")
+        );
+      };
+
+      function renderDeskMemberVerifyHtml() {
+        return renderMemberLookupCardHtml("deskMemberRegInput", "deskMemberVerifyResult", "checkDeskMembership");
+      }
+
       window.switchDeskTab = function (tabName) {
-        state.session.tab = tabName === "my_office" ? "my_office" : "overview";
+        if (tabName === "my_office") {
+          state.session.tab = "my_office";
+        } else if (tabName === "verify_member") {
+          state.session.tab = "verify_member";
+        } else {
+          state.session.tab = "overview";
+        }
         saveState();
         renderPortalUI();
       };
@@ -2188,12 +2272,9 @@
         tbody.innerHTML = state.officials.map(function (o, idx) {
           const waPhone = formatWaPhone(o.phone);
           const msg = encodeURIComponent(
-            "Hello " + o.name + ", here are your Share a Smile Charity Club Executive Portal credentials:
-" +
-            "Office: " + o.position + " (" + o.officeId + ")
-" +
-            "Login ID / Reg: " + o.regNo + "
-" +
+            "Hello " + o.name + ", here are your Share a Smile Charity Club Executive Portal credentials:\n" +
+            "Office: " + o.position + " (" + o.officeId + ")\n" +
+            "Login ID / Reg: " + o.regNo + "\n" +
             "PIN: " + o.pin
           );
           const waHref = "https://wa.me/" + waPhone + "?text=" + msg;
@@ -2227,7 +2308,24 @@
         renderVaultTable();
       };
 
-      // Initial render
+      // Initial render & resilient click/key delegation
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          window.closeChairVault();
+          window.closeSasCalendar();
+        }
+      });
+
+      const masterPinEl = document.getElementById("masterPinInput");
+      if (masterPinEl) {
+        masterPinEl.addEventListener("keydown", function (e) {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            window.unlockMasterVault();
+          }
+        });
+      }
+
       updateMemberCounter();
       renderPortalUI();
     })();
