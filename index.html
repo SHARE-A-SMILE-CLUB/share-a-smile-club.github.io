@@ -828,9 +828,58 @@
       margin-bottom: 10px;
     }
 
+.mobile-dots-btn {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--bg-surface);
+      color: var(--ink-900);
+      font-size: 1.35rem;
+      font-weight: 800;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .mobile-dots-btn:hover {
+      background: var(--bg-subtle);
+    }
+
     @media (max-width: 900px) {
       .hero-inner, .grid-3, .grid-2, .priority-row, .form-grid {
         grid-template-columns: 1fr;
+      }
+
+      .mobile-dots-btn {
+        display: inline-flex;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 16px;
+        left: 16px;
+        background: #ffffff;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-lg);
+        padding: 12px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
+        z-index: 950;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 10px 12px;
       }
     }
   </style>
@@ -848,7 +897,7 @@
         <img src="logo scc.jpeg" alt="Share a Smile Logo" />
         <span>Share a Smile</span>
       </a>
-      <nav class="nav-links" aria-label="Main navigation">
+      <nav id="mainNavLinks" class="nav-links" aria-label="Main navigation">
         <a href="#who-we-are">Who We Are</a>
         <a href="#outreach-photos">Outreach</a>
         <a href="#priorities">Priorities</a>
@@ -857,6 +906,15 @@
         <a href="https://chat.whatsapp.com/Dty1LdhdHwv1JTfGJETtdW" target="_blank" rel="noopener noreferrer" class="nav-wa-btn">WhatsApp Group</a>
         <a href="#executive-portal" class="nav-portal-btn">Executive Portal</a>
       </nav>
+      <button
+        type="button"
+        id="mobileMenuDotsBtn"
+        class="mobile-dots-btn"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mainNavLinks"
+        onclick="toggleMobileNav()"
+      >&#8942;</button>
     </div>
   </header>
 
@@ -1820,13 +1878,29 @@
         });
       }
 
-      // Check weekly report submission status on load and trigger pop-up notification if not submitted within 7 days
-      const initialOverdue = getOverdueReportingRoles();
-      if (initialOverdue.length > 0) {
-        setTimeout(function () {
-          window.showOverdueNotify(initialOverdue, "Weekly Report Not Submitted");
-        }, 400);
-      }
+      window.toggleMobileNav = function (forceState) {
+        const nav = document.getElementById("mainNavLinks");
+        const btn = document.getElementById("mobileMenuDotsBtn");
+        if (!nav) return;
+        const nextOpen = typeof forceState === "boolean" ? forceState : !nav.classList.contains("open");
+        nav.classList.toggle("open", nextOpen);
+        if (btn) btn.setAttribute("aria-expanded", nextOpen ? "true" : "false");
+      };
+
+      document.querySelectorAll("#mainNavLinks a").forEach(function (link) {
+        link.addEventListener("click", function () {
+          window.toggleMobileNav(false);
+        });
+      });
+
+      document.addEventListener("click", function (e) {
+        const nav = document.getElementById("mainNavLinks");
+        const btn = document.getElementById("mobileMenuDotsBtn");
+        if (!nav || !btn) return;
+        if (!nav.contains(e.target) && !btn.contains(e.target)) {
+          window.toggleMobileNav(false);
+        }
+      });
 
       // 5. Club Chatbot
       window.toggleChatbot = function (forceState) {
