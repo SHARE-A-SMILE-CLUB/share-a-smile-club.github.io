@@ -71,7 +71,6 @@
       padding: 0 20px;
     }
 
-    /* Top Announcement Ribbon */
     .top-ribbon {
       background: linear-gradient(90deg, #0f172a 0%, #0f766e 55%, #0d9488 100%);
       color: #ffffff;
@@ -91,7 +90,6 @@
       text-transform: uppercase;
     }
 
-    /* Navigation */
     header.site-nav {
       position: sticky;
       top: 0;
@@ -163,7 +161,6 @@
       color: #ffffff;
     }
 
-    /* Hero */
     .hero {
       background: linear-gradient(125deg, #0f172a 0%, #115e59 55%, #0284c7 100%);
       color: #ffffff;
@@ -312,7 +309,6 @@
       color: #f1f5f9;
     }
 
-    /* Sections */
     section.band {
       padding: 58px 0;
       border-bottom: 1px solid var(--border);
@@ -352,7 +348,6 @@
       font-size: 0.98rem;
     }
 
-    /* Grids & Cards */
     .grid-3 {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -398,7 +393,6 @@
       color: var(--ink-700);
     }
 
-    /* Priority Strip */
     .priority-row {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -426,7 +420,6 @@
       margin-bottom: 4px;
     }
 
-    /* Forms & Registration */
     .form-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -465,7 +458,6 @@
       border-color: var(--teal-600);
     }
 
-    /* Compact Next-Step WhatsApp Button Strip After Registration */
     .post-reg-wa-bar {
       margin-top: 16px;
       padding: 14px 16px;
@@ -493,7 +485,6 @@
     .msg-ok { color: var(--wa-700); }
     .msg-err { color: var(--rose-600); }
 
-    /* Colorful Executive Portal Section */
     .colorful-portal-banner {
       background: linear-gradient(120deg, #1e1b4b 0%, #0f766e 52%, #b45309 100%);
       color: #ffffff;
@@ -524,15 +515,14 @@
     .chip-rose { background: var(--rose-100); }
 
     .portal-login-box {
-      background: rgba(255, 255, 255, 0.97);
+      background: rgba(255, 255, 255, 0.98);
       color: var(--ink-900);
       border-radius: var(--radius-md);
       padding: 22px;
-      max-width: 540px;
+      max-width: 600px;
       box-shadow: var(--shadow-md);
     }
 
-    /* Full-Screen / Pop-Up Executive Workspace Modal */
     .popup-backdrop {
       position: fixed;
       inset: 0;
@@ -596,7 +586,6 @@
       margin-bottom: 4px;
     }
 
-    /* Floating & Docked Chatbot */
     .chatbot-fab {
       position: fixed;
       right: 20px;
@@ -857,7 +846,6 @@
     </div>
   </header>
 
-  <!-- Hero -->
   <section class="hero">
     <div class="container hero-inner">
       <div>
@@ -887,7 +875,6 @@
     </div>
   </section>
 
-  <!-- 1. WHO WE ARE -->
   <section id="who-we-are" class="band white">
     <div class="container">
       <div class="band-head">
@@ -916,7 +903,6 @@
     </div>
   </section>
 
-  <!-- 2. OUTREACH PHOTOS -->
   <section id="outreach-photos" class="band">
     <div class="container">
       <div class="band-head">
@@ -945,7 +931,6 @@
     </div>
   </section>
 
-  <!-- 3. PRIORITIES -->
   <section id="priorities" class="band white">
     <div class="container">
       <div class="band-head">
@@ -979,7 +964,6 @@
     </div>
   </section>
 
-  <!-- 3B. CLUB CALENDAR & SATURDAY MEETING ANNOUNCEMENT -->
   <section id="club-calendar" class="band">
     <div class="container">
       <div class="band-head">
@@ -1020,7 +1004,6 @@
     </div>
   </section>
 
-  <!-- 4. JOIN US -->
   <section id="join" class="band">
     <div class="container">
       <div class="band-head">
@@ -1039,6 +1022,69 @@
           <div class="priority-num">Semester Option</div>
           <h3>KES 50 Subscription / Semester</h3>
           <p>Optional recurring subscription of <strong>KES 50 per semester</strong> to support ongoing club activities.</p>
+        </div>
+      </div>
+
+      <div class="card" style="max-width: 720px;">
+        <form id="joinForm" class="form-grid" novalidate>
+          <div class="field">
+            <label for="regName">Full Name *</label>
+            <input type="text" id="regName" placeholder="e.g. Amina Wanjiku" required />
+          </div>
+          <div class="field">
+            <label for="regNo">Registration Number *</label>
+            <input type="text" id="regNo" placeholder="e.g. ED/ART/1591/24" required />
+          </div>
+          <div class="field">
+            <label for="regPhone">Phone / WhatsApp Number *</label>
+            <input type="tel" id="regPhone" placeholder="e.g. 0712345678" required />
+          </div>
+          <div class="field">
+            <label for="regRole">Interest Area</label>
+            <select id="regRole">
+              <option value="General Member">General Member</option>
+              <option value="Outreach & Field Team">Outreach &amp; Field Team</option>
+              <option value="Mentorship Team">Mentorship Team</option>
+              <option value="Media & Publicity">Media &amp; Publicity</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="regFeePlan">Fee / Subscription Option *</label>
+            <select id="regFeePlan">
+              <option value="KES 100 One-Time Registration Fee" data-amount="KES 100">KES 100 One-Time Registration Fee</option>
+              <option value="KES 100 One-Time + KES 50 / Semester Subscription" data-amount="KES 150">KES 100 One-Time + KES 50 / Semester Subscription</option>
+              <option value="KES 50 / Semester Subscription Option" data-amount="KES 50">KES 50 / Semester Subscription Option</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="regMpesaRef">M-Pesa Reference Number *</label>
+            <input type="text" id="regMpesaRef" placeholder="e.g. TKL89ABC12" maxlength="14" style="text-transform: uppercase;" required />
+          </div>
+          <div class="field full">
+            <div id="feeSummaryBadge" style="font-size: 0.86rem; font-weight: 700; color: var(--teal-800); background: var(--teal-100); padding: 8px 12px; border-radius: 8px;">
+              Selected Payable Amount: KES 100
+            </div>
+          </div>
+          <div class="field full">
+            <button type="submit" class="btn btn-teal">Submit Registration</button>
+          </div>
+        </form>
+
+        <div id="joinMsg" class="msg-note"></div>
+
+        <div id="afterRegWaBar" class="post-reg-wa-bar muted">
+          <span id="afterRegText" style="font-size: 0.9rem; font-weight: 600;">
+            Complete registration above or join the group directly:
+          </span>
+          <a
+            id="afterRegWaBtn"
+            href="https://chat.whatsapp.com/Dty1LdhdHwv1JTfGJETtdW"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-wa btn-sm"
+          >
+            Join WhatsApp Group
+          </a>
         </div>
       </div>
 
@@ -1074,7 +1120,6 @@
     </div>
   </section>
 
-  <!-- 5. VERIFY MEMBER & MERCHANDISE -->
   <section id="verify-member" class="band white">
     <div class="container">
       <div class="band-head">
@@ -1128,14 +1173,13 @@
     </div>
   </section>
 
-  <!-- 6. EXECUTIVE OFFICE PORTAL (Executives Only) -->
   <section id="executive-portal" class="band white">
     <div class="container">
       <div class="colorful-portal-banner">
         <span class="badge" style="background: var(--amber-500); color: var(--ink-900);">06 • Executives Only</span>
         <h2 style="font-size: clamp(1.6rem, 3vw, 2.2rem); margin-top: 8px;">Executive Office Portal</h2>
         <p style="color: #f1f5f9; max-width: 65ch; margin-top: 6px;">
-          Restricted to executive officials. Sign in with your Office ID or Registration Number and PIN to open your own dedicated office portal in a pop-up window with department-specific tools.
+          Restricted to executive officials. Sign in with your Office ID or Registration Number and PIN to open your dedicated office portal in a pop-up window.
         </p>
 
         <div class="portal-color-chips">
@@ -1156,23 +1200,23 @@
           <form id="execPopupLoginForm" class="form-grid" novalidate>
             <div class="field">
               <label for="execIdInput">Office ID or Reg. No.</label>
-              <input type="text" id="execIdInput" placeholder="Enter Office ID or Reg. No." required />
+              <input type="text" id="execIdInput" placeholder="e.g. EXEC-01 or ED/ART/1591/24" required />
             </div>
             <div class="field">
               <label for="execPinInput">Office PIN</label>
               <input type="password" id="execPinInput" placeholder="Enter PIN" required />
             </div>
             <div class="field full" style="display: flex; gap: 10px; flex-wrap: wrap;">
-              <button type="submit" class="btn btn-indigo">Sign In &amp; Open My Office Portal</button>
+              <button type="submit" id="execLoginSubmitBtn" class="btn btn-indigo">Sign In &amp; Open My Office Portal</button>
+              <button type="button" id="execResetStateBtn" class="btn btn-secondary btn-sm">Reset Portal Data</button>
             </div>
           </form>
-          <div id="execLoginMsg" class="msg-note"></div>
+          <div id="execLoginMsg" class="msg-note" role="status" aria-live="polite"></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- WEEKLY REPORT OVERDUE POP-UP NOTIFICATION -->
   <div id="overdueNotifyBackdrop" class="overdue-alert-backdrop" role="dialog" aria-modal="true" aria-labelledby="overdueNotifyTitle">
     <div class="overdue-alert-card">
       <div class="overdue-alert-head">
@@ -1186,7 +1230,6 @@
     </div>
   </div>
 
-  <!-- POP-UP EXECUTIVE OFFICE WINDOW -->
   <div id="execPopupBackdrop" class="popup-backdrop" role="dialog" aria-modal="true" aria-labelledby="popupTitle">
     <div class="popup-window">
       <div class="popup-topbar">
@@ -1206,7 +1249,6 @@
     </div>
   </div>
 
-  <!-- CHATBOT -->
   <button type="button" class="chatbot-fab" onclick="toggleChatbot()">Club Chatbot</button>
 
   <div id="chatbotPanel" class="chatbot-panel" role="region" aria-label="Share a Smile Club Chatbot">
@@ -1244,6 +1286,7 @@
   </footer>
 
   <script>
+
     (function () {
       const WA_URL = "https://chat.whatsapp.com/Dty1LdhdHwv1JTfGJETtdW";
       const STORE_KEY = "sas_club_structured_v3";
@@ -3213,6 +3256,20 @@
         });
       }
     })();
+  
+    const resetPortalBtn = document.getElementById("execResetStateBtn");
+    if (resetPortalBtn) {
+      resetPortalBtn.addEventListener("click", function () {
+        try {
+          localStorage.removeItem("sas_club_structured_v3");
+        } catch (err) {}
+        const msgEl = document.getElementById("execLoginMsg");
+        if (msgEl) {
+          msgEl.className = "msg-note msg-ok";
+          msgEl.textContent = "Portal storage cleared. Enter your Office ID / Reg. No. and PIN and sign in again.";
+        }
+      });
+    }
   </script>
 </body>
 </html>
