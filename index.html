@@ -1819,6 +1819,8 @@
           ],
           budgetTarget: 15000,
           deptRecords: {},
+          perfCadence: "Weekly (Every 7 Days)",
+          perfReviews: {},
           chairReports: [],
           lastReportSubmittedAt: {
             "Secretary General": null,
@@ -1840,6 +1842,8 @@
             budgetItems: Array.isArray(parsed.budgetItems) ? parsed.budgetItems : base.budgetItems,
             budgetTarget: typeof parsed.budgetTarget === "number" && parsed.budgetTarget > 0 ? parsed.budgetTarget : base.budgetTarget,
             deptRecords: parsed.deptRecords && typeof parsed.deptRecords === "object" ? parsed.deptRecords : {},
+            perfCadence: typeof parsed.perfCadence === "string" && parsed.perfCadence ? parsed.perfCadence : base.perfCadence,
+            perfReviews: parsed.perfReviews && typeof parsed.perfReviews === "object" ? parsed.perfReviews : {},
             chairReports: Array.isArray(parsed.chairReports) ? parsed.chairReports : [],
             lastReportSubmittedAt: parsed.lastReportSubmittedAt && typeof parsed.lastReportSubmittedAt === "object"
               ? Object.assign(base.lastReportSubmittedAt, parsed.lastReportSubmittedAt)
@@ -2575,6 +2579,135 @@
         }
       }
 
+      function renderChairpersonOversightSummary(account) {
+        if (!account || account.role !== "Chairperson") return "";
+
+        const cadence = state.perfCadence || "Weekly (Every 7 Days)";
+        const otherExecs = EXEC_OFFICES.filter(function (o) { return o.role !== "Chairperson"; });
+
+        const execRowsHtml = otherExecs.map(function (off) {
+          const notesCount = Array.isArray(state.officeNotes[off.id]) ? state.officeNotes[off.id].length : 0;
+          const deptCount = Array.isArray(state.deptRecords[off.id]) ? state.deptRecords[off.id].length : 0;
+          const reportsCount = state.chairReports.filter(function (r) {
+            return r.role === off.role || r.reg === off.reg;
+          }).length;
+          const activityScore = notesCount + deptCount + reportsCount;
+          const lastReview = state.perfReviews && state.perfReviews[off.id] ? state.perfReviews[off.id] : null;
+
+          return (
+            "<tr style='border-bottom:1px solid var(--border);'>" +
+              "<td style='padding:8px;'><strong>" + esc(off.name) + "</strong><br><span style='font-size:0.78rem; color:var(--ink-500);'>" + esc(off.role) + "</span></td>" +
+              "<td style='padding:8px; font-size:0.82rem;'>ID: <strong>" + esc(off.id) + "</strong><br>Reg: " + esc(off.reg) + "<br>PIN: <code>" + esc(off.pin) + "</code></td>" +
+              "<td style='padding:8px; font-size:0.82rem;'>Notes: " + notesCount + " &bull; Dept Logs: " + deptCount + " &bull; Reports: " + reportsCount + "<br><strong>Total Logged: " + activityScore + "</strong></td>" +
+              "<td style='padding:8px; font-size:0.8rem;'>" +
+                (lastReview
+                  ? "<strong>" + esc(lastReview.rating) + "</strong> (" + esc(lastReview.date) + ")<br><span style='color:var(--ink-700);'>" + esc(lastReview.note) + "</span>"
+                  : "<span style='color:var(--ink-500);'>No review logged yet</span>") +
+              "</td>" +
+            "</tr>"
+          );
+        }).join("");
+
+        const reviewOptionsHtml = otherExecs.map(function (off) {
+          return "<option value='" + esc(off.id) + "'>" + esc(off.name) + " — " + esc(off.role) + "</option>";
+        }).join("");
+
+        return (
+          "<div class='card' style='margin-bottom:18px; border-top:4px solid var(--indigo-600);'>" +
+            "<h3>Chairperson Summary: Executive Login Method &amp; Performance Frequency</h3>" +
+            "<p style='font-size:0.86rem; color:var(--ink-500); margin-bottom:12px;'>Overview of how executive members sign in to their separate portals and how often you review their performance.</p>" +
+            "<div class='grid-2' style='margin-bottom:14px;'>" +
+              "<div class='card' style='padding:14px;'>" +
+                "<div class='priority-num'>How Other Executives Log In</div>" +
+                "<h3 style='font-size:1rem;'>Office ID / Reg. No. + Office PIN</h3>" +
+                "<p style='font-size:0.84rem; margin-top:4px;'>Each executive member signs in on the <strong>Executive Office Portal</strong> using their assigned <strong>Office ID</strong> (e.g., <code>EXEC-03</code>) or <strong>Registration Number</strong> and their <strong>4-digit Office PIN</strong>. Authentication routes them directly into their own office workspace.</p>" +
+              "</div>" +
+              "<div class='card' style='padding:14px;'>" +
+                "<div class='priority-num'>Performance Check Frequency</div>" +
+                "<h3 style='font-size:1rem;'>Current Cadence: " + esc(cadence) + "</h3>" +
+                "<form id='perfCadenceForm' style='display:flex; gap:8px; flex-wrap:wrap; margin-top:8px;'>" +
+                  "<select id='perfCadenceSelect' style='flex:1; min-width:170px; padding:7px 10px; font-size:0.85rem;'>" +
+                    "<option value='Weekly (Every 7 Days)'" + (cadence === "Weekly (Every 7 Days)" ? " selected" : "") + ">Weekly (Every 7 Days)</option>" +
+                    "<option value='Bi-Weekly (Every 14 Days)'" + (cadence === "Bi-Weekly (Every 14 Days)" ? " selected" : "") + ">Bi-Weekly (Every 14 Days)</option>" +
+                    "<option value='Monthly (Every 30 Days)'" + (cadence === "Monthly (Every 30 Days)" ? " selected" : "") + ">Monthly (Every 30 Days)</option>" +
+                    "<option value='Before Every General / Outreach Event'" + (cadence === "Before Every General / Outreach Event" ? " selected" : "") + ">Before Every General / Outreach Event</option>" +
+                  "</select>" +
+                  "<button type='submit' class='btn btn-indigo btn-sm'>Save Frequency</button>" +
+                "</form>" +
+              "</div>" +
+            "</div>" +
+            "<form id='perfReviewForm' class='form-grid' novalidate style='margin-bottom:14px; background:var(--bg-subtle); padding:12px; border-radius:8px;'>" +
+              "<div class='field'>" +
+                "<label for='perfExecSelect'>Executive Officer</label>" +
+                "<select id='perfExecSelect'>" + reviewOptionsHtml + "</select>" +
+              "</div>" +
+              "<div class='field'>" +
+                "<label for='perfRatingSelect'>Performance Status</label>" +
+                "<select id='perfRatingSelect'>" +
+                  "<option value='On Track — Active &amp; Timely'>On Track — Active &amp; Timely</option>" +
+                  "<option value='Needs Follow-Up'>Needs Follow-Up</option>" +
+                  "<option value='Overdue / Action Required'>Overdue / Action Required</option>" +
+                "</select>" +
+              "</div>" +
+              "<div class='field full'>" +
+                "<label for='perfNoteInput'>Review Note (" + esc(cadence) + ")</label>" +
+                "<input type='text' id='perfNoteInput' placeholder='e.g. Minutes and weekly report submitted on time' required />" +
+              "</div>" +
+              "<div class='field full'>" +
+                "<button type='submit' class='btn btn-teal btn-sm'>Log Performance Check</button>" +
+              "</div>" +
+            "</form>" +
+            "<div style='overflow-x:auto;'>" +
+              "<table style='width:100%; border-collapse:collapse; font-size:0.86rem;'>" +
+                "<thead>" +
+                  "<tr style='background:var(--bg-subtle); text-align:left; border-bottom:2px solid var(--border);'>" +
+                    "<th style='padding:8px;'>Executive &amp; Role</th>" +
+                    "<th style='padding:8px;'>Portal Credentials</th>" +
+                    "<th style='padding:8px;'>Portal Activity</th>" +
+                    "<th style='padding:8px;'>Latest Performance Review</th>" +
+                  "</tr>" +
+                "</thead>" +
+                "<tbody>" + execRowsHtml + "</tbody>" +
+              "</table>" +
+            "</div>" +
+          "</div>"
+        );
+      }
+
+      function bindChairpersonOversightHandlers(account) {
+        if (!account || account.role !== "Chairperson") return;
+        const cadForm = document.getElementById("perfCadenceForm");
+        if (cadForm) {
+          cadForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const sel = document.getElementById("perfCadenceSelect");
+            if (sel && sel.value) {
+              state.perfCadence = sel.value;
+              saveState();
+              renderOfficeWorkspace(account);
+            }
+          });
+        }
+        const revForm = document.getElementById("perfReviewForm");
+        if (revForm) {
+          revForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const execId = document.getElementById("perfExecSelect").value;
+            const rating = document.getElementById("perfRatingSelect").value;
+            const note = document.getElementById("perfNoteInput").value.trim();
+            if (!execId || !note) return;
+            state.perfReviews[execId] = {
+              rating: rating,
+              note: note,
+              cadence: state.perfCadence || "Weekly (Every 7 Days)",
+              date: new Date().toLocaleDateString()
+            };
+            saveState();
+            renderOfficeWorkspace(account);
+          });
+        }
+      }
+
       function renderOfficeWorkspace(account) {
         const container = document.getElementById("officeWorkspaceContent");
         if (!container || !account) return;
@@ -2679,6 +2812,7 @@
               '</form>' +
             '</div>' +
           '</div>' +
+          renderChairpersonOversightSummary(account) +
           renderDeptSpecificTools(account) +
           weeklyReportCardHtml +
           chairSubmissionsCardHtml +
@@ -2688,6 +2822,7 @@
           '</div>';
 
         bindDepartmentHandlers(account);
+        bindChairpersonOversightHandlers(account);
 
         const noteForm = document.getElementById("officeNoteForm");
         if (noteForm) {
