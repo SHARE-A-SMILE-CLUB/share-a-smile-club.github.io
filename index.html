@@ -1288,37 +1288,48 @@
   <script>
 (function () {
 
-  function keepScrollStable(fn) {
-    const prevY = window.scrollY || window.pageYOffset || 0;
-    const prevBehavior = document.documentElement.style.scrollBehavior;
-    document.documentElement.style.scrollBehavior = "auto";
+
+
+  function preserveScroll(fn) {
+    const y = window.scrollY || window.pageYOffset || 0;
+    const htmlEl = document.documentElement;
+    const prevBehavior = htmlEl.style.scrollBehavior;
+    htmlEl.style.scrollBehavior = "auto";
     try {
-      fn();
+      return fn();
     } finally {
-      window.scrollTo({ top: prevY, left: 0, behavior: "instant" });
-      setTimeout(function () {
-        window.scrollTo(0, prevY);
-        document.documentElement.style.scrollBehavior = prevBehavior || "";
-      }, 0);
+      window.scrollTo(0, y);
+      requestAnimationFrame(function () {
+        window.scrollTo(0, y);
+        htmlEl.style.scrollBehavior = prevBehavior || "";
+      });
     }
   }
 
   document.addEventListener("keydown", function (e) {
     if (e.key !== "Enter") return;
-    const active = document.activeElement;
-    if (!active) return;
-    const tag = active.tagName ? active.tagName.toUpperCase() : "";
-    if (tag === "TEXTAREA") return;
-    const form = active.closest ? active.closest("form") : null;
-    if (form && tag === "INPUT") {
-      e.preventDefault();
-      if (typeof form.requestSubmit === "function") {
-        form.requestSubmit();
-      } else {
-        form.dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
+    const el = e.target;
+    if (!el || !el.tagName) return;
+    const tag = el.tagName.toUpperCase();
+    if (tag === "TEXTAREA" || tag === "BUTTON" || tag === "A") return;
+
+    const form = el.closest ? el.closest("form") : null;
+    if (form) {
+      // Allow normal form submission without forcing synthetic duplicate submits
+      return;
+    }
+
+    const card = el.closest ? el.closest(".card, .portal-login-box, .chatbot-panel") : null;
+    if (card) {
+      const actionBtn = card.querySelector("button[type='submit'], button.btn-teal, button.btn-indigo, button.btn-amber");
+      if (actionBtn) {
+        e.preventDefault();
+        preserveScroll(function () {
+          actionBtn.click();
+        });
       }
     }
-  }, true);
+  });
 
   const WA_URL = "https://chat.whatsapp.com/Dty1LdhdHwv1JTfGJETtdW";
   const STORE_KEY = "sas_club_structured_v3";
@@ -2127,7 +2138,7 @@ const state = loadState();
           saveState();
 
           msgEl.className = "msg-note msg-ok";
-          keepScrollStable(function () {
+          preserveScroll(function () {
             msgEl.textContent =
               "Registration completed for " + name + " (" + reg + ") • " + feePlan +
               " • M-Pesa Ref: " + mpesaRef + ". Click the button below to join WhatsApp.";
@@ -2197,7 +2208,7 @@ const state = loadState();
           saveState();
 
           msgEl.className = "msg-note msg-ok";
-          keepScrollStable(function () {
+          preserveScroll(function () {
             msgEl.textContent =
               "Payment recorded for " + state.members[idx].name + " (" + (state.members[idx].reg || "—") + ") • " +
               feePlan + " • M-Pesa Ref: " + mpesaRef + ".";
@@ -2309,7 +2320,7 @@ const state = loadState();
                 });
               }
               saveState();
-              keepScrollStable(function () {
+              preserveScroll(function () {
                 if (inputEl) inputEl.value = cleanReg;
                 window.verifyMember(null);
               });
@@ -3329,7 +3340,7 @@ const state = loadState();
     });
   }
 
+
 })();
 </script>
 </body>
-</html>
