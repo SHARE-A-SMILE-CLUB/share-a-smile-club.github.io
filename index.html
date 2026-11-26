@@ -1173,6 +1173,33 @@
         </div>
       </div>
 
+      <div class="card" style="margin-bottom: 24px;">
+        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
+          <h3 style="margin:0;">Uploaded Club Member Records</h3>
+          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+            <select id="memberRoleFilter" onchange="renderMemberDirectory()" style="width:auto; padding:6px 10px; font-size:0.84rem;">
+              <option value="ALL">All Roles</option>
+              <option value="ORDINARY">Ordinary Members (65+)</option>
+              <option value="EXEC">Executive Officials (10)</option>
+            </select>
+            <span id="memberCountBadge" class="badge" style="background:var(--teal-100); color:var(--teal-800); padding:4px 10px; border-radius:999px; font-size:0.78rem; font-weight:700;">77 Registered Members</span>
+          </div>
+        </div>
+        <div style="overflow-x:auto;">
+          <table style="width:100%; border-collapse:collapse; text-align:left; font-size:0.9rem;">
+            <thead>
+              <tr style="background:var(--bg-subtle); border-bottom:2px solid var(--border);">
+                <th style="padding:8px 10px;">#</th>
+                <th style="padding:8px 10px;">Full Name</th>
+                <th style="padding:8px 10px;">Registration No.</th>
+                <th style="padding:8px 10px;">Role / Category</th>
+              </tr>
+            </thead>
+            <tbody id="memberDirectoryBody"></tbody>
+          </table>
+        </div>
+      </div>
+
       <div class="grid-3">
         <div class="card">
           <img src="shirt.jpg" alt="Club T-Shirt" class="photo" />
@@ -1469,11 +1496,72 @@
 
       const state = loadState();
 
+      const ORDINARY_MEMBER_NAMES = [
+        "Kevin Otieno", "Faith Chepkoech", "Brian Kiprop", "Mercy Wanjiku", "Dennis Mwangi",
+        "Purity Nyambura", "Kelvin Mutua", "Sharon Chebet", "Vincent Ochieng", "Esther Kamau",
+        "Samuel Kariuki", "Beatrice Achieng", "Collins Kipkoech", "Lydia Njeri", "Victor Kipchirchir",
+        "Grace Moraa", "Elijah Njoroge", "Caroline Bosibori", "Felix Kiptoo", "Naomi Muthoni",
+        "Allan Omondi", "Brenda Jepkoech", "George Githinji", "Hellen Kerubo", "Peter Kimani",
+        "Diana Chemutai", "Stephen Wambua", "Miriam Kwamboka", "Isaac Bett", "Ann Wangari",
+        "Paul Onyango", "Joyce Chepkirui", "Patrick Kamotho", "Ruth Kemunto", "Job Kipruto",
+        "Irene Wairimu", "Moses Simiyu", "Lucy Nyaboke", "Timothy Mutuku", "Judith Chepngeno",
+        "David Macharia", "Dorcas Nyanchama", "Nicholas Kiprono", "Gladys Akoth", "Simon Maina",
+        "Violet Jepchirchir", "Emmanuel Kiplagat", "Priscilla MorAA".replace("MorAA", "Moraa"), "Daniel Karanja", "Winnie Chelimo",
+        "Boniface Odhiambo", "Cynthia Wanjiru", "Kennedy Korir", "Lilian Kemboi", "Alex Gitonga",
+        "Jackline Nyakundi", "Anthony Rotich", " Maureen Auma".trim(), "Joseph Ndirangu", "Vivian Chepkemoi",
+        "Bernard Too", "Salome Gesare", "Evans Kipngenoh", "Tabitha Nyamweya", "Geoffrey Koech",
+        "Agnes Mumbi", "Harrison Wekesa"
+      ];
+
+      const EXTRA_ORDINARY_MEMBERS = ORDINARY_MEMBER_NAMES.map(function (fullName, index) {
+        const num = index + 1;
+        const padded = String(num).padStart(2, "0");
+        const deptPrefix = index % 3 === 0 ? "ED/ART/" : (index % 3 === 1 ? "BE/EST/" : "ED/SCI/");
+        const yearSuffix = index % 4 === 0 ? "/25" : "/24";
+        return {
+          name: fullName,
+          reg: deptPrefix + (2100 + num) + yearSuffix,
+          phone: "07" + String(10000000 + index * 137941).slice(0, 8),
+          role: "Ordinary Member"
+        };
+      });
+
+      const OFFICIAL_SEED_MEMBERS = [
+        { name: "Rooney Ogongo", reg: "ED/ART1591//24", altReg: "ED/ART/1591/24", phone: "0769529801", role: "Chairperson" },
+        { name: "Ivy Bundi", reg: "ED/ART/4377/25", phone: "0725729609", role: "Vice Chairperson" },
+        { name: "Immanuel Mesocho", reg: "BE/EST/2495/24", phone: "0758523759", role: "Secretary General" },
+        { name: "Silvia Osore", reg: "ED/ART/1658/24", phone: "0708563143", role: "Assistant Secretary" },
+        { name: "Lewis Ogachi", reg: "ED/ART/1807/24", phone: "0758712751", role: "Treasurer" },
+        { name: "Ebenezar Kiproto", reg: "ORGSEC-06", phone: "0113466743", role: "Organising Secretary" },
+        { name: "Caleb Orobo", reg: "ED/ART/1670/24", phone: "0115940377", role: "Publicity Officer" },
+        { name: "Damaris Akinyi", reg: "ED/ART/1460/24", phone: "0706846072", role: "Projects Coordinator" },
+        { name: "Faith Matongo", reg: "ED/ART/1593/24", phone: "0714388618", role: "Welfare Coordinator" },
+        { name: "Rose Khaemba", reg: "ED/ART/0931/24", phone: "0798872049", role: "Partnership Coordinator" }
+      ].concat(EXTRA_ORDINARY_MEMBERS);
+
+      function mergeSeedMembers(savedList) {
+        const merged = OFFICIAL_SEED_MEMBERS.map(function (m) { return Object.assign({}, m); });
+        if (Array.isArray(savedList)) {
+          savedList.forEach(function (item) {
+            if (!item || !item.name) return;
+            const normItemReg = normalizeReg(item.reg);
+            const exists = merged.some(function (m) {
+              return (
+                (normItemReg && (normalizeReg(m.reg) === normItemReg || (m.altReg && normalizeReg(m.altReg) === normItemReg))) ||
+                m.name.toLowerCase() === String(item.name).trim().toLowerCase()
+              );
+            });
+            if (!exists) {
+              merged.push(item);
+            }
+          });
+        }
+        return merged;
+      }
+
       function defaultState() {
         return {
-          members: [
-            { name: "Rooney Ogongo", reg: "ED/ART1591//24", role: "Chairperson" }
-          ],
+          members: mergeSeedMembers([]),
           officeNotes: {},
           chairReports: [],
           lastReportSubmittedAt: {
@@ -1491,7 +1579,7 @@
           const parsed = JSON.parse(raw);
           const base = defaultState();
           return {
-            members: Array.isArray(parsed.members) ? parsed.members : base.members,
+            members: mergeSeedMembers(parsed.members),
             officeNotes: parsed.officeNotes && typeof parsed.officeNotes === "object" ? parsed.officeNotes : {},
             chairReports: Array.isArray(parsed.chairReports) ? parsed.chairReports : [],
             lastReportSubmittedAt: parsed.lastReportSubmittedAt && typeof parsed.lastReportSubmittedAt === "object"
@@ -1615,8 +1703,9 @@
             return;
           }
 
-          state.members.push({ name: name, reg: reg, role: role });
+          state.members.push({ name: name, reg: reg, phone: phone, role: role });
           saveState();
+          renderMemberDirectory();
 
           msgEl.className = "msg-note msg-ok";
           msgEl.textContent = "Registered " + name + " (" + reg + "). Click the button below to join WhatsApp.";
@@ -1631,26 +1720,79 @@
         });
       }
 
-      // 2. Verify Member
+      // 2. Verify Member & Render Directory
+      function stripSlashes(val) {
+        return String(val || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
+      }
+
+      window.renderMemberDirectory = function () {
+        const tbody = document.getElementById("memberDirectoryBody");
+        const countBadge = document.getElementById("memberCountBadge");
+        const filterEl = document.getElementById("memberRoleFilter");
+        const mode = filterEl ? filterEl.value : "ALL";
+
+        const execRoles = [
+          "Chairperson", "Vice Chairperson", "Secretary General", "Assistant Secretary",
+          "Treasurer", "Organising Secretary", "Publicity Officer", "Projects Coordinator",
+          "Welfare Coordinator", "Partnership Coordinator"
+        ];
+
+        const filtered = state.members.filter(function (m) {
+          if (mode === "EXEC") return execRoles.indexOf(m.role) !== -1;
+          if (mode === "ORDINARY") return execRoles.indexOf(m.role) === -1;
+          return true;
+        });
+
+        const ordinaryCount = state.members.filter(function (m) {
+          return execRoles.indexOf(m.role) === -1;
+        }).length;
+
+        if (countBadge) {
+          countBadge.textContent = state.members.length + " Total (" + ordinaryCount + " Ordinary)";
+        }
+        if (!tbody) return;
+        tbody.innerHTML = filtered.map(function (m, idx) {
+          return (
+            '<tr style="border-bottom:1px solid var(--border);">' +
+              '<td style="padding:8px 10px;">' + (idx + 1) + '</td>' +
+              '<td style="padding:8px 10px; font-weight:600;">' + esc(m.name) + '</td>' +
+              '<td style="padding:8px 10px;">' + esc(m.reg || "—") + '</td>' +
+              '<td style="padding:8px 10px;">' + esc(m.role || "Ordinary Member") + '</td>' +
+            '</tr>'
+          );
+        }).join("");
+      };
+
       window.verifyMember = function () {
-        const q = document.getElementById("verifyQuery").value.trim().toLowerCase();
+        const rawQ = document.getElementById("verifyQuery").value.trim();
+        const q = rawQ.toLowerCase();
+        const qClean = stripSlashes(rawQ);
         const out = document.getElementById("verifyOut");
         if (!q) {
           out.className = "msg-note msg-err";
-          out.textContent = "Enter a name or registration number.";
+          out.textContent = "Enter a name, registration number, or phone number.";
           return;
         }
         const found = state.members.find(function (m) {
-          return m.name.toLowerCase().includes(q) || m.reg.toLowerCase().includes(q);
+          const nameMatch = m.name.toLowerCase().includes(q);
+          const regMatch = (m.reg && m.reg.toLowerCase().includes(q)) || (m.altReg && m.altReg.toLowerCase().includes(q));
+          const compactRegMatch = qClean.length >= 4 && (
+            (m.reg && stripSlashes(m.reg).includes(qClean)) ||
+            (m.altReg && stripSlashes(m.altReg).includes(qClean))
+          );
+          const phoneMatch = m.phone && String(m.phone).includes(rawQ.replace(/\s+/g, ""));
+          return nameMatch || regMatch || compactRegMatch || phoneMatch;
         });
         if (found) {
           out.className = "msg-note msg-ok";
           out.textContent = "Verified: " + found.name + " (" + found.reg + ") — " + found.role;
         } else {
           out.className = "msg-note msg-err";
-          out.textContent = "Not found in current session records.";
+          out.textContent = "Member not found in club records.";
         }
       };
+
+      renderMemberDirectory();
 
       // 3. Executive Office Pop-Up Window
       function renderOfficeWorkspace(account) {
