@@ -2090,6 +2090,7 @@ const OFFICIAL_SEED_MEMBERS = [
         const rawQ = document.getElementById("verifyQuery").value.trim();
         const q = rawQ.toLowerCase();
         const qClean = stripSlashes(rawQ);
+        const digitsOnly = rawQ.replace(/[^0-9]/g, "");
         const out = document.getElementById("verifyOut");
         if (!q) {
           out.className = "msg-note msg-err";
@@ -2103,12 +2104,19 @@ const OFFICIAL_SEED_MEMBERS = [
             (m.reg && stripSlashes(m.reg).includes(qClean)) ||
             (m.altReg && stripSlashes(m.altReg).includes(qClean))
           );
-          const phoneMatch = m.phone && String(m.phone).includes(rawQ.replace(/\s+/g, ""));
+          const memberDigits = m.phone ? String(m.phone).replace(/[^0-9]/g, "") : "";
+          const phoneMatch = digitsOnly.length >= 4 && memberDigits.includes(digitsOnly);
           return nameMatch || regMatch || compactRegMatch || phoneMatch;
         });
         if (found) {
+          const memberIdx = state.members.indexOf(found) + 1;
           out.className = "msg-note msg-ok";
-          out.textContent = "Verified: " + found.name + " (" + found.reg + ") — " + found.role;
+          out.textContent =
+            "You're already registered! Member #" + memberIdx +
+            " — Name: " + found.name +
+            " | Phone: " + (found.phone || "—") +
+            " | Reg/Ref No.: " + (found.reg || "—") +
+            " | Role: " + (found.role || "Member") + ".";
         } else {
           out.className = "msg-note msg-err";
           out.textContent = "Member not found in club records.";
