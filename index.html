@@ -1043,6 +1043,11 @@
       </div>
 
       <div class="card" style="max-width: 720px;">
+        <div style="background: var(--bg-subtle); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; margin-bottom: 16px; font-size: 0.88rem; color: var(--ink-700);">
+          <strong>Step 1 — Pay via M-Pesa &amp; Note Your Reference Code:</strong> Pay <strong>KES 100</strong> (One-Time Registration Fee) and/or <strong>KES 50</strong> (Semester Subscription), then enter your <strong>M-Pesa Reference Number</strong> below to complete registration.
+          <div id="feeSummaryBadge" style="margin-top: 6px; font-weight: 700; color: var(--teal-800);">Selected Payable Amount: KES 100 (KES 100 One-Time Registration Fee)</div>
+        </div>
+
         <form id="joinForm" class="form-grid" novalidate>
           <div class="field">
             <label for="regName">Full Name *</label>
@@ -1064,16 +1069,20 @@
               <option value="Welfare & Logistics">Welfare &amp; Logistics</option>
             </select>
           </div>
-          <div class="field full">
-            <label for="regFeePlan">Fee / Subscription Option</label>
+          <div class="field">
+            <label for="regFeePlan">Fee / Subscription Option *</label>
             <select id="regFeePlan">
-              <option value="KES 100 One-Time Registration Fee">KES 100 One-Time Registration Fee</option>
-              <option value="KES 100 One-Time + KES 50 / Semester Subscription">KES 100 One-Time + KES 50 / Semester Subscription</option>
-              <option value="KES 50 / Semester Subscription Option">KES 50 / Semester Subscription Option</option>
+              <option value="KES 100 One-Time Registration Fee" data-amount="KES 100">KES 100 One-Time Registration Fee</option>
+              <option value="KES 100 One-Time + KES 50 / Semester Subscription" data-amount="KES 150">KES 100 One-Time + KES 50 / Semester Subscription</option>
+              <option value="KES 50 / Semester Subscription Option" data-amount="KES 50">KES 50 / Semester Subscription Option</option>
             </select>
           </div>
-          <div class="field full">
-            <button type="submit" class="btn btn-teal">Register Member</button>
+          <div class="field">
+            <label for="regMpesaRef">M-Pesa Reference Number *</label>
+            <input type="text" id="regMpesaRef" placeholder="e.g. TKL89ABC12" maxlength="14" style="text-transform: uppercase;" required />
+          </div>
+          <div class="field full" style="display:flex; gap:10px; flex-wrap:wrap;">
+            <button type="submit" id="finishRegBtn" class="btn btn-teal">Verify M-Pesa Ref &amp; Finish Registration</button>
           </div>
         </form>
 
@@ -1081,7 +1090,7 @@
 
         <div id="afterRegWaBar" class="post-reg-wa-bar muted">
           <span id="afterRegText" style="font-size: 0.9rem; font-weight: 600;">
-            Register above to enable your next-step WhatsApp button:
+            Enter your details and M-Pesa reference number above to finish registration and unlock WhatsApp:
           </span>
           <a
             id="afterRegWaBtn"
@@ -1961,7 +1970,20 @@
         if (backdrop) backdrop.classList.remove("open");
       };
 
-      // 1. Member Registration + Clean Next-Step WhatsApp Button
+      // 1. Member Registration + M-Pesa Reference Verification + Next-Step WhatsApp Button
+      const feePlanSelect = document.getElementById("regFeePlan");
+      const feeSummaryBadge = document.getElementById("feeSummaryBadge");
+      function updateFeeSummary() {
+        if (!feePlanSelect || !feeSummaryBadge) return;
+        const opt = feePlanSelect.options[feePlanSelect.selectedIndex];
+        const amt = opt && opt.getAttribute("data-amount") ? opt.getAttribute("data-amount") : "KES 100";
+        feeSummaryBadge.textContent = "Selected Payable Amount: " + amt + " (" + feePlanSelect.value + ")";
+      }
+      if (feePlanSelect) {
+        feePlanSelect.addEventListener("change", updateFeeSummary);
+        updateFeeSummary();
+      }
+
       const joinForm = document.getElementById("joinForm");
       if (joinForm) {
         joinForm.addEventListener("submit", function (e) {
@@ -1971,11 +1993,20 @@
           const phone = document.getElementById("regPhone").value.trim();
           const role = document.getElementById("regRole").value;
           const feePlan = document.getElementById("regFeePlan") ? document.getElementById("regFeePlan").value : "KES 100 One-Time Registration Fee";
+          const mpesaInput = document.getElementById("regMpesaRef");
+          const mpesaRef = mpesaInput ? mpesaInput.value.trim().toUpperCase().replace(/[^A-Z0-9]/g, "") : "";
           const msgEl = document.getElementById("joinMsg");
 
           if (!name || !reg || !phone) {
             msgEl.className = "msg-note msg-err";
             msgEl.textContent = "Please fill in your name, registration number, and phone number.";
+            return;
+          }
+
+          if (!mpesaRef || !/^[A-Z0-9]{8,14}$/.test(mpesaRef)) {
+            msgEl.className = "msg-note msg-err";
+            msgEl.textContent = "Please enter a valid M-Pesa Reference Number (8–14 letters/digits, e.g., TKL89ABC12) to finish registration.";
+            if (mpesaInput) mpesaInput.focus();
             return;
           }
 
@@ -1987,31 +2018,40 @@
             const samePhone = cleanDigits.length >= 9 && mDigits.includes(cleanDigits);
             return sameReg || sameName || samePhone;
           });
+          const recordObj = {
+            name: name,
+            reg: reg,
+            phone: phone,
+            role: role,
+            feePlan: feePlan,
+            mpesaRef: mpesaRef,
+            paymentStatus: "Ref Recorded (" + mpesaRef + ")",
+            registeredAt: new Date().toLocaleString()
+          };
           if (existingIdx >= 0) {
             const prevReg = state.members[existingIdx].reg;
-            state.members[existingIdx].name = name;
-            state.members[existingIdx].phone = phone;
-            state.members[existingIdx].role = role;
-            state.members[existingIdx].feePlan = feePlan;
+            state.members[existingIdx] = Object.assign({}, state.members[existingIdx], recordObj);
             if (prevReg && normalizeReg(prevReg) !== normalizeReg(reg)) {
               state.members[existingIdx].altReg = prevReg;
             }
-            state.members[existingIdx].reg = reg;
           } else {
-            state.members.push({ name: name, reg: reg, phone: phone, role: role, feePlan: feePlan });
+            state.members.push(recordObj);
           }
           saveState();
 
           msgEl.className = "msg-note msg-ok";
-          msgEl.textContent = "Registered " + name + " (" + reg + ") • " + feePlan + ". Click the button below to join WhatsApp.";
+          msgEl.textContent =
+            "Registration completed for " + name + " (" + reg + ") • " + feePlan +
+            " • M-Pesa Ref: " + mpesaRef + ". Click the button below to join WhatsApp.";
 
           const bar = document.getElementById("afterRegWaBar");
           const txt = document.getElementById("afterRegText");
           const btn = document.getElementById("afterRegWaBtn");
           bar.classList.remove("muted");
-          txt.textContent = "Welcome, " + name + "! Next step — join the group:";
+          txt.textContent = "Registration complete (Ref: " + mpesaRef + ")! Next step — join the group:";
           btn.href = WA_URL;
           joinForm.reset();
+          updateFeeSummary();
         });
       }
 
@@ -2066,7 +2106,9 @@
             " — Name: " + found.name +
             " | Reg. No.: " + (found.reg || "—") +
             " | Phone: " + (found.phone || "—") +
-            " | Role: " + (found.role || "Member") + ".";
+            " | Role: " + (found.role || "Member") +
+            (found.mpesaRef ? " | M-Pesa Ref: " + found.mpesaRef : "") +
+            (found.feePlan ? " | Plan: " + found.feePlan : "") + ".";
         } else {
           out.className = "msg-note msg-err";
           out.style.background = "#ffe4e6";
