@@ -887,8 +887,8 @@
 <body>
 
   <div class="top-ribbon">
-    <span class="badge">2027 Calendar</span>
-    <strong>Share a Smile Charity Club</strong> — Laikipia University • Official elections set for late February 2027.
+    <span class="badge">Saturday Meeting</span>
+    <strong>Share a Smile Charity Club</strong> — General Meeting this <strong>Saturday, Nov 28, 2026</strong> at <strong>Serene Court Grounds (Nyumba Tatu)</strong> • 2027 Elections in late February 2027.
   </div>
 
   <header class="site-nav">
@@ -901,6 +901,7 @@
         <a href="#who-we-are">Who We Are</a>
         <a href="#outreach-photos">Outreach</a>
         <a href="#priorities">Priorities</a>
+        <a href="#club-calendar">Calendar &amp; Meetings</a>
         <a href="#join">Join Us</a>
         <a href="#verify-member">Verify</a>
         <a href="https://chat.whatsapp.com/Dty1LdhdHwv1JTfGJETtdW" target="_blank" rel="noopener noreferrer" class="nav-wa-btn">WhatsApp Group</a>
@@ -940,7 +941,7 @@
         <ol>
           <li>Who We Are &amp; Core Mission</li>
           <li>Outreach Photos &amp; Field Action</li>
-          <li>Ordered Club Priorities</li>
+          <li>Ordered Club Priorities &amp; Calendar</li>
           <li>Member Sign-Up + WhatsApp Button</li>
           <li>Executive Office Pop-Up Portal</li>
         </ol>
@@ -1035,6 +1036,47 @@
           <div class="priority-num">Priority 4</div>
           <h3>Accountability</h3>
           <p>Transparent executive coordination and preparation for the February 2027 elections.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3B. CLUB CALENDAR & SATURDAY MEETING ANNOUNCEMENT -->
+  <section id="club-calendar" class="band">
+    <div class="container">
+      <div class="band-head">
+        <span class="band-tag">Calendar &amp; Announcements</span>
+        <h2>Club Calendar &amp; Saturday Meeting</h2>
+        <p>Upcoming club schedule, Saturday general meeting announcement, and key dates for the 2026/2027 academic year.</p>
+      </div>
+
+      <div class="card" style="margin-bottom: 22px; border-left: 5px solid var(--amber-500);">
+        <span class="badge" style="background: var(--amber-100); color: #92400e; margin-bottom: 8px; display: inline-block;">Meeting Announcement</span>
+        <h3>First General Meeting — Saturday, November 28, 2026</h3>
+        <p style="margin-bottom: 8px;">
+          All members and executive officials of <strong>Share a Smile Charity Club</strong> are invited to the First General Meeting
+          this <strong>Saturday, November 28, 2026</strong> at <strong>Serene Court Grounds, Nyumba Tatu</strong> (near Laikipia University).
+        </p>
+        <p style="font-size: 0.88rem; color: var(--ink-500);">
+          Agenda: Member onboarding, outreach &amp; mentorship planning, weekly executive reporting, and 2027 roadmap.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="priority-num">Nov 25, 2026</div>
+          <h3>Registration Package Submitted</h3>
+          <p>Constitution, patron endorsement, and member list submitted to the Office of the Dean of Students.</p>
+        </div>
+        <div class="card">
+          <div class="priority-num">Sat, Nov 28, 2026</div>
+          <h3>Saturday General Meeting</h3>
+          <p>In-person club gathering at Serene Court Grounds, Nyumba Tatu for members and executives.</p>
+        </div>
+        <div class="card">
+          <div class="priority-num">Late Feb 2027</div>
+          <h3>Official Club Elections</h3>
+          <p>General executive elections for the next term as scheduled on the 2027 club calendar.</p>
         </div>
       </div>
     </div>
@@ -1243,7 +1285,8 @@
       </div>
     </div>
     <div class="chat-quick-row">
-      <button type="button" class="chat-chip" onclick="sendQuickChat('Who we are')">Who we are</button>
+      <button type="button" class="chat-chip" onclick="sendQuickChat('Saturday meeting')">Saturday meeting</button>
+      <button type="button" class="chat-chip" onclick="sendQuickChat('Club calendar')">Club calendar</button>
       <button type="button" class="chat-chip" onclick="sendQuickChat('WhatsApp link')">WhatsApp link</button>
       <button type="button" class="chat-chip" onclick="sendQuickChat('Executive portal')">Executive portal</button>
     </div>
@@ -1931,6 +1974,12 @@
         }
         if (q.includes("portal") || q.includes("exec") || q.includes("office")) {
           return "The Executive Office Portal is for executives only. Sign in with your Office ID or Registration Number and PIN to open your office in a pop-up window.";
+        }
+        if (q.includes("saturday") || q.includes("meeting")) {
+          return "The First General Meeting is this Saturday, November 28, 2026 at Serene Court Grounds, Nyumba Tatu.";
+        }
+        if (q.includes("calendar") || q.includes("election") || q.includes("date")) {
+          return "Key dates: Saturday General Meeting on Nov 28, 2026 at Serene Court Grounds (Nyumba Tatu), and official elections in late February 2027.";
         }
         return "You can explore Who We Are, Outreach Photos, Priorities, Join Us, or the Executive Office Portal on this page.";
       }
