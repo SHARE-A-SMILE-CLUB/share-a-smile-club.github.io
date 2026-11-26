@@ -1,87 +1,283 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/jpeg" href="logo scc.jpeg">
-  <title>Share a Smile Charity Club</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/jpeg" href="logo scc.jpeg" />
+  <title>Share a Smile Charity Club | Laikipia University</title>
   <style>
-    * {
+    *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-    body {
-  font-family: 'Segoe UI', Arial, sans-serif;
-  line-height: 1.6;
-  color: #1e293b;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.85)), url('logo scc.jpeg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-}
-      
+    :root {
+      --teal-900: #115e59;
+      --teal-700: #0f766e;
+      --teal-500: #14b8a6;
+      --teal-50: #f0fdfa;
+      --amber-500: #f59e0b;
+      --amber-600: #d97706;
+      --amber-100: #fef3c7;
+      --forest-900: #14532d;
+      --slate-900: #0f172a;
+      --slate-800: #1e293b;
+      --slate-700: #334155;
+      --slate-600: #475569;
+      --slate-300: #cbd5e1;
+      --slate-200: #e2e8f0;
+      --slate-100: #f1f5f9;
+      --slate-50: #f8fafc;
+      --white: #ffffff;
+      --danger-bg: #fef2f2;
+      --danger-border: #ef4444;
+      --danger-text: #991b1b;
+      --success-bg: #ecfdf5;
+      --success-border: #10b981;
+      --success-text: #065f46;
+      --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.06);
+      --shadow-md: 0 6px 18px rgba(15, 23, 42, 0.08);
+      --shadow-lg: 0 14px 34px rgba(15, 23, 42, 0.14);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
     }
 
-    /* Navigation */
-    header {
-      background-color: #0f766e;
-      color: white;
-      padding: 16px 24px;
+    html {
+      scroll-behavior: smooth;
+    }
+
+    section[id] {
+      scroll-margin-top: 76px;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--slate-800);
+      background-color: var(--slate-50);
+      background-image:
+        linear-gradient(rgba(248, 250, 252, 0.92), rgba(248, 250, 252, 0.92)),
+        url('logo scc.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+    }
+
+    /* Sticky Navigation */
+    .sas-navbar {
       position: sticky;
       top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+      z-index: 900;
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--slate-200);
+      box-shadow: var(--shadow-sm);
+      padding: 10px 20px;
     }
 
-    nav {
-      max-width: 1040px;
+    .sas-nav-inner {
+      max-width: 1120px;
       margin: 0 auto;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       flex-wrap: wrap;
       gap: 12px;
     }
 
-    .logo {
-      font-size: 1.3rem;
-      font-weight: bold;
-      letter-spacing: 0.4px;
-    }
-
-    .nav-links a {
-      color: white;
+    .sas-nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
       text-decoration: none;
-      margin-left: 18px;
-      font-size: 0.95rem;
+      color: var(--teal-700);
+      font-weight: 800;
+      font-size: 1.05rem;
     }
 
-    .nav-links a:hover {
-      text-decoration: underline;
+    .sas-nav-brand img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--teal-500);
     }
 
-    /* Hero Section */
-    .hero {
-      background: linear-gradient(rgba(15, 118, 110, 0.78), rgba(15, 118, 110, 0.78)),
-                  url('https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
-      color: white;
+    .sas-nav-links {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .sas-nav-links a {
+      text-decoration: none;
+      color: var(--slate-700);
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: color 0.15s ease;
+    }
+
+    .sas-nav-links a:hover {
+      color: var(--teal-700);
+    }
+
+    .sas-nav-portal {
+      background: var(--slate-900);
+      color: var(--white) !important;
+      padding: 6px 13px;
+      border-radius: 20px;
+      font-size: 0.84rem !important;
+    }
+
+    .sas-nav-portal:hover {
+      background: var(--teal-700);
+    }
+
+    .sas-nav-donate {
+      background: var(--teal-700);
+      color: var(--white) !important;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.84rem !important;
+    }
+
+    .sas-nav-donate:hover {
+      background: var(--teal-900);
+    }
+
+    /* Announcement & Meeting Banners */
+    .sas-highlight-bar {
+      background: linear-gradient(90deg, var(--forest-900), #1b5e20);
+      color: var(--white);
+      padding: 11px 16px;
+      border-bottom: 3px solid var(--amber-500);
+    }
+
+    .sas-highlight-content {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 10px 14px;
+      font-size: 0.9rem;
       text-align: center;
-      padding: 95px 20px;
+    }
+
+    .sas-highlight-tag {
+      background-color: #dc2626;
+      color: var(--white);
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.8px;
+    }
+
+    .sas-highlight-btn {
+      background-color: var(--amber-500);
+      color: var(--slate-900);
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      transition: background-color 0.15s ease;
+    }
+
+    .sas-highlight-btn:hover {
+      background-color: #fbbf24;
+    }
+
+    .sas-meeting-banner {
+      background: linear-gradient(90deg, var(--amber-100), #fde68a);
+      color: #78350f;
+      padding: 10px 16px;
+      border-bottom: 2px solid var(--amber-500);
+    }
+
+    .sas-meeting-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      font-size: 0.88rem;
+      text-align: center;
+    }
+
+    .sas-bell-icon {
+      font-size: 1.15rem;
+      display: inline-block;
+      animation: sasBellRing 2.4s ease-in-out infinite;
+      transform-origin: top center;
+    }
+
+    @keyframes sasBellRing {
+      0%, 100% { transform: rotate(0deg); }
+      10% { transform: rotate(15deg); }
+      20% { transform: rotate(-14deg); }
+      30% { transform: rotate(10deg); }
+      40% { transform: rotate(-8deg); }
+      50% { transform: rotate(0deg); }
+    }
+
+    .sas-meeting-cta {
+      background-color: var(--teal-700);
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.8rem;
+      padding: 5px 12px;
+      border-radius: 16px;
+    }
+
+    .sas-meeting-cta:hover {
+      background-color: var(--teal-900);
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(rgba(15, 118, 110, 0.82), rgba(17, 94, 89, 0.86)),
+                  url('outreach.jpg') center/cover no-repeat;
+      color: var(--white);
+      text-align: center;
+      padding: 86px 20px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
     }
 
     .hero h1 {
-      font-size: 2.6rem;
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 800;
       margin-bottom: 14px;
+      line-height: 1.18;
     }
 
     .hero p {
-      max-width: 640px;
+      max-width: 680px;
       margin: 0 auto 28px;
-      font-size: 1.12rem;
-      opacity: 0.96;
+      font-size: 1.08rem;
+      color: #f0fdfa;
     }
 
     .hero-buttons {
@@ -93,166 +289,625 @@
 
     .btn {
       display: inline-block;
-      background-color: #f59e0b;
-      color: #1e293b;
-      font-weight: bold;
-      padding: 12px 26px;
-      border-radius: 8px;
+      background-color: var(--amber-500);
+      color: var(--slate-900);
+      font-weight: 700;
+      padding: 11px 22px;
+      border-radius: var(--radius-sm);
       text-decoration: none;
       border: none;
       cursor: pointer;
-      font-size: 1rem;
+      font-size: 0.95rem;
+      transition: all 0.15s ease;
     }
 
     .btn:hover {
-      background-color: #d97706;
-      color: white;
+      background-color: var(--amber-600);
+      color: var(--white);
     }
 
     .btn-outline {
       background-color: transparent;
-      color: white;
-      border: 2px solid white;
+      color: var(--white);
+      border: 2px solid var(--white);
     }
 
     .btn-outline:hover {
-      background-color: white;
-      color: #0f766e;
+      background-color: var(--white);
+      color: var(--teal-700);
     }
 
-    /* Sections */
-    section {
-      max-width: 1040px;
-      margin: 0 auto;
-      padding: 60px 20px;
+    .btn-teal {
+      background-color: var(--teal-700);
+      color: var(--white);
     }
 
-    section h2 {
+    .btn-teal:hover {
+      background-color: var(--teal-900);
+      color: var(--white);
+    }
+
+    .btn-dark {
+      background-color: var(--slate-900);
+      color: var(--white);
+    }
+
+    .btn-dark:hover {
+      background-color: var(--slate-700);
+      color: var(--white);
+    }
+
+    .btn-sm {
+      padding: 7px 14px;
+      font-size: 0.84rem;
+    }
+
+    /* Impact Strip */
+    .impact-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 16px;
+      max-width: 1120px;
+      margin: -34px auto 0;
+      padding: 0 20px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .impact-card {
+      background: var(--white);
+      padding: 20px 18px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-md);
       text-align: center;
-      color: #0f766e;
-      font-size: 1.9rem;
+      border-bottom: 4px solid var(--teal-500);
+    }
+
+    .impact-value {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: var(--teal-700);
+      line-height: 1.2;
+    }
+
+    .impact-label {
+      font-size: 0.88rem;
+      color: var(--slate-600);
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    /* Page Sections */
+    .page-section {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 56px 20px;
+    }
+
+    .section-heading {
+      text-align: center;
       margin-bottom: 32px;
     }
 
-    /* Cards Grid */
+    .section-heading h2 {
+      color: var(--teal-700);
+      font-size: clamp(1.55rem, 3vw, 2.05rem);
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .section-heading p {
+      max-width: 680px;
+      margin: 0 auto;
+      color: var(--slate-600);
+      font-size: 0.98rem;
+    }
+
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
       gap: 22px;
     }
 
     .card {
-      background: white;
-      border-radius: 12px;
+      background: var(--white);
+      border-radius: var(--radius-md);
       overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-      border-top: 4px solid #14b8a6;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--slate-200);
+      border-top: 4px solid var(--teal-500);
+      display: flex;
+      flex-direction: column;
     }
 
     .card img {
       width: 100%;
-      height: 190px;
+      height: 185px;
       object-fit: cover;
       display: block;
+      background: var(--slate-100);
     }
 
     .card-body {
-      padding: 22px;
+      padding: 20px;
+      flex: 1;
     }
 
-    .card h3 {
-      color: #0f766e;
-      margin-bottom: 10px;
+    .card-body h3 {
+      color: var(--teal-900);
+      font-size: 1.12rem;
+      margin-bottom: 8px;
     }
 
-    /* Contributions Box */
-    .contribute-box {
-      max-width: 680px;
+    .card-body p {
+      color: var(--slate-600);
+      font-size: 0.93rem;
+    }
+
+    /* Membership Lookup */
+    .verify-card {
+      max-width: 640px;
       margin: 0 auto;
-      background: linear-gradient(135deg, #ecfdf5, #f0fdfa);
-      border: 2px solid #14b8a6;
-      border-radius: 14px;
+      background: var(--white);
+      padding: 32px 26px;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      text-align: center;
+      border-top: 5px solid var(--forest-900);
+      border-left: 1px solid var(--slate-200);
+      border-right: 1px solid var(--slate-200);
+      border-bottom: 1px solid var(--slate-200);
+    }
+
+    .verify-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 18px;
+    }
+
+    .verify-row input {
+      flex: 1;
+      min-width: 220px;
+      padding: 11px 14px;
+      font-size: 0.98rem;
+      border: 2px solid var(--slate-300);
+      border-radius: var(--radius-sm);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .verify-row input:focus {
+      outline: none;
+      border-color: var(--teal-700);
+    }
+
+    .verify-result {
+      margin-top: 18px;
+      padding: 15px;
+      border-radius: var(--radius-sm);
+      font-size: 0.92rem;
+      text-align: left;
+    }
+
+    /* Donate Box */
+    .contribute-box {
+      max-width: 700px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, var(--success-bg), var(--teal-50));
+      border: 2px solid var(--teal-500);
+      border-radius: var(--radius-lg);
       padding: 32px 24px;
       text-align: center;
-      box-shadow: 0 4px 14px rgba(15, 118, 110, 0.08);
+      box-shadow: var(--shadow-md);
     }
 
     .mpesa-badge {
       display: inline-block;
       background-color: #16a34a;
-      color: white;
-      font-weight: bold;
-      padding: 6px 14px;
+      color: var(--white);
+      font-weight: 700;
+      padding: 5px 14px;
       border-radius: 20px;
-      font-size: 0.85rem;
-      margin-bottom: 14px;
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
     }
 
     .mpesa-number {
-      font-size: 2rem;
+      font-size: 1.95rem;
       font-weight: 800;
-      color: #0f766e;
-      letter-spacing: 1px;
-      margin: 10px 0;
-    }
-
-    .copy-btn {
-      background-color: #0f766e;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 6px;
-      font-weight: 600;
-      cursor: pointer;
-      margin-top: 8px;
-    }
-
-    .copy-btn:hover {
-      background-color: #115e59;
-    }
-
-    #copyStatus {
-      margin-top: 10px;
-      font-size: 0.9rem;
-      color: #16a34a;
-      font-weight: 600;
+      color: var(--teal-900);
+      margin: 8px 0;
     }
 
     /* Join Form */
     .form-box {
-      max-width: 540px;
+      max-width: 580px;
       margin: 0 auto;
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      background: var(--white);
+      padding: 28px 24px;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--slate-200);
     }
 
     .form-group {
-      margin-bottom: 16px;
+      margin-bottom: 15px;
+      text-align: left;
     }
 
     .form-group label {
       display: block;
-      font-weight: 600;
-      margin-bottom: 6px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 5px;
+      color: var(--slate-700);
     }
 
     .form-group input,
-    .form-group select {
+    .form-group select,
+    .form-group textarea {
       width: 100%;
-      padding: 10px;
-      border: 1px solid #cbd5e1;
-      border-radius: 6px;
+      padding: 10px 12px;
+      border: 1px solid var(--slate-300);
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      font-family: inherit;
+      background: var(--white);
+      color: var(--slate-800);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--teal-700);
+    }
+
+    /* =====================================================================
+       DEDICATED SINGLE-OFFICE EXECUTIVE GOVERNANCE PORTAL SECTION
+       ===================================================================== */
+    .sas-portal-wrapper {
+      background: var(--white);
+      border: 1px solid var(--slate-200);
+      border-top: 6px solid var(--slate-900);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      padding: 28px 24px;
+    }
+
+    .sas-portal-top-banner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      padding-bottom: 18px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--slate-200);
+    }
+
+    .sas-portal-title-group h3 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--slate-900);
+    }
+
+    .sas-portal-title-group p {
+      font-size: 0.88rem;
+      color: var(--slate-600);
+    }
+
+    .sas-portal-controls {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .sas-role-pill {
+      background: var(--teal-50);
+      color: var(--teal-900);
+      border: 1px solid #99f6e4;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .sas-auth-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 24px;
+      align-items: start;
+    }
+
+    .sas-panel {
+      background: var(--slate-50);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 20px;
+    }
+
+    .sas-panel h4 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--slate-900);
+      margin-bottom: 6px;
+    }
+
+    .sas-panel-sub {
+      font-size: 0.85rem;
+      color: var(--slate-600);
+      margin-bottom: 16px;
+    }
+
+    .sas-roster-list {
+      display: grid;
+      gap: 8px;
+      max-height: 410px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .sas-roster-item {
+      background: var(--white);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.84rem;
+    }
+
+    .sas-roster-pos {
+      font-weight: 800;
+      color: var(--teal-700);
+      font-size: 0.76rem;
+      text-transform: uppercase;
+    }
+
+    .sas-roster-name {
+      font-weight: 700;
+      color: var(--slate-900);
+    }
+
+    .sas-roster-meta {
+      font-size: 0.78rem;
+      color: var(--slate-600);
+    }
+
+    .sas-desk-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 820px) {
+      .sas-desk-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .sas-desk-sidebar {
+      background: var(--slate-50);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      height: fit-content;
+    }
+
+    .sas-locked-badge {
+      display: inline-block;
+      background: var(--slate-900);
+      color: var(--white);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .sas-nav-btn {
+      width: 100%;
+      text-align: left;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--slate-700);
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      margin-bottom: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .sas-nav-btn:hover {
+      background: var(--slate-200);
+      color: var(--slate-900);
+    }
+
+    .sas-nav-btn.active {
+      background: var(--teal-700);
+      color: var(--white);
+    }
+
+    .sas-desk-main {
+      background: var(--slate-50);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 20px;
+    }
+
+    .sas-kpis {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .sas-kpi {
+      background: var(--white);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+    }
+
+    .sas-kpi-label {
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--slate-600);
+    }
+
+    .sas-kpi-val {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--slate-900);
+      margin-top: 3px;
+    }
+
+    .sas-card {
+      background: var(--white);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      margin-bottom: 16px;
+    }
+
+    .sas-card h4 {
       font-size: 1rem;
+      font-weight: 800;
+      color: var(--slate-900);
+      margin-bottom: 10px;
+    }
+
+    .sas-list-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 10px 12px;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-sm);
+      background: var(--slate-50);
+      margin-bottom: 8px;
+      font-size: 0.88rem;
+    }
+
+    .sas-table-wrap {
+      overflow-x: auto;
+    }
+
+    .sas-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.86rem;
+      background: var(--white);
+    }
+
+    .sas-table th,
+    .sas-table td {
+      border: 1px solid var(--slate-200);
+      padding: 8px 10px;
+      text-align: left;
+    }
+
+    .sas-table th {
+      background: var(--slate-100);
+      font-weight: 700;
+      color: var(--slate-900);
+    }
+
+    /* Vault Modal */
+    .sas-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.72);
+      z-index: 1200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      overflow-y: auto;
+    }
+
+    .sas-modal-backdrop.open {
+      display: flex;
+    }
+
+    .sas-modal-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      max-width: 780px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 24px;
+      box-shadow: var(--shadow-lg);
+      border-top: 5px solid var(--slate-900);
+    }
+
+    .sas-modal-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--slate-200);
+    }
+
+    .sas-close-x {
+      background: var(--slate-100);
+      border: none;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      font-size: 1.3rem;
+      line-height: 1;
+      cursor: pointer;
+      color: var(--slate-900);
+    }
+
+    .sas-hidden {
+      display: none !important;
+    }
+
+    .alert-box {
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+
+    .alert-error {
+      background: var(--danger-bg);
+      border: 1px solid var(--danger-border);
+      color: var(--danger-text);
+    }
+
+    .alert-success {
+      background: var(--success-bg);
+      border: 1px solid var(--success-border);
+      color: var(--success-text);
     }
 
     /* Footer */
     footer {
-      background-color: #1e293b;
-      color: #cbd5e1;
+      background-color: var(--slate-800);
+      color: var(--slate-300);
       text-align: center;
-      padding: 28px 20px;
+      padding: 32px 20px;
       margin-top: 40px;
     }
 
@@ -260,938 +915,759 @@
       color: #5eead4;
       text-decoration: none;
     }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
-  <!-- Sticky Navigation Bar -->
-<style>
-  html {
-    scroll-behavior: smooth;
-  }
-  section[id] {
-    scroll-margin-top: 75px;
-  }
-  .sas-navbar {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background: rgba(255, 255, 255, 0.96);
-    backdrop-filter: blur(8px);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-    padding: 10px 20px;
-  }
-  .sas-nav-inner {
-    max-width: 1000px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  .sas-nav-brand {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    color: #0f766e;
-    font-weight: 800;
-    font-size: 1rem;
-  }
-  .sas-nav-brand img {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    object-fit: cover;
-  }
-  .sas-nav-links {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 14px;
-  }
-  .sas-nav-links a {
-    text-decoration: none;
-    color: #334155;
-    font-weight: 600;
-    font-size: 0.9rem;
-  }
-  .sas-nav-links a:hover {
-    color: #0f766e;
-  }
-  .sas-nav-donate {
-    background: #0f766e;
-    color: white !important;
-    padding: 6px 14px;
-    border-radius: 20px;
-  }
-  .sas-nav-donate:hover {
-    background: #115e59;
-  }
-</style>
 
-<nav class="sas-navbar">
-  <div class="sas-nav-inner">
-    <a href="#" class="sas-nav-brand">
-      <img src="logo scc.jpeg" alt="Share a Smile Logo">
-      <span>Share a Smile</span>
-    </a>
-    <div class="sas-nav-links">
-      <a href="#about">About</a>
-      <a href="#events">Events</a>
-      <a href="#leadership">Leadership</a>
-      <a href="#merch">Merch</a>
-      <a href="#join">Join Us</a>
-      <a href="#contribute" class="sas-nav-donate">Donate</a>
+  <!-- Navigation -->
+  <nav class="sas-navbar">
+    <div class="sas-nav-inner">
+      <a href="#" class="sas-nav-brand">
+        <img src="logo scc.jpeg" alt="Share a Smile Logo" />
+        <span>Share a Smile</span>
+      </a>
+      <div class="sas-nav-links">
+        <a href="#about">About</a>
+        <a href="#events">Outreach</a>
+        <a href="#verify-membership">Verify Member</a>
+        <a href="#join">Join Us</a>
+        <a href="#contribute" class="sas-nav-donate">Donate</a>
+        <a href="#executive-governance-portal" class="sas-nav-portal">Executive Portal</a>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
-
-
-<div class="sas-highlight-bar">
-  <div class="sas-highlight-content">
-    <span class="sas-highlight-tag">NEW</span>
-    <span class="sas-highlight-text">
-      <strong>2027 Calendar of Activities</strong> is out! Elections set for late February 2027.
-    </span>
-    <button type="button" class="sas-highlight-btn" onclick="openSasCalendar()">
-      View 2027 Calendar &rarr;
-    </button>
-  </div>
-</div>
-
-<!-- Calendar Popup Modal -->
-<div id="sas-calendar-modal" class="sas-cal-overlay" onclick="closeSasCalendarOutside(event)">
-  <div class="sas-cal-box">
-    <div class="sas-cal-topbar">
-      <button type="button" class="sas-cal-print-btn" onclick="window.print()">Print / Save PDF</button>
-      <button type="button" class="sas-cal-close-btn" onclick="closeSasCalendar()" aria-label="Close">&times;</button>
-    </div>
-
-    <div class="sas-cal-header">
-      <img src="logo scc.jpeg" alt="Share a Smile Charity Club Logo" />
-      <h2>Laikipia University — Share a Smile Charity Club</h2>
-      <h3>2027 Calendar of Activities (January – December)</h3>
-      <p>One Smile, One Heart, One Community.</p>
-    </div>
-
-    <div class="sas-cal-table-wrap">
-      <table class="sas-cal-table">
-        <thead>
-          <tr>
-            <th>Month</th>
-            <th>Timing</th>
-            <th>Activity</th>
-            <th>Key Deliverable / Lead</th>
-          </tr>
-        </thead>
-      <tbody>
-          <tr>
-            <td><strong>January</strong></td>
-            <td>Mid-Month</td>
-            <td><strong>Membership Drive &amp; Merch Distribution</strong></td>
-            <td>Reopen for Semester 2, verify member Reg. Numbers on the club website, and distribute club t-shirts/hoodies.</td>
-          </tr>
-          <tr>
-            <td><strong>January</strong></td>
-            <td>Late Month</td>
-            <td><strong>Electoral Committee Setup &amp; Nominations</strong></td>
-            <td>Appoint the 3-member Independent Electoral Committee and open nominations for all seats.</td>
-          </tr>
-          <tr>
-            <td><strong>February</strong></td>
-            <td>Early Month</td>
-            <td><strong>Semester 2 Charity Outreach Visit</strong></td>
-            <td>Conduct Semester 2's official outreach visit, delivering food, clothing, and mentorship to a selected beneficiary.</td>
-          </tr>
-          <tr>
-            <td><strong>February</strong></td>
-            <td>Mid-Month</td>
-            <td><strong>Vetting, Campaigns &amp; Voter Register</strong></td>
-            <td>Vet candidates, run issue-based campaigns, and publish the verified voter register 48 hours before voting day.</td>
-          </tr>
-          <tr>
-            <td><strong>February</strong></td>
-            <td>Late Month</td>
-            <td><strong>First Official Elections &amp; Handover</strong></td>
-            <td>Conduct secret-ballot voting, announce verified results, and hand over from the interim executive to the newly elected committee.</td>
-          </tr>
-          <tr>
-            <td><strong>March</strong></td>
-            <td>Mid-Month</td>
-            <td><strong>Campus Fundraising Drive</strong></td>
-            <td>Newly elected committee runs a student fundraiser (movie night, car wash, or merch push) to build the outreach kitty.</td>
-          </tr>
-          <tr>
-            <td><strong>April</strong></td>
-            <td>Early Month</td>
-            <td><strong>Semester 2 Audit &amp; Exam Break</strong></td>
-            <td>Treasurer, Club Auditor, and Storekeeper publish financial and donations reports before exams begin.</td>
-          </tr>
-          <tr>
-            <td><strong>May</strong></td>
-            <td>Mid-Month</td>
-            <td><strong>Online Impact &amp; Accountability Report</strong></td>
-            <td>Publish outreach photos, impact numbers, and financial summaries on the club website and socials.</td>
-          </tr>
-          <tr>
-            <td><strong>June</strong></td>
-            <td>Mid-Month</td>
-            <td><strong>Sponsor &amp; Well-Wisher Outreach</strong></td>
-            <td>Executive team pitches local businesses and well-wishers for cash or in-kind pledges.</td>
-          </tr>
-          <tr>
-            <td><strong>July</strong></td>
-            <td>All Month</td>
-            <td><strong>"Smile at Home" Holiday Challenge</strong></td>
-            <td>Members carry out individual acts of kindness in their home counties and share updates on club channels.</td>
-          </tr>
-          <tr>
-            <td><strong>August</strong></td>
-            <td>Late Month</td>
-            <td><strong>Virtual Executive Strategy Meeting</strong></td>
-            <td>Finalize the Semester 1 budget, freshers' recruitment plan, and outreach targets ahead of reopening.</td>
-          </tr>
-          <tr>
-            <td><strong>September</strong></td>
-            <td>Mid-Month</td>
-            <td><strong>Freshers' Orientation &amp; Recruitment</strong></td>
-            <td>Run a registration desk during orientation week and host a welcome meetup for new members.</td>
-          </tr>
-          <tr>
-            <td><strong>October</strong></td>
-            <td>Mid-Month</td>
-            <td><strong>On-Campus Environmental &amp; Awareness Day</strong></td>
-            <td>Partner with fellow university clubs for an on-campus tree-planting drive, clean-up, or awareness walk.</td>
-          </tr>
-          <tr>
-            <td><strong>November</strong></td>
-            <td>Mid-Month</td>
-            <td><strong>Semester 1 Charity Outreach Visit</strong></td>
-            <td>Conduct Semester 1's official end-of-year donation drive and outreach visit to a selected beneficiary.</td>
-          </tr>
-          <tr>
-            <td><strong>December</strong></td>
-            <td>Early Month</td>
-            <td><strong>Annual General Meeting (AGM) &amp; Audit</strong></td>
-            <td>Present the full 2027 audited financial report, inventory logs, and 2028 plans before exams and holidays.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <p class="sas-cal-note">
-      * Specific dates and outreach venues are confirmed by the Executive Committee ahead of each activity.
-    </p>
-  </div>
-</div>
-
-<style>
-  .sas-highlight-bar {
-    background: linear-gradient(90deg, #1b5e20, #2e7d32);
-    color: #ffffff;
-    padding: 12px 16px;
-    text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-    border-bottom: 3px solid #f59e0b;
-  }
-
-  .sas-highlight-content {
-    max-width: 1040px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 10px 14px;
-    font-size: 14px;
-  }
-
-  .sas-highlight-tag {
-    background-color: #e53935;
-    color: #ffffff;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 3px 8px;
-    border-radius: 4px;
-    letter-spacing: 0.8px;
-  }
-
-  .sas-highlight-btn {
-    background-color: #f59e0b;
-    color: #1a1a1a;
-    font-weight: 700;
-    border: none;
-    cursor: pointer;
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 13px;
-    transition: background-color 0.2s ease;
-  }
-
-  .sas-highlight-btn:hover {
-    background-color: #fbbf24;
-  }
-
-  /* Modal Styles */
-  .sas-cal-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.72);
-    z-index: 9999;
-    padding: 20px 12px;
-    overflow-y: auto;
-  }
-
-  .sas-cal-overlay.open {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-  }
-
-  .sas-cal-box {
-    background: #ffffff;
-    color: #111111;
-    width: 100%;
-    max-width: 900px;
-    border-radius: 8px;
-    padding: 24px 28px;
-    font-family: "Times New Roman", Times, serif;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-    margin: auto;
-  }
-
-  .sas-cal-topbar {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
-    font-family: Arial, Helvetica, sans-serif;
-  }
-
-  .sas-cal-print-btn {
-    background: #1b5e20;
-    color: #ffffff;
-    border: none;
-    padding: 6px 14px;
-    border-radius: 5px;
-    font-size: 13px;
-    font-weight: 700;
-    cursor: pointer;
-  }
-
-  .sas-cal-close-btn {
-    background: #e5e7eb;
-    color: #111111;
-    border: none;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    font-size: 22px;
-    line-height: 1;
-    cursor: pointer;
-  }
-
-  .sas-cal-header {
-    text-align: center;
-    border-bottom: 2px solid #000000;
-    padding-bottom: 12px;
-    margin-bottom: 16px;
-  }
-
-  .sas-cal-header img {
-    height: 75px;
-    width: auto;
-    margin-bottom: 6px;
-  }
-
-  .sas-cal-header h2 {
-    margin: 0;
-    font-size: 19px;
-    text-transform: uppercase;
-  }
-
-  .sas-cal-header h3 {
-    margin: 4px 0;
-    font-size: 16px;
-    text-transform: uppercase;
-  }
-
-  .sas-cal-header p {
-    margin: 4px 0 0;
-    font-size: 13px;
-    font-style: italic;
-  }
-
-  .sas-cal-table-wrap {
-    overflow-x: auto;
-  }
-
-  .sas-cal-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13.5px;
-  }
-
-  .sas-cal-table th,
-  .sas-cal-table td {
-    border: 1px solid #000000;
-    padding: 7px 9px;
-    text-align: left;
-    vertical-align: top;
-  }
-
-  .sas-cal-table th {
-    background: #f0f0f0;
-  }
-
-  .sas-cal-note {
-    margin-top: 14px;
-    font-size: 12.5px;
-    text-align: center;
-    color: #333333;
-  }
-
-  @media print {
-    body * {
-      visibility: hidden;
-    }
-    #sas-calendar-modal,
-    #sas-calendar-modal * {
-      visibility: visible;
-    }
-    #sas-calendar-modal {
-      position: absolute;
-      inset: 0;
-      background: #ffffff;
-      padding: 0;
-    }
-    .sas-cal-topbar {
-      display: none;
-    }
-    .sas-cal-box {
-      box-shadow: none;
-      padding: 0;
-      max-width: 100%;
-    }
-  }
-</style>
-
-<script>
-  function openSasCalendar() {
-    document.getElementById('sas-calendar-modal').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeSasCalendar() {
-    document.getElementById('sas-calendar-modal').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  function closeSasCalendarOutside(event) {
-    if (event.target.id === 'sas-calendar-modal') {
-      closeSasCalendar();
-    }
-  }
-</script>
-<!-- ==================== END HIGHLIGHTED ANNOUNCEMENT BAR & CALENDAR MODAL ==================== -->
-  <!-- Meeting Announcement Banner -->
-<div class="sas-meeting-banner" id="sasMeetingBanner" data-expires="2026-11-28T17:00:00+03:00">
-  <div class="sas-meeting-inner">
-    <span class="sas-bell-icon" aria-hidden="true">&#128276;</span>
-    <span class="sas-meeting-text">
-      <strong>MEETING NOTICE:</strong> All members are invited to our club meeting on <strong>Saturday, 28th November 2026 at 1:00 PM</strong> at <strong>Serene Court Grounds, Nyumba Tatu</strong>.
-    </span>
-    <a href="#verify-membership" class="sas-meeting-cta">Verify Status</a>
-  </div>
-</div>
-
-<style>
-  .sas-meeting-banner {
-    background: linear-gradient(90deg, #fef3c7, #fde68a);
-    color: #78350f;
-    padding: 11px 16px;
-    border-bottom: 2px solid #f59e0b;
-    font-family: Arial, Helvetica, sans-serif;
-  }
-  .sas-meeting-inner {
-    max-width: 1040px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px 14px;
-    font-size: 14px;
-    text-align: center;
-  }
-  .sas-bell-icon {
-    font-size: 20px;
-    display: inline-block;
-    animation: sasBellRing 2.2s ease-in-out infinite;
-    transform-origin: top center;
-  }
-  @keyframes sasBellRing {
-    0%, 100% { transform: rotate(0deg); }
-    10% { transform: rotate(16deg); }
-    20% { transform: rotate(-14deg); }
-    30% { transform: rotate(10deg); }
-    40% { transform: rotate(-8deg); }
-    50% { transform: rotate(0deg); }
-  }
-  .sas-meeting-cta {
-    background-color: #0f766e;
-    color: #ffffff;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 12.5px;
-    padding: 5px 12px;
-    border-radius: 16px;
-  }
-  .sas-meeting-cta:hover {
-    background-color: #115e59;
-  }
-</style>
-  <script>
-  (function () {
-    const banner = document.getElementById("sasMeetingBanner");
-    if (!banner) return;
-    const expiry = new Date(banner.getAttribute("data-expires"));
-    if (!isNaN(expiry) && new Date() > expiry) {
-      banner.style.display = "none";
-    }
-  })();
-</script>
-<!-- Impact Snapshot Strip -->
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; max-width: 1000px; margin: 24px auto; padding: 0 20px; text-align: center;">
-  <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
-    <div style="font-size: 2rem; font-weight: 800; color: #0f766e;">136+</div>
-    <div style="font-size: 0.9rem; color: #475569; font-weight: 600;">Registered Members</div>
-  </div>
-  <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
-    <div style="font-size: 2rem; font-weight: 800; color: #0f766e;">10</div>
-    <div style="font-size: 0.9rem; color: #475569; font-weight: 600;">Executive Leaders</div>
-  </div>
-  <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
-    <div style="font-size: 1.4rem; font-weight: 800; color: #0f766e; padding-top: 8px;">Laikipia University</div>
-    <div style="font-size: 0.9rem; color: #475569; font-weight: 600;">Official Student Chapter</div>
-  </div>
-</div>
-<div id="joinError" style="display:none; margin: 12px 0; padding: 12px; background: #fef2f2; border: 1px solid #ef4444; color: #991b1b; border-radius: 8px; font-size: 14px;"></div>
-  <!-- ===== MEMBERSHIP VERIFICATION SECTION ===== -->
-<section id="verify-membership" style="padding: 60px 20px; background: #f4f7f5; font-family: Arial, sans-serif;">
-  <div style="max-width: 600px; margin: 0 auto; background: #ffffff; padding: 35px 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); text-align: center; border-top: 5px solid #14532d;">
-    
-    <h2 style="color: #14532d; margin-top: 0; margin-bottom: 10px; font-size: 26px;">
-      Verify Your Membership
-    </h2>
-    <p style="color: #555; margin-bottom: 25px; font-size: 15px;">
-      Enter your Laikipia University registration number to confirm your official status in the Share a Smile Charity Club.
-    </p>
-
-    <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
-      <input 
-        type="text" 
-        id="regInput" 
-        placeholder="e.g. ED/ART/1591/24" 
-        style="flex: 1; min-width: 220px; padding: 12px 15px; font-size: 16px; border: 2px solid #d1d5db; border-radius: 8px; outline: none; text-transform: uppercase;"
-      />
-      <button 
-        onclick="checkMembership()" 
-        style="padding: 12px 24px; font-size: 16px; font-weight: bold; background: #14532d; color: #ffffff; border: none; border-radius: 8px; cursor: pointer;">
-        Check Status
+  <!-- 2027 Calendar Bar -->
+  <div class="sas-highlight-bar">
+    <div class="sas-highlight-content">
+      <span class="sas-highlight-tag">NEW</span>
+      <span>
+        <strong>2027 Calendar of Activities</strong> is live! Official elections scheduled for late February 2027.
+      </span>
+      <button type="button" class="sas-highlight-btn" onclick="openSasCalendar()">
+        View 2027 Calendar &rarr;
       </button>
     </div>
-
-    <!-- Result Box -->
-    <div id="verifyResult" style="margin-top: 20px; display: none; padding: 16px; border-radius: 8px; font-size: 15px; text-align: left;"></div>
-
   </div>
-</section>
 
-<script>
-  // Official Share a Smile Charity Club Register (64 Members)
-  const registeredMembers = {
-    "ED/ART/3618/24": "Abigael Wanjiru",
-    "ED/ART/1671/24": "Brian James",
-    "ED/ART/1670/24": "Caleb Mbata Orobo",
-    "ED/ART/3330/24": "Joycaren Njogu",
-    "ED/ART/1326/24": "Catherine Wangui",
-    "ED/ART/3367/24": "Collens Nyamwaka",
-    "ED/ART/1713/24": "Cyprian King'oina",
-    "ED/ART/1460/24": "Damaris Molyne",
-    "ED/ART/0483/22": "Dancan Njiri",
-    "HD/KIC/2454/23": "Diana Muya",
-    "ED/ART/0924/24": "Douglas Yego",
-    "ED/ART/2079/24": "Ebenezer Kiprutoh",
-    "ED/ART/1699/24": "Elvins Otieno Odeyo",
-    "ED/ART/1412/24": "Ezekiel Kipsang",
-    "HD/COM/3205/26": "Ezekiel Ombati",
-    "ED/ART/1593/24": "Faith Kwamboka Matongo",
-    "BE/CMC/0576/24": "Festus Kiprotich",
-    "ED/ART/1793/24": "Hellen Mokeira",
-    "ED/ART/1530/25": "Hilder Ongondi",
-    "BE/EST/2495/24": "Immanuel Mesocho",
-    "ED/ART/4377/25": "Ivy Bundi",
-    "ED/ART/0849/24": "James Mwendwa",
-    "ED/ART/0361/22": "Jamesdavidson Mukhwana",
-    "ED/ART/4466/25": "Jenipher Nenkai",
-    "ED/ART/4575/26": "Jimmie Muange",
-    "ED/ART/0217/23": "Joseph Gitahi",
-    "ED/SCI/2175/24": "Joshua Mark",
-    "ED/ART/3665/24": "Joshua Ndiema",
-    "ED/ART/0956/25": "Kipkemoi Rotich",
-    "ED/ART/0923/24": "Kiplagat Ethel",
-    "ED/ART/1574/24": "Lavender Omwange",
-    "ED/ART/1158/25": "Lee Bungei",
-    "ED/ART/3644/24": "Lewis Gaitho",
-    "ED/ART/1807/24": "Lewis Ogachi",
-    "ED/ART/1678/24": "Lucas Okeyo Oganda",
-    "ED/ART/2676/24": "Maria Juma",
-    "ED/ART/3403/24": "Melvin Goga",
-    "ED/ART/1451/24": "Mical Jepchumba",
-    "ED/ART/1595/25": "Mildred Nyaboke",
-    "ED/ART/4510/26": "Millicent Wambui",
-    "ED/ART/1026/24": "Perpetual Ivonne",
-    "ED/ART/0824/24": "Phineas Muriungi",
-    "ED/ART/1670/25": "Phoebe Nyaboke",
-    "ED/ART/0877/24": "Risper Mukami",
-    "ED/ART/1591/24": "Rooney David Ogongo",
-    "ED/ART/0931/24": "Rose Khaemba",
-    "ED/ART/1634/24": "Ruth Onchiri",
-    "ED/AGD/3012/24": "Rutto Mark",
-    "ED/ART/3720/24": "Saviour Oboo",
-    "BE/CMC/0641/24": "Sharon Mong'are",
-    "BE/EST/2494/24": "Sharon Moraa",
-    "ED/ART/1127/24": "Sheila Moraa",
-    "ED/ART/1792/24": "Sophia Kerubo",
-    "ED/ART/1847/24": "Stephen Okoth",
-    "BE/EST/2454/24": "Susan Cheroich",
-    "ED/ART/1580/25": "Sylvia Ratandi",
-    "ED/ART/1658/24": "Silvia Osore",
-    "ED/ART/1664/24": "Valaria Mokamba",
-    "ED/ART/3092/24": "Vincent Kipkemboi",
-    "ED/ART/1519/24": "Reuben Zablon",
-    "ED/ART/1219/24": "Wilfred Korir",
-    "ED/ART/2783/24": "Yvonne Mueni",
-    "ED/ART/2675/24": "Yvonne Ndanu",
-    "ED/ART/1638/24": "Zawadii"
-  };
+  <!-- Meeting Notice Banner -->
+  <div class="sas-meeting-banner" id="sasMeetingBanner" data-expires="2026-11-28T17:00:00+03:00">
+    <div class="sas-meeting-inner">
+      <span class="sas-bell-icon" aria-hidden="true">&#128276;</span>
+      <span>
+        <strong>MEETING NOTICE:</strong> All members are invited to our club meeting on
+        <strong>Saturday, 28th November 2026 at 1:00 PM</strong> at
+        <strong>Serene Court Grounds, Nyumba Tatu</strong>.
+      </span>
+      <a href="#verify-membership" class="sas-meeting-cta">Verify Status</a>
+    </div>
+  </div>
 
-  function checkMembership() {
-    const input = document.getElementById("regInput").value.trim().toUpperCase().replace(/\s+/g, "");
-    const resultBox = document.getElementById("verifyResult");
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-badge">Laikipia University Student Chapter</div>
+    <h1>Share a Smile Charity Club</h1>
+    <p>
+      Spreading compassion, dignity, and hope across Laikipia University and our surrounding
+      communities through coordinated outreach, mentorship, and peer solidarity.
+    </p>
+    <div class="hero-buttons">
+      <a href="#join" class="btn">Become a Member</a>
+      <a href="#contribute" class="btn btn-outline">Support Outreach</a>
+      <a href="#executive-governance-portal" class="btn btn-outline">Executive Portal</a>
+    </div>
+  </header>
 
-    if (!input) {
-      resultBox.style.display = "block";
-      resultBox.style.background = "#fef3c7";
-      resultBox.style.border = "1px solid #f59e0b";
-      resultBox.style.color = "#92400e";
-      resultBox.innerHTML = "⚠️ Please enter your registration number first.";
-      return;
-    }
+  <!-- Impact Strip -->
+  <div class="impact-strip">
+    <div class="impact-card">
+      <div class="impact-value" id="publicMemberCount">64+</div>
+      <div class="impact-label">Verified Members</div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-value">10</div>
+      <div class="impact-label">Executive Offices</div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-value">2026/2027</div>
+      <div class="impact-label">Dean of Students Filing</div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-value">Laikipia Univ.</div>
+      <div class="impact-label">Official Student Chapter</div>
+    </div>
+  </div>
 
-    if (registeredMembers[input]) {
-      resultBox.style.display = "block";
-      resultBox.style.background = "#ecfdf5";
-      resultBox.style.border = "1px solid #10b981";
-      resultBox.style.color = "#065f46";
-      resultBox.innerHTML = `
-        <strong>✅ Officially Registered!</strong><br>
-        <strong>Name:</strong> ${registeredMembers[input]}<br>
-        <strong>Reg No:</strong> ${input}<br>
-        <strong>Status:</strong> Active Member — Share a Smile Charity Club
-      `;
-    } else {
-      resultBox.style.display = "block";
-      resultBox.style.background = "#fef2f2";
-      resultBox.style.border = "1px solid #ef4444";
-      resultBox.style.color = "#991b1b";
-      resultBox.innerHTML = `
-        <strong>❌ Record Not Found</strong><br>
-        We couldn't find <strong>${input}</strong> in the current register. Please check the format (e.g., <code>ED/ART/1591/24</code>) or contact the club leadership to be added.
-      `;
-    }
-  }
+  <!-- About Section -->
+  <section id="about" class="page-section">
+    <div class="section-heading">
+      <h2>Who We Are</h2>
+      <p>
+        One Smile, One Heart, One Community. We unite students at Laikipia University to serve
+        vulnerable households, mentor learners, and support fellow comrades in need.
+      </p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <img src="mentorship.jpg" alt="Community mentorship and guidance" />
+        <div class="card-body">
+          <h3>Mentorship &amp; Guidance</h3>
+          <p>
+            Supporting students and younger learners with practical guidance, academic encouragement,
+            and positive life choices.
+          </p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="trees.jpg" alt="Environmental conservation and tree planting" />
+        <div class="card-body">
+          <h3>Service &amp; Sustainability</h3>
+          <p>
+            Partnering on environmental conservation, clean-up drives, and community resilience
+            projects around Nyandarua and Laikipia.
+          </p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="tote.jpg" alt="Club solidarity and community drives" />
+        <div class="card-body">
+          <h3>Comrade Welfare</h3>
+          <p>
+            Standing together during emergencies, bereavement, or urgent needs so no member faces
+            hardship alone.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  // Allow pressing Enter to search
-  document.getElementById("regInput").addEventListener("keypress", function(e) {
-    if (e.key === "Enter") {
-      checkMembership();
-    }
-  });
-</script>
-<!-- ===== END MEMBERSHIP VERIFICATION SECTION ===== -->
- 
+  <!-- Outreach & Merch Section -->
+  <section id="events" class="page-section">
+    <div class="section-heading">
+      <h2>Outreach &amp; Club Merchandise</h2>
+      <p>
+        Every outreach drive and branded apparel order helps fund supplies, welfare support, and
+        community visits.
+      </p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <img src="outreach.jpg" alt="Community outreach visit" />
+        <div class="card-body">
+          <h3>Community Outreach Visits</h3>
+          <p>
+            Mobilizing foodstuff, clothing, sanitary essentials, and time with children's homes and
+            local families.
+          </p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="shirt.jpg" alt="Club t-shirt merchandise" />
+        <div class="card-body">
+          <h3>Official Club T-Shirts</h3>
+          <p>
+            Wear your club identity during general meetings, campus drives, and outreach days across
+            the region.
+          </p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="hoodie.jpg" alt="Club hoodie merchandise" />
+        <div class="card-body">
+          <h3>Club Hoodies &amp; Apparel</h3>
+          <p>
+            Warm, durable hoodies for cool mornings in Nyahururu and Nyandarua while backing club
+            initiatives.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <!
-      // Official 10 Executive Committee Members + Faculty Patron (2026/2027 Academic Year)
-      var OFFICIALS = [
+  <!-- Membership Lookup Section -->
+  <section id="verify-membership" class="page-section">
+    <div class="verify-card">
+      <h2 style="color: var(--forest-900); font-size: 1.65rem; font-weight: 800; margin-bottom: 8px;">
+        Verify Your Membership
+      </h2>
+      <p style="color: var(--slate-600); font-size: 0.94rem;">
+        Enter your Laikipia University registration number to confirm your official status in the
+        Share a Smile Charity Club register.
+      </p>
+      <div class="verify-row">
+        <input
+          type="text"
+          id="regInput"
+          placeholder="e.g. ED/ART/1591/24"
+          autocomplete="off"
+        />
+        <button type="button" class="btn btn-teal" onclick="checkMembership()">
+          Check Status
+        </button>
+      </div>
+      <div id="verifyResult" class="verify-result sas-hidden"></div>
+    </div>
+  </section>
+
+  <!-- Join Section -->
+  <section id="join" class="page-section">
+    <div class="section-heading">
+      <h2>Join Share a Smile</h2>
+      <p>
+        Submit your details to request registration into the Share a Smile Charity Club member roll.
+      </p>
+    </div>
+    <div class="form-box">
+      <div id="joinFeedback" class="alert-box sas-hidden"></div>
+      <form id="joinForm" onsubmit="handleJoinSubmit(event)">
+        <div class="form-group">
+          <label for="joinName">Full Name</label>
+          <input type="text" id="joinName" required placeholder="e.g. Rooney David Ogongo" />
+        </div>
+        <div class="form-group">
+          <label for="joinReg">Registration Number</label>
+          <input type="text" id="joinReg" required placeholder="e.g. ED/ART/1591/24" />
+        </div>
+        <div class="form-group">
+          <label for="joinPhone">Phone / WhatsApp Number</label>
+          <input type="tel" id="joinPhone" required placeholder="e.g. 0769529801" />
+        </div>
+        <div class="form-group">
+          <label for="joinInterest">Primary Area of Interest</label>
+          <select id="joinInterest">
+            <option value="Community Outreach">Community Outreach &amp; Visits</option>
+            <option value="Comrade Welfare">Comrade Welfare &amp; Solidarity</option>
+            <option value="Media & Publicity">Media, Photography &amp; Publicity</option>
+            <option value="Logistics & Projects">Logistics, Events &amp; Projects</option>
+          </select>
+        </div>
+        <button type="submit" class="btn" style="width: 100%;">Submit Membership Request</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Contribute Section -->
+  <section id="contribute" class="page-section">
+    <div class="section-heading">
+      <h2>Support Our Mission</h2>
+      <p>
+        Contributions go directly toward outreach supplies, logistics, and member welfare initiatives.
+      </p>
+    </div>
+    <div class="contribute-box">
+      <span class="mpesa-badge">CLUB SUPPORT &amp; CONTRIBUTIONS</span>
+      <h3 style="color: var(--teal-900); font-size: 1.35rem; font-weight: 800;">
+        Club Treasurer &amp; Official Coordination Line
+      </h3>
+      <div class="mpesa-number" id="clubContactNumber">0758712751</div>
+      <p style="color: var(--slate-700); font-size: 0.92rem; max-width: 500px; margin: 0 auto 12px;">
+        Treasurer: <strong>Lewis Ogachi</strong> &bull; Chairperson Desk: <strong>0769529801</strong>
+      </p>
+      <button type="button" class="btn btn-teal btn-sm" onclick="copyContributionNumber()">
+        Copy Number
+      </button>
+      <div id="copyStatus" style="margin-top: 10px; font-size: 0.88rem; font-weight: 700; color: var(--success-text);"></div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       SECTION: EXECUTIVE GOVERNANCE PORTAL (SINGLE-OFFICE ACCESS)
+       ===================================================================== -->
+  <section id="executive-governance-portal" class="page-section">
+    <div class="section-heading">
+      <h2>Executive Governance Portal</h2>
+      <p>
+        Dedicated workspace for the 2026/2027 Executive Committee and Faculty Patron. Each official
+        signs in to access their own assigned office workspace.
+      </p>
+    </div>
+
+    <div class="sas-portal-wrapper">
+      <div class="sas-portal-top-banner">
+        <div class="sas-portal-title-group">
+          <h3>Share a Smile &mdash; Executive Office Desk</h3>
+          <p id="portalStatusSubtext">Sign in with your assigned Office ID / Reg. Number and personal PIN.</p>
+        </div>
+        <div class="sas-portal-controls">
+          <span id="activeSessionBadge" class="sas-role-pill sas-hidden"></span>
+          <button type="button" id="openVaultBtn" class="btn btn-dark btn-sm sas-hidden" onclick="openChairVault()">
+            Chairperson PIN Vault
+          </button>
+          <button type="button" id="logoutBtn" class="btn btn-outline btn-sm sas-hidden" style="color: var(--slate-900); border-color: var(--slate-400);" onclick="logoutExecutive()">
+            Lock &amp; Sign Out
+          </button>
+        </div>
+      </div>
+
+      <!-- Sign-In View -->
+      <div id="portalAuthView" class="sas-auth-grid">
+        <div class="sas-panel">
+          <h4>Officer Sign-In</h4>
+          <p class="sas-panel-sub">
+            Enter your Registration Number or Office ID (e.g. <code>ED/ART/1591/24</code> or <code>CHAIR-01</code>) and your personal PIN.
+          </p>
+          <div id="authErrorBox" class="alert-box alert-error sas-hidden"></div>
+          <form id="execLoginForm" onsubmit="handleExecLogin(event)">
+            <div class="form-group">
+              <label for="loginIdentifier">Registration Number or Office ID</label>
+              <input
+                type="text"
+                id="loginIdentifier"
+                required
+                placeholder="e.g. ED/ART/1591/24 or CHAIR-01"
+                autocomplete="username"
+              />
+            </div>
+            <div class="form-group">
+              <label for="loginPin">Personal Office PIN</label>
+              <input
+                type="password"
+                id="loginPin"
+                required
+                placeholder="Enter your PIN"
+                autocomplete="current-password"
+              />
+            </div>
+            <button type="submit" class="btn btn-teal" style="width: 100%;">
+              Unlock My Office
+            </button>
+          </form>
+        </div>
+
+        <div class="sas-panel">
+          <h4>2026/2027 Executive Committee &amp; Patron Directory</h4>
+          <p class="sas-panel-sub">
+            Official 10-seat executive line-up plus Faculty Patron. PINs are not displayed publicly;
+            the Chairperson can view and dispatch PINs inside the Chairperson PIN Vault.
+          </p>
+          <div id="publicRosterList" class="sas-roster-list"></div>
+        </div>
+      </div>
+
+      <!-- Authenticated Single-Office Workspace -->
+      <div id="portalDeskView" class="sas-desk-layout sas-hidden">
+        <aside class="sas-desk-sidebar">
+          <span class="sas-locked-badge">Single-Office Access</span>
+          <div id="assignedOfficeSummary" style="margin-bottom: 14px; font-size: 0.86rem; color: var(--slate-700);"></div>
+          <button type="button" id="navOverviewBtn" class="sas-nav-btn active" onclick="switchDeskTab('overview')">
+            Club Overview
+          </button>
+          <button type="button" id="navMyOfficeBtn" class="sas-nav-btn" onclick="switchDeskTab('my_office')">
+            My Assigned Office
+          </button>
+        </aside>
+
+        <main id="deskMainContent" class="sas-desk-main"></main>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2027 Calendar Modal -->
+  <div id="sas-calendar-modal" class="sas-modal-backdrop" onclick="closeSasCalendarOutside(event)">
+    <div class="sas-modal-card">
+      <div class="sas-modal-head">
+        <div>
+          <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--slate-900);">
+            2027 Calendar of Activities (Jan &ndash; Dec 2027)
+          </h3>
+          <p style="font-size: 0.84rem; color: var(--slate-600);">
+            Share a Smile Charity Club &bull; Laikipia University
+          </p>
+        </div>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button type="button" class="btn btn-teal btn-sm" onclick="window.print()">Print</button>
+          <button type="button" class="sas-close-x" onclick="closeSasCalendar()" aria-label="Close">&times;</button>
+        </div>
+      </div>
+      <div class="sas-table-wrap">
+        <table class="sas-table">
+          <thead>
+            <tr>
+              <th>Month</th>
+              <th>Timing</th>
+              <th>Activity</th>
+              <th>Key Deliverable / Lead</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>January</strong></td><td>Mid-Month</td><td>Membership Drive &amp; Merch Distribution</td><td>Reopen for Semester 2, verify member Reg. Nos, and distribute club apparel.</td></tr>
+            <tr><td><strong>January</strong></td><td>Late Month</td><td>Electoral Committee &amp; Nominations</td><td>Appoint Independent Electoral Committee and open seat nominations.</td></tr>
+            <tr><td><strong>February</strong></td><td>Early Month</td><td>Semester 2 Outreach Visit</td><td>Deliver food, clothing, and mentorship to a selected beneficiary.</td></tr>
+            <tr><td><strong>February</strong></td><td>Mid-Month</td><td>Vetting, Campaigns &amp; Voter Register</td><td>Vet candidates and publish verified voter register 48h prior to voting.</td></tr>
+            <tr><td><strong>February</strong></td><td>Late Month</td><td>Official Elections &amp; Handover</td><td>Conduct secret-ballot voting and hand over to the elected committee.</td></tr>
+            <tr><td><strong>March</strong></td><td>Mid-Month</td><td>Campus Fundraising Drive</td><td>Run student fundraiser to build the outreach and welfare kitty.</td></tr>
+            <tr><td><strong>April</strong></td><td>Early Month</td><td>Semester 2 Audit &amp; Exam Break</td><td>Publish financial and donation reports ahead of exams.</td></tr>
+            <tr><td><strong>May</strong></td><td>Mid-Month</td><td>Impact &amp; Accountability Report</td><td>Publish outreach photos, impact summary, and financial updates.</td></tr>
+            <tr><td><strong>June</strong></td><td>Mid-Month</td><td>Sponsor &amp; Well-Wisher Outreach</td><td>Engage local partners and well-wishers for cash or in-kind support.</td></tr>
+            <tr><td><strong>July</strong></td><td>All Month</td><td>"Smile at Home" Holiday Challenge</td><td>Members carry out acts of kindness in their home counties.</td></tr>
+            <tr><td><strong>August</strong></td><td>Late Month</td><td>Virtual Executive Strategy Meeting</td><td>Finalize Semester 1 budget, recruitment plan, and targets.</td></tr>
+            <tr><td><strong>September</strong></td><td>Mid-Month</td><td>Freshers' Orientation &amp; Recruitment</td><td>Host orientation registration desk and welcome meetup.</td></tr>
+            <tr><td><strong>October</strong></td><td>Mid-Month</td><td>Environmental &amp; Awareness Day</td><td>Partner on tree planting, clean-up, or awareness activities.</td></tr>
+            <tr><td><strong>November</strong></td><td>Mid-Month</td><td>Semester 1 Charity Outreach Visit</td><td>Conduct end-of-semester donation drive and community visit.</td></tr>
+            <tr><td><strong>December</strong></td><td>Early Month</td><td>Annual General Meeting &amp; Audit</td><td>Present full 2027 audited financial report, inventory, and 2028 plans.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chairperson Master PIN Vault & WhatsApp Dispatch Modal -->
+  <div id="chairVaultModal" class="sas-modal-backdrop" onclick="closeChairVaultOutside(event)">
+    <div class="sas-modal-card">
+      <div class="sas-modal-head">
+        <div>
+          <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--slate-900);">
+            Chairperson Master PIN Vault &amp; WhatsApp Dispatch
+          </h3>
+          <p style="font-size: 0.84rem; color: var(--slate-600);">
+            Restricted to the Chairperson. View office credentials, update PINs, and open pre-filled WhatsApp messages.
+          </p>
+        </div>
+        <button type="button" class="sas-close-x" onclick="closeChairVault()" aria-label="Close">&times;</button>
+      </div>
+
+      <div id="vaultGatePanel">
+        <div id="vaultErrorBox" class="alert-box alert-error sas-hidden"></div>
+        <div class="form-group">
+          <label for="masterPinInput">Enter Master Vault PIN</label>
+          <input type="password" id="masterPinInput" placeholder="Enter Master PIN" />
+        </div>
+        <button type="button" class="btn btn-dark" onclick="unlockMasterVault()">Unlock Master Vault</button>
+      </div>
+
+      <div id="vaultUnlockedPanel" class="sas-hidden">
+        <div class="sas-table-wrap">
+          <table class="sas-table">
+            <thead>
+              <tr>
+                <th>Office</th>
+                <th>Official</th>
+                <th>Reg. No / ID</th>
+                <th>Phone</th>
+                <th>Current PIN</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="vaultTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>
+      <strong>Share a Smile Charity Club</strong> &bull; Laikipia University &bull;
+      <a href="#executive-governance-portal">Executive Governance Portal</a>
+    </p>
+    <p style="font-size: 0.85rem; margin-top: 6px; color: #94a3b8;">
+      One Smile, One Heart, One Community &mdash; 2026/2027 Academic Year
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      "use strict";
+
+      // =====================================================================
+      // 1. REGISTERED MEMBERS DIRECTORY
+      // =====================================================================
+      const BASE_MEMBERS = {
+        "ED/ART/3618/24": "Abigael Wanjiru",
+        "ED/ART/1671/24": "Brian James",
+        "ED/ART/1670/24": "Caleb Mbata Orobo",
+        "ED/ART/3330/24": "Joycaren Njogu",
+        "ED/ART/1326/24": "Catherine Wangui",
+        "ED/ART/3367/24": "Collens Nyamwaka",
+        "ED/ART/1713/24": "Cyprian King'oina",
+        "ED/ART/1460/24": "Damaris Molyne",
+        "ED/ART/0483/22": "Dancan Njiri",
+        "HD/KIC/2454/23": "Diana Muya",
+        "ED/ART/0924/24": "Douglas Yego",
+        "ED/ART/2079/24": "Ebenezer Kiprutoh",
+        "ED/ART/1699/24": "Elvins Otieno Odeyo",
+        "ED/ART/1412/24": "Ezekiel Kipsang",
+        "HD/COM/3205/26": "Ezekiel Ombati",
+        "ED/ART/1593/24": "Faith Kwamboka Matongo",
+        "BE/CMC/0576/24": "Festus Kiprotich",
+        "ED/ART/1793/24": "Hellen Mokeira",
+        "ED/ART/1530/25": "Hilder Ongondi",
+        "BE/EST/2495/24": "Immanuel Mesocho",
+        "ED/ART/4377/25": "Ivy Bundi",
+        "ED/ART/0849/24": "James Mwendwa",
+        "ED/ART/0361/22": "Jamesdavidson Mukhwana",
+        "ED/ART/4466/25": "Jenipher Nenkai",
+        "ED/ART/4575/26": "Jimmie Muange",
+        "ED/ART/0217/23": "Joseph Gitahi",
+        "ED/SCI/2175/24": "Joshua Mark",
+        "ED/ART/3665/24": "Joshua Ndiema",
+        "ED/ART/0956/25": "Kipkemoi Rotich",
+        "ED/ART/0923/24": "Kiplagat Ethel",
+        "ED/ART/1574/24": "Lavender Omwange",
+        "ED/ART/1158/25": "Lee Bungei",
+        "ED/ART/3644/24": "Lewis Gaitho",
+        "ED/ART/1807/24": "Lewis Ogachi",
+        "ED/ART/1678/24": "Lucas Okeyo Oganda",
+        "ED/ART/2676/24": "Maria Juma",
+        "ED/ART/3403/24": "Melvin Goga",
+        "ED/ART/1451/24": "Mical Jepchumba",
+        "ED/ART/1595/25": "Mildred Nyaboke",
+        "ED/ART/4510/26": "Millicent Wambui",
+        "ED/ART/1026/24": "Perpetual Ivonne",
+        "ED/ART/0824/24": "Phineas Muriungi",
+        "ED/ART/1670/25": "Phoebe Nyaboke",
+        "ED/ART/0877/24": "Risper Mukami",
+        "ED/ART/1591/24": "Rooney David Ogongo",
+        "ED/ART/0931/24": "Rose Khaemba",
+        "ED/ART/1634/24": "Ruth Onchiri",
+        "ED/AGD/3012/24": "Rutto Mark",
+        "ED/ART/3720/24": "Saviour Oboo",
+        "BE/CMC/0641/24": "Sharon Mong'are",
+        "BE/EST/2494/24": "Sharon Moraa",
+        "ED/ART/1127/24": "Sheila Moraa",
+        "ED/ART/1792/24": "Sophia Kerubo",
+        "ED/ART/1847/24": "Stephen Okoth",
+        "BE/EST/2454/24": "Susan Cheroich",
+        "ED/ART/1580/25": "Sylvia Ratandi",
+        "ED/ART/1658/24": "Silvia Osore",
+        "ED/ART/1664/24": "Valaria Mokamba",
+        "ED/ART/3092/24": "Vincent Kipkemboi",
+        "ED/ART/1519/24": "Reuben Zablon",
+        "ED/ART/1219/24": "Wilfred Korir",
+        "ED/ART/2783/24": "Yvonne Mueni",
+        "ED/ART/2675/24": "Yvonne Ndanu",
+        "ED/ART/1638/24": "Zawadii"
+      };
+
+      // =====================================================================
+      // 2. OFFICIAL 2026/2027 EXECUTIVE COMMITTEE + FACULTY PATRON
+      // =====================================================================
+      const DEFAULT_OFFICIALS = [
         {
-          order: 1,
           id: "chairperson",
-          group: "CORE",
           position: "Chairperson",
           name: "Rooney Ogongo",
           regNo: "ED/ART/1591/24",
           officeId: "CHAIR-01",
           phone: "0769529801",
           pin: "1591",
-          mandate: "Presides over general and executive meetings, leads Dean of Students registration compliance, and provides final executive sign-off."
+          mandate: "Chairs general and executive meetings, leads Dean of Students registration compliance, and provides executive oversight."
         },
         {
-          order: 2,
           id: "vice_chair",
-          group: "CORE",
           position: "Vice Chairperson",
           name: "Ivy Bundi",
           regNo: "ED/ART/4377/25",
           officeId: "VCHAIR-02",
           phone: "0725729609",
           pin: "4377",
-          mandate: "Deputizes the Chairperson, coordinates internal committee alignment, and oversees constitutional and governance standards."
+          mandate: "Deputizes the Chairperson, coordinates committee alignment, and oversees constitutional and governance standards."
         },
         {
-          order: 3,
           id: "sec_gen",
-          group: "CORE",
           position: "Secretary General",
           name: "Immanuel Mesocho",
           regNo: "BE/EST/2495/24",
           officeId: "SECGEN-03",
           phone: "0758523759",
           pin: "2495",
-          mandate: "Keeps official club minutes, manages member attendance records, and handles formal correspondence with university administration."
+          mandate: "Keeps official club minutes, tracks attendance, and manages formal correspondence."
         },
         {
-          order: 4,
           id: "asst_sec",
-          group: "CORE",
           position: "Assistant Secretary",
           name: "Silvia Osore",
           regNo: "ED/ART/1658/24",
           officeId: "ASSTSEC-04",
           phone: "0708563143",
           pin: "1658",
-          mandate: "Supports the Secretary General with minute drafting, archival filing, and maintaining the verified founding/general member registry."
+          mandate: "Assists the Secretary General with minutes, documentation, and member registry verification."
         },
         {
-          order: 5,
           id: "treasurer",
-          group: "CORE",
           position: "Treasurer",
           name: "Lewis Ogachi",
           regNo: "ED/ART/1807/24",
           officeId: "TREAS-05",
           phone: "0758712751",
           pin: "1807",
-          mandate: "Stewards club funds in KES, records inflows/outflows with receipt references, reviews requisitions, and prepares financial statements."
+          mandate: "Manages club funds in KES, logs inflows and outflows with receipt references, and prepares financial reports."
         },
         {
-          order: 6,
           id: "organising_sec",
-          group: "OPS_PR",
           position: "Organising Secretary",
           name: "Ebenezar Kiproto",
-          regNo: null,
+          regNo: "ORG-KIPROTO-06",
           officeId: "ORGSEC-06",
           phone: "0113466743",
           pin: "6743",
-          mandate: "Coordinates venues, ground logistics, event setup, and executive duty rosters for general meetings and campus activities."
+          mandate: "Coordinates venues, ground logistics, event schedules, and executive duty rosters."
         },
         {
-          order: 7,
           id: "publicity_officer",
-          group: "OPS_PR",
           position: "Publicity Officer",
           name: "Caleb Orobo",
           regNo: "ED/ART/1670/24",
           officeId: "PUBOFF-07",
           phone: "0115940377",
           pin: "1670",
-          mandate: "Drives campus announcements, media coverage, visual updates, and club merchandise tracking."
+          mandate: "Leads campus publicity, announcements, visual coverage, and club merchandise tracking."
         },
         {
-          order: 8,
           id: "projects_coord",
-          group: "OPS_PR",
           position: "Projects Coordinator",
           name: "Damaris Akinyi",
           regNo: "ED/ART/1460/24",
           officeId: "PROJ-08",
           phone: "0706846072",
           pin: "1460",
-          mandate: "Plans and tracks community outreach projects, service milestones, and field execution timelines."
+          mandate: "Plans and tracks community outreach projects, service activities, and implementation timelines."
         },
         {
-          order: 9,
           id: "welfare_coord",
-          group: "WELFARE_PARTNERS",
           position: "Welfare Coordinator",
           name: "Faith Matongo",
           regNo: "ED/ART/1593/24",
           officeId: "WELF-09",
           phone: "0714388618",
           pin: "1593",
-          mandate: "Champions member care, peer solidarity, and student/community welfare support cases."
+          mandate: "Coordinates comrade welfare support, peer solidarity, and beneficiary care."
         },
         {
-          order: 10,
           id: "partnership_coord",
-          group: "WELFARE_PARTNERS",
           position: "Partnership Coordinator",
           name: "Rose Khaemba",
           regNo: "ED/ART/0931/24",
           officeId: "PART-10",
           phone: "0798872049",
           pin: "0931",
-          mandate: "Builds external partnerships, sponsors, alumni links, and NGO/club collaborations."
+          mandate: "Builds partnerships, external linkages, sponsors, and collaborative initiatives."
         },
         {
-          order: 11,
           id: "faculty_patron",
-          group: "PATRON",
           position: "Faculty Patron",
           name: "Dr. Hannington Mala",
           regNo: "LU/FAC/PATRON",
           officeId: "PATRON-MALA",
           phone: "0720000000",
           pin: "8426",
-          mandate: "Provides faculty mentorship, constitutional guidance, and institutional patronage endorsement for Laikipia University compliance."
+          mandate: "Provides faculty mentorship, constitutional counsel, and institutional patronage endorsement."
         }
       ];
 
-      function buildDefaultOfficeData() {
+      const MASTER_VAULT_PIN = "2026";
+      const STORAGE_KEY = "sas_lu_official_portal_v3";
+
+      function buildDefaultOfficeItems() {
         return {
-          chairperson: {
-            directives: [
-              { id: "c1", text: "Verify all 10 executive signatures & Dean of Students 2026/2027 registration checklist", done: false },
-              { id: "c2", text: "Confirm Patron endorsement with Dr. Hannington Mala and general meeting agenda", done: true }
-            ],
-            notes: "Focus on smooth Dean of Students registration filing and transparent governance across all 10 offices."
-          },
-          vice_chair: {
-            tasks: [
-              { id: "vc1", text: "Check weekly progress across all 10 executive portfolios", done: false },
-              { id: "vc2", text: "Review constitution clause compliance for general assembly", done: true }
-            ],
-            notes: "Coordinate closely with Chairperson and Secretary General on committee follow-ups."
-          },
-          sec_gen: {
-            minutes: [
-              { id: "sg1", date: "2026-2027 Term", title: "2026/2027 Executive Committee Mandate & Dean Filing", detail: "Official executive list compiled for Office of the Dean of Students submission." }
-            ],
-            attendance: [
-              { id: "att1", member: "Rooney Ogongo (ED/ART/1591/24)", status: "Present" },
-              { id: "att2", member: "Immanuel Mesocho (BE/EST/2495/24)", status: "Present" }
-            ],
-            notes: "Ensure official correspondence and meeting minutes are archived cleanly."
-          },
-          asst_sec: {
-            registry: [
-              { id: "as1", name: "Founding & Active Member Roll", reg: "2026/2027 Registry", status: "Verified" }
-            ],
-            notes: "Assist Secretary General with minutes backup, attendance sheets, and member registration verification."
-          },
-          treasurer: {
-            ledger: [
-              { id: "tr1", type: "Inflow", desc: "Initial Club Seed & Contributions", amountKES: 12000, ref: "LED-001" },
-              { id: "tr2", type: "Outflow", desc: "Printing & Registration Stationery", amountKES: 2500, ref: "LED-002" }
-            ],
-            requisitions: [
-              { id: "rq1", item: "General Meeting & Outreach Materials", amountKES: 4500, status: "Pending Review" }
-            ],
-            notes: "Keep receipt numbers and KES entries accurate for member and Patron audit."
-          },
-          organising_sec: {
-            logistics: [
-              { id: "og1", item: "Venue booking, seating layout & sound readiness", status: "Scheduled" },
-              { id: "og2", item: "Executive arrival & setup duty roster", status: "Assigned" }
-            ],
-            notes: "Confirm ground/hall access and steward duty times at least 48 hours before events."
-          },
-          publicity_officer: {
-            campaigns: [
-              { id: "pr1", channel: "Campus Notice & WhatsApp", title: "2026/2027 Club Activities & Membership Call", status: "Ready" }
-            ],
-            merch: [
-              { id: "mc1", item: "Club T-Shirts / Polos / Hoodies / Wristbands", qty: 25, status: "Tracking" }
-            ],
-            notes: "Maintain accurate branding, announcements, and merchandise order tallies."
-          },
-          projects_coord: {
-            projects: [
-              { id: "pj1", name: "Community Outreach & Service Drive", timeline: "2026/2027 Semester", status: "Planning" }
-            ],
-            notes: "Track project milestones, beneficiary needs, and field execution steps."
-          },
-          welfare_coord: {
-            cases: [
-              { id: "wf1", subject: "Member Welfare & Solidarity Check-In", category: "Welfare", status: "Active" }
-            ],
-            notes: "Handle welfare support cases discreetly, compassionately, and promptly."
-          },
-          partnership_coord: {
-            partners: [
-              { id: "pt1", org: "Campus Clubs, NGOs & Local Sponsors", focus: "Outreach & Resource Support", status: "Outreach" }
-            ],
-            notes: "Document partner contacts, proposal status, and joint outreach agreements."
-          },
-          faculty_patron: {
-            endorsements: [
-              { id: "fp1", date: "2026/2027 Term", title: "Patronage Oversight & Governance Review", note: "Advising Share a Smile Charity Club on constitutional compliance and student community service." }
-            ],
-            notes: "Record Patron guidance, endorsement notes, and university liaison remarks."
-          }
+          chairperson: [
+            "Finalize 2026/2027 Dean of Students executive registration submission",
+            "Chair Saturday, 28 Nov 2026 General Meeting at Serene Court Grounds (1:00 PM)"
+          ],
+          vice_chair: [
+            "Align committee action plans ahead of the 28 Nov 2026 General Meeting",
+            "Review constitutional compliance across all 10 executive portfolios"
+          ],
+          sec_gen: [
+            "Prepare agenda and attendance register for Serene Court Grounds meeting",
+            "Archive signed 2026/2027 Executive Committee list"
+          ],
+          asst_sec: [
+            "Cross-check member registration numbers against the official roll",
+            "Assist with minute recording and formal club correspondence"
+          ],
+          treasurer: [
+            "Reconcile member contributions and outreach reserve in KES",
+            "Prepare cash/M-PESA receipt log for executive review"
+          ],
+          organising_sec: [
+            "Confirm ground setup and seating plan at Serene Court Grounds, Nyumba Tatu",
+            "Assign arrival and ushering roster for Saturday at 1:00 PM"
+          ],
+          publicity_officer: [
+            "Publish reminder for Saturday 28 Nov 2026 General Meeting",
+            "Track club t-shirt and hoodie member requests"
+          ],
+          projects_coord: [
+            "Outline Q1 2027 outreach site options and supply requirements",
+            "Coordinate joint service project milestones"
+          ],
+          welfare_coord: [
+            "Check in on members needing academic or personal welfare support",
+            "Compile beneficiary care needs for upcoming outreach"
+          ],
+          partnership_coord: [
+            "Follow up with partner clubs and potential well-wishers",
+            "Document partnership terms for 2027 activities"
+          ],
+          faculty_patron: [
+            "Review executive governance alignment and student club guidelines",
+            "Provide Patron endorsement notes for 2026/2027 registration"
+          ]
         };
       }
+
+      function createDefaultState() {
+        return {
+          officials: DEFAULT_OFFICIALS.map(function (o) { return Object.assign({}, o); }),
+          officeItems: buildDefaultOfficeItems(),
+          ledger: [
+            { id: "tx1", type: "INFLOW", desc: "Initial Member & Founding Contributions", amount: 14500, ref: "SAS-001" },
+            { id: "tx2", type: "OUTFLOW", desc: "Registration & Meeting Logistics Prep", amount: 3200, ref: "SAS-002" }
+          ],
+          joinRequests: [],
+          session: {
+            authenticated: false,
+            roleId: null,
+            tab: "overview"
+          },
+          vaultUnlocked: false
+        };
+      }
+
+      let state = loadState();
 
       function loadState() {
-        var fallback = {
-          collapsed: false,
-          activeTab: "directory",
-          signedInOfficeId: null,
-          officeData: buildDefaultOfficeData()
-        };
         try {
-          var raw = window.localStorage.getItem(STORAGE_KEY);
-          if (!raw) return fallback;
-          var parsed = JSON.parse(raw);
-          var mergedOffice = buildDefaultOfficeData();
-          if (parsed && parsed.officeData) {
-            Object.keys(mergedOffice).forEach(function (key) {
-              if (parsed.officeData[key]) {
-                mergedOffice[key] = Object.assign(mergedOffice[key], parsed.officeData[key]);
-              }
-            });
-          }
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return createDefaultState();
+          const parsed = JSON.parse(raw);
+          const def = createDefaultState();
           return {
-            collapsed: Boolean(parsed.collapsed),
-            activeTab: parsed.activeTab === "desk" ? "desk" : "directory",
-            signedInOfficeId: typeof parsed.signedInOfficeId === "string" ? parsed.signedInOfficeId : null,
-            officeData: mergedOffice
+            officials: Array.isArray(parsed.officials) && parsed.officials.length ? parsed.officials : def.officials,
+            officeItems: Object.assign(def.officeItems, parsed.officeItems || {}),
+            ledger: Array.isArray(parsed.ledger) ? parsed.ledger : def.ledger,
+            joinRequests: Array.isArray(parsed.joinRequests) ? parsed.joinRequests : [],
+            session: Object.assign(def.session, parsed.session || {}),
+            vaultUnlocked: false
           };
         } catch (err) {
-          return fallback;
+          return createDefaultState();
         }
       }
-
-      var state = loadState();
-      var vaultUnlocked = false;
 
       function saveState() {
         try {
-          window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+          const toStore = {
+            officials: state.officials,
+            officeItems: state.officeItems,
+            ledger: state.ledger,
+            joinRequests: state.joinRequests,
+            session: state.session
+          };
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(toStore));
         } catch (err) {
-          // Storage fallback
+          // Ignore storage quota issues
         }
       }
 
-      function escapeHtml(value) {
-        return String(value == null ? "" : value)
+      function esc(str) {
+        return String(str || "")
           .replace(/&/g, "&amp;")
           .replace(/</g, "&lt;")
           .replace(/>/g, "&gt;")
@@ -1199,1592 +1675,562 @@
           .replace(/'/g, "&#39;");
       }
 
-      function formatKes(amount) {
-        var num = Number(amount) || 0;
-        return "KES " + num.toLocaleString("en-KE");
+      function normCode(val) {
+        return String(val || "").trim().toUpperCase().replace(/\s+/g, "");
       }
 
-      function findOfficialById(id) {
-        for (var i = 0; i < OFFICIALS.length; i++) {
-          if (OFFICIALS[i].id === id) return OFFICIALS[i];
+      function getAllMembers() {
+        const merged = Object.assign({}, BASE_MEMBERS);
+        state.joinRequests.forEach(function (req) {
+          const code = normCode(req.regNo);
+          if (code && !merged[code]) {
+            merged[code] = req.name + " (Pending Verification)";
+          }
+        });
+        return merged;
+      }
+
+      function updateMemberCounter() {
+        const total = Object.keys(BASE_MEMBERS).length + state.joinRequests.length;
+        const el = document.getElementById("publicMemberCount");
+        if (el) {
+          el.textContent = total + "+";
         }
-        return null;
       }
 
-      function normalizeIdentifier(str) {
-        return String(str || "").trim().toLowerCase().replace(/\s+/g, "");
+      // =====================================================================
+      // 3. PUBLIC SITE INTERACTIONS
+      // =====================================================================
+      window.openSasCalendar = function () {
+        const modal = document.getElementById("sas-calendar-modal");
+        if (modal) {
+          modal.classList.add("open");
+          document.body.style.overflow = "hidden";
+        }
+      };
+
+      window.closeSasCalendar = function () {
+        const modal = document.getElementById("sas-calendar-modal");
+        if (modal) {
+          modal.classList.remove("open");
+          document.body.style.overflow = "";
+        }
+      };
+
+      window.closeSasCalendarOutside = function (event) {
+        if (event.target && event.target.id === "sas-calendar-modal") {
+          window.closeSasCalendar();
+        }
+      };
+
+      window.checkMembership = function () {
+        const inputEl = document.getElementById("regInput");
+        const resultEl = document.getElementById("verifyResult");
+        if (!inputEl || !resultEl) return;
+
+        const code = normCode(inputEl.value);
+        const members = getAllMembers();
+
+        resultEl.classList.remove("sas-hidden");
+        if (!code) {
+          resultEl.style.background = "#fef3c7";
+          resultEl.style.border = "1px solid #f59e0b";
+          resultEl.style.color = "#92400e";
+          resultEl.innerHTML = "Please enter a registration number first (for example: <strong>ED/ART/1591/24</strong>).";
+          return;
+        }
+
+        if (members[code]) {
+          resultEl.style.background = "#ecfdf5";
+          resultEl.style.border = "1px solid #10b981";
+          resultEl.style.color = "#065f46";
+          resultEl.innerHTML =
+            "<strong>Verified Member Record</strong><br>" +
+            "<strong>Name:</strong> " + esc(members[code]) + "<br>" +
+            "<strong>Reg. Number:</strong> " + esc(code) + "<br>" +
+            "<strong>Club:</strong> Share a Smile Charity Club (Laikipia University)";
+        } else {
+          resultEl.style.background = "#fef2f2";
+          resultEl.style.border = "1px solid #ef4444";
+          resultEl.style.color = "#991b1b";
+          resultEl.innerHTML =
+            "<strong>Record Not Found</strong><br>" +
+            "No record matching <strong>" + esc(code) + "</strong> was found. Check the format or submit a request below.";
+        }
+      };
+
+      const regInputEl = document.getElementById("regInput");
+      if (regInputEl) {
+        regInputEl.addEventListener("keypress", function (e) {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            window.checkMembership();
+          }
+        });
       }
 
-      function authenticateOfficial(identifier, pin) {
-        var normId = normalizeIdentifier(identifier);
-        var cleanPin = String(pin || "").trim();
-        if (!normId || !cleanPin) return null;
+      window.handleJoinSubmit = function (event) {
+        event.preventDefault();
+        const nameEl = document.getElementById("joinName");
+        const regEl = document.getElementById("joinReg");
+        const phoneEl = document.getElementById("joinPhone");
+        const interestEl = document.getElementById("joinInterest");
+        const fbEl = document.getElementById("joinFeedback");
 
-        for (var i = 0; i < OFFICIALS.length; i++) {
-          var off = OFFICIALS[i];
-          var matchesPhone = off.phone ? normalizeIdentifier(off.phone) === normId : false;
-          var matchesReg = off.regNo ? normalizeIdentifier(off.regNo) === normId : false;
-          var matchesOfficeId = off.officeId ? normalizeIdentifier(off.officeId) === normId : false;
-          if ((matchesPhone || matchesReg || matchesOfficeId) && off.pin === cleanPin) {
-            return off;
+        const name = nameEl ? nameEl.value.trim() : "";
+        const regNo = normCode(regEl ? regEl.value : "");
+        const phone = phoneEl ? phoneEl.value.trim() : "";
+        const interest = interestEl ? interestEl.value : "Community Outreach";
+
+        if (!name || !regNo || !phone) return;
+
+        state.joinRequests.unshift({
+          id: "req_" + Date.now(),
+          name: name,
+          regNo: regNo,
+          phone: phone,
+          interest: interest,
+          submittedAt: new Date().toLocaleDateString()
+        });
+        saveState();
+        updateMemberCounter();
+
+        if (fbEl) {
+          fbEl.className = "alert-box alert-success";
+          fbEl.textContent = "Request recorded for " + name + " (" + regNo + "). Executive officers can review it in the portal.";
+        }
+
+        event.target.reset();
+      };
+
+      window.copyContributionNumber = function () {
+        const num = "0758712751";
+        const statusEl = document.getElementById("copyStatus");
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(num).then(function () {
+            if (statusEl) statusEl.textContent = "Copied " + num + " to clipboard.";
+          }).catch(function () {
+            if (statusEl) statusEl.textContent = "Number: " + num;
+          });
+        } else if (statusEl) {
+          statusEl.textContent = "Number: " + num;
+        }
+      };
+
+      // Hide expired meeting banner automatically
+      const bannerEl = document.getElementById("sasMeetingBanner");
+      if (bannerEl) {
+        const expDate = new Date(bannerEl.getAttribute("data-expires"));
+        if (!isNaN(expDate.getTime()) && new Date() > expDate) {
+          bannerEl.style.display = "none";
+        }
+      }
+
+      // =====================================================================
+      // 4. EXECUTIVE PORTAL (STRICT SINGLE-OFFICE ACCESS + PIN VAULT)
+      // =====================================================================
+      function getCurrentOfficial() {
+        if (!state.session.authenticated || !state.session.roleId) return null;
+        return state.officials.find(function (o) {
+          return o.id === state.session.roleId;
+        }) || null;
+      }
+
+      function renderPublicRoster() {
+        const listEl = document.getElementById("publicRosterList");
+        if (!listEl) return;
+        listEl.innerHTML = state.officials.map(function (o) {
+          return (
+            '<div class="sas-roster-item">' +
+              '<div>' +
+                '<div class="sas-roster-pos">' + esc(o.position) + '</div>' +
+                '<div class="sas-roster-name">' + esc(o.name) + '</div>' +
+                '<div class="sas-roster-meta">ID: ' + esc(o.officeId) + ' &bull; Reg: ' + esc(o.regNo) + '</div>' +
+              '</div>' +
+              '<span style="font-size:0.76rem; font-weight:700; color:var(--slate-600);">PIN Protected</span>' +
+            '</div>'
+          );
+        }).join("");
+      }
+
+      function calculateBalance() {
+        return state.ledger.reduce(function (sum, item) {
+          const amt = Number(item.amount) || 0;
+          return item.type === "INFLOW" ? sum + amt : sum - amt;
+        }, 0);
+      }
+
+      function renderPortalUI() {
+        const authView = document.getElementById("portalAuthView");
+        const deskView = document.getElementById("portalDeskView");
+        const badgeEl = document.getElementById("activeSessionBadge");
+        const logoutBtn = document.getElementById("logoutBtn");
+        const vaultBtn = document.getElementById("openVaultBtn");
+        const subtextEl = document.getElementById("portalStatusSubtext");
+
+        const official = getCurrentOfficial();
+
+        if (!official) {
+          if (authView) authView.classList.remove("sas-hidden");
+          if (deskView) deskView.classList.add("sas-hidden");
+          if (badgeEl) badgeEl.classList.add("sas-hidden");
+          if (logoutBtn) logoutBtn.classList.add("sas-hidden");
+          if (vaultBtn) vaultBtn.classList.add("sas-hidden");
+          if (subtextEl) {
+            subtextEl.textContent = "Sign in with your assigned Office ID / Reg. Number and personal PIN.";
+          }
+          renderPublicRoster();
+          return;
+        }
+
+        if (authView) authView.classList.add("sas-hidden");
+        if (deskView) deskView.classList.remove("sas-hidden");
+        if (logoutBtn) logoutBtn.classList.remove("sas-hidden");
+        if (badgeEl) {
+          badgeEl.classList.remove("sas-hidden");
+          badgeEl.textContent = official.position + " — " + official.name;
+        }
+        if (subtextEl) {
+          subtextEl.textContent = "Authenticated strictly for " + official.position + " (" + official.officeId + ").";
+        }
+        if (vaultBtn) {
+          if (official.id === "chairperson") {
+            vaultBtn.classList.remove("sas-hidden");
+          } else {
+            vaultBtn.classList.add("sas-hidden");
           }
         }
-        return null;
+
+        const summaryEl = document.getElementById("assignedOfficeSummary");
+        if (summaryEl) {
+          summaryEl.innerHTML =
+            "<strong>" + esc(official.name) + "</strong><br>" +
+            "<span>" + esc(official.position) + "</span><br>" +
+            "<span style='color:var(--slate-500); font-size:0.78rem;'>" + esc(official.officeId) + " &bull; " + esc(official.regNo) + "</span>";
+        }
+
+        const navOverview = document.getElementById("navOverviewBtn");
+        const navMyOffice = document.getElementById("navMyOfficeBtn");
+        if (navOverview && navMyOffice) {
+          navOverview.classList.toggle("active", state.session.tab === "overview");
+          navMyOffice.classList.toggle("active", state.session.tab === "my_office");
+        }
+
+        const mainEl = document.getElementById("deskMainContent");
+        if (!mainEl) return;
+
+        if (state.session.tab === "my_office") {
+          mainEl.innerHTML = renderAssignedOfficeHtml(official);
+        } else {
+          mainEl.innerHTML = renderOverviewHtml(official);
+        }
       }
 
-      function buildWhatsappMessage(off) {
-        var loginId = off.regNo || off.officeId;
+      function renderOverviewHtml(official) {
+        const balance = calculateBalance();
+        const totalMembers = Object.keys(BASE_MEMBERS).length + state.joinRequests.length;
+
         return (
-          "Share a Smile Charity Club (Laikipia University) — 2026/2027 Single-Office Access\n" +
-          "Office: " + off.position + "\n" +
-          "Name: " + off.name + "\n" +
-          "Login ID: " + loginId + " (or Phone: " + off.phone + ")\n" +
-          "Personal 4-Digit PIN: " + off.pin + "\n" +
-          "Please sign in to your single office desk and keep your PIN confidential."
-        );
-      }
-
-      function toWhatsAppPhone(phone) {
-        var digits = String(phone || "").replace(/\D/g, "");
-        if (digits.indexOf("0") === 0) {
-          return "254" + digits.slice(1);
-        }
-        return digits;
-      }
-
-      // DOM References
-      var elSectionBody = document.getElementById("sasSectionBody");
-      var elCollapseBtn = document.getElementById("sasCollapseSectionBtn");
-      var elGuideBtn = document.getElementById("sasToggleGuideBtn");
-      var elGuideBox = document.getElementById("sasEmbedGuide");
-      var elCopySnippetBtn = document.getElementById("sasCopySnippetBtn");
-      var elSnippetFeedback = document.getElementById("sasSnippetFeedback");
-      var elTabDirectory = document.getElementById("sasTabDirectory");
-      var elTabDesk = document.getElementById("sasTabDesk");
-      var elStatusBadge = document.getElementById("sasSessionBadge");
-      var elDirectoryView = document.getElementById("sasDirectoryView");
-      var elDeskView = document.getElementById("sasDeskView");
-      var elSearchInput = document.getElementById("sasSearchInput");
-      var elFilterSelect = document.getElementById("sasFilterSelect");
-      var elDirectoryGrid = document.getElementById("sasDirectoryGrid");
-      var elLoginPanel = document.getElementById("sasLoginPanel");
-      var elActiveDeskPanel = document.getElementById("sasActiveDeskPanel");
-      var elLoginForm = document.getElementById("sasLoginForm");
-      var elLoginIdentifier = document.getElementById("sasLoginIdentifier");
-      var elLoginPin = document.getElementById("sasLoginPin");
-      var elAuthMessage = document.getElementById("sasAuthMessage");
-
-      // Chairperson Vault Modal DOM References
-      var elChairVaultBtn = document.getElementById("sasChairVaultBtn");
-      var elChairVaultModal = document.getElementById("sasChairVaultModal");
-      var elCloseVaultBtn = document.getElementById("sasCloseVaultBtn");
-      var elVaultGateBox = document.getElementById("sasVaultGateBox");
-      var elVaultUnlockedBox = document.getElementById("sasVaultUnlockedBox");
-      var elVaultUnlockForm = document.getElementById("sasVaultUnlockForm");
-      var elMasterPinInput = document.getElementById("sasMasterPinInput");
-      var elVaultErrorMsg = document.getElementById("sasVaultErrorMsg");
-      var elLockVaultBtn = document.getElementById("sasLockVaultBtn");
-      var elVaultTableBody = document.getElementById("sasVaultTableBody");
-      var elVaultDispatchFeedback = document.getElementById("sasVaultDispatchFeedback");
-
-      function renderDirectory() {
-        var query = (elSearchInput.value || "").trim().toLowerCase();
-        var filter = elFilterSelect.value;
-
-        var filtered = OFFICIALS.filter(function (off) {
-          if (filter === "CORE" && off.group !== "CORE") return false;
-          if (filter === "OPS_PR" && off.group !== "OPS_PR") return false;
-          if (filter === "WELFARE_PARTNERS" && off.group !== "WELFARE_PARTNERS") return false;
-          if (filter === "PATRON" && off.group !== "PATRON") return false;
-          if (filter === "PENDING_REG" && Boolean(off.regNo)) return false;
-
-          if (!query) return true;
-          var regText = off.regNo ? off.regNo.toLowerCase() : "not provided pending reg";
-          return (
-            off.name.toLowerCase().indexOf(query) !== -1 ||
-            off.position.toLowerCase().indexOf(query) !== -1 ||
-            off.phone.toLowerCase().indexOf(query) !== -1 ||
-            off.officeId.toLowerCase().indexOf(query) !== -1 ||
-            regText.indexOf(query) !== -1
-          );
-        });
-
-        if (!filtered.length) {
-          elDirectoryGrid.innerHTML =
-            '<div class="sas-item-row" style="grid-column:1/-1;">No official or patron matches your search or filter.</div>';
-          return;
-        }
-
-        elDirectoryGrid.innerHTML = filtered.map(function (off) {
-          var badgeLabel = off.group === "PATRON"
-            ? "Faculty Patron • 2026/2027"
-            : "Office #" + off.order + " • 2026/2027";
-
-          var regHtml = off.regNo
-            ? '<strong>' + escapeHtml(off.regNo) + '</strong>'
-            : '<span class="sas-pending-reg">Not Provided (Pending Reg. No.)</span>';
-
-          var phoneHtml = off.group === "PATRON"
-            ? '<span>Faculty Advisory Desk</span>'
-            : '<a href="tel:' + escapeHtml(off.phone) + '" style="color:#047857;font-weight:700;text-decoration:none;">' + escapeHtml(off.phone) + '</a>';
-
-          return (
-            '<article class="sas-card">' +
-              '<div>' +
-                '<span class="sas-badge-num">' + escapeHtml(badgeLabel) + '</span>' +
-                '<p class="sas-position">' + escapeHtml(off.position) + '</p>' +
-                '<h3 class="sas-name">' + escapeHtml(off.name) + '</h3>' +
-                '<ul class="sas-meta-list">' +
-                  '<li><strong>Reg. / Ref ID:</strong> ' + regHtml + '</li>' +
-                  '<li><strong>Phone No.:</strong> ' + phoneHtml + '</li>' +
-                  '<li><strong>Office ID:</strong> <code>' + escapeHtml(off.officeId) + '</code></li>' +
-                '</ul>' +
-                '<p class="sas-mandate">' + escapeHtml(off.mandate) + '</p>' +
-              '</div>' +
-              '<div style="display:flex;gap:8px;flex-wrap:wrap;">' +
-                '<button type="button" class="sas-btn sas-btn-primary sas-btn-sm" data-goto-login="' + escapeHtml(off.id) + '">' +
-                  'Open My Office Sign-In' +
-                '</button>' +
-              '</div>' +
-            '</article>'
-          );
-        }).join("");
-
-        elDirectoryGrid.querySelectorAll("[data-goto-login]").forEach(function (btn) {
-          btn.addEventListener("click", function () {
-            var targetOff = findOfficialById(btn.getAttribute("data-goto-login"));
-            if (!targetOff) return;
-            state.activeTab = "desk";
-            saveState();
-            renderChrome();
-            elLoginIdentifier.value = targetOff.regNo || targetOff.officeId;
-            elLoginPin.value = "";
-            elLoginPin.focus();
-            showAuthMessage("Selected " + targetOff.position + " (" + targetOff.name + "). Enter your personal 4-digit PIN to sign in.", false);
-          });
-        });
-      }
-
-      function showAuthMessage(msg, isError) {
-        if (!msg) {
-          elAuthMessage.classList.add("sas-hidden");
-          elAuthMessage.textContent = "";
-          return;
-        }
-        elAuthMessage.textContent = msg;
-        elAuthMessage.className = "sas-alert " + (isError ? "sas-alert-error" : "sas-alert-success");
-      }
-
-      function renderVaultTable() {
-        elVaultTableBody.innerHTML = OFFICIALS.map(function (off) {
-          var loginId = off.regNo || off.officeId;
-          var msg = buildWhatsappMessage(off);
-          var waHref = "https://wa.me/" + toWhatsAppPhone(off.phone) + "?text=" + encodeURIComponent(msg);
-
-          return (
-            "<tr>" +
-              "<td><strong>" + escapeHtml(off.position) + "</strong><div class='sas-item-sub'>" + escapeHtml(off.name) + "</div></td>" +
-              "<td><code>" + escapeHtml(loginId) + "</code><div class='sas-item-sub'>" + escapeHtml(off.phone) + "</div></td>" +
-              "<td><strong style='font-family:monospace;font-size:14px;'>" + escapeHtml(off.pin) + "</strong></td>" +
-              "<td>" +
-                "<div style='display:flex;flex-wrap:wrap;gap:6px;'>" +
-                  "<button type='button' class='sas-btn sas-btn-outline sas-btn-sm' data-copy-cred='" + escapeHtml(off.id) + "'>Copy Details</button>" +
-                  "<a href='" + waHref + "' target='_blank' rel='noopener noreferrer' class='sas-btn sas-btn-primary sas-btn-sm'>Send WhatsApp</a>" +
-                "</div>" +
-              "</td>" +
-            "</tr>"
-          );
-        }).join("");
-
-        elVaultTableBody.querySelectorAll("[data-copy-cred]").forEach(function (btn) {
-          btn.addEventListener("click", function () {
-            var targetOff = findOfficialById(btn.getAttribute("data-copy-cred"));
-            if (!targetOff) return;
-            var text = buildWhatsappMessage(targetOff);
-            copyTextHelper(text, function () {
-              elVaultDispatchFeedback.textContent = "Copied login details & PIN for " + targetOff.name + " (" + targetOff.position + ").";
-              elVaultDispatchFeedback.classList.remove("sas-hidden");
-            });
-          });
-        });
-      }
-
-      function renderDeskContent(official) {
-        var d = state.officeData[official.id] || {};
-        var regDisplay = official.regNo
-          ? escapeHtml(official.regNo)
-          : "Not Provided (Pending Reg. No.)";
-
-        var headerHtml =
-          '<div class="sas-desk-banner">' +
-            '<div>' +
-              '<span class="sas-kicker" style="margin-bottom:4px;">Strictly Locked Single Office • ' + escapeHtml(official.officeId) + '</span>' +
-              '<h3>' + escapeHtml(official.position) + ' — ' + escapeHtml(official.name) + '</h3>' +
-              '<p>Reg. / Ref ID: <strong>' + regDisplay + '</strong> &bull; Phone: <strong>' + escapeHtml(official.phone) + '</strong></p>' +
-              '<p style="margin-top:4px;color:#fde68a;">' + escapeHtml(official.mandate) + '</p>' +
-            '</div>' +
-            '<div>' +
-              '<button type="button" id="sasSignOutDeskBtn" class="sas-btn sas-btn-gold sas-btn-sm">Lock &amp; Sign Out</button>' +
-            '</div>' +
-          '</div>';
-
-        var bodyHtml = "";
-
-        if (official.id === "chairperson") {
-          var dirs = d.directives || [];
-          bodyHtml =
-            '<div class="sas-desk-grid">' +
-              '<div class="sas-desk-box">' +
-                '<h4>Chairperson Directives &amp; Dean of Students Checklist</h4>' +
-                '<form id="chairDirForm" class="sas-inline-row">' +
-                  '<input type="text" id="chairDirInput" class="sas-input" placeholder="New executive directive or Dean filing item..." required />' +
-                  '<button type="submit" class="sas-btn sas-btn-primary sas-btn-sm">Add Directive</button>' +
-                '</form>' +
-                '<ul class="sas-item-list">' +
-                  dirs.map(function (item) {
-                    return (
-                      '<li class="sas-item-row">' +
-                        '<label style="display:flex;gap:8px;align-items:flex-start;cursor:pointer;flex:1;">' +
-                          '<input type="checkbox" data-chair-toggle="' + escapeHtml(item.id) + '"' + (item.done ? " checked" : "") + ' />' +
-                          '<span class="sas-item-title" style="' + (item.done ? "text-decoration:line-through;color:#64748b;" : "") + '">' + escapeHtml(item.text) + '</span>' +
-                        '</label>' +
-                        '<button type="button" class="sas-btn sas-btn-danger sas-btn-sm" data-chair-del="' + escapeHtml(item.id) + '">Remove</button>' +
-                      '</li>'
-                    );
-                  }).join("") +
-                '</ul>' +
-              '</div>' +
-              renderNotesBox("chairperson", d.notes || "") +
-            '</div>';
-        } else if (official.id === "vice_chair") {
-          var tasks = d.tasks || [];
-          bodyHtml =
-            '<div class="sas-desk-grid">' +
-              '<div class="sas-desk-box">' +
-                '<h4>Vice Chairperson Governance &amp; Committee Coordination</h4>' +
-                '<form id="vcTaskForm" class="sas-inline-row">' +
-                  '<input type="text" id="vcTaskInput" class="sas-input" placeholder="Add committee oversight or governance task..." required />' +
-                  '<button type="submit" class="sas-btn sas-btn-primary sas-btn-sm">Add Task</button>' +
-                '</form>' +
-                '<ul class="sas-item-list">' +
-                  tasks.map(function (t) {
-                    return (
-                      '<li class="sas-item-row">' +
-                        '<label style="display:flex;gap:8px;align-items:flex-start;cursor:pointer;flex:1;">' +
-                          '<input type="checkbox" data-vc-toggle="' + escapeHtml(t.id) + '"' + (t.done ? " checked" : "") + ' />' +
-                          '<span class="sas-item-title" style="' + (t.done ? "text-decoration:line-through;color:#64748b;" : "") + '">' + escapeHtml(t.text) + '</span>' +
-                        '</label>' +
-                        '<button type="button" class="sas-btn sas-btn-danger sas-btn-sm" data-vc-del="' + escapeHtml(t.id) + '">Remove</button>' +
-                      '</li>'
-                    );
-                  }).join("") +
-                '</ul>' +
-              '</div>' +
-              renderNotesBox("vice_chair", d.notes || "") +
-            '</div>';
-        } else if (official.id === "sec_gen") {
-          var mins = d.minutes || [];
-          var att = d.attendance || [];
-          bodyHtml =
-            '<div class="sas-desk-grid">' +
-              '<div class="sas-desk-box">' +
-                '<h4>Official Minutes &amp; Correspondence Log</h4>' +
-                '<form id="sgMinForm">' +
-                  '<div class="sas-inline-row">' +
-                    '<input type="text" id="sgMinTitle" class="sas-input" placeholder="Meeting / correspondence subject..." required />' +
-                    '<input type="text" id="sgMinDate" class="sas-input" placeholder="Date (e.g. 2026-11-28)" required />' +
-                  '</div>' +
-                  '<div class="sas-form-group">' +
-                    '<input type="text" id="sgMinDetail" class="sas-input" placeholder="Summary / resolution / recipient..." required />' +
-                  '</div>' +
-                  '<button type="submit" class="sas-btn sas-btn-primary sas-btn-sm">Record Minutes</button>' +
-                '</form>' +
-                '<ul class="sas-item-list">' +
-                  mins.map(function (m) {
-                    return (
-                      '<li class="sas-item-row">' +
-                        '<div>' +
-                          '<div class="sas-item-title">' + escapeHtml(m.title) + ' <span class="sas-item-sub">(' + escapeHtml(m.date) + ')</span></div>' +
-                          '<div class="sas-item-sub">' + escapeHtml(m.detail) + '</div>' +
-                        '</div>' +
-                        '<button type="button" class="sas-btn sas-btn-danger sas-btn-sm" data-sg-del-min="' + escapeHtml(m.id) + '">Del</button>' +
-                      '</li>'
-                    );
-                  }).join("") +
-                '</ul>' +
-              '</div>' +
-              '<div class="sas-desk-box">' +
-                '<h4>Attendance Roll</h4>' +
-                '<form id="sgAttForm" class="sas-inline-row">' +
-                  '<input type="text" id="sgAttMember" class="sas-input" placeholder="Member name &amp; Reg. No..." required />' +
-                  '<button type="submit" class="sas-btn sas-btn-primary sas-btn-sm">Mark Present</button>' +
-                '</form>' +
-                '<ul class="sas-item-list">' +
-                  att.map(function (a) {
-                    return (
-                      '<li class="sas-item-row">' +
-                        '<div><span class="sas-item-title">' + escapeHtml(a.member) + '</span> <span class="sas-item-sub">• ' + escapeHtml(a.status) + '</span></div>' +
-                        '<button type="button" class="sas-btn sas-btn-danger sas-btn-sm" data-sg-del-att="' + escapeHtml(a.id) + '">Del</button>' +
-                      '</li>'
-                    );
-                  }).join("") +
-                '</ul>' +
-                '<div style="margin-top:16px;">' + renderNotesBox("sec_gen", d.notes || "") + '</div>' +
-              '</div>' +
-            '</div>';
-        } else if (official.id === "asst_sec") {
-          var regList = d.registry || [];
-          bodyHtml =
-            '<div class="sas-desk-grid">' +
-              '<div class="sas-desk-box">' +
-                '<h4>Assistant Secretary — Member Registry &amp; Records</h4>' +
-                '<form id="asRegForm">' +
-                  '<div class="sas-inline-row">' +
-                    '<input type="text" id="asName" class="sas-input" placeholder="Member full name..." required />' +
-                    '<input type="text" id="asRegNo" class="sas-input" placeholder="Reg. No. (e.g. ED/ART/1200/24)" required />' +
-                  '</div>' +
-                  '<button type="submit" class="sas-btn sas-btn-primary sas-btn-sm">Add to Registry</button>' +
-                '</form>' +
-                '<ul class="sas-item-list">' +
-                  regList.map(function (r) {
-                    return (
-                      '<li class="sas-item-row">' +
-                        '<div>' +
-                          '<div class="sas-item-title">' + escapeHtml(r.name) + '</div>' +
-                          '<div class="sas-item-sub">Reg: ' + escapeHtml(r.reg) + ' • Status: ' + escapeHtml(r.status) + '</div>' +
-                        '</div>' +
-                        '<button type="button" class="sas-btn sas-btn-danger sas-btn-sm" data-as-del="' + escapeHtml(r.id) + '">Remove</button>' +
-                      '</li>'
-                    );
-                  }).join("") +
-                '</ul>' +
-              '</div>' +
-              renderNotesBox("asst_sec", d.notes || "") +
-            '</div>';
-        } else if (official.id === "treasurer") {
-          var ledger = d.ledger || [];
-          var reqs = d.requisitions || [];
-          var inflow = 0;
-          var outflow = 0;
-          ledger.forEach(function (row) {
-            var amt = Number(row.amountKES) || 0;
-            if (row.type === "Inflow") inflow += amt;
-            else outflow += amt;
-          });
-          var netBalance = inflow - outflow;
-
-          bodyHtml =
-            '<div class="sas-desk-grid">' +
-              '<div class="sas-desk-box">' +
-                '<h4>KES Financial Ledger &amp; Statement</h4>' +
-                '<p class="sas-item-sub" style="margin-bottom:12px;">' +
-                  'Inflows: <strong>' + formatKes(inflow) + '</strong> &bull; ' +
-                  'Outflows: <strong>' + formatKes(outflow) + '</strong> &bull; ' +
-                  'Net Balance: <strong>' + formatKes(netBalance) + '</strong>' +
-                '</p>' +
-                '<form id="trLedgerForm">' +
-                  '<div class="sas-inline-row">' +
-                    '<select id="trType" class="sas-select"><option value="Inflow">Inflow (+)</option><option value="Outflow">Outflow (-)</option></select>' +
-                    '<input type="number" id="trAmount" class="sas-input" min="1" step="1" placeholder="Amount (KES)" required />' +
-                    '<input type="text" id="trRef" class="sas-input" placeholder="Receipt / Ref" required />' +
-                  '</div>' +
-                  '<div class="sas-form-group">' +
-                    '<input type="text" id="trDesc" class="sas-input" placeholder="Transaction description..." required />' +
-                  '</div>' +
-                  '<button type="submit" class="sas-btn sas-btn-primary sas-btn-sm">Record Transaction</button>' +
-                '</form>' +
-                '<div class="sas-table-wrap">' +
-                  '<table>' +
-                    '<thead><tr><th>Type</th><th>Description</th><th>Ref</th><th>Amount</th><th></th></tr></thead>' +
-                    '<tbody>' +
-                      ledger.map(function (row) {
-                        return (
-                          '<tr>' +
-                            '<td>' + escapeHtml(row.type) + '</td>' +
-                            '<td>' + escapeHtml(row.desc) + '</td>' +
-                            '<td><code>' + escapeHtml(row.ref) + '</code></td>' +
-                            '<td><strong>' + formatKes(row.amountKES) + '</strong></td>' +
-                            '<td><button type="button" class="sas-btn sas-btn-danger sas-btn-sm" data-tr-del="' + escapeHtml(row.id) + '">X</button></td>' +
-                          '</tr>'
-                        );
-                      }).join("") +
-                    '</tbody>' +
-                  '</table>' +
-                '</div>' +
-              '</div>' +
-              '<div class="sas-desk-box">' +
-                '<h4>Budget Requisitions</h4>' +
-                '<form id="trReqForm" class="sas-inline-row">' +
-                  '<input type="text" id="trReqItem" class="sas-input" placeholder="Requisition item..." required />' +
-                  '<input type="number" id="trReqAmt" class="sas-input" min="1" step="1" placeholder="KES" required />' +
-                  '<button type="submit" class="sas-btn sas-btn-primary sas-btn-sm">Add Req</button>' +
-                '</form>' +
-                '<ul class="sas-item-list">' +
-                  reqs.map(function (rq) {
-                    return (
-                      '<li class="sas-item-row">' +
-                        '<div>' +
-                          '<div class="sas-item-title">' + escapeHtml(rq.item) + ' — ' + formatKes(rq.amountKES) + '</div>' +
-                          '<div class="sas-item-sub">Status: ' + escapeHtml(rq.status) + '</div>' +
-                        '</div>' +
-                        '<button type="button" class="sas-btn sas-btn-danger sas-btn-sm" data-tr-del-req="' + escapeHtml(rq.id) + '">Del</button>' +
-                      '</li>'
-                    );
-                  }).join("") +
-                '</ul>' +
-                '<div style="margin-top:16px;">' + renderNotesBox("treasurer", d.notes || "") + '</div>' +
-              '</div>' +
-            '</div>';
-        } else if (official.id === "organising_sec") {
-          var logs = d.logistics || [];
-          bodyHtml =
-            '<div class="sas-desk-grid">' +
-              '<div class="sas-desk-box">' +
-                '<h4>Venue, Logistics &amp; Duty Roster</h4>' +
-                '<form id="ogForm" class="sas-inline-row">' +
-                  '<input type="text" id="ogItem" class="sas-input" placeholder="Venue, equipment, or duty assignment..." required />' +
-                  '<input type="text" id="ogStatus" class="sas-input" placeholder="Status (e.g. Confirmed)" value="Confirmed" required />' +
-                  '<button type="submit" class="sas-btn sas-btn-primary sas-btn-sm">Add Item</button>' +
-                '</form>' +
-                '<ul class="sas-item-list">' +
-                  logs.map(function (l) {
-                    return (
-                      '<li class="sas-item-row">' +
-                        '<div>' +
-                          '<div class="sas-item-title">' + escapeHtml(l.item) + '</div>' +
-                          '<div class="sas-item-sub">Status: ' + escapeHtml(l.status) + '</div>' +
-                        '</div>' +
-                        '<button type="button" class="sas-btn sas-btn-danger sas-btn-sm" data-og-del="' + escapeHtml(l.id) + '">Remove</button>' +
-                      '</li>'
-                    );
-                  }).join("") +
-                '</ul>' +
-              '</div>' +
-              renderNotesBox("organising_sec", d.notes || "") +
-            '</div>';
-        } else if (official.id === "publicity_officer") {
-          var camps = d.campaigns || [];
-          var merch = d.merch || [];
-          bodyHtml =
-            '<div class="sas-desk-grid">' +
-              '<div class="sas-desk-box">' +
-                '<h4>Media &amp; Announcements</h4>' +
-                '<form id="prCampForm" class="sas-inline-row">' +
-                  '<input type="text" id="prTitle" class="sas-input" placeholder="Announcement / poster / post..." required />' +
-                  '<input type="text" id="prChannel" class="sas-input" placeholder="Channel (WhatsApp / Noticeboard)" value="WhatsApp & Campus" required />' +
-                  '<button type="submit" class="sas-btn sas-btn-primary sas-btn-sm">Add Notice</button>' +
-                '</form>' +
-                '<ul class="sas-item-list">' +
-                  camps.map(function (c) {
-                    return (
-                      '<li class="sas-item-row">' +
-                        '<div>' +
-                          '<div class="sas-item-title">' + escapeHtml(c.title) + '</div>' +
-                          '<div class="sas-item-sub">' + escapeHtml(c.channel) + ' • ' + escapeHtml(c.status) + '</div>' +
-                        '</div>' +
-                        '<button type="button" class="sas-btn sas-btn-danger sas-btn-sm" data-pr-del-c="' + escapeHtml(c.id) + '">Del</button>' +
-                      '</li>'
-                    );
-                  }).join("") +
-                '</ul>' +
-              '</div>' +
-              '<div class="sas-desk-box">' +
-                '<h4>Merchandise Tracking</h4>' +
-                '<form id="prMerchForm" class="sas-inline-row">' +
-                  '<input type="text" id="prMerchItem" class="sas-input" placeholder="Merch item (e.g. Hoodie, T-Shirt)..." required />' +
-                  '<input type="number" id="prMerchQty" class="sas-input" min="1" value="1" required />' +
-                  '<button type="submit" class="sas-btn sas-btn-primary sas-btn-sm">Track Merch</button>' +
-                '</form>' +
-                '<ul class="sas-item-list">' +
-                  merch.map(function (m) {
-                    return (
-                      '<li class="sas-item-row">' +
-                        '<div>' +
-                          '<div class="sas-item-title">' + escapeHtml(m.item) + ' (Qty: ' + escapeHtml(m.qty) + ')</div>' +
-                          '<div class="sas-item-sub">Status: ' + escapeHtml(m.status) + '</div>' +
-                        '</div>' +
-                        '<button type="button" class="sas-btn sas-btn-danger sas-btn-sm" data-pr-del-m="' + escapeHtml(m.id) + '">Del</button>' +
-                      '</li>'
-                    );
-                  }).join("") +
-                '</ul>' +
-                '<div style="margin-top:16px;">' + renderNotesBox("publicity_officer", d.notes || "") + '</div>' +
-              '</div>' +
-            '</div>';
-        } else if (official.id === "projects_coord") {
-          var projs = d.projects || [];
-          bodyHtml =
-            '<div class="sas-desk-grid">' +
-              '<div class="sas-desk-box">' +
-                '<h4>Community Outreach &amp; Project Milestones</h4>' +
-                '<form id="pjForm" class="sas-inline-row">' +
-                  '<input type="text" id="pjName" class="sas-input" placeholder="Outreach project name..." required />' +
-                  '<input type="text" id="pjTime" class="sas-input" placeholder="Target date / phase..." required />' +
-                  '<button type="submit" class="sas-btn sas-btn-primary sas-btn-sm">Add Project</button>' +
-                '</form>' +
-                '<ul class="sas-item-list">' +
-                  projs.map(function (p) {
-                    return (
-                      '<li class="sas-item-row">' +
-                        '<div>' +
-                          '<div class="sas-item-title">' + escapeHtml(p.name) + '</div>' +
-                          '<div class="sas-item-sub">' + escapeHtml(p.timeline) + ' • ' + escapeHtml(p.status) + '</div>' +
-                        '</div>' +
-                        '<button type="button" class="sas-btn sas-btn-danger sas-btn-sm" data-pj-del="' + escapeHtml(p.id) + '">Remove</button>' +
-                      '</li>'
-                    );
-                  }).join("") +
-                '</ul>' +
-              '</div>' +
-              renderNotesBox("projects_coord", d.notes || "") +
-            '</div>';
-        } else if (official.id === "welfare_coord") {
-          var casesList = d.cases || [];
-          bodyHtml =
-            '<div class="sas-desk-grid">' +
-              '<div class="sas-desk-box">' +
-                '<h4>Member Welfare &amp; Support Cases</h4>' +
-                '<form id="wfForm" class="sas-inline-row">' +
-                  '<input type="text" id="wfSubj" class="sas-input" placeholder="Welfare case or support summary..." required />' +
-                  '<input type="text" id="wfCat" class="sas-input" placeholder="Category (e.g. Medical, Emergency)" value="Support" required />' +
-                  '<button type="submit" class="sas-btn sas-btn-primary sas-btn-sm">Log Case</button>' +
-                '</form>' +
-                '<ul class="sas-item-list">' +
-                  casesList.map(function (c) {
-                    return (
-                      '<li class="sas-item-row">' +
-                        '<div>' +
-                          '<div class="sas-item-title">' + escapeHtml(c.subject) + '</div>' +
-                          '<div class="sas-item-sub">' + escapeHtml(c.category) + ' • ' + escapeHtml(c.status) + '</div>' +
-                        '</div>' +
-                        '<button type="button" class="sas-btn sas-btn-danger sas-btn-sm" data-wf-del="' + escapeHtml(c.id) + '">Remove</button>' +
-                      '</li>'
-                    );
-                  }).join("") +
-                '</ul>' +
-              '</div>' +
-              renderNotesBox("welfare_coord", d.notes || "") +
-            '</div>';
-        } else if (official.id === "partnership_coord") {
-          var partners = d.partners || [];
-          bodyHtml =
-            '<div class="sas-desk-grid">' +
-              '<div class="sas-desk-box">' +
-                '<h4>External Partners, Sponsors &amp; NGO Outreach</h4>' +
-                '<form id="ptForm" class="sas-inline-row">' +
-                  '<input type="text" id="ptOrg" class="sas-input" placeholder="Partner / sponsor / NGO name..." required />' +
-                  '<input type="text" id="ptFocus" class="sas-input" placeholder="Partnership focus..." required />' +
-                  '<button type="submit" class="sas-btn sas-btn-primary sas-btn-sm">Add Partner</button>' +
-                '</form>' +
-                '<ul class="sas-item-list">' +
-                  partners.map(function (pt) {
-                    return (
-                      '<li class="sas-item-row">' +
-                        '<div>' +
-                          '<div class="sas-item-title">' + escapeHtml(pt.org) + '</div>' +
-                          '<div class="sas-item-sub">' + escapeHtml(pt.focus) + ' • ' + escapeHtml(pt.status) + '</div>' +
-                        '</div>' +
-                        '<button type="button" class="sas-btn sas-btn-danger sas-btn-sm" data-pt-del="' + escapeHtml(pt.id) + '">Remove</button>' +
-                      '</li>'
-                    );
-                  }).join("") +
-                '</ul>' +
-              '</div>' +
-              renderNotesBox("partnership_coord", d.notes || "") +
-            '</div>';
-        } else if (official.id === "faculty_patron") {
-          var ends = d.endorsements || [];
-          bodyHtml =
-            '<div class="sas-desk-grid">' +
-              '<div class="sas-desk-box">' +
-                '<h4>Faculty Patron Advisory &amp; Endorsement Log</h4>' +
-                '<form id="fpForm">' +
-                  '<div class="sas-inline-row">' +
-                    '<input type="text" id="fpTitle" class="sas-input" placeholder="Endorsement or advisory subject..." required />' +
-                    '<input type="text" id="fpDate" class="sas-input" placeholder="Date (e.g. 2026-11-28)" required />' +
-                  '</div>' +
-                  '<div class="sas-form-group">' +
-                    '<input type="text" id="fpNote" class="sas-input" placeholder="Patron guidance / endorsement statement..." required />' +
-                  '</div>' +
-                  '<button type="submit" class="sas-btn sas-btn-primary sas-btn-sm">Record Endorsement</button>' +
-                '</form>' +
-                '<ul class="sas-item-list">' +
-                  ends.map(function (en) {
-                    return (
-                      '<li class="sas-item-row">' +
-                        '<div>' +
-                          '<div class="sas-item-title">' + escapeHtml(en.title) + ' <span class="sas-item-sub">(' + escapeHtml(en.date) + ')</span></div>' +
-                          '<div class="sas-item-sub">' + escapeHtml(en.note) + '</div>' +
-                        '</div>' +
-                        '<button type="button" class="sas-btn sas-btn-danger sas-btn-sm" data-fp-del="' + escapeHtml(en.id) + '">Del</button>' +
-                      '</li>'
-                    );
-                  }).join("") +
-                '</ul>' +
-              '</div>' +
-              renderNotesBox("faculty_patron", d.notes || "") +
-            '</div>';
-        }
-
-        elActiveDeskPanel.innerHTML = headerHtml + bodyHtml;
-        bindDeskEvents(official.id);
-      }
-
-      function renderNotesBox(officeId, notesValue) {
-        return (
-          '<div class="sas-desk-box">' +
-            '<h4>Private Office Notes (Saved Locally)</h4>' +
-            '<textarea id="sasOfficeNotesInput" class="sas-textarea" rows="5" placeholder="Write private desk notes for this office...">' + escapeHtml(notesValue) + '</textarea>' +
-            '<div style="margin-top:10px;display:flex;gap:8px;align-items:center;">' +
-              '<button type="button" id="sasSaveNotesBtn" class="sas-btn sas-btn-primary sas-btn-sm" data-notes-office="' + escapeHtml(officeId) + '">Save Office Notes</button>' +
-              '<span id="sasNotesSavedMsg" class="sas-item-sub"></span>' +
-            '</div>' +
+          '<div class="sas-kpis">' +
+            '<div class="sas-kpi"><div class="sas-kpi-label">Verified + Pending</div><div class="sas-kpi-val">' + totalMembers + '</div></div>' +
+            '<div class="sas-kpi"><div class="sas-kpi-label">Executive Seats</div><div class="sas-kpi-val">10 + Patron</div></div>' +
+            '<div class="sas-kpi"><div class="sas-kpi-label">Net Club Balance</div><div class="sas-kpi-val">KES ' + balance.toLocaleString() + '</div></div>' +
+            '<div class="sas-kpi"><div class="sas-kpi-label">Assigned Office</div><div class="sas-kpi-val" style="font-size:1rem;">' + esc(official.position) + '</div></div>' +
+          '</div>' +
+          '<div class="sas-card">' +
+            '<h4>Official Mandate &mdash; ' + esc(official.position) + '</h4>' +
+            '<p style="font-size:0.9rem; color:var(--slate-700);">' + esc(official.mandate) + '</p>' +
+            '<p style="font-size:0.84rem; color:var(--slate-600); margin-top:8px;">' +
+              '<strong>Upcoming Meeting:</strong> Saturday, 28th November 2026 at 1:00 PM &bull; Serene Court Grounds, Nyumba Tatu.' +
+            '</p>' +
+          '</div>' +
+          '<div class="sas-card">' +
+            '<h4>Recent Membership Applications (' + state.joinRequests.length + ')</h4>' +
+            (state.joinRequests.length === 0
+              ? '<p style="font-size:0.88rem; color:var(--slate-600);">No new online membership requests logged yet.</p>'
+              : state.joinRequests.slice(0, 5).map(function (r) {
+                  return '<div class="sas-list-item"><div><strong>' + esc(r.name) + '</strong> (' + esc(r.regNo) + ') &mdash; ' + esc(r.interest) + '</div><span style="font-size:0.8rem; color:var(--slate-600);">' + esc(r.phone) + '</span></div>';
+                }).join("")) +
           '</div>'
         );
       }
 
-      function bindDeskEvents(officeId) {
-        var signOutBtn = document.getElementById("sasSignOutDeskBtn");
-        if (signOutBtn) {
-          signOutBtn.addEventListener("click", function () {
-            state.signedInOfficeId = null;
-            saveState();
-            renderDeskView();
-            renderChrome();
-          });
+      function renderAssignedOfficeHtml(official) {
+        const items = state.officeItems[official.id] || [];
+        let extraToolsHtml = "";
+
+        if (official.id === "treasurer") {
+          const rows = state.ledger.map(function (tx) {
+            return (
+              "<tr>" +
+                "<td><strong>" + esc(tx.type) + "</strong></td>" +
+                "<td>" + esc(tx.desc) + "</td>" +
+                "<td>KES " + Number(tx.amount || 0).toLocaleString() + "</td>" +
+                "<td>" + esc(tx.ref) + "</td>" +
+              "</tr>"
+            );
+          }).join("");
+
+          extraToolsHtml +=
+            '<div class="sas-card">' +
+              '<h4>Treasurer Ledger Entry</h4>' +
+              '<form onsubmit="handleAddLedgerEntry(event)" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:10px; margin-bottom:14px;">' +
+                '<select id="txType"><option value="INFLOW">INFLOW</option><option value="OUTFLOW">OUTFLOW</option></select>' +
+                '<input type="text" id="txDesc" required placeholder="Description" />' +
+                '<input type="number" id="txAmount" required min="1" placeholder="Amount (KES)" />' +
+                '<input type="text" id="txRef" required placeholder="Receipt / Ref" />' +
+                '<button type="submit" class="btn btn-teal btn-sm">Record Entry</button>' +
+              '</form>' +
+              '<div class="sas-table-wrap"><table class="sas-table"><thead><tr><th>Type</th><th>Description</th><th>Amount</th><th>Ref</th></tr></thead><tbody>' + rows + '</tbody></table></div>' +
+            '</div>';
         }
 
-        var saveNotesBtn = document.getElementById("sasSaveNotesBtn");
-        if (saveNotesBtn) {
-          saveNotesBtn.addEventListener("click", function () {
-            var ta = document.getElementById("sasOfficeNotesInput");
-            var msg = document.getElementById("sasNotesSavedMsg");
-            if (!ta) return;
-            state.officeData[officeId].notes = ta.value;
-            saveState();
-            if (msg) {
-              msg.textContent = "Saved to browser storage.";
-              setTimeout(function () {
-                if (msg) msg.textContent = "";
-              }, 2500);
-            }
-          });
+        if (official.id === "chairperson") {
+          extraToolsHtml +=
+            '<div class="sas-card">' +
+              '<h4>Chairperson PIN Vault &amp; WhatsApp Dispatch</h4>' +
+              '<p style="font-size:0.88rem; color:var(--slate-600); margin-bottom:10px;">Only the Chairperson can unlock the PIN vault to view PINs, update PINs, or send WhatsApp credentials to officials.</p>' +
+              '<button type="button" class="btn btn-dark btn-sm" onclick="openChairVault()">Open Chairperson PIN Vault</button>' +
+            '</div>';
         }
 
-        // Chairperson handlers
-        var chairForm = document.getElementById("chairDirForm");
-        if (chairForm) {
-          chairForm.addEventListener("submit", function (e) {
-            e.preventDefault();
-            var inp = document.getElementById("chairDirInput");
-            if (!inp || !inp.value.trim()) return;
-            state.officeData.chairperson.directives.unshift({
-              id: "c_" + Date.now(),
-              text: inp.value.trim(),
-              done: false
-            });
-            saveState();
-            renderDeskView();
-          });
-          elActiveDeskPanel.querySelectorAll("[data-chair-toggle]").forEach(function (cb) {
-            cb.addEventListener("change", function () {
-              var id = cb.getAttribute("data-chair-toggle");
-              state.officeData.chairperson.directives.forEach(function (item) {
-                if (item.id === id) item.done = cb.checked;
-              });
-              saveState();
-              renderDeskView();
-            });
-          });
-          elActiveDeskPanel.querySelectorAll("[data-chair-del]").forEach(function (btn) {
-            btn.addEventListener("click", function () {
-              var id = btn.getAttribute("data-chair-del");
-              state.officeData.chairperson.directives = state.officeData.chairperson.directives.filter(function (item) {
-                return item.id !== id;
-              });
-              saveState();
-              renderDeskView();
-            });
-          });
-        }
-
-        // Vice Chair handlers
-        var vcForm = document.getElementById("vcTaskForm");
-        if (vcForm) {
-          vcForm.addEventListener("submit", function (e) {
-            e.preventDefault();
-            var inp = document.getElementById("vcTaskInput");
-            if (!inp || !inp.value.trim()) return;
-            state.officeData.vice_chair.tasks.unshift({
-              id: "vc_" + Date.now(),
-              text: inp.value.trim(),
-              done: false
-            });
-            saveState();
-            renderDeskView();
-          });
-          elActiveDeskPanel.querySelectorAll("[data-vc-toggle]").forEach(function (cb) {
-            cb.addEventListener("change", function () {
-              var id = cb.getAttribute("data-vc-toggle");
-              state.officeData.vice_chair.tasks.forEach(function (t) {
-                if (t.id === id) t.done = cb.checked;
-              });
-              saveState();
-              renderDeskView();
-            });
-          });
-          elActiveDeskPanel.querySelectorAll("[data-vc-del]").forEach(function (btn) {
-            btn.addEventListener("click", function () {
-              var id = btn.getAttribute("data-vc-del");
-              state.officeData.vice_chair.tasks = state.officeData.vice_chair.tasks.filter(function (t) {
-                return t.id !== id;
-              });
-              saveState();
-              renderDeskView();
-            });
-          });
-        }
-
-        // Secretary General handlers
-        var sgMinForm = document.getElementById("sgMinForm");
-        if (sgMinForm) {
-          sgMinForm.addEventListener("submit", function (e) {
-            e.preventDefault();
-            var titleEl = document.getElementById("sgMinTitle");
-            var dateEl = document.getElementById("sgMinDate");
-            var detEl = document.getElementById("sgMinDetail");
-            if (!titleEl.value.trim() || !detEl.value.trim()) return;
-            state.officeData.sec_gen.minutes.unshift({
-              id: "sgm_" + Date.now(),
-              title: titleEl.value.trim(),
-              date: dateEl.value.trim() || "2026/2027",
-              detail: detEl.value.trim()
-            });
-            saveState();
-            renderDeskView();
-          });
-          elActiveDeskPanel.querySelectorAll("[data-sg-del-min]").forEach(function (btn) {
-            btn.addEventListener("click", function () {
-              var id = btn.getAttribute("data-sg-del-min");
-              state.officeData.sec_gen.minutes = state.officeData.sec_gen.minutes.filter(function (m) {
-                return m.id !== id;
-              });
-              saveState();
-              renderDeskView();
-            });
-          });
-        }
-
-        var sgAttForm = document.getElementById("sgAttForm");
-        if (sgAttForm) {
-          sgAttForm.addEventListener("submit", function (e) {
-            e.preventDefault();
-            var memEl = document.getElementById("sgAttMember");
-            if (!memEl.value.trim()) return;
-            state.officeData.sec_gen.attendance.unshift({
-              id: "sga_" + Date.now(),
-              member: memEl.value.trim(),
-              status: "Present"
-            });
-            saveState();
-            renderDeskView();
-          });
-          elActiveDeskPanel.querySelectorAll("[data-sg-del-att]").forEach(function (btn) {
-            btn.addEventListener("click", function () {
-              var id = btn.getAttribute("data-sg-del-att");
-              state.officeData.sec_gen.attendance = state.officeData.sec_gen.attendance.filter(function (a) {
-                return a.id !== id;
-              });
-              saveState();
-              renderDeskView();
-            });
-          });
-        }
-
-        // Assistant Secretary handlers
-        var asRegForm = document.getElementById("asRegForm");
-        if (asRegForm) {
-          asRegForm.addEventListener("submit", function (e) {
-            e.preventDefault();
-            var nameEl = document.getElementById("asName");
-            var regEl = document.getElementById("asRegNo");
-            if (!nameEl.value.trim() || !regEl.value.trim()) return;
-            state.officeData.asst_sec.registry.unshift({
-              id: "as_" + Date.now(),
-              name: nameEl.value.trim(),
-              reg: regEl.value.trim(),
-              status: "Recorded"
-            });
-            saveState();
-            renderDeskView();
-          });
-          elActiveDeskPanel.querySelectorAll("[data-as-del]").forEach(function (btn) {
-            btn.addEventListener("click", function () {
-              var id = btn.getAttribute("data-as-del");
-              state.officeData.asst_sec.registry = state.officeData.asst_sec.registry.filter(function (r) {
-                return r.id !== id;
-              });
-              saveState();
-              renderDeskView();
-            });
-          });
-        }
-
-        // Treasurer handlers
-        var trLedgerForm = document.getElementById("trLedgerForm");
-        if (trLedgerForm) {
-          trLedgerForm.addEventListener("submit", function (e) {
-            e.preventDefault();
-            var typeEl = document.getElementById("trType");
-            var amtEl = document.getElementById("trAmount");
-            var refEl = document.getElementById("trRef");
-            var descEl = document.getElementById("trDesc");
-            var amt = Number(amtEl.value);
-            if (!amt || amt <= 0 || !descEl.value.trim()) return;
-            state.officeData.treasurer.ledger.unshift({
-              id: "trl_" + Date.now(),
-              type: typeEl.value,
-              amountKES: amt,
-              ref: refEl.value.trim() || "REF",
-              desc: descEl.value.trim()
-            });
-            saveState();
-            renderDeskView();
-          });
-          elActiveDeskPanel.querySelectorAll("[data-tr-del]").forEach(function (btn) {
-            btn.addEventListener("click", function () {
-              var id = btn.getAttribute("data-tr-del");
-              state.officeData.treasurer.ledger = state.officeData.treasurer.ledger.filter(function (row) {
-                return row.id !== id;
-              });
-              saveState();
-              renderDeskView();
-            });
-          });
-        }
-
-        var trReqForm = document.getElementById("trReqForm");
-        if (trReqForm) {
-          trReqForm.addEventListener("submit", function (e) {
-            e.preventDefault();
-            var itemEl = document.getElementById("trReqItem");
-            var amtEl = document.getElementById("trReqAmt");
-            var amt = Number(amtEl.value);
-            if (!itemEl.value.trim() || !amt || amt <= 0) return;
-            state.officeData.treasurer.requisitions.unshift({
-              id: "trq_" + Date.now(),
-              item: itemEl.value.trim(),
-              amountKES: amt,
-              status: "Submitted"
-            });
-            saveState();
-            renderDeskView();
-          });
-          elActiveDeskPanel.querySelectorAll("[data-tr-del-req]").forEach(function (btn) {
-            btn.addEventListener("click", function () {
-              var id = btn.getAttribute("data-tr-del-req");
-              state.officeData.treasurer.requisitions = state.officeData.treasurer.requisitions.filter(function (rq) {
-                return rq.id !== id;
-              });
-              saveState();
-              renderDeskView();
-            });
-          });
-        }
-
-        // Organising Secretary handlers
-        var ogForm = document.getElementById("ogForm");
-        if (ogForm) {
-          ogForm.addEventListener("submit", function (e) {
-            e.preventDefault();
-            var itemEl = document.getElementById("ogItem");
-            var stEl = document.getElementById("ogStatus");
-            if (!itemEl.value.trim()) return;
-            state.officeData.organising_sec.logistics.unshift({
-              id: "og_" + Date.now(),
-              item: itemEl.value.trim(),
-              status: stEl.value.trim() || "Scheduled"
-            });
-            saveState();
-            renderDeskView();
-          });
-          elActiveDeskPanel.querySelectorAll("[data-og-del]").forEach(function (btn) {
-            btn.addEventListener("click", function () {
-              var id = btn.getAttribute("data-og-del");
-              state.officeData.organising_sec.logistics = state.officeData.organising_sec.logistics.filter(function (l) {
-                return l.id !== id;
-              });
-              saveState();
-              renderDeskView();
-            });
-          });
-        }
-
-        // Publicity Officer handlers
-        var prCampForm = document.getElementById("prCampForm");
-        if (prCampForm) {
-          prCampForm.addEventListener("submit", function (e) {
-            e.preventDefault();
-            var titleEl = document.getElementById("prTitle");
-            var chEl = document.getElementById("prChannel");
-            if (!titleEl.value.trim()) return;
-            state.officeData.publicity_officer.campaigns.unshift({
-              id: "prc_" + Date.now(),
-              title: titleEl.value.trim(),
-              channel: chEl.value.trim() || "Campus Media",
-              status: "Published"
-            });
-            saveState();
-            renderDeskView();
-          });
-          elActiveDeskPanel.querySelectorAll("[data-pr-del-c]").forEach(function (btn) {
-            btn.addEventListener("click", function () {
-              var id = btn.getAttribute("data-pr-del-c");
-              state.officeData.publicity_officer.campaigns = state.officeData.publicity_officer.campaigns.filter(function (c) {
-                return c.id !== id;
-              });
-              saveState();
-              renderDeskView();
-            });
-          });
-        }
-
-        var prMerchForm = document.getElementById("prMerchForm");
-        if (prMerchForm) {
-          prMerchForm.addEventListener("submit", function (e) {
-            e.preventDefault();
-            var itemEl = document.getElementById("prMerchItem");
-            var qtyEl = document.getElementById("prMerchQty");
-            var qty = Number(qtyEl.value) || 1;
-            if (!itemEl.value.trim()) return;
-            state.officeData.publicity_officer.merch.unshift({
-              id: "prm_" + Date.now(),
-              item: itemEl.value.trim(),
-              qty: qty,
-              status: "Tracked"
-            });
-            saveState();
-            renderDeskView();
-          });
-          elActiveDeskPanel.querySelectorAll("[data-pr-del-m]").forEach(function (btn) {
-            btn.addEventListener("click", function () {
-              var id = btn.getAttribute("data-pr-del-m");
-              state.officeData.publicity_officer.merch = state.officeData.publicity_officer.merch.filter(function (m) {
-                return m.id !== id;
-              });
-              saveState();
-              renderDeskView();
-            });
-          });
-        }
-
-        // Projects Coordinator handlers
-        var pjForm = document.getElementById("pjForm");
-        if (pjForm) {
-          pjForm.addEventListener("submit", function (e) {
-            e.preventDefault();
-            var nameEl = document.getElementById("pjName");
-            var timeEl = document.getElementById("pjTime");
-            if (!nameEl.value.trim()) return;
-            state.officeData.projects_coord.projects.unshift({
-              id: "pj_" + Date.now(),
-              name: nameEl.value.trim(),
-              timeline: timeEl.value.trim() || "2026/2027",
-              status: "Active"
-            });
-            saveState();
-            renderDeskView();
-          });
-          elActiveDeskPanel.querySelectorAll("[data-pj-del]").forEach(function (btn) {
-            btn.addEventListener("click", function () {
-              var id = btn.getAttribute("data-pj-del");
-              state.officeData.projects_coord.projects = state.officeData.projects_coord.projects.filter(function (p) {
-                return p.id !== id;
-              });
-              saveState();
-              renderDeskView();
-            });
-          });
-        }
-
-        // Welfare Coordinator handlers
-        var wfForm = document.getElementById("wfForm");
-        if (wfForm) {
-          wfForm.addEventListener("submit", function (e) {
-            e.preventDefault();
-            var subEl = document.getElementById("wfSubj");
-            var catEl = document.getElementById("wfCat");
-            if (!subEl.value.trim()) return;
-            state.officeData.welfare_coord.cases.unshift({
-              id: "wf_" + Date.now(),
-              subject: subEl.value.trim(),
-              category: catEl.value.trim() || "Support",
-              status: "Open"
-            });
-            saveState();
-            renderDeskView();
-          });
-          elActiveDeskPanel.querySelectorAll("[data-wf-del]").forEach(function (btn) {
-            btn.addEventListener("click", function () {
-              var id = btn.getAttribute("data-wf-del");
-              state.officeData.welfare_coord.cases = state.officeData.welfare_coord.cases.filter(function (c) {
-                return c.id !== id;
-              });
-              saveState();
-              renderDeskView();
-            });
-          });
-        }
-
-        // Partnership Coordinator handlers
-        var ptForm = document.getElementById("ptForm");
-        if (ptForm) {
-          ptForm.addEventListener("submit", function (e) {
-            e.preventDefault();
-            var orgEl = document.getElementById("ptOrg");
-            var focEl = document.getElementById("ptFocus");
-            if (!orgEl.value.trim()) return;
-            state.officeData.partnership_coord.partners.unshift({
-              id: "pt_" + Date.now(),
-              org: orgEl.value.trim(),
-              focus: focEl.value.trim() || "Collaboration",
-              status: "Active"
-            });
-            saveState();
-            renderDeskView();
-          });
-          elActiveDeskPanel.querySelectorAll("[data-pt-del]").forEach(function (btn) {
-            btn.addEventListener("click", function () {
-              var id = btn.getAttribute("data-pt-del");
-              state.officeData.partnership_coord.partners = state.officeData.partnership_coord.partners.filter(function (pt) {
-                return pt.id !== id;
-              });
-              saveState();
-              renderDeskView();
-            });
-          });
-        }
-
-        // Faculty Patron handlers
-        var fpForm = document.getElementById("fpForm");
-        if (fpForm) {
-          fpForm.addEventListener("submit", function (e) {
-            e.preventDefault();
-            var titleEl = document.getElementById("fpTitle");
-            var dateEl = document.getElementById("fpDate");
-            var noteEl = document.getElementById("fpNote");
-            if (!titleEl.value.trim() || !noteEl.value.trim()) return;
-            state.officeData.faculty_patron.endorsements.unshift({
-              id: "fp_" + Date.now(),
-              title: titleEl.value.trim(),
-              date: dateEl.value.trim() || "2026/2027",
-              note: noteEl.value.trim()
-            });
-            saveState();
-            renderDeskView();
-          });
-          elActiveDeskPanel.querySelectorAll("[data-fp-del]").forEach(function (btn) {
-            btn.addEventListener("click", function () {
-              var id = btn.getAttribute("data-fp-del");
-              state.officeData.faculty_patron.endorsements = state.officeData.faculty_patron.endorsements.filter(function (en) {
-                return en.id !== id;
-              });
-              saveState();
-              renderDeskView();
-            });
-          });
-        }
+        return (
+          '<div class="sas-card">' +
+            '<h4>' + esc(official.position) + ' Desk &mdash; Action Items</h4>' +
+            '<form onsubmit="handleAddOfficeTask(event)" style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px;">' +
+              '<input type="text" id="newOfficeTaskInput" required placeholder="Add action item for ' + esc(official.position) + '..." style="flex:1; min-width:200px; padding:9px 12px; border:1px solid var(--slate-300); border-radius:8px;" />' +
+              '<button type="submit" class="btn btn-teal btn-sm">Add Item</button>' +
+            '</form>' +
+            (items.length === 0
+              ? '<p style="font-size:0.88rem; color:var(--slate-600);">No action items recorded for this office yet.</p>'
+              : items.map(function (task, idx) {
+                  return (
+                    '<div class="sas-list-item">' +
+                      '<span>' + esc(task) + '</span>' +
+                      '<button type="button" class="btn btn-sm" style="background:var(--slate-200); color:var(--slate-900);" onclick="removeOfficeTask(' + idx + ')">Remove</button>' +
+                    '</div>'
+                  );
+                }).join("")) +
+          '</div>' +
+          extraToolsHtml
+        );
       }
 
-      function renderDeskView() {
-        var signedOff = state.signedInOfficeId ? findOfficialById(state.signedInOfficeId) : null;
-        if (!signedOff) {
-          state.signedInOfficeId = null;
-          elLoginPanel.classList.remove("sas-hidden");
-          elActiveDeskPanel.classList.add("sas-hidden");
-          elActiveDeskPanel.innerHTML = "";
-        } else {
-          elLoginPanel.classList.add("sas-hidden");
-          elActiveDeskPanel.classList.remove("sas-hidden");
-          renderDeskContent(signedOff);
-        }
-      }
+      window.handleExecLogin = function (event) {
+        event.preventDefault();
+        const idEl = document.getElementById("loginIdentifier");
+        const pinEl = document.getElementById("loginPin");
+        const errEl = document.getElementById("authErrorBox");
 
-      function renderChrome() {
-        if (state.collapsed) {
-          elSectionBody.classList.add("sas-hidden");
-          elCollapseBtn.textContent = "Expand Section";
-          elCollapseBtn.setAttribute("aria-expanded", "false");
-        } else {
-          elSectionBody.classList.remove("sas-hidden");
-          elCollapseBtn.textContent = "Collapse Section";
-          elCollapseBtn.setAttribute("aria-expanded", "true");
-        }
+        const rawId = normCode(idEl ? idEl.value : "");
+        const pin = (pinEl ? pinEl.value : "").trim();
 
-        var isDesk = state.activeTab === "desk";
-        elTabDirectory.setAttribute("aria-selected", String(!isDesk));
-        elTabDesk.setAttribute("aria-selected", String(isDesk));
-
-        if (isDesk) {
-          elDirectoryView.classList.add("sas-hidden");
-          elDeskView.classList.remove("sas-hidden");
-        } else {
-          elDirectoryView.classList.remove("sas-hidden");
-          elDeskView.classList.add("sas-hidden");
-        }
-
-        var signedOff = state.signedInOfficeId ? findOfficialById(state.signedInOfficeId) : null;
-        if (signedOff) {
-          elStatusBadge.textContent = "Locked Office: " + signedOff.position + " (" + signedOff.name + ")";
-          elStatusBadge.classList.add("locked-active");
-        } else {
-          elStatusBadge.textContent = "Public Directory Mode • Office Locked";
-          elStatusBadge.classList.remove("locked-active");
-        }
-      }
-
-      function copyTextHelper(text, onSuccess) {
-        if (navigator.clipboard && typeof navigator.clipboard.writeText === "function") {
-          navigator.clipboard.writeText(text).then(function () {
-            if (onSuccess) onSuccess();
-          }).catch(function () {
-            fallbackCopy(text, onSuccess);
-          });
-        } else {
-          fallbackCopy(text, onSuccess);
-        }
-      }
-
-      function fallbackCopy(text, onSuccess) {
-        try {
-          var ta = document.createElement("textarea");
-          ta.value = text;
-          ta.setAttribute("readonly", "");
-          ta.style.position = "fixed";
-          ta.style.left = "-9999px";
-          document.body.appendChild(ta);
-          ta.select();
-          document.execCommand("copy");
-          document.body.removeChild(ta);
-          if (onSuccess) onSuccess();
-        } catch (err) {
-          // Copy fallback ignored
-        }
-      }
-
-      function copyEmbedSnippet() {
-        var sectionEl = document.getElementById("executive-governance-section");
-        if (!sectionEl) return;
-        copyTextHelper(sectionEl.outerHTML, function () {
-          elSnippetFeedback.textContent = "Copied #executive-governance-section HTML snippet to clipboard.";
+        const match = state.officials.find(function (o) {
+          const regMatch = normCode(o.regNo) === rawId;
+          const officeMatch = normCode(o.officeId) === rawId;
+          return (regMatch || officeMatch) && String(o.pin).trim() === pin;
         });
-      }
 
-      function syncVaultModalView() {
-        if (vaultUnlocked) {
-          elVaultGateBox.classList.add("sas-hidden");
-          elVaultUnlockedBox.classList.remove("sas-hidden");
+        if (!match) {
+          if (errEl) {
+            errEl.classList.remove("sas-hidden");
+            errEl.textContent = "Invalid Registration/Office ID or PIN. Please check your credentials and try again.";
+          }
+          return;
+        }
+
+        if (errEl) errEl.classList.add("sas-hidden");
+        state.session.authenticated = true;
+        state.session.roleId = match.id;
+        state.session.tab = "my_office";
+        saveState();
+        if (pinEl) pinEl.value = "";
+        renderPortalUI();
+      };
+
+      window.logoutExecutive = function () {
+        state.session.authenticated = false;
+        state.session.roleId = null;
+        state.session.tab = "overview";
+        state.vaultUnlocked = false;
+        saveState();
+        renderPortalUI();
+      };
+
+      window.switchDeskTab = function (tabName) {
+        state.session.tab = tabName === "my_office" ? "my_office" : "overview";
+        saveState();
+        renderPortalUI();
+      };
+
+      window.handleAddOfficeTask = function (event) {
+        event.preventDefault();
+        const official = getCurrentOfficial();
+        const input = document.getElementById("newOfficeTaskInput");
+        if (!official || !input) return;
+        const text = input.value.trim();
+        if (!text) return;
+
+        if (!Array.isArray(state.officeItems[official.id])) {
+          state.officeItems[official.id] = [];
+        }
+        state.officeItems[official.id].unshift(text);
+        saveState();
+        renderPortalUI();
+      };
+
+      window.removeOfficeTask = function (idx) {
+        const official = getCurrentOfficial();
+        if (!official || !Array.isArray(state.officeItems[official.id])) return;
+        state.officeItems[official.id].splice(idx, 1);
+        saveState();
+        renderPortalUI();
+      };
+
+      window.handleAddLedgerEntry = function (event) {
+        event.preventDefault();
+        const official = getCurrentOfficial();
+        if (!official || official.id !== "treasurer") return;
+
+        const typeEl = document.getElementById("txType");
+        const descEl = document.getElementById("txDesc");
+        const amtEl = document.getElementById("txAmount");
+        const refEl = document.getElementById("txRef");
+
+        const amount = Number(amtEl ? amtEl.value : 0);
+        const desc = descEl ? descEl.value.trim() : "";
+        const ref = refEl ? refEl.value.trim() : "";
+        const type = typeEl && typeEl.value === "OUTFLOW" ? "OUTFLOW" : "INFLOW";
+
+        if (!desc || !ref || !(amount > 0)) return;
+
+        state.ledger.unshift({
+          id: "tx_" + Date.now(),
+          type: type,
+          desc: desc,
+          amount: amount,
+          ref: ref
+        });
+        saveState();
+        renderPortalUI();
+      };
+
+      // Chairperson PIN Vault & WhatsApp Dispatch
+      window.openChairVault = function () {
+        const official = getCurrentOfficial();
+        if (!official || official.id !== "chairperson") return;
+        const modal = document.getElementById("chairVaultModal");
+        const errEl = document.getElementById("vaultErrorBox");
+        const pinInput = document.getElementById("masterPinInput");
+        if (errEl) errEl.classList.add("sas-hidden");
+        if (pinInput) pinInput.value = "";
+        syncVaultPanels();
+        if (modal) {
+          modal.classList.add("open");
+          document.body.style.overflow = "hidden";
+        }
+      };
+
+      window.closeChairVault = function () {
+        const modal = document.getElementById("chairVaultModal");
+        if (modal) {
+          modal.classList.remove("open");
+          document.body.style.overflow = "";
+        }
+      };
+
+      window.closeChairVaultOutside = function (event) {
+        if (event.target && event.target.id === "chairVaultModal") {
+          window.closeChairVault();
+        }
+      };
+
+      function syncVaultPanels() {
+        const gateEl = document.getElementById("vaultGatePanel");
+        const unlockedEl = document.getElementById("vaultUnlockedPanel");
+        if (state.vaultUnlocked) {
+          if (gateEl) gateEl.classList.add("sas-hidden");
+          if (unlockedEl) unlockedEl.classList.remove("sas-hidden");
           renderVaultTable();
         } else {
-          elVaultGateBox.classList.remove("sas-hidden");
-          elVaultUnlockedBox.classList.add("sas-hidden");
-          elVaultDispatchFeedback.classList.add("sas-hidden");
+          if (gateEl) gateEl.classList.remove("sas-hidden");
+          if (unlockedEl) unlockedEl.classList.add("sas-hidden");
         }
       }
 
-      // Event Listeners
-      elCollapseBtn.addEventListener("click", function () {
-        state.collapsed = !state.collapsed;
-        saveState();
-        renderChrome();
-      });
-
-      elGuideBtn.addEventListener("click", function () {
-        elGuideBox.classList.toggle("sas-hidden");
-      });
-
-      elCopySnippetBtn.addEventListener("click", function () {
-        elGuideBox.classList.remove("sas-hidden");
-        copyEmbedSnippet();
-      });
-
-      elTabDirectory.addEventListener("click", function () {
-        state.activeTab = "directory";
-        saveState();
-        renderChrome();
-        renderDirectory();
-      });
-
-      elTabDesk.addEventListener("click", function () {
-        state.activeTab = "desk";
-        saveState();
-        renderChrome();
-        renderDeskView();
-      });
-
-      elSearchInput.addEventListener("input", renderDirectory);
-      elFilterSelect.addEventListener("change", renderDirectory);
-
-      elLoginForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-        var matched = authenticateOfficial(elLoginIdentifier.value, elLoginPin.value);
-        if (!matched) {
-          showAuthMessage("Invalid Reg. Number / Phone No. / Office ID or 4-digit PIN.", true);
+      window.unlockMasterVault = function () {
+        const input = document.getElementById("masterPinInput");
+        const errEl = document.getElementById("vaultErrorBox");
+        const entered = (input ? input.value : "").trim();
+        if (entered !== MASTER_VAULT_PIN) {
+          if (errEl) {
+            errEl.classList.remove("sas-hidden");
+            errEl.textContent = "Incorrect Master Vault PIN.";
+          }
           return;
         }
-        state.signedInOfficeId = matched.id;
-        state.activeTab = "desk";
+        if (errEl) errEl.classList.add("sas-hidden");
+        state.vaultUnlocked = true;
+        syncVaultPanels();
+      };
+
+      function formatWaPhone(phone) {
+        const digits = String(phone || "").replace(/\D/g, "");
+        if (digits.startsWith("254")) return digits;
+        if (digits.startsWith("0") && digits.length === 10) return "254" + digits.slice(1);
+        return digits;
+      }
+
+      function renderVaultTable() {
+        const tbody = document.getElementById("vaultTableBody");
+        if (!tbody) return;
+
+        tbody.innerHTML = state.officials.map(function (o, idx) {
+          const waPhone = formatWaPhone(o.phone);
+          const msg = encodeURIComponent(
+            "Hello " + o.name + ", here are your Share a Smile Charity Club Executive Portal credentials:
+" +
+            "Office: " + o.position + " (" + o.officeId + ")
+" +
+            "Login ID / Reg: " + o.regNo + "
+" +
+            "PIN: " + o.pin
+          );
+          const waHref = "https://wa.me/" + waPhone + "?text=" + msg;
+
+          return (
+            "<tr>" +
+              "<td><strong>" + esc(o.position) + "</strong></td>" +
+              "<td>" + esc(o.name) + "</td>" +
+              "<td>" + esc(o.officeId) + " / " + esc(o.regNo) + "</td>" +
+              "<td>" + esc(o.phone) + "</td>" +
+              "<td><code>" + esc(o.pin) + "</code></td>" +
+              "<td style='white-space:nowrap;'>" +
+                "<button type='button' class='btn btn-sm btn-teal' onclick='editOfficialPin(" + idx + ")' style='margin-right:6px;'>Edit PIN</button>" +
+                "<a class='btn btn-sm btn-dark' href='" + waHref + "' target='_blank' rel='noopener noreferrer'>WhatsApp</a>" +
+              "</td>" +
+            "</tr>"
+          );
+        }).join("");
+      }
+
+      window.editOfficialPin = function (idx) {
+        if (!state.vaultUnlocked) return;
+        const target = state.officials[idx];
+        if (!target) return;
+        const nextPin = window.prompt("Enter new PIN for " + target.name + " (" + target.position + "):", target.pin);
+        if (nextPin === null) return;
+        const cleaned = nextPin.trim();
+        if (!cleaned) return;
+        target.pin = cleaned;
         saveState();
-        elLoginPin.value = "";
-        showAuthMessage("", false);
-        renderChrome();
-        renderDeskView();
-      });
-
-      // Chairperson Master PIN Vault Modal Listeners
-      elChairVaultBtn.addEventListener("click", function () {
-        elChairVaultModal.classList.remove("sas-hidden");
-        elVaultErrorMsg.classList.add("sas-hidden");
-        elMasterPinInput.value = "";
-        syncVaultModalView();
-        if (!vaultUnlocked) {
-          elMasterPinInput.focus();
-        }
-      });
-
-      elCloseVaultBtn.addEventListener("click", function () {
-        elChairVaultModal.classList.add("sas-hidden");
-      });
-
-      elChairVaultModal.addEventListener("click", function (e) {
-        if (e.target === elChairVaultModal) {
-          elChairVaultModal.classList.add("sas-hidden");
-        }
-      });
-
-      elVaultUnlockForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-        if (elMasterPinInput.value.trim() !== CHAIR_MASTER_PIN) {
-          elVaultErrorMsg.textContent = "Invalid Chairperson Master PIN.";
-          elVaultErrorMsg.classList.remove("sas-hidden");
-          return;
-        }
-        vaultUnlocked = true;
-        elVaultErrorMsg.classList.add("sas-hidden");
-        elMasterPinInput.value = "";
-        syncVaultModalView();
-      });
-
-      elLockVaultBtn.addEventListener("click", function () {
-        vaultUnlocked = false;
-        syncVaultModalView();
-      });
+        renderVaultTable();
+      };
 
       // Initial render
-      renderChrome();
-      renderDirectory();
-      renderDeskView();
+      updateMemberCounter();
+      renderPortalUI();
     })();
   </script>
-</section>
- 
- </section>
- <!-- Club Merchandise -->
-<section id="merch" style="max-width: 1000px; margin: 40px auto; padding: 0 20px;">
-  <h2 style="text-align: center; color: #0f766e; margin-bottom: 8px;">Official Club Merchandise</h2>
-  <p style="text-align: center; color: #475569; margin-bottom: 24px;">Every purchase directly supports our community outreach and charity drives.</p>
-
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 18px;">
-    
-    <!-- Hoodie -->
-    <div style="background: white; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); overflow: hidden; display: flex; flex-direction: column;">
-      <img src="hoodie.jpg" alt="Share a Smile Hoodie" style="width: 100%; height: 190px; object-fit: cover; background: #f1f5f9;">
-      <div style="padding: 16px; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
-        <div>
-          <h3 style="color: #0f172a; margin: 0 0 6px;">Club Hoodie</h3>
-          <p style="font-size: 0.88rem; color: #475569; margin: 0 0 10px;">Warm, branded Share a Smile pullover hoodie (Sizes S–XL).</p>
-        </div>
-        <div>
-          <div style="font-weight: 800; color: #0f766e; font-size: 1.05rem; margin-bottom: 10px;">KES 1,600</div>
-          <a href="https://wa.me/254769529801?text=Hello%20Share%20a%20Smile%2C%20I%20would%20like%20to%20order%20the%20Club%20Hoodie." target="_blank" rel="noopener noreferrer" style="display: block; text-align: center; background: #0f766e; color: white; padding: 10px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 0.9rem;">Order on WhatsApp</a>
-        </div>
-      </div>
-    </div>
-        <!-- Official Club T-Shirt Card -->
-<div class="sas-merch-card" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); display: flex; flex-direction: column;">
-  <div style="position: relative; background: #f8fafc; height: 230px; overflow: hidden;">
-    <img src="shirt.jpg" alt="Share a Smile Charity Club Official T-Shirt" style="width: 100%; height: 100%; object-fit: cover;">
-    <span style="position: absolute; top: 12px; right: 12px; background: #0f766e; color: #ffffff; font-size: 0.75rem; font-weight: 700; padding: 4px 10px; border-radius: 20px;">
-      100% Cotton • 180 GSM
-    </span>
-  </div>
-  <div style="padding: 20px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
-    <div>
-      <h3 style="margin: 0 0 6px 0; color: #0f172a; font-size: 1.15rem;">Official Club Round-Neck T-Shirt</h3>
-      <p style="margin: 0 0 12px 0; color: #0f766e; font-weight: 800; font-size: 1.25rem;">KES 650</p>
-      <p style="margin: 0 0 16px 0; color: #475569; font-size: 0.9rem; line-height: 1.5;">
-        Breathable heavy-cotton crew-neck tee featuring the Share a Smile Charity Club crest on the left chest and our motto across the back. Available in White, Teal, and Black (Sizes S–XXL).
-      </p>
-    </div>
-    <button onclick="openSasPreorder('Official Club Round-Neck T-Shirt', 650)" style="width: 100%; background: #0f766e; color: #ffffff; border: none; padding: 11px 16px; border-radius: 8px; font-weight: 700; font-size: 0.95rem; cursor: pointer;">
-      Pre-Order T-Shirt
-    </button>
-  </div>
-</div>
-
-<!-- Executive Embroidered Polo Shirt Card -->
-<div class="sas-merch-card" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); display: flex; flex-direction: column;">
-  <div style="position: relative; background: #f8fafc; height: 230px; overflow: hidden;">
-    <img src="shirt.jpg" alt="Share a Smile Charity Club Embroidered Polo Shirt" style="width: 100%; height: 100%; object-fit: cover;">
-    <span style="position: absolute; top: 12px; right: 12px; background: #b45309; color: #ffffff; font-size: 0.75rem; font-weight: 700; padding: 4px 10px; border-radius: 20px;">
-      Embroidered • 220 GSM
-    </span>
-  </div>
-  <div style="padding: 20px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
-    <div>
-      <h3 style="margin: 0 0 6px 0; color: #0f172a; font-size: 1.15rem;">Official Club Embroidered Polo</h3>
-      <p style="margin: 0 0 12px 0; color: #0f766e; font-weight: 800; font-size: 1.25rem;">KES 950</p>
-      <p style="margin: 0 0 16px 0; color: #475569; font-size: 0.9rem; line-height: 1.5;">
-        Smart pique-knit collared polo with a stitched Share a Smile logo—ideal for campus drives, mentorship visits, and official club events. Available in White, Navy, and Forest Green (Sizes S–XXL).
-      </p>
-    </div>
-    <button onclick="openSasPreorder('Official Club Embroidered Polo', 950)" style="width: 100%; background: #0f766e; color: #ffffff; border: none; padding: 11px 16px; border-radius: 8px; font-weight: 700; font-size: 0.95rem; cursor: pointer;">
-      Pre-Order Polo Shirt
-    </button>
-  </div>
-</div>
-
-  <section id="contribute">
-    <h2>Support Our Charity Drives</h2>
-    <div class="contribute-box">
-      <div class="mpesa-badge">M-PESA CONTRIBUTIONS</div>
-      <p>Every shilling helps us reach more people through outreach visits, welfare support, and community projects. Send your contribution directly via M-PESA to:</p>
-      <div class="mpesa-number" id="mpesaNum">0758712751</div>
-      <button class="copy-btn" onclick="copyMpesa()">Copy M-PESA Number</button>
-      <p id="copyStatus"></p>
-      <div style="margin-top: 20px;">
-      <a href="https://www.mchanga.africa/fundraiser/154884" target="_blank" rel="noopener noreferrer" style="display: inline-block; background-color: #0f766e; color: white; padding: 14px 28px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 1rem;">
-        Donate via M-PESA (M-Changa)
-      </a>
-      <p style="font-size: 0.85rem; margin-top: 8px; color: #475569;">
-        Click above to enter your phone number and receive an instant M-PESA PIN prompt.
-      </p>
-    </div>
-    </div>
-  </section>
-    
-  <!-- Join Form Section (Emails directly to rooneyogongo343@gmail.com) -->
-  <section id="join">
-    <h2>Join Share a Smile</h2>
-    <div class="form-box">
-      <form id="joinForm" action="https://formsubmit.co/rooneyogongo343@gmail.com" method="POST">
-        <!-- Email formatting settings -->
-        <input type="hidden" name="_subject" value="New Share a Smile Club Member Registration!">
-        <input type="hidden" name="_template" value="table">
-
-        <div class="form-group">
-          <label for="memberName">Full Name</label>
-          <input type="text" id="memberName" name="Full Name" placeholder="Enter your full name" required>
-        </div>
-        <div class="form-group">
-          <label for="regNumber">Registration Number</label>
-          <input type="text" id="regNumber" name="Registration Number" placeholder="e.g. ED/ART/1591/24" required>
-        </div>
-        <div class="form-group">
-          <label for="yearOfStudy">Year of Study</label>
-          <select id="yearOfStudy" name="Year of Study" required>
-            <option value="">-- Select Year of Study --</option>
-            <option value="Year 1">Year 1</option>
-            <option value="Year 2">Year 2</option>
-            <option value="Year 3">Year 3</option>
-            <option value="Year 4">Year 4</option>
-            <option value="Postgraduate / Alumni">Postgraduate / Alumni</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="memberPhone">Phone / WhatsApp Number</label>
-          <input type="tel" id="memberPhone" name="Phone / WhatsApp" placeholder="e.g. 0712 345 678" required>
-        </div>
-        <div class="form-group">
-          <label for="memberRole">How would you like to help?</label>
-          <select id="memberRole" name="Role">
-            <option value="Active Volunteer">Active Volunteer</option>
-            <option value="Well-Wisher / Donor">Well-Wisher / Donor</option>
-            <option value="Event & Outreach Organizing">Event & Outreach Organizing</option>
-          </select>
-        </div>
-        <div id="joinError" style="display:none; margin: 12px 0; padding: 12px; background: #fef2f2; border: 1px solid #ef4444; color: #991b1b; border-radius: 8px; font-size: 14px;"></div>
-
-        <button type="submit" class="btn" style="width: 100%;">Submit Registration</button>
-      </form>
-    </div>
-  </section>
-
-  <!-- Footer / Contact -->
-  <footer id="contact">
-    <p><strong>Share a Smile Charity Club</strong></p>
-    <p>Contributions & WhatsApp: <a href="tel:+254769529801">0769 529 801</a> | Email: <a href="mailto:shareasmilelu@gmail.com">shareasmilelu@gmail.com</a></p>
-    <div style="margin-top: 14px;">
-  <a href="https://chat.whatsapp.com/Dty1LdhdHwv1JTfGJETtdW" target="_blank" rel="noopener noreferrer" style="display: inline-block; background-color: #25D366; color: white; padding: 10px 22px; border-radius: 25px; text-decoration: none; font-weight: bold; font-size: 0.95rem;">
-    Join Our WhatsApp Group
-  </a>
-</div>
-    <p style="margin-top: 10px; font-size: 0.85rem;">&copy; 2026 Share a Smile Charity Club. All rights reserved.</p>
-  </footer>
-
-<!-- JavaScript -->
-  <script>
-    function copyMpesa() {
-      const number = document.getElementById("mpesaNum").innerText.trim();
-      navigator.clipboard.writeText(number).then(function() {
-        document.getElementById("copyStatus").innerText = "Copied " + number + " to clipboard!";
-      });
-    }
-
-  </script>
-<!-- Share a Smile Floating Chatbot -->
-<style>
-  #sas-chat-btn {
-    position: fixed; bottom: 20px; right: 20px; z-index: 9999;
-    background: #0f766e; color: white; border: none; border-radius: 50px;
-    padding: 12px 20px; font-weight: bold; font-size: 0.95rem; cursor: pointer;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.22);
-  }
-  #sas-chat-box {
-    display: none; position: fixed; bottom: 80px; right: 20px; z-index: 9999;
-    width: 320px; max-width: 90vw; background: white; border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.2); overflow: hidden; font-family: sans-serif;
-    border: 1px solid #e2e8f0;
-  }
-  #sas-chat-header {
-    background: #0f766e; color: white; padding: 14px 16px;
-    display: flex; justify-content: space-between; align-items: center; font-weight: bold;
-  }
-  #sas-chat-close {
-    background: none; border: none; color: white; font-size: 1.3rem; cursor: pointer;
-  }
-  #sas-chat-messages {
-    height: 260px; overflow-y: auto; padding: 12px; background: #f8fafc;
-    display: flex; flex-direction: column; gap: 8px; font-size: 0.9rem;
-  }
-  .sas-msg { padding: 8px 12px; border-radius: 10px; max-width: 85%; line-height: 1.4; }
-  .sas-bot { background: #e2e8f0; color: #0f172a; align-self: flex-start; }
-  .sas-user { background: #0f766e; color: white; align-self: flex-end; }
-  #sas-quick-btns {
-    display: flex; flex-wrap: wrap; gap: 6px; padding: 8px 12px; background: #f1f5f9;
-    border-top: 1px solid #e2e8f0;
-  }
-  .sas-chip {
-    background: white; border: 1px solid #0f766e; color: #0f766e; border-radius: 16px;
-    padding: 4px 10px; font-size: 0.78rem; cursor: pointer; font-weight: 600;
-  }
-  #sas-chat-input-row {
-    display: flex; border-top: 1px solid #e2e8f0; background: white;
-  }
-  #sas-chat-input {
-    flex: 1; border: none; padding: 10px 12px; font-size: 0.9rem; outline: none;
-  }
-  #sas-chat-send {
-    background: #0f766e; color: white; border: none; padding: 0 16px;
-    font-weight: bold; cursor: pointer;
-  }
-</style>
-
-<button id="sas-chat-btn" onclick="toggleSasChat()">💬 Chat With Us</button>
-
-<div id="sas-chat-box">
-  <div id="sas-chat-header">
-    <span>Share a Smile Assistant</span>
-    <button id="sas-chat-close" onclick="toggleSasChat()">&times;</button>
-  </div>
-  <div id="sas-chat-messages">
-    <div class="sas-msg sas-bot">
-      Hello! Welcome to <strong>Share a Smile Charity Club</strong> (Laikipia University). Ask me about donating, joining, our leadership, or upcoming drives!
-    </div>
-  </div>
-  <div id="sas-quick-btns">
-    <button class="sas-chip" onclick="sendSasQuick('How do I donate?')">Donate</button>
-    <button class="sas-chip" onclick="sendSasQuick('How do I join?')">Join Club</button>
-    <button class="sas-chip" onclick="sendSasQuick('Who are the leaders?')">Leadership</button>
-    <button class="sas-chip" onclick="sendSasQuick('WhatsApp group link')">WhatsApp</button>
-  </div>
-  <div id="sas-chat-input-row">
-    <input type="text" id="sas-chat-input" placeholder="Type your question..." onkeypress="if(event.key==='Enter') sendSasMsg()">
-    <button id="sas-chat-send" onclick="sendSasMsg()">Send</button>
-  </div>
-</div>
-
-<script>
-  function toggleSasChat() {
-    const box = document.getElementById("sas-chat-box");
-    box.style.display = (box.style.display === "block") ? "none" : "block";
-  }
-
-  function addSasMsg(text, sender) {
-    const msgs = document.getElementById("sas-chat-messages");
-    const div = document.createElement("div");
-    div.className = "sas-msg " + (sender === "user" ? "sas-user" : "sas-bot");
-    div.innerHTML = text;
-    msgs.appendChild(div);
-    msgs.scrollTop = msgs.scrollHeight;
-  }
-
-  function getSasReply(input) {
-    const q = input.toLowerCase();
-    if (q.includes("donate") || q.includes("mpesa") || q.includes("m-pesa") || q.includes("mchanga") || q.includes("give") || q.includes("contribute") || q.includes("money")) {
-      return 'You can support us via M-PESA directly to <strong>0769 529 801</strong>, or use our instant M-PESA prompt on <a href="https://www.mchanga.africa/fundraiser/154884" target="_blank" style="color:#0f766e;font-weight:bold;">M-Changa here</a>.';
-    }
-    if (q.includes("join") || q.includes("member") || q.includes("register") || q.includes("sign up")) {
-      return 'Scroll to the <strong>Join Share a Smile</strong> form on this page to register, or jump straight into our <a href="https://chat.whatsapp.com/Dty1LdhdHwv1JTfGJETtdW" target="_blank" style="color:#0f766e;font-weight:bold;">WhatsApp Group</a>.';
-    }
-    if (q.includes("whatsapp") || q.includes("group")) {
-      return 'Join our official club WhatsApp group here: <a href="https://chat.whatsapp.com/Dty1LdhdHwv1JTfGJETtdW" target="_blank" style="color:#0f766e;font-weight:bold;">Join WhatsApp Group</a>.';
-    }
-    if (q.includes("leader") || q.includes("patron") || q.includes("chair") || q.includes("committee") || q.includes("executive") || q.includes("who")) {
-      return 'Our Club Patron is <strong>Dr. Hanningtone Mala</strong>, and our Chairperson is <strong>Rooney Ogongo</strong>, supported by a 10-member student executive committee at Laikipia University.';
-    }
-    if (q.includes("event") || q.includes("drive") || q.includes("upcoming") || q.includes("outreach") || q.includes("activity")) {
-
-    }
-    if (q.includes("contact") || q.includes("email") || q.includes("phone") || q.includes("call")) {
-      return 'Reach us at <strong>0769 529 801</strong> or email <strong>shareasmilelu@gmail.com</strong>.';
-    }
-    if (q.includes("hi") || q.includes("hello") || q.includes("hey")) {
-      return 'Hello! How can I help you today? You can tap one of the quick buttons below to get started.';
-    }
-    return 'Thanks for reaching out! For specific inquiries, please email <strong>shareasmilelu@gmail.com</strong>, call <strong>0769 529 801</strong>, or join our <a href="https://chat.whatsapp.com/Dty1LdhdHwv1JTfGJETtdW" target="_blank" style="color:#0f766e;font-weight:bold;">WhatsApp Group</a>.';
-  }
-
-  function sendSasMsg() {
-    const input = document.getElementById("sas-chat-input");
-    const text = input.value.trim();
-    if (!text) return;
-    addSasMsg(text, "user");
-    input.value = "";
-    setTimeout(() => addSasMsg(getSasReply(text), "bot"), 300);
-  }
-
-  function sendSasQuick(text) {
-    addSasMsg(text, "user");
-    setTimeout(() => addSasMsg(getSasReply(text), "bot"), 300);
-  }
-</script>
-    <script>
-  document.getElementById("joinForm").addEventListener("submit", function(e) {
-    const regInput = document.getElementById("regNumber").value.trim().toUpperCase().replace(/\s+/g, "");
-    const errorBox = document.getElementById("joinError");
-
-    if (typeof registeredMembers !== "undefined" && registeredMembers[regInput]) {
-      e.preventDefault();
-      errorBox.style.display = "block";
-      errorBox.innerHTML = `
-        <strong>⚠️ Registration Denied:</strong><br>
-        <strong>${registeredMembers[regInput]}</strong> (${regInput}) is already officially registered in the Share a Smile Charity Club. You do not need to register again.
-      `;
-    } else {
-      errorBox.style.display = "none";
-    }
-  });
-</script>
 </body>
 </html>
