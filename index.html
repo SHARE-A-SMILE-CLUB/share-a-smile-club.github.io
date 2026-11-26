@@ -61,6 +61,7 @@
       background-repeat: no-repeat;
     }
 
+    /* Navigation */
     .sas-navbar {
       position: sticky;
       top: 0;
@@ -132,6 +133,7 @@
       font-size: 0.84rem !important;
     }
 
+    /* Announcement & Meeting Banners */
     .sas-highlight-bar {
       background: linear-gradient(90deg, var(--forest-900), #1b5e20);
       color: var(--white);
@@ -200,6 +202,7 @@
       border-radius: 16px;
     }
 
+    /* Hero */
     .hero {
       background: linear-gradient(rgba(15, 118, 110, 0.82), rgba(17, 94, 89, 0.86)),
                   url('outreach.jpg') center/cover no-repeat;
@@ -263,6 +266,7 @@
     .btn-dark:hover { background-color: var(--slate-700); color: var(--white); }
     .btn-sm { padding: 7px 14px; font-size: 0.84rem; }
 
+    /* Impact Strip */
     .impact-strip {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
@@ -296,15 +300,35 @@
       margin-top: 4px;
     }
 
+    /* Priority Section Rhythm */
     .page-section {
       max-width: 1120px;
       margin: 0 auto;
-      padding: 56px 20px;
+      padding: 52px 20px;
+      border-bottom: 1px solid var(--slate-200);
+    }
+
+    .page-section:last-of-type {
+      border-bottom: none;
+    }
+
+    .priority-badge {
+      display: inline-block;
+      background: var(--teal-50);
+      color: var(--teal-900);
+      border: 1px solid #99f6e4;
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 999px;
+      margin-bottom: 8px;
     }
 
     .section-heading {
       text-align: center;
-      margin-bottom: 32px;
+      margin-bottom: 30px;
     }
 
     .section-heading h2 {
@@ -349,6 +373,7 @@
     .card-body h3 { color: var(--teal-900); font-size: 1.12rem; margin-bottom: 8px; }
     .card-body p { color: var(--slate-600); font-size: 0.93rem; }
 
+    /* Membership Lookup */
     .verify-card {
       max-width: 640px;
       margin: 0 auto;
@@ -390,6 +415,7 @@
       text-align: left;
     }
 
+    /* Join & Contribute Boxes */
     .contribute-box {
       max-width: 700px;
       margin: 0 auto;
@@ -442,6 +468,31 @@
       color: var(--slate-800);
     }
 
+    /* Post-Registration WhatsApp Onboarding Card */
+    .post-join-whatsapp-box {
+      margin-top: 20px;
+      padding: 18px;
+      border-radius: var(--radius-md);
+      background: var(--success-bg);
+      border: 2px solid var(--success-border);
+      color: var(--success-text);
+      text-align: left;
+    }
+
+    .post-join-whatsapp-box h4 {
+      font-size: 1rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      color: var(--forest-900);
+    }
+
+    .post-join-whatsapp-box p {
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+      color: var(--slate-700);
+    }
+
+    /* Executive Governance Portal */
     .sas-portal-wrapper {
       background: var(--white);
       border: 1px solid var(--slate-200);
@@ -608,6 +659,7 @@
     .sas-table th, .sas-table td { border: 1px solid var(--slate-200); padding: 8px 10px; text-align: left; }
     .sas-table th { background: var(--slate-100); font-weight: 700; color: var(--slate-900); }
 
+    /* Modals */
     .sas-modal-backdrop {
       position: fixed;
       inset: 0;
@@ -673,6 +725,7 @@
 </head>
 <body>
 
+  <!-- Navigation -->
   <nav class="sas-navbar">
     <div class="sas-nav-inner">
       <a href="#" class="sas-nav-brand">
@@ -680,17 +733,18 @@
         <span>Share a Smile</span>
       </a>
       <div class="sas-nav-links">
-        <a href="#about">About</a>
-        <a href="#events">Outreach</a>
-        <a href="#verify-membership">Verify Member</a>
         <a href="#join">Join Us</a>
-        <a href="https://chat.whatsapp.com/Dty1LdhdHwv1JTfGJETtdWp">WhatsApp Group</a>
+        <a href="#verify-membership">Verify Member</a>
+        <a href="#whatsapp-group">WhatsApp Group</a>
         <a href="#contribute" class="sas-nav-donate">Donate</a>
+        <a href="#events">Outreach</a>
+        <a href="#about">About</a>
         <a href="#executive-governance-portal" class="sas-nav-portal">Executive Portal</a>
       </div>
     </div>
   </nav>
 
+  <!-- Priority Announcements -->
   <div class="sas-highlight-bar">
     <div class="sas-highlight-content">
       <span class="sas-highlight-tag">NEW</span>
@@ -706,17 +760,19 @@
     </div>
   </div>
 
+  <!-- Hero -->
   <header class="hero">
     <div class="hero-badge">Laikipia University Student Chapter</div>
     <h1>Share a Smile Charity Club</h1>
     <p>Spreading compassion, dignity, and hope across Laikipia University and our surrounding communities through coordinated outreach, mentorship, and peer solidarity.</p>
     <div class="hero-buttons">
-      <a href="#join" class="btn">Become a Member</a>
-      <a href="#contribute" class="btn btn-outline">Support Outreach</a>
-      <a href="#executive-governance-portal" class="btn btn-outline">Executive Portal</a>
+      <a href="#join" class="btn">Priority 1: Join Us</a>
+      <a href="#verify-membership" class="btn btn-outline">Priority 2: Verify Member</a>
+      <a href="https://chat.whatsapp.com/Dty1LdhdHwv1JTfGJETtdW" target="_blank" rel="noopener noreferrer" class="btn btn-outline">WhatsApp Group</a>
     </div>
   </header>
 
+  <!-- Impact Strip -->
   <div class="impact-strip">
     <div class="impact-card">
       <div class="impact-value" id="publicMemberCount">64+</div>
@@ -736,38 +792,122 @@
     </div>
   </div>
 
-  <section id="about" class="page-section">
+  <!-- PRIORITY 1: Join & Immediate WhatsApp Onboarding -->
+  <section id="join" class="page-section">
     <div class="section-heading">
-      <h2>Who We Are</h2>
-      <p>One Smile, One Heart, One Community. We unite students at Laikipia University to serve vulnerable households, mentor learners, and support fellow comrades in need.</p>
+      <span class="priority-badge">Priority 1 &bull; Membership Onboarding</span>
+      <h2>Join Share a Smile</h2>
+      <p>Register first to join the member roll, then proceed straight to the official WhatsApp group on the next step.</p>
     </div>
-    <div class="grid">
-      <div class="card">
-        <img src="mentorship.jpg" alt="Community mentorship and guidance" />
-        <div class="card-body">
-          <h3>Mentorship &amp; Guidance</h3>
-          <p>Supporting students and younger learners with practical guidance, academic encouragement, and positive life choices.</p>
+    <div class="form-box">
+      <div id="joinFeedback" class="alert-box sas-hidden"></div>
+      <form id="joinForm" onsubmit="handleJoinSubmit(event)">
+        <div class="form-group">
+          <label for="joinName">Full Name</label>
+          <input type="text" id="joinName" required placeholder="e.g. Rooney David Ogongo" />
         </div>
-      </div>
-      <div class="card">
-        <img src="trees.jpg" alt="Environmental conservation and tree planting" />
-        <div class="card-body">
-          <h3>Service &amp; Sustainability</h3>
-          <p>Partnering on environmental conservation, clean-up drives, and community resilience projects around Nyandarua and Laikipia.</p>
+        <div class="form-group">
+          <label for="joinReg">Registration Number</label>
+          <input type="text" id="joinReg" required placeholder="e.g. ED/ART/1591/24" />
         </div>
-      </div>
-      <div class="card">
-        <img src="tote.jpg" alt="Club solidarity and community drives" />
-        <div class="card-body">
-          <h3>Comrade Welfare</h3>
-          <p>Standing together during emergencies, bereavement, or urgent needs so no member faces hardship alone.</p>
+        <div class="form-group">
+          <label for="joinPhone">Phone / WhatsApp Number</label>
+          <input type="tel" id="joinPhone" required placeholder="e.g. 0769529801" />
+        </div>
+        <div class="form-group">
+          <label for="joinInterest">Primary Area of Interest</label>
+          <select id="joinInterest">
+            <option value="Community Outreach">Community Outreach &amp; Visits</option>
+            <option value="Comrade Welfare">Comrade Welfare &amp; Solidarity</option>
+            <option value="Media & Publicity">Media, Photography &amp; Publicity</option>
+            <option value="Logistics & Projects">Logistics, Events &amp; Projects</option>
+          </select>
+        </div>
+        <button type="submit" class="btn" style="width: 100%;">Submit Membership Request</button>
+      </form>
+
+      <!-- Appears immediately after a new member registers -->
+      <div id="postJoinWhatsappBox" class="post-join-whatsapp-box sas-hidden">
+        <h4>Next Step: Join the Official WhatsApp Group</h4>
+        <p id="postJoinWelcomeText">Your membership request is recorded. Join our WhatsApp group now for meeting updates and outreach coordination:</p>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <a
+            id="postJoinWhatsappBtn"
+            href="https://chat.whatsapp.com/Dty1LdhdHwv1JTfGJETtdW"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-teal btn-sm"
+          >
+            Continue to WhatsApp Group &rarr;
+          </a>
+          <button type="button" class="btn btn-sm" onclick="copyWhatsappInvite()">Copy Invite Link</button>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- PRIORITY 2: Membership Verification -->
+  <section id="verify-membership" class="page-section">
+    <div class="section-heading">
+      <span class="priority-badge">Priority 2 &bull; Member Verification</span>
+      <h2>Verify Your Membership</h2>
+      <p>Confirm your official status in the Share a Smile Charity Club member register.</p>
+    </div>
+    <div class="verify-card">
+      <h3 style="color: var(--forest-900); font-size: 1.45rem; font-weight: 800; margin-bottom: 8px;">Registration Number Lookup</h3>
+      <p style="color: var(--slate-600); font-size: 0.94rem;">Enter your Laikipia University registration number to check your record.</p>
+      <div class="verify-row">
+        <input type="text" id="regInput" placeholder="e.g. ED/ART/1591/24" autocomplete="off" />
+        <button type="button" class="btn btn-teal" onclick="checkMembership()">Check Status</button>
+      </div>
+      <div id="verifyResult" class="verify-result sas-hidden"></div>
+    </div>
+  </section>
+
+  <!-- PRIORITY 3: Official WhatsApp Group -->
+  <section id="whatsapp-group" class="page-section">
+    <div class="section-heading">
+      <span class="priority-badge">Priority 3 &bull; Member Communication</span>
+      <h2>Official WhatsApp Group</h2>
+      <p>Stay connected with club announcements, outreach schedules, meeting reminders, and member coordination on WhatsApp.</p>
+    </div>
+    <div class="contribute-box">
+      <span class="mpesa-badge">MEMBER &amp; OUTREACH CHANNEL</span>
+      <h3 style="color: var(--teal-900); font-size: 1.35rem; font-weight: 800; margin-bottom: 6px;">Share a Smile Charity Club WhatsApp Group</h3>
+      <p style="color: var(--slate-700); font-size: 0.95rem; margin-bottom: 14px;">Click below to join directly or copy the official group invite link.</p>
+      <div class="form-group" style="margin-bottom: 14px;">
+        <label for="whatsappInviteUrl">WhatsApp Group Invite Link</label>
+        <input type="url" id="whatsappInviteUrl" value="https://chat.whatsapp.com/Dty1LdhdHwv1JTfGJETtdW" placeholder="https://chat.whatsapp.com/..." />
+      </div>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+        <a id="whatsappJoinLink" href="https://chat.whatsapp.com/Dty1LdhdHwv1JTfGJETtdW" target="_blank" rel="noopener noreferrer" class="btn btn-teal">Join WhatsApp Group</a>
+        <button type="button" class="btn" onclick="copyWhatsappInvite()">Copy Invite Link</button>
+      </div>
+      <div id="whatsappCopyStatus" style="margin-top: 10px; font-size: 0.9rem; font-weight: 700; color: var(--success-text);"></div>
+    </div>
+  </section>
+
+  <!-- PRIORITY 4: Support & Contributions -->
+  <section id="contribute" class="page-section">
+    <div class="section-heading">
+      <span class="priority-badge">Priority 4 &bull; Resource Mobilization</span>
+      <h2>Support Our Mission</h2>
+      <p>Contributions go directly toward outreach supplies, logistics, and member welfare initiatives.</p>
+    </div>
+    <div class="contribute-box">
+      <span class="mpesa-badge">CLUB SUPPORT &amp; CONTRIBUTIONS</span>
+      <h3 style="color: var(--teal-900); font-size: 1.35rem; font-weight: 800;">Club Treasurer &amp; Official Coordination Line</h3>
+      <div class="mpesa-number">0758712751</div>
+      <p style="color: var(--slate-700); font-size: 0.92rem; max-width: 500px; margin: 0 auto 12px;">Treasurer: <strong>Lewis Ogachi</strong> &bull; Chairperson Desk: <strong>0769529801</strong></p>
+      <button type="button" class="btn btn-teal btn-sm" onclick="copyContributionNumber()">Copy Number</button>
+      <div id="copyStatus" style="margin-top: 10px; font-size: 0.88rem; font-weight: 700; color: var(--success-text);"></div>
+    </div>
+  </section>
+
+  <!-- PRIORITY 5: Outreach & Merchandise -->
   <section id="events" class="page-section">
     <div class="section-heading">
+      <span class="priority-badge">Priority 5 &bull; Field Action &amp; Apparel</span>
       <h2>Outreach &amp; Club Merchandise</h2>
       <p>Every outreach drive and branded apparel order helps fund supplies, welfare support, and community visits.</p>
     </div>
@@ -796,90 +936,42 @@
     </div>
   </section>
 
-  <section id="verify-membership" class="page-section">
-    <div class="verify-card">
-      <h2 style="color: var(--forest-900); font-size: 1.65rem; font-weight: 800; margin-bottom: 8px;">Verify Your Membership</h2>
-      <p style="color: var(--slate-600); font-size: 0.94rem;">Enter your Laikipia University registration number to confirm your official status in the Share a Smile Charity Club register.</p>
-      <div class="verify-row">
-        <input type="text" id="regInput" placeholder="e.g. ED/ART/1591/24" autocomplete="off" />
-        <button type="button" class="btn btn-teal" onclick="checkMembership()">Check Status</button>
-      </div>
-      <div id="verifyResult" class="verify-result sas-hidden"></div>
-    </div>
-  </section>
-
-  <section id="join" class="page-section">
+  <!-- PRIORITY 6: Mission & Pillars -->
+  <section id="about" class="page-section">
     <div class="section-heading">
-      <h2>Join Share a Smile</h2>
-      <p>Submit your details to request registration into the Share a Smile Charity Club member roll.</p>
+      <span class="priority-badge">Priority 6 &bull; Mission &amp; Core Pillars</span>
+      <h2>Who We Are</h2>
+      <p>One Smile, One Heart, One Community. We unite students at Laikipia University to serve vulnerable households, mentor learners, and support fellow comrades in need.</p>
     </div>
-    <div class="form-box">
-      <div id="joinFeedback" class="alert-box sas-hidden"></div>
-      <form id="joinForm" onsubmit="handleJoinSubmit(event)">
-        <div class="form-group">
-          <label for="joinName">Full Name</label>
-          <input type="text" id="joinName" required placeholder="e.g. Rooney David Ogongo" />
+    <div class="grid">
+      <div class="card">
+        <img src="mentorship.jpg" alt="Community mentorship and guidance" />
+        <div class="card-body">
+          <h3>Mentorship &amp; Guidance</h3>
+          <p>Supporting students and younger learners with practical guidance, academic encouragement, and positive life choices.</p>
         </div>
-        <div class="form-group">
-          <label for="joinReg">Registration Number</label>
-          <input type="text" id="joinReg" required placeholder="e.g. ED/ART/1591/24" />
-        </div>
-        <div class="form-group">
-          <label for="joinPhone">Phone / WhatsApp Number</label>
-          <input type="tel" id="joinPhone" required placeholder="e.g. 0769529801" />
-        </div>
-        <div class="form-group">
-          <label for="joinInterest">Primary Area of Interest</label>
-          <select id="joinInterest">
-            <option value="Community Outreach">Community Outreach &amp; Visits</option>
-            <option value="Comrade Welfare">Comrade Welfare &amp; Solidarity</option>
-            <option value="Media & Publicity">Media, Photography &amp; Publicity</option>
-            <option value="Logistics & Projects">Logistics, Events &amp; Projects</option>
-          </select>
-        </div>
-        <button type="submit" class="btn" style="width: 100%;">Submit Membership Request</button>
-      </form>
-    </div>
-  </section>
-
-  <section id="contribute" class="page-section">
-    <div class="section-heading">
-      <h2>Support Our Mission</h2>
-      <p>Contributions go directly toward outreach supplies, logistics, and member welfare initiatives.</p>
-    </div>
-    <div class="contribute-box">
-      <span class="mpesa-badge">CLUB SUPPORT &amp; CONTRIBUTIONS</span>
-      <h3 style="color: var(--teal-900); font-size: 1.35rem; font-weight: 800;">Club Treasurer &amp; Official Coordination Line</h3>
-      <div class="mpesa-number">0758712751</div>
-      <p style="color: var(--slate-700); font-size: 0.92rem; max-width: 500px; margin: 0 auto 12px;">Treasurer: <strong>Lewis Ogachi</strong> &bull; Chairperson Desk: <strong>0769529801</strong></p>
-      <button type="button" class="btn btn-teal btn-sm" onclick="copyContributionNumber()">Copy Number</button>
-      <div id="copyStatus" style="margin-top: 10px; font-size: 0.88rem; font-weight: 700; color: var(--success-text);"></div>
-    </div>
-  </section>
-
-  <section id="whatsapp-group" class="page-section">
-    <div class="section-heading">
-      <h2>Official WhatsApp Group</h2>
-      <p>Stay connected with club announcements, outreach schedules, meeting reminders, and member coordination on WhatsApp.</p>
-    </div>
-    <div class="contribute-box">
-      <span class="mpesa-badge">MEMBER &amp; OUTREACH CHANNEL</span>
-      <h3 style="color: var(--teal-900); font-size: 1.35rem; font-weight: 800; margin-bottom: 6px;">Share a Smile Charity Club WhatsApp Group</h3>
-      <p style="color: var(--slate-700); font-size: 0.95rem; margin-bottom: 14px;">Paste or update your official WhatsApp group invite link below if needed, or click to open WhatsApp directly.</p>
-      <div class="form-group" style="margin-bottom: 14px;">
-        <label for="whatsappInviteUrl">WhatsApp Group Invite Link</label>
-        <input type="url" id="whatsappInviteUrl" value="https://chat.whatsapp.com/ShareASmileCharityClub" placeholder="https://chat.whatsapp.com/..." />
       </div>
-      <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
-        <a id="whatsappJoinLink" href="https://chat.whatsapp.com/ShareASmileCharityClub" target="_blank" rel="noopener noreferrer" class="btn btn-teal">Join WhatsApp Group</a>
-        <button type="button" class="btn" onclick="copyWhatsappInvite()">Copy Invite Link</button>
+      <div class="card">
+        <img src="trees.jpg" alt="Environmental conservation and tree planting" />
+        <div class="card-body">
+          <h3>Service &amp; Sustainability</h3>
+          <p>Partnering on environmental conservation, clean-up drives, and community resilience projects around Nyandarua and Laikipia.</p>
+        </div>
       </div>
-      <div id="whatsappCopyStatus" style="margin-top: 10px; font-size: 0.9rem; font-weight: 700; color: var(--success-text);"></div>
+      <div class="card">
+        <img src="tote.jpg" alt="Club solidarity and community drives" />
+        <div class="card-body">
+          <h3>Comrade Welfare</h3>
+          <p>Standing together during emergencies, bereavement, or urgent needs so no member faces hardship alone.</p>
+        </div>
+      </div>
     </div>
   </section>
 
+  <!-- PRIORITY 7: Executive Governance Portal -->
   <section id="executive-governance-portal" class="page-section">
     <div class="section-heading">
+      <span class="priority-badge">Priority 7 &bull; Leadership &amp; Governance</span>
       <h2>Executive Governance Portal</h2>
       <p>Dedicated workspace for the 2026/2027 Executive Committee and Faculty Patron. Each official signs in to access their own assigned office workspace.</p>
     </div>
@@ -934,6 +1026,7 @@
     </div>
   </section>
 
+  <!-- 2027 Calendar Modal -->
   <div id="sas-calendar-modal" class="sas-modal-backdrop" onclick="closeSasCalendarOutside(event)">
     <div class="sas-modal-card">
       <div class="sas-modal-head">
@@ -973,6 +1066,7 @@
     </div>
   </div>
 
+  <!-- Chairperson Vault Modal -->
   <div id="chairVaultModal" class="sas-modal-backdrop" onclick="closeChairVaultOutside(event)">
     <div class="sas-modal-card">
       <div class="sas-modal-head">
@@ -1011,6 +1105,8 @@
   <script>
     (function () {
       "use strict";
+
+      const OFFICIAL_WHATSAPP_URL = "https://chat.whatsapp.com/Dty1LdhdHwv1JTfGJETtdW";
 
       const BASE_MEMBERS = {
         "ED/ART/3618/24": "Abigael Wanjiru", "ED/ART/1671/24": "Brian James", "ED/ART/1670/24": "Caleb Mbata Orobo",
@@ -1137,6 +1233,12 @@
         return String(val || "").trim().toUpperCase().replace(/\s+/g, "");
       }
 
+      function getWhatsappUrl() {
+        const inputEl = document.getElementById("whatsappInviteUrl");
+        const val = inputEl ? inputEl.value.trim() : "";
+        return val || OFFICIAL_WHATSAPP_URL;
+      }
+
       function getAllMembers() {
         const merged = Object.assign({}, BASE_MEMBERS);
         state.joinRequests.forEach(function (req) {
@@ -1206,28 +1308,49 @@
         const phone = (document.getElementById("joinPhone").value || "").trim();
         const interest = document.getElementById("joinInterest").value || "Community Outreach";
         if (!name || !regNo || !phone) return;
+
         state.joinRequests.unshift({ id: "req_" + Date.now(), name: name, regNo: regNo, phone: phone, interest: interest });
         saveState();
         updateMemberCounter();
+
         const fbEl = document.getElementById("joinFeedback");
         if (fbEl) {
           fbEl.className = "alert-box alert-success";
-          fbEl.textContent = "Request recorded for " + name + " (" + regNo + ").";
+          fbEl.textContent = "Registration recorded for " + name + " (" + regNo + ").";
         }
+
+        const waUrl = getWhatsappUrl();
+        const postBox = document.getElementById("postJoinWhatsappBox");
+        const postBtn = document.getElementById("postJoinWhatsappBtn");
+        const postText = document.getElementById("postJoinWelcomeText");
+
+        if (postBtn) postBtn.href = waUrl;
+        if (postText) {
+          postText.textContent = "Welcome, " + name + " (" + regNo + ")! Your membership request is saved. Tap below to join the official WhatsApp group next:";
+        }
+        if (postBox) {
+          postBox.classList.remove("sas-hidden");
+          postBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+
         event.target.reset();
       };
 
       const waInputEl = document.getElementById("whatsappInviteUrl");
       const waAnchorEl = document.getElementById("whatsappJoinLink");
-      if (waInputEl && waAnchorEl) {
+      const postJoinBtnEl = document.getElementById("postJoinWhatsappBtn");
+      if (waInputEl) {
         waInputEl.addEventListener("input", function () {
-          waAnchorEl.href = waInputEl.value.trim() || "https://chat.whatsapp.com/";
+          const nextUrl = getWhatsappUrl();
+          if (waAnchorEl) waAnchorEl.href = nextUrl;
+          if (postJoinBtnEl) postJoinBtnEl.href = nextUrl;
         });
       }
 
       window.copyWhatsappInvite = function () {
-        const link = (waInputEl ? waInputEl.value.trim() : "") || "https://chat.whatsapp.com/";
+        const link = getWhatsappUrl();
         if (waAnchorEl) waAnchorEl.href = link;
+        if (postJoinBtnEl) postJoinBtnEl.href = link;
         const statusEl = document.getElementById("whatsappCopyStatus");
         if (navigator.clipboard && navigator.clipboard.writeText) {
           navigator.clipboard.writeText(link).then(function () {
