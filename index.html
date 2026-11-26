@@ -1103,6 +1103,35 @@
           </a>
         </div>
       </div>
+      <div class="card" style="max-width: 720px; margin-top: 20px; border-top: 4px solid var(--amber-500);">
+        <h3>Existing Members — Complete M-Pesa Payment</h3>
+        <p style="font-size: 0.9rem; color: var(--ink-700); margin-bottom: 14px;">
+          Already on the club register and haven&apos;t submitted an M-Pesa reference yet? Search your name, registration number, or phone number, select your fee plan, and enter your <strong>M-Pesa Reference Number</strong> to finish.
+        </p>
+
+        <form id="existingPayForm" class="form-grid" novalidate>
+          <div class="field full">
+            <label for="existingLookup">Find Existing Member (Name, Reg. No., or Phone) *</label>
+            <input type="text" id="existingLookup" placeholder="e.g. Cyprian King'oina or ED/ART/1713/24 or 0796580442" required />
+          </div>
+          <div class="field">
+            <label for="existingFeePlan">Fee / Subscription Option *</label>
+            <select id="existingFeePlan">
+              <option value="KES 100 One-Time Registration Fee" data-amount="KES 100">KES 100 One-Time Registration Fee</option>
+              <option value="KES 100 One-Time + KES 50 / Semester Subscription" data-amount="KES 150">KES 100 One-Time + KES 50 / Semester Subscription</option>
+              <option value="KES 50 / Semester Subscription Option" data-amount="KES 50">KES 50 / Semester Subscription Option</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="existingMpesaRef">M-Pesa Reference Number *</label>
+            <input type="text" id="existingMpesaRef" placeholder="e.g. TKL89ABC12" maxlength="14" style="text-transform: uppercase;" required />
+          </div>
+          <div class="field full">
+            <button type="submit" id="existingPayBtn" class="btn btn-amber">Submit M-Pesa Ref &amp; Mark Paid</button>
+          </div>
+        </form>
+        <div id="existingPayMsg" class="msg-note"></div>
+      </div>
     </div>
   </section>
 
@@ -2052,6 +2081,66 @@
           btn.href = WA_URL;
           joinForm.reset();
           updateFeeSummary();
+        });
+      }
+
+      // 1b. Existing Members Who Haven't Paid Yet — Submit M-Pesa Reference to Finish
+      const existingPayForm = document.getElementById("existingPayForm");
+      if (existingPayForm) {
+        existingPayForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          const lookupRaw = (document.getElementById("existingLookup").value || "").trim();
+          const lookupLower = lookupRaw.toLowerCase();
+          const lookupClean = normalizeReg(lookupRaw);
+          const lookupDigits = lookupRaw.replace(/[^0-9]/g, "");
+          const feePlanEl = document.getElementById("existingFeePlan");
+          const feePlan = feePlanEl ? feePlanEl.value : "KES 100 One-Time Registration Fee";
+          const refInput = document.getElementById("existingMpesaRef");
+          const mpesaRef = refInput ? refInput.value.trim().toUpperCase().replace(/[^A-Z0-9]/g, "") : "";
+          const msgEl = document.getElementById("existingPayMsg");
+
+          if (!lookupRaw) {
+            msgEl.className = "msg-note msg-err";
+            msgEl.textContent = "Please enter your name, registration number, or phone number.";
+            return;
+          }
+
+          if (!mpesaRef || !/^[A-Z0-9]{8,14}$/.test(mpesaRef)) {
+            msgEl.className = "msg-note msg-err";
+            msgEl.textContent = "Please enter a valid M-Pesa Reference Number (8–14 letters/digits, e.g., TKL89ABC12).";
+            if (refInput) refInput.focus();
+            return;
+          }
+
+          const idx = state.members.findIndex(function (m) {
+            const regHit =
+              (m.reg && (m.reg.toLowerCase().includes(lookupLower) || (lookupClean.length >= 3 && normalizeReg(m.reg).includes(lookupClean)))) ||
+              (m.altReg && (m.altReg.toLowerCase().includes(lookupLower) || (lookupClean.length >= 3 && normalizeReg(m.altReg).includes(lookupClean))));
+            const nameHit = m.name && m.name.toLowerCase().includes(lookupLower);
+            const mDigits = m.phone ? String(m.phone).replace(/[^0-9]/g, "") : "";
+            const phoneHit = lookupDigits.length >= 4 && mDigits.includes(lookupDigits);
+            return regHit || nameHit || phoneHit;
+          });
+
+          if (idx < 0) {
+            msgEl.className = "msg-note msg-err";
+            msgEl.textContent = "No existing member matched '" + lookupRaw + "'. Use the New Member Registration form above to register first.";
+            return;
+          }
+
+          state.members[idx] = Object.assign({}, state.members[idx], {
+            feePlan: feePlan,
+            mpesaRef: mpesaRef,
+            paymentStatus: "Paid — Ref " + mpesaRef,
+            paidAt: new Date().toLocaleString()
+          });
+          saveState();
+
+          msgEl.className = "msg-note msg-ok";
+          msgEl.textContent =
+            "Payment recorded for " + state.members[idx].name + " (" + (state.members[idx].reg || "—") + ") • " +
+            feePlan + " • M-Pesa Ref: " + mpesaRef + ".";
+          existingPayForm.reset();
         });
       }
 
