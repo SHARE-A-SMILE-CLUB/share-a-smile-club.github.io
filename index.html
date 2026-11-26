@@ -925,6 +925,2305 @@
   });
 </script>
 <!-- ===== END MEMBERSHIP VERIFICATION SECTION ===== -->
+  <section id="executive-governance-section" class="sas-exec-section" aria-labelledby="sas-exec-heading">
+  <style>
+    /* Scoped exclusively to .sas-exec-section so main website styles are untouched */
+    .sas-exec-section,
+    .sas-exec-section *,
+    .sas-exec-section *::before,
+    .sas-exec-section *::after {
+      box-sizing: border-box;
+    }
+
+    .sas-exec-section {
+      --sas-forest: #064e3b;
+      --sas-forest-mid: #047857;
+      --sas-forest-light: #ecfdf5;
+      --sas-gold: #b45309;
+      --sas-gold-bright: #d97706;
+      --sas-gold-light: #fffbeb;
+      --sas-ink: #0f172a;
+      --sas-muted: #475569;
+      --sas-surface: #ffffff;
+      --sas-bg: #f8fafc;
+      --sas-border: #cbd5e1;
+      --sas-danger: #991b1b;
+      --sas-danger-bg: #fef2f2;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--sas-ink);
+      background: var(--sas-bg);
+      padding: 48px 16px;
+      line-height: 1.5;
+      scroll-margin-top: 72px;
+    }
+
+    .sas-exec-section .sas-wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      background: var(--sas-surface);
+      border: 1px solid var(--sas-border);
+      border-radius: 16px;
+      box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+      overflow: hidden;
+    }
+
+    /* Header Banner */
+    .sas-exec-section .sas-header {
+      background: linear-gradient(135deg, #022c22 0%, #064e3b 65%, #111827 100%);
+      color: #ffffff;
+      padding: 28px 24px;
+      border-bottom: 4px solid var(--sas-gold-bright);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .sas-exec-section .sas-kicker {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #fde68a;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+    }
+
+    .sas-exec-section .sas-title {
+      margin: 0;
+      font-size: clamp(22px, 3vw, 30px);
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+    }
+
+    .sas-exec-section .sas-subtitle {
+      margin: 6px 0 0;
+      font-size: 14px;
+      color: #d1fae5;
+      max-width: 720px;
+    }
+
+    .sas-exec-section .sas-header-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    /* Buttons */
+    .sas-exec-section .sas-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: background-color 0.15s ease, transform 0.1s ease, border-color 0.15s ease;
+      text-decoration: none;
+    }
+
+    .sas-exec-section .sas-btn:active {
+      transform: scale(0.99);
+    }
+
+    .sas-exec-section .sas-btn-primary {
+      background: var(--sas-forest-mid);
+      color: #ffffff;
+      border-color: var(--sas-forest-mid);
+    }
+
+    .sas-exec-section .sas-btn-primary:hover {
+      background: var(--sas-forest);
+    }
+
+    .sas-exec-section .sas-btn-gold {
+      background: #fbbf24;
+      color: #0f172a;
+      border-color: #f59e0b;
+    }
+
+    .sas-exec-section .sas-btn-gold:hover {
+      background: #f59e0b;
+    }
+
+    .sas-exec-section .sas-btn-ghost {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .sas-exec-section .sas-btn-ghost:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .sas-exec-section .sas-btn-outline {
+      background: #ffffff;
+      color: var(--sas-ink);
+      border-color: var(--sas-border);
+    }
+
+    .sas-exec-section .sas-btn-outline:hover {
+      background: #f1f5f9;
+      border-color: #94a3b8;
+    }
+
+    .sas-exec-section .sas-btn-danger {
+      background: var(--sas-danger-bg);
+      color: var(--sas-danger);
+      border-color: #fca5a5;
+    }
+
+    .sas-exec-section .sas-btn-danger:hover {
+      background: #fee2e2;
+    }
+
+    .sas-exec-section .sas-btn-sm {
+      padding: 6px 11px;
+      font-size: 12px;
+      border-radius: 8px;
+    }
+
+    /* Mode Switcher Bar */
+    .sas-exec-section .sas-toolbar {
+      background: #f1f5f9;
+      border-bottom: 1px solid var(--sas-border);
+      padding: 14px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .sas-exec-section .sas-tabs {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .sas-exec-section .sas-tab {
+      padding: 9px 15px;
+      border-radius: 10px;
+      border: 1px solid var(--sas-border);
+      background: #ffffff;
+      color: var(--sas-ink);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .sas-exec-section .sas-tab[aria-selected="true"] {
+      background: var(--sas-forest);
+      color: #ffffff;
+      border-color: var(--sas-forest);
+    }
+
+    .sas-exec-section .sas-status-pill {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--sas-gold-light);
+      color: #78350f;
+      border: 1px solid #fcd34d;
+    }
+
+    .sas-exec-section .sas-status-pill.locked-active {
+      background: var(--sas-forest-light);
+      color: var(--sas-forest);
+      border-color: #6ee7b7;
+    }
+
+    /* Body & Collapsible Container */
+    .sas-exec-section .sas-body {
+      padding: 24px;
+    }
+
+    .sas-exec-section .sas-collapsed-note {
+      background: var(--sas-gold-light);
+      border: 1px solid #fcd34d;
+      color: #78350f;
+      padding: 16px 20px;
+      border-radius: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* Embed Guide Drawer */
+    .sas-exec-section .sas-guide-box {
+      background: #0f172a;
+      color: #f8fafc;
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-bottom: 20px;
+      border: 1px solid #334155;
+    }
+
+    .sas-exec-section .sas-guide-box h3 {
+      margin: 0 0 8px;
+      font-size: 15px;
+      color: #fbbf24;
+    }
+
+    .sas-exec-section .sas-guide-box p,
+    .sas-exec-section .sas-guide-box li {
+      font-size: 13px;
+      color: #e2e8f0;
+      margin: 4px 0;
+    }
+
+    .sas-exec-section .sas-guide-box ol {
+      margin: 8px 0 0;
+      padding-left: 20px;
+    }
+
+    .sas-exec-section .sas-guide-box code {
+      background: rgba(255, 255, 255, 0.12);
+      padding: 2px 6px;
+      border-radius: 5px;
+      color: #fde68a;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 12px;
+    }
+
+    /* Search & Filter Row */
+    .sas-exec-section .sas-filter-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 640px) {
+      .sas-exec-section .sas-filter-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .sas-exec-section .sas-input,
+    .sas-exec-section .sas-select,
+    .sas-exec-section .sas-textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #94a3b8;
+      border-radius: 10px;
+      background: #ffffff;
+      color: var(--sas-ink);
+      font-size: 14px;
+      font-family: inherit;
+    }
+
+    .sas-exec-section .sas-input:focus,
+    .sas-exec-section .sas-select:focus,
+    .sas-exec-section .sas-textarea:focus {
+      outline: 2px solid var(--sas-forest-mid);
+      outline-offset: 1px;
+      border-color: var(--sas-forest-mid);
+    }
+
+    /* Directory Grid & Cards */
+    .sas-exec-section .sas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 16px;
+    }
+
+    .sas-exec-section .sas-card {
+      background: #ffffff;
+      border: 1px solid var(--sas-border);
+      border-radius: 12px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      border-top: 4px solid var(--sas-forest);
+    }
+
+    .sas-exec-section .sas-badge-num {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--sas-forest);
+      background: var(--sas-forest-light);
+      border: 1px solid #a7f3d0;
+      padding: 2px 8px;
+      border-radius: 999px;
+      margin-bottom: 6px;
+    }
+
+    .sas-exec-section .sas-position {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--sas-gold);
+      margin: 0;
+    }
+
+    .sas-exec-section .sas-name {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--sas-ink);
+      margin: 3px 0 8px;
+    }
+
+    .sas-exec-section .sas-meta-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-size: 13px;
+      color: #334155;
+    }
+
+    .sas-exec-section .sas-meta-list li {
+      margin-bottom: 4px;
+    }
+
+    .sas-exec-section .sas-pending-reg {
+      color: #92400e;
+      background: #fef3c7;
+      padding: 1px 6px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    .sas-exec-section .sas-mandate {
+      margin: 10px 0 0;
+      padding-top: 10px;
+      border-top: 1px dashed var(--sas-border);
+      font-size: 13px;
+      color: var(--sas-muted);
+    }
+
+    /* Sign-In Card */
+    .sas-exec-section .sas-auth-panel {
+      max-width: 580px;
+      margin: 0 auto;
+      background: #f8fafc;
+      border: 1px solid var(--sas-border);
+      border-radius: 14px;
+      padding: 24px;
+    }
+
+    .sas-exec-section .sas-auth-panel h3 {
+      margin: 0 0 6px;
+      font-size: 20px;
+      color: var(--sas-ink);
+    }
+
+    .sas-exec-section .sas-form-group {
+      margin-bottom: 14px;
+    }
+
+    .sas-exec-section .sas-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #1e293b;
+      margin-bottom: 6px;
+    }
+
+    .sas-exec-section .sas-alert {
+      padding: 12px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .sas-exec-section .sas-alert-error {
+      background: var(--sas-danger-bg);
+      color: var(--sas-danger);
+      border: 1px solid #fca5a5;
+    }
+
+    .sas-exec-section .sas-alert-success {
+      background: var(--sas-forest-light);
+      color: var(--sas-forest);
+      border: 1px solid #6ee7b7;
+    }
+
+    /* Single-Office Desk Layout */
+    .sas-exec-section .sas-desk-banner {
+      background: #022c22;
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      border-left: 6px solid #fbbf24;
+    }
+
+    .sas-exec-section .sas-desk-banner h3 {
+      margin: 2px 0 4px;
+      font-size: 20px;
+      color: #ffffff;
+    }
+
+    .sas-exec-section .sas-desk-banner p {
+      margin: 0;
+      font-size: 13px;
+      color: #d1fae5;
+    }
+
+    .sas-exec-section .sas-desk-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    .sas-exec-section .sas-desk-box {
+      background: #ffffff;
+      border: 1px solid var(--sas-border);
+      border-radius: 12px;
+      padding: 18px;
+    }
+
+    .sas-exec-section .sas-desk-box h4 {
+      margin: 0 0 12px;
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--sas-forest);
+      padding-bottom: 8px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .sas-exec-section .sas-item-list {
+      list-style: none;
+      margin: 14px 0 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .sas-exec-section .sas-item-row {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 10px 12px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 13px;
+    }
+
+    .sas-exec-section .sas-item-title {
+      font-weight: 700;
+      color: var(--sas-ink);
+    }
+
+    .sas-exec-section .sas-item-sub {
+      font-size: 12px;
+      color: var(--sas-muted);
+      margin-top: 2px;
+    }
+
+    .sas-exec-section .sas-table-wrap {
+      overflow-x: auto;
+      margin-top: 12px;
+    }
+
+    .sas-exec-section table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .sas-exec-section th,
+    .sas-exec-section td {
+      padding: 9px 10px;
+      border-bottom: 1px solid #e2e8f0;
+      text-align: left;
+    }
+
+    .sas-exec-section th {
+      background: #f1f5f9;
+      font-weight: 800;
+      color: var(--sas-ink);
+    }
+
+    .sas-exec-section .sas-inline-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .sas-exec-section .sas-footer-note {
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid var(--sas-border);
+      font-size: 12px;
+      color: var(--sas-muted);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .sas-exec-section .sas-hidden {
+      display: none !important;
+    }
+  </style>
+
+  <div class="sas-wrap">
+    <!-- Section Header -->
+    <header class="sas-header">
+      <div>
+        <span class="sas-kicker">Laikipia University • Office of the Dean of Students (2026/2027)</span>
+        <h2 id="sas-exec-heading" class="sas-title">Share a Smile Charity Club — Official Executive Governance</h2>
+        <p class="sas-subtitle">
+          Constitutional Executive Committee directory and single-office officer desks for the 2026/2027 academic year.
+        </p>
+      </div>
+      <div class="sas-header-actions">
+        <button type="button" id="sasChairVaultBtn" class="sas-btn sas-btn-gold sas-btn-sm">
+          Chairperson PIN &amp; WhatsApp Vault
+        </button>
+        <button type="button" id="sasToggleGuideBtn" class="sas-btn sas-btn-ghost sas-btn-sm">
+          Where to Place in index.html
+        </button>
+        <button type="button" id="sasCopySnippetBtn" class="sas-btn sas-btn-ghost sas-btn-sm">
+          Copy Embed Snippet
+        </button>
+        <button type="button" id="sasCollapseSectionBtn" class="sas-btn sas-btn-ghost sas-btn-sm" aria-expanded="true">Collapse Section</button>
+      </div>
+    </header>
+
+    <!-- View Switcher Toolbar -->
+    <div class="sas-toolbar" role="region" aria-label="Executive governance view switcher">
+      <div class="sas-tabs" role="tablist">
+        <button type="button" id="sasTabDirectory" class="sas-tab" role="tab" aria-selected="true">
+          (a) Official Executive Directory &amp; Patron
+        </button>
+        <button type="button" id="sasTabDesk" class="sas-tab" role="tab" aria-selected="false">
+          (b) My Single-Office Desk
+        </button>
+      </div>
+      <span id="sasSessionBadge" class="sas-status-pill">Public Directory Mode • Office Locked</span>
+    </div>
+
+    <!-- Collapsible Section Body -->
+    <div id="sasSectionBody" class="sas-body">
+
+      <!-- Embed Placement Guide (Toggleable) -->
+      <div id="sasEmbedGuide" class="sas-guide-box">
+        <h3>How &amp; Where to Embed This Section Inside index.html</h3>
+        <p>
+          This entire block is self-contained inside <code>&lt;section id="executive-governance-section" class="sas-exec-section"&gt;</code> with scoped CSS and an IIFE script so it can be pasted directly into <code>index.html</code> alongside your existing sections.
+        </p>
+        <ol>
+          <li>Open your main site's <code>index.html</code> file and locate the end of your main content (just above <code>&lt;/footer&gt;</code>).</li>
+          <li>Paste this <code>&lt;section id="executive-governance-section" class="sas-exec-section"&gt;...&lt;/section&gt;</code> block as its own distinct section.</li>
+          <li>Add a navigation or footer link pointing to <code>#executive-governance-section</code> so visitors and officials can jump to it easily.</li>
+          <li>PINs are never displayed publicly or on the officer sign-in form; only the Chairperson can open the Master PIN &amp; WhatsApp Vault modal to copy or send each official's login details.</li>
+        </ol>
+        <div id="sasSnippetFeedback" class="sas-item-sub" style="color:#fde68a; margin-top:8px;"></div>
+      </div>
+
+      <!-- VIEW (a): OFFICIAL EXECUTIVE DIRECTORY & PATRON -->
+      <div id="sasDirectoryView">
+        <div class="sas-filter-row">
+          <input type="search" id="sasSearchInput" class="sas-input" placeholder="Search by official name, position, Reg. No. (e.g. ED/ART/1591/24), or phone number..." aria-label="Search executive committee officials and patron">
+          <select id="sasFilterSelect" class="sas-select" aria-label="Filter executive committee officials">
+            <option value="ALL">All 10 Executive Offices + Patron</option>
+            <option value="CORE">Top Leadership (Chair, Vice Chair, SG, Asst SG, Treasurer)</option>
+            <option value="OPS_PR">Operations, Publicity &amp; Projects</option>
+            <option value="WELFARE_PARTNERS">Welfare &amp; Partnerships</option>
+            <option value="PATRON">Faculty Patron (Dr. Hannington Mala)</option>
+            <option value="PENDING_REG">Pending Reg. No. Check</option>
+          </select>
+        </div>
+
+        <div id="sasDirectoryGrid" class="sas-grid"><article class="sas-card"><div><span class="sas-badge-num">Office #1 • 2026/2027</span><p class="sas-position">Chairperson</p><h3 class="sas-name">Rooney Ogongo</h3><ul class="sas-meta-list"><li><strong>Reg. / Ref ID:</strong> <strong>ED/ART/1591/24</strong></li><li><strong>Phone No.:</strong> <a href="tel:0769529801" style="color:#047857;font-weight:700;text-decoration:none;">0769529801</a></li><li><strong>Office ID:</strong> <code>CHAIR-01</code></li></ul><p class="sas-mandate">Presides over general and executive meetings, leads Dean of Students registration compliance, and provides final executive sign-off.</p></div><div style="display:flex;gap:8px;flex-wrap:wrap;"><button type="button" class="sas-btn sas-btn-primary sas-btn-sm" data-goto-login="chairperson">Open My Office Sign-In</button></div></article><article class="sas-card"><div><span class="sas-badge-num">Office #2 • 2026/2027</span><p class="sas-position">Vice Chairperson</p><h3 class="sas-name">Ivy Bundi</h3><ul class="sas-meta-list"><li><strong>Reg. / Ref ID:</strong> <strong>ED/ART/4377/25</strong></li><li><strong>Phone No.:</strong> <a href="tel:0725729609" style="color:#047857;font-weight:700;text-decoration:none;">0725729609</a></li><li><strong>Office ID:</strong> <code>VCHAIR-02</code></li></ul><p class="sas-mandate">Deputizes the Chairperson, coordinates internal committee alignment, and oversees constitutional and governance standards.</p></div><div style="display:flex;gap:8px;flex-wrap:wrap;"><button type="button" class="sas-btn sas-btn-primary sas-btn-sm" data-goto-login="vice_chair">Open My Office Sign-In</button></div></article><article class="sas-card"><div><span class="sas-badge-num">Office #3 • 2026/2027</span><p class="sas-position">Secretary General</p><h3 class="sas-name">Immanuel Mesocho</h3><ul class="sas-meta-list"><li><strong>Reg. / Ref ID:</strong> <strong>BE/EST/2495/24</strong></li><li><strong>Phone No.:</strong> <a href="tel:0758523759" style="color:#047857;font-weight:700;text-decoration:none;">0758523759</a></li><li><strong>Office ID:</strong> <code>SECGEN-03</code></li></ul><p class="sas-mandate">Keeps official club minutes, manages member attendance records, and handles formal correspondence with university administration.</p></div><div style="display:flex;gap:8px;flex-wrap:wrap;"><button type="button" class="sas-btn sas-btn-primary sas-btn-sm" data-goto-login="sec_gen">Open My Office Sign-In</button></div></article><article class="sas-card"><div><span class="sas-badge-num">Office #4 • 2026/2027</span><p class="sas-position">Assistant Secretary</p><h3 class="sas-name">Silvia Osore</h3><ul class="sas-meta-list"><li><strong>Reg. / Ref ID:</strong> <strong>ED/ART/1658/24</strong></li><li><strong>Phone No.:</strong> <a href="tel:0708563143" style="color:#047857;font-weight:700;text-decoration:none;">0708563143</a></li><li><strong>Office ID:</strong> <code>ASSTSEC-04</code></li></ul><p class="sas-mandate">Supports the Secretary General with minute drafting, archival filing, and maintaining the verified founding/general member registry.</p></div><div style="display:flex;gap:8px;flex-wrap:wrap;"><button type="button" class="sas-btn sas-btn-primary sas-btn-sm" data-goto-login="asst_sec">Open My Office Sign-In</button></div></article><article class="sas-card"><div><span class="sas-badge-num">Office #5 • 2026/2027</span><p class="sas-position">Treasurer</p><h3 class="sas-name">Lewis Ogachi</h3><ul class="sas-meta-list"><li><strong>Reg. / Ref ID:</strong> <strong>ED/ART/1807/24</strong></li><li><strong>Phone No.:</strong> <a href="tel:0758712751" style="color:#047857;font-weight:700;text-decoration:none;">0758712751</a></li><li><strong>Office ID:</strong> <code>TREAS-05</code></li></ul><p class="sas-mandate">Stewards club funds in KES, records inflows/outflows with receipt references, reviews requisitions, and prepares financial statements.</p></div><div style="display:flex;gap:8px;flex-wrap:wrap;"><button type="button" class="sas-btn sas-btn-primary sas-btn-sm" data-goto-login="treasurer">Open My Office Sign-In</button></div></article><article class="sas-card"><div><span class="sas-badge-num">Office #6 • 2026/2027</span><p class="sas-position">Organising Secretary</p><h3 class="sas-name">Ebenezar Kiproto</h3><ul class="sas-meta-list"><li><strong>Reg. / Ref ID:</strong> <span class="sas-pending-reg">Not Provided (Pending Reg. No.)</span></li><li><strong>Phone No.:</strong> <a href="tel:0113466743" style="color:#047857;font-weight:700;text-decoration:none;">0113466743</a></li><li><strong>Office ID:</strong> <code>ORGSEC-06</code></li></ul><p class="sas-mandate">Coordinates venues, ground logistics, event setup, and executive duty rosters for general meetings and campus activities.</p></div><div style="display:flex;gap:8px;flex-wrap:wrap;"><button type="button" class="sas-btn sas-btn-primary sas-btn-sm" data-goto-login="organising_sec">Open My Office Sign-In</button></div></article><article class="sas-card"><div><span class="sas-badge-num">Office #7 • 2026/2027</span><p class="sas-position">Publicity Officer</p><h3 class="sas-name">Caleb Orobo</h3><ul class="sas-meta-list"><li><strong>Reg. / Ref ID:</strong> <strong>ED/ART/1670/24</strong></li><li><strong>Phone No.:</strong> <a href="tel:0115940377" style="color:#047857;font-weight:700;text-decoration:none;">0115940377</a></li><li><strong>Office ID:</strong> <code>PUBOFF-07</code></li></ul><p class="sas-mandate">Drives campus announcements, media coverage, visual updates, and club merchandise tracking.</p></div><div style="display:flex;gap:8px;flex-wrap:wrap;"><button type="button" class="sas-btn sas-btn-primary sas-btn-sm" data-goto-login="publicity_officer">Open My Office Sign-In</button></div></article><article class="sas-card"><div><span class="sas-badge-num">Office #8 • 2026/2027</span><p class="sas-position">Projects Coordinator</p><h3 class="sas-name">Damaris Akinyi</h3><ul class="sas-meta-list"><li><strong>Reg. / Ref ID:</strong> <strong>ED/ART/1460/24</strong></li><li><strong>Phone No.:</strong> <a href="tel:0706846072" style="color:#047857;font-weight:700;text-decoration:none;">0706846072</a></li><li><strong>Office ID:</strong> <code>PROJ-08</code></li></ul><p class="sas-mandate">Plans and tracks community outreach projects, service milestones, and field execution timelines.</p></div><div style="display:flex;gap:8px;flex-wrap:wrap;"><button type="button" class="sas-btn sas-btn-primary sas-btn-sm" data-goto-login="projects_coord">Open My Office Sign-In</button></div></article><article class="sas-card"><div><span class="sas-badge-num">Office #9 • 2026/2027</span><p class="sas-position">Welfare Coordinator</p><h3 class="sas-name">Faith Matongo</h3><ul class="sas-meta-list"><li><strong>Reg. / Ref ID:</strong> <strong>ED/ART/1593/24</strong></li><li><strong>Phone No.:</strong> <a href="tel:0714388618" style="color:#047857;font-weight:700;text-decoration:none;">0714388618</a></li><li><strong>Office ID:</strong> <code>WELF-09</code></li></ul><p class="sas-mandate">Champions member care, peer solidarity, and student/community welfare support cases.</p></div><div style="display:flex;gap:8px;flex-wrap:wrap;"><button type="button" class="sas-btn sas-btn-primary sas-btn-sm" data-goto-login="welfare_coord">Open My Office Sign-In</button></div></article><article class="sas-card"><div><span class="sas-badge-num">Office #10 • 2026/2027</span><p class="sas-position">Partnership Coordinator</p><h3 class="sas-name">Rose Khaemba</h3><ul class="sas-meta-list"><li><strong>Reg. / Ref ID:</strong> <strong>ED/ART/0931/24</strong></li><li><strong>Phone No.:</strong> <a href="tel:0798872049" style="color:#047857;font-weight:700;text-decoration:none;">0798872049</a></li><li><strong>Office ID:</strong> <code>PART-10</code></li></ul><p class="sas-mandate">Builds external partnerships, sponsors, alumni links, and NGO/club collaborations.</p></div><div style="display:flex;gap:8px;flex-wrap:wrap;"><button type="button" class="sas-btn sas-btn-primary sas-btn-sm" data-goto-login="partnership_coord">Open My Office Sign-In</button></div></article><article class="sas-card"><div><span class="sas-badge-num">Faculty Patron • 2026/2027</span><p class="sas-position">Faculty Patron</p><h3 class="sas-name">Dr. Hannington Mala</h3><ul class="sas-meta-list"><li><strong>Reg. / Ref ID:</strong> <strong>LU/FAC/PATRON</strong></li><li><strong>Phone No.:</strong> <span>Faculty Advisory Desk</span></li><li><strong>Office ID:</strong> <code>PATRON-MALA</code></li></ul><p class="sas-mandate">Provides faculty mentorship, constitutional guidance, and institutional patronage endorsement for Laikipia University compliance.</p></div><div style="display:flex;gap:8px;flex-wrap:wrap;"><button type="button" class="sas-btn sas-btn-primary sas-btn-sm" data-goto-login="faculty_patron">Open My Office Sign-In</button></div></article></div>
+      </div>
+
+      <!-- VIEW (b): INDIVIDUAL OFFICER DESK ACCESS (STRICT SINGLE-OFFICE) -->
+      <div id="sasDeskView" class="sas-hidden">
+        <!-- Sign-In Form (Shown when not signed in to an office) -->
+        <div id="sasLoginPanel" class="sas-auth-panel">
+          <h3>Single-Office Sign-In</h3>
+          <p class="sas-item-sub" style="margin-bottom:16px;">
+            Enter your official <strong>Reg. Number</strong>, <strong>Phone No.</strong>, or <strong>Office ID</strong> along with your personal <strong>4-digit PIN</strong>. Your session will be strictly locked to your own single office.
+          </p>
+
+          <div id="sasAuthMessage" class="sas-alert sas-alert-error sas-hidden" role="alert"></div>
+
+          <form id="sasLoginForm">
+            <div class="sas-form-group">
+              <label for="sasLoginIdentifier" class="sas-label">Reg. Number, Phone No., or Office ID</label>
+              <input type="text" id="sasLoginIdentifier" class="sas-input" placeholder="e.g. ED/ART/1591/24, 0769529801, or PATRON-MALA" required="">
+            </div>
+
+            <div class="sas-form-group">
+              <label for="sasLoginPin" class="sas-label">Personal 4-Digit PIN</label>
+              <input type="password" id="sasLoginPin" class="sas-input" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" placeholder="Enter your 4-digit PIN" required="">
+            </div>
+
+            <div style="display:flex; flex-wrap:wrap; gap:10px; align-items:center;">
+              <button type="submit" class="sas-btn sas-btn-primary">
+                Sign In to My Office
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Authenticated Single-Office Workspace (Shown only after valid login) -->
+        <div id="sasActiveDeskPanel" class="sas-hidden"></div>
+      </div>
+
+      <!-- Institutional Footer Note -->
+      <div class="sas-footer-note">
+        <span>
+          <strong>Mandate Note:</strong> All ten constitutional executive offices and the Faculty Patron serve the Share a Smile Charity Club (Laikipia University) for the <strong>2026/2027 academic year</strong> under Office of the Dean of Students regulations.
+        </span>
+        <span>
+          Faculty Patron: Dr. Hannington Mala • Signatories: Rooney Ogongo (Chairperson) &amp; Immanuel Mesocho (Secretary General)
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHAIRPERSON-ONLY MASTER PIN & WHATSAPP DISPATCH MODAL -->
+  <div id="sasChairVaultModal" class="sas-hidden" role="dialog" aria-modal="true" aria-labelledby="sasVaultModalTitle" style="position:fixed;inset:0;z-index:9999;background:rgba(15,23,42,0.72);display:flex;align-items:center;justify-content:center;padding:16px;">
+    <div style="background:#ffffff;color:#0f172a;width:100%;max-width:820px;max-height:90vh;overflow-y:auto;border-radius:16px;border:2px solid #064e3b;box-shadow:0 25px 50px -12px rgba(0,0,0,0.45);padding:24px;">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;border-bottom:1px solid #e2e8f0;padding-bottom:14px;margin-bottom:16px;">
+        <div>
+          <span style="display:inline-block;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.06em;color:#92400e;background:#fef3c7;padding:3px 9px;border-radius:999px;">Chairperson Restricted Vault</span>
+          <h3 id="sasVaultModalTitle" style="margin:6px 0 2px;font-size:20px;font-weight:800;color:#0f172a;">Master PIN &amp; WhatsApp Credential Dispatch</h3>
+          <p style="margin:0;font-size:12px;color:#475569;">Only the Chairperson (Rooney Ogongo) with the Master PIN can view officer PINs and send formatted WhatsApp login details.</p>
+        </div>
+        <button type="button" id="sasCloseVaultBtn" class="sas-btn sas-btn-outline sas-btn-sm">Close</button>
+      </div>
+
+      <!-- Step 1: Chairperson Master PIN Gate -->
+      <div id="sasVaultGateBox" style="background:#f8fafc;border:1px solid #cbd5e1;border-radius:12px;padding:18px;">
+        <p style="margin:0 0 12px;font-size:13px;color:#334155;">
+          Enter the <strong>Chairperson Master PIN</strong> (default: <code>1591</code>) to unlock the Master PIN Vault.
+        </p>
+        <div id="sasVaultErrorMsg" class="sas-alert sas-alert-error sas-hidden"></div>
+        <form id="sasVaultUnlockForm" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+          <input type="password" id="sasMasterPinInput" class="sas-input" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" placeholder="Chairperson Master PIN" style="max-width:220px;" required="">
+          <button type="submit" class="sas-btn sas-btn-primary">Unlock Master PIN Vault</button>
+        </form>
+      </div>
+
+      <!-- Step 2: Unlocked Master PIN & WhatsApp Dispatch Table -->
+      <div id="sasVaultUnlockedBox" class="sas-hidden">
+        <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;background:#ecfdf5;border:1px solid #6ee7b7;border-radius:10px;padding:12px 14px;margin-bottom:14px;">
+          <span style="font-size:13px;font-weight:700;color:#064e3b;">Master Vault Unlocked — Chairperson (Rooney Ogongo)</span>
+          <button type="button" id="sasLockVaultBtn" class="sas-btn sas-btn-outline sas-btn-sm">Lock Vault</button>
+        </div>
+
+        <div id="sasVaultDispatchFeedback" class="sas-alert sas-alert-success sas-hidden"></div>
+
+        <div class="sas-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Office &amp; Official</th>
+                <th>Login ID / Phone</th>
+                <th>PIN</th>
+                <th>WhatsApp Dispatch</th>
+              </tr>
+            </thead>
+            <tbody id="sasVaultTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var STORAGE_KEY = "sas_lu_2026_2027_exec_desk_v2";
+      var CHAIR_MASTER_PIN = "1591";
+
+      // Official 10 Executive Committee Members + Faculty Patron (2026/2027 Academic Year)
+      var OFFICIALS = [
+        {
+          order: 1,
+          id: "chairperson",
+          group: "CORE",
+          position: "Chairperson",
+          name: "Rooney Ogongo",
+          regNo: "ED/ART/1591/24",
+          officeId: "CHAIR-01",
+          phone: "0769529801",
+          pin: "1591",
+          mandate: "Presides over general and executive meetings, leads Dean of Students registration compliance, and provides final executive sign-off."
+        },
+        {
+          order: 2,
+          id: "vice_chair",
+          group: "CORE",
+          position: "Vice Chairperson",
+          name: "Ivy Bundi",
+          regNo: "ED/ART/4377/25",
+          officeId: "VCHAIR-02",
+          phone: "0725729609",
+          pin: "4377",
+          mandate: "Deputizes the Chairperson, coordinates internal committee alignment, and oversees constitutional and governance standards."
+        },
+        {
+          order: 3,
+          id: "sec_gen",
+          group: "CORE",
+          position: "Secretary General",
+          name: "Immanuel Mesocho",
+          regNo: "BE/EST/2495/24",
+          officeId: "SECGEN-03",
+          phone: "0758523759",
+          pin: "2495",
+          mandate: "Keeps official club minutes, manages member attendance records, and handles formal correspondence with university administration."
+        },
+        {
+          order: 4,
+          id: "asst_sec",
+          group: "CORE",
+          position: "Assistant Secretary",
+          name: "Silvia Osore",
+          regNo: "ED/ART/1658/24",
+          officeId: "ASSTSEC-04",
+          phone: "0708563143",
+          pin: "1658",
+          mandate: "Supports the Secretary General with minute drafting, archival filing, and maintaining the verified founding/general member registry."
+        },
+        {
+          order: 5,
+          id: "treasurer",
+          group: "CORE",
+          position: "Treasurer",
+          name: "Lewis Ogachi",
+          regNo: "ED/ART/1807/24",
+          officeId: "TREAS-05",
+          phone: "0758712751",
+          pin: "1807",
+          mandate: "Stewards club funds in KES, records inflows/outflows with receipt references, reviews requisitions, and prepares financial statements."
+        },
+        {
+          order: 6,
+          id: "organising_sec",
+          group: "OPS_PR",
+          position: "Organising Secretary",
+          name: "Ebenezar Kiproto",
+          regNo: null,
+          officeId: "ORGSEC-06",
+          phone: "0113466743",
+          pin: "6743",
+          mandate: "Coordinates venues, ground logistics, event setup, and executive duty rosters for general meetings and campus activities."
+        },
+        {
+          order: 7,
+          id: "publicity_officer",
+          group: "OPS_PR",
+          position: "Publicity Officer",
+          name: "Caleb Orobo",
+          regNo: "ED/ART/1670/24",
+          officeId: "PUBOFF-07",
+          phone: "0115940377",
+          pin: "1670",
+          mandate: "Drives campus announcements, media coverage, visual updates, and club merchandise tracking."
+        },
+        {
+          order: 8,
+          id: "projects_coord",
+          group: "OPS_PR",
+          position: "Projects Coordinator",
+          name: "Damaris Akinyi",
+          regNo: "ED/ART/1460/24",
+          officeId: "PROJ-08",
+          phone: "0706846072",
+          pin: "1460",
+          mandate: "Plans and tracks community outreach projects, service milestones, and field execution timelines."
+        },
+        {
+          order: 9,
+          id: "welfare_coord",
+          group: "WELFARE_PARTNERS",
+          position: "Welfare Coordinator",
+          name: "Faith Matongo",
+          regNo: "ED/ART/1593/24",
+          officeId: "WELF-09",
+          phone: "0714388618",
+          pin: "1593",
+          mandate: "Champions member care, peer solidarity, and student/community welfare support cases."
+        },
+        {
+          order: 10,
+          id: "partnership_coord",
+          group: "WELFARE_PARTNERS",
+          position: "Partnership Coordinator",
+          name: "Rose Khaemba",
+          regNo: "ED/ART/0931/24",
+          officeId: "PART-10",
+          phone: "0798872049",
+          pin: "0931",
+          mandate: "Builds external partnerships, sponsors, alumni links, and NGO/club collaborations."
+        },
+        {
+          order: 11,
+          id: "faculty_patron",
+          group: "PATRON",
+          position: "Faculty Patron",
+          name: "Dr. Hannington Mala",
+          regNo: "LU/FAC/PATRON",
+          officeId: "PATRON-MALA",
+          phone: "0720000000",
+          pin: "8426",
+          mandate: "Provides faculty mentorship, constitutional guidance, and institutional patronage endorsement for Laikipia University compliance."
+        }
+      ];
+
+      function buildDefaultOfficeData() {
+        return {
+          chairperson: {
+            directives: [
+              { id: "c1", text: "Verify all 10 executive signatures & Dean of Students 2026/2027 registration checklist", done: false },
+              { id: "c2", text: "Confirm Patron endorsement with Dr. Hannington Mala and general meeting agenda", done: true }
+            ],
+            notes: "Focus on smooth Dean of Students registration filing and transparent governance across all 10 offices."
+          },
+          vice_chair: {
+            tasks: [
+              { id: "vc1", text: "Check weekly progress across all 10 executive portfolios", done: false },
+              { id: "vc2", text: "Review constitution clause compliance for general assembly", done: true }
+            ],
+            notes: "Coordinate closely with Chairperson and Secretary General on committee follow-ups."
+          },
+          sec_gen: {
+            minutes: [
+              { id: "sg1", date: "2026-2027 Term", title: "2026/2027 Executive Committee Mandate & Dean Filing", detail: "Official executive list compiled for Office of the Dean of Students submission." }
+            ],
+            attendance: [
+              { id: "att1", member: "Rooney Ogongo (ED/ART/1591/24)", status: "Present" },
+              { id: "att2", member: "Immanuel Mesocho (BE/EST/2495/24)", status: "Present" }
+            ],
+            notes: "Ensure official correspondence and meeting minutes are archived cleanly."
+          },
+          asst_sec: {
+            registry: [
+              { id: "as1", name: "Founding & Active Member Roll", reg: "2026/2027 Registry", status: "Verified" }
+            ],
+            notes: "Assist Secretary General with minutes backup, attendance sheets, and member registration verification."
+          },
+          treasurer: {
+            ledger: [
+              { id: "tr1", type: "Inflow", desc: "Initial Club Seed & Contributions", amountKES: 12000, ref: "LED-001" },
+              { id: "tr2", type: "Outflow", desc: "Printing & Registration Stationery", amountKES: 2500, ref: "LED-002" }
+            ],
+            requisitions: [
+              { id: "rq1", item: "General Meeting & Outreach Materials", amountKES: 4500, status: "Pending Review" }
+            ],
+            notes: "Keep receipt numbers and KES entries accurate for member and Patron audit."
+          },
+          organising_sec: {
+            logistics: [
+              { id: "og1", item: "Venue booking, seating layout & sound readiness", status: "Scheduled" },
+              { id: "og2", item: "Executive arrival & setup duty roster", status: "Assigned" }
+            ],
+            notes: "Confirm ground/hall access and steward duty times at least 48 hours before events."
+          },
+          publicity_officer: {
+            campaigns: [
+              { id: "pr1", channel: "Campus Notice & WhatsApp", title: "2026/2027 Club Activities & Membership Call", status: "Ready" }
+            ],
+            merch: [
+              { id: "mc1", item: "Club T-Shirts / Polos / Hoodies / Wristbands", qty: 25, status: "Tracking" }
+            ],
+            notes: "Maintain accurate branding, announcements, and merchandise order tallies."
+          },
+          projects_coord: {
+            projects: [
+              { id: "pj1", name: "Community Outreach & Service Drive", timeline: "2026/2027 Semester", status: "Planning" }
+            ],
+            notes: "Track project milestones, beneficiary needs, and field execution steps."
+          },
+          welfare_coord: {
+            cases: [
+              { id: "wf1", subject: "Member Welfare & Solidarity Check-In", category: "Welfare", status: "Active" }
+            ],
+            notes: "Handle welfare support cases discreetly, compassionately, and promptly."
+          },
+          partnership_coord: {
+            partners: [
+              { id: "pt1", org: "Campus Clubs, NGOs & Local Sponsors", focus: "Outreach & Resource Support", status: "Outreach" }
+            ],
+            notes: "Document partner contacts, proposal status, and joint outreach agreements."
+          },
+          faculty_patron: {
+            endorsements: [
+              { id: "fp1", date: "2026/2027 Term", title: "Patronage Oversight & Governance Review", note: "Advising Share a Smile Charity Club on constitutional compliance and student community service." }
+            ],
+            notes: "Record Patron guidance, endorsement notes, and university liaison remarks."
+          }
+        };
+      }
+
+      function loadState() {
+        var fallback = {
+          collapsed: false,
+          activeTab: "directory",
+          signedInOfficeId: null,
+          officeData: buildDefaultOfficeData()
+        };
+        try {
+          var raw = window.localStorage.getItem(STORAGE_KEY);
+          if (!raw) return fallback;
+          var parsed = JSON.parse(raw);
+          var mergedOffice = buildDefaultOfficeData();
+          if (parsed && parsed.officeData) {
+            Object.keys(mergedOffice).forEach(function (key) {
+              if (parsed.officeData[key]) {
+                mergedOffice[key] = Object.assign(mergedOffice[key], parsed.officeData[key]);
+              }
+            });
+          }
+          return {
+            collapsed: Boolean(parsed.collapsed),
+            activeTab: parsed.activeTab === "desk" ? "desk" : "directory",
+            signedInOfficeId: typeof parsed.signedInOfficeId === "string" ? parsed.signedInOfficeId : null,
+            officeData: mergedOffice
+          };
+        } catch (err) {
+          return fallback;
+        }
+      }
+
+      var state = loadState();
+      var vaultUnlocked = false;
+
+      function saveState() {
+        try {
+          window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        } catch (err) {
+          // Storage fallback
+        }
+      }
+
+      function escapeHtml(value) {
+        return String(value == null ? "" : value)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+      }
+
+      function formatKes(amount) {
+        var num = Number(amount) || 0;
+        return "KES " + num.toLocaleString("en-KE");
+      }
+
+      function findOfficialById(id) {
+        for (var i = 0; i < OFFICIALS.length; i++) {
+          if (OFFICIALS[i].id === id) return OFFICIALS[i];
+        }
+        return null;
+      }
+
+      function normalizeIdentifier(str) {
+        return String(str || "").trim().toLowerCase().replace(/\s+/g, "");
+      }
+
+      function authenticateOfficial(identifier, pin) {
+        var normId = normalizeIdentifier(identifier);
+        var cleanPin = String(pin || "").trim();
+        if (!normId || !cleanPin) return null;
+
+        for (var i = 0; i < OFFICIALS.length; i++) {
+          var off = OFFICIALS[i];
+          var matchesPhone = off.phone ? normalizeIdentifier(off.phone) === normId : false;
+          var matchesReg = off.regNo ? normalizeIdentifier(off.regNo) === normId : false;
+          var matchesOfficeId = off.officeId ? normalizeIdentifier(off.officeId) === normId : false;
+          if ((matchesPhone || matchesReg || matchesOfficeId) && off.pin === cleanPin) {
+            return off;
+          }
+        }
+        return null;
+      }
+
+      function buildWhatsappMessage(off) {
+        var loginId = off.regNo || off.officeId;
+        return (
+          "Share a Smile Charity Club (Laikipia University) — 2026/2027 Single-Office Access\n" +
+          "Office: " + off.position + "\n" +
+          "Name: " + off.name + "\n" +
+          "Login ID: " + loginId + " (or Phone: " + off.phone + ")\n" +
+          "Personal 4-Digit PIN: " + off.pin + "\n" +
+          "Please sign in to your single office desk and keep your PIN confidential."
+        );
+      }
+
+      function toWhatsAppPhone(phone) {
+        var digits = String(phone || "").replace(/\D/g, "");
+        if (digits.indexOf("0") === 0) {
+          return "254" + digits.slice(1);
+        }
+        return digits;
+      }
+
+      // DOM References
+      var elSectionBody = document.getElementById("sasSectionBody");
+      var elCollapseBtn = document.getElementById("sasCollapseSectionBtn");
+      var elGuideBtn = document.getElementById("sasToggleGuideBtn");
+      var elGuideBox = document.getElementById("sasEmbedGuide");
+      var elCopySnippetBtn = document.getElementById("sasCopySnippetBtn");
+      var elSnippetFeedback = document.getElementById("sasSnippetFeedback");
+      var elTabDirectory = document.getElementById("sasTabDirectory");
+      var elTabDesk = document.getElementById("sasTabDesk");
+      var elStatusBadge = document.getElementById("sasSessionBadge");
+      var elDirectoryView = document.getElementById("sasDirectoryView");
+      var elDeskView = document.getElementById("sasDeskView");
+      var elSearchInput = document.getElementById("sasSearchInput");
+      var elFilterSelect = document.getElementById("sasFilterSelect");
+      var elDirectoryGrid = document.getElementById("sasDirectoryGrid");
+      var elLoginPanel = document.getElementById("sasLoginPanel");
+      var elActiveDeskPanel = document.getElementById("sasActiveDeskPanel");
+      var elLoginForm = document.getElementById("sasLoginForm");
+      var elLoginIdentifier = document.getElementById("sasLoginIdentifier");
+      var elLoginPin = document.getElementById("sasLoginPin");
+      var elAuthMessage = document.getElementById("sasAuthMessage");
+
+      // Chairperson Vault Modal DOM References
+      var elChairVaultBtn = document.getElementById("sasChairVaultBtn");
+      var elChairVaultModal = document.getElementById("sasChairVaultModal");
+      var elCloseVaultBtn = document.getElementById("sasCloseVaultBtn");
+      var elVaultGateBox = document.getElementById("sasVaultGateBox");
+      var elVaultUnlockedBox = document.getElementById("sasVaultUnlockedBox");
+      var elVaultUnlockForm = document.getElementById("sasVaultUnlockForm");
+      var elMasterPinInput = document.getElementById("sasMasterPinInput");
+      var elVaultErrorMsg = document.getElementById("sasVaultErrorMsg");
+      var elLockVaultBtn = document.getElementById("sasLockVaultBtn");
+      var elVaultTableBody = document.getElementById("sasVaultTableBody");
+      var elVaultDispatchFeedback = document.getElementById("sasVaultDispatchFeedback");
+
+      function renderDirectory() {
+        var query = (elSearchInput.value || "").trim().toLowerCase();
+        var filter = elFilterSelect.value;
+
+        var filtered = OFFICIALS.filter(function (off) {
+          if (filter === "CORE" && off.group !== "CORE") return false;
+          if (filter === "OPS_PR" && off.group !== "OPS_PR") return false;
+          if (filter === "WELFARE_PARTNERS" && off.group !== "WELFARE_PARTNERS") return false;
+          if (filter === "PATRON" && off.group !== "PATRON") return false;
+          if (filter === "PENDING_REG" && Boolean(off.regNo)) return false;
+
+          if (!query) return true;
+          var regText = off.regNo ? off.regNo.toLowerCase() : "not provided pending reg";
+          return (
+            off.name.toLowerCase().indexOf(query) !== -1 ||
+            off.position.toLowerCase().indexOf(query) !== -1 ||
+            off.phone.toLowerCase().indexOf(query) !== -1 ||
+            off.officeId.toLowerCase().indexOf(query) !== -1 ||
+            regText.indexOf(query) !== -1
+          );
+        });
+
+        if (!filtered.length) {
+          elDirectoryGrid.innerHTML =
+            '<div class="sas-item-row" style="grid-column:1/-1;">No official or patron matches your search or filter.</div>';
+          return;
+        }
+
+        elDirectoryGrid.innerHTML = filtered.map(function (off) {
+          var badgeLabel = off.group === "PATRON"
+            ? "Faculty Patron • 2026/2027"
+            : "Office #" + off.order + " • 2026/2027";
+
+          var regHtml = off.regNo
+            ? '<strong>' + escapeHtml(off.regNo) + '</strong>'
+            : '<span class="sas-pending-reg">Not Provided (Pending Reg. No.)</span>';
+
+          var phoneHtml = off.group === "PATRON"
+            ? '<span>Faculty Advisory Desk</span>'
+            : '<a href="tel:' + escapeHtml(off.phone) + '" style="color:#047857;font-weight:700;text-decoration:none;">' + escapeHtml(off.phone) + '</a>';
+
+          return (
+            '<article class="sas-card">' +
+              '<div>' +
+                '<span class="sas-badge-num">' + escapeHtml(badgeLabel) + '</span>' +
+                '<p class="sas-position">' + escapeHtml(off.position) + '</p>' +
+                '<h3 class="sas-name">' + escapeHtml(off.name) + '</h3>' +
+                '<ul class="sas-meta-list">' +
+                  '<li><strong>Reg. / Ref ID:</strong> ' + regHtml + '</li>' +
+                  '<li><strong>Phone No.:</strong> ' + phoneHtml + '</li>' +
+                  '<li><strong>Office ID:</strong> <code>' + escapeHtml(off.officeId) + '</code></li>' +
+                '</ul>' +
+                '<p class="sas-mandate">' + escapeHtml(off.mandate) + '</p>' +
+              '</div>' +
+              '<div style="display:flex;gap:8px;flex-wrap:wrap;">' +
+                '<button type="button" class="sas-btn sas-btn-primary sas-btn-sm" data-goto-login="' + escapeHtml(off.id) + '">' +
+                  'Open My Office Sign-In' +
+                '</button>' +
+              '</div>' +
+            '</article>'
+          );
+        }).join("");
+
+        elDirectoryGrid.querySelectorAll("[data-goto-login]").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            var targetOff = findOfficialById(btn.getAttribute("data-goto-login"));
+            if (!targetOff) return;
+            state.activeTab = "desk";
+            saveState();
+            renderChrome();
+            elLoginIdentifier.value = targetOff.regNo || targetOff.officeId;
+            elLoginPin.value = "";
+            elLoginPin.focus();
+            showAuthMessage("Selected " + targetOff.position + " (" + targetOff.name + "). Enter your personal 4-digit PIN to sign in.", false);
+          });
+        });
+      }
+
+      function showAuthMessage(msg, isError) {
+        if (!msg) {
+          elAuthMessage.classList.add("sas-hidden");
+          elAuthMessage.textContent = "";
+          return;
+        }
+        elAuthMessage.textContent = msg;
+        elAuthMessage.className = "sas-alert " + (isError ? "sas-alert-error" : "sas-alert-success");
+      }
+
+      function renderVaultTable() {
+        elVaultTableBody.innerHTML = OFFICIALS.map(function (off) {
+          var loginId = off.regNo || off.officeId;
+          var msg = buildWhatsappMessage(off);
+          var waHref = "https://wa.me/" + toWhatsAppPhone(off.phone) + "?text=" + encodeURIComponent(msg);
+
+          return (
+            "<tr>" +
+              "<td><strong>" + escapeHtml(off.position) + "</strong><div class='sas-item-sub'>" + escapeHtml(off.name) + "</div></td>" +
+              "<td><code>" + escapeHtml(loginId) + "</code><div class='sas-item-sub'>" + escapeHtml(off.phone) + "</div></td>" +
+              "<td><strong style='font-family:monospace;font-size:14px;'>" + escapeHtml(off.pin) + "</strong></td>" +
+              "<td>" +
+                "<div style='display:flex;flex-wrap:wrap;gap:6px;'>" +
+                  "<button type='button' class='sas-btn sas-btn-outline sas-btn-sm' data-copy-cred='" + escapeHtml(off.id) + "'>Copy Details</button>" +
+                  "<a href='" + waHref + "' target='_blank' rel='noopener noreferrer' class='sas-btn sas-btn-primary sas-btn-sm'>Send WhatsApp</a>" +
+                "</div>" +
+              "</td>" +
+            "</tr>"
+          );
+        }).join("");
+
+        elVaultTableBody.querySelectorAll("[data-copy-cred]").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            var targetOff = findOfficialById(btn.getAttribute("data-copy-cred"));
+            if (!targetOff) return;
+            var text = buildWhatsappMessage(targetOff);
+            copyTextHelper(text, function () {
+              elVaultDispatchFeedback.textContent = "Copied login details & PIN for " + targetOff.name + " (" + targetOff.position + ").";
+              elVaultDispatchFeedback.classList.remove("sas-hidden");
+            });
+          });
+        });
+      }
+
+      function renderDeskContent(official) {
+        var d = state.officeData[official.id] || {};
+        var regDisplay = official.regNo
+          ? escapeHtml(official.regNo)
+          : "Not Provided (Pending Reg. No.)";
+
+        var headerHtml =
+          '<div class="sas-desk-banner">' +
+            '<div>' +
+              '<span class="sas-kicker" style="margin-bottom:4px;">Strictly Locked Single Office • ' + escapeHtml(official.officeId) + '</span>' +
+              '<h3>' + escapeHtml(official.position) + ' — ' + escapeHtml(official.name) + '</h3>' +
+              '<p>Reg. / Ref ID: <strong>' + regDisplay + '</strong> &bull; Phone: <strong>' + escapeHtml(official.phone) + '</strong></p>' +
+              '<p style="margin-top:4px;color:#fde68a;">' + escapeHtml(official.mandate) + '</p>' +
+            '</div>' +
+            '<div>' +
+              '<button type="button" id="sasSignOutDeskBtn" class="sas-btn sas-btn-gold sas-btn-sm">Lock &amp; Sign Out</button>' +
+            '</div>' +
+          '</div>';
+
+        var bodyHtml = "";
+
+        if (official.id === "chairperson") {
+          var dirs = d.directives || [];
+          bodyHtml =
+            '<div class="sas-desk-grid">' +
+              '<div class="sas-desk-box">' +
+                '<h4>Chairperson Directives &amp; Dean of Students Checklist</h4>' +
+                '<form id="chairDirForm" class="sas-inline-row">' +
+                  '<input type="text" id="chairDirInput" class="sas-input" placeholder="New executive directive or Dean filing item..." required />' +
+                  '<button type="submit" class="sas-btn sas-btn-primary sas-btn-sm">Add Directive</button>' +
+                '</form>' +
+                '<ul class="sas-item-list">' +
+                  dirs.map(function (item) {
+                    return (
+                      '<li class="sas-item-row">' +
+                        '<label style="display:flex;gap:8px;align-items:flex-start;cursor:pointer;flex:1;">' +
+                          '<input type="checkbox" data-chair-toggle="' + escapeHtml(item.id) + '"' + (item.done ? " checked" : "") + ' />' +
+                          '<span class="sas-item-title" style="' + (item.done ? "text-decoration:line-through;color:#64748b;" : "") + '">' + escapeHtml(item.text) + '</span>' +
+                        '</label>' +
+                        '<button type="button" class="sas-btn sas-btn-danger sas-btn-sm" data-chair-del="' + escapeHtml(item.id) + '">Remove</button>' +
+                      '</li>'
+                    );
+                  }).join("") +
+                '</ul>' +
+              '</div>' +
+              renderNotesBox("chairperson", d.notes || "") +
+            '</div>';
+        } else if (official.id === "vice_chair") {
+          var tasks = d.tasks || [];
+          bodyHtml =
+            '<div class="sas-desk-grid">' +
+              '<div class="sas-desk-box">' +
+                '<h4>Vice Chairperson Governance &amp; Committee Coordination</h4>' +
+                '<form id="vcTaskForm" class="sas-inline-row">' +
+                  '<input type="text" id="vcTaskInput" class="sas-input" placeholder="Add committee oversight or governance task..." required />' +
+                  '<button type="submit" class="sas-btn sas-btn-primary sas-btn-sm">Add Task</button>' +
+                '</form>' +
+                '<ul class="sas-item-list">' +
+                  tasks.map(function (t) {
+                    return (
+                      '<li class="sas-item-row">' +
+                        '<label style="display:flex;gap:8px;align-items:flex-start;cursor:pointer;flex:1;">' +
+                          '<input type="checkbox" data-vc-toggle="' + escapeHtml(t.id) + '"' + (t.done ? " checked" : "") + ' />' +
+                          '<span class="sas-item-title" style="' + (t.done ? "text-decoration:line-through;color:#64748b;" : "") + '">' + escapeHtml(t.text) + '</span>' +
+                        '</label>' +
+                        '<button type="button" class="sas-btn sas-btn-danger sas-btn-sm" data-vc-del="' + escapeHtml(t.id) + '">Remove</button>' +
+                      '</li>'
+                    );
+                  }).join("") +
+                '</ul>' +
+              '</div>' +
+              renderNotesBox("vice_chair", d.notes || "") +
+            '</div>';
+        } else if (official.id === "sec_gen") {
+          var mins = d.minutes || [];
+          var att = d.attendance || [];
+          bodyHtml =
+            '<div class="sas-desk-grid">' +
+              '<div class="sas-desk-box">' +
+                '<h4>Official Minutes &amp; Correspondence Log</h4>' +
+                '<form id="sgMinForm">' +
+                  '<div class="sas-inline-row">' +
+                    '<input type="text" id="sgMinTitle" class="sas-input" placeholder="Meeting / correspondence subject..." required />' +
+                    '<input type="text" id="sgMinDate" class="sas-input" placeholder="Date (e.g. 2026-11-28)" required />' +
+                  '</div>' +
+                  '<div class="sas-form-group">' +
+                    '<input type="text" id="sgMinDetail" class="sas-input" placeholder="Summary / resolution / recipient..." required />' +
+                  '</div>' +
+                  '<button type="submit" class="sas-btn sas-btn-primary sas-btn-sm">Record Minutes</button>' +
+                '</form>' +
+                '<ul class="sas-item-list">' +
+                  mins.map(function (m) {
+                    return (
+                      '<li class="sas-item-row">' +
+                        '<div>' +
+                          '<div class="sas-item-title">' + escapeHtml(m.title) + ' <span class="sas-item-sub">(' + escapeHtml(m.date) + ')</span></div>' +
+                          '<div class="sas-item-sub">' + escapeHtml(m.detail) + '</div>' +
+                        '</div>' +
+                        '<button type="button" class="sas-btn sas-btn-danger sas-btn-sm" data-sg-del-min="' + escapeHtml(m.id) + '">Del</button>' +
+                      '</li>'
+                    );
+                  }).join("") +
+                '</ul>' +
+              '</div>' +
+              '<div class="sas-desk-box">' +
+                '<h4>Attendance Roll</h4>' +
+                '<form id="sgAttForm" class="sas-inline-row">' +
+                  '<input type="text" id="sgAttMember" class="sas-input" placeholder="Member name &amp; Reg. No..." required />' +
+                  '<button type="submit" class="sas-btn sas-btn-primary sas-btn-sm">Mark Present</button>' +
+                '</form>' +
+                '<ul class="sas-item-list">' +
+                  att.map(function (a) {
+                    return (
+                      '<li class="sas-item-row">' +
+                        '<div><span class="sas-item-title">' + escapeHtml(a.member) + '</span> <span class="sas-item-sub">• ' + escapeHtml(a.status) + '</span></div>' +
+                        '<button type="button" class="sas-btn sas-btn-danger sas-btn-sm" data-sg-del-att="' + escapeHtml(a.id) + '">Del</button>' +
+                      '</li>'
+                    );
+                  }).join("") +
+                '</ul>' +
+                '<div style="margin-top:16px;">' + renderNotesBox("sec_gen", d.notes || "") + '</div>' +
+              '</div>' +
+            '</div>';
+        } else if (official.id === "asst_sec") {
+          var regList = d.registry || [];
+          bodyHtml =
+            '<div class="sas-desk-grid">' +
+              '<div class="sas-desk-box">' +
+                '<h4>Assistant Secretary — Member Registry &amp; Records</h4>' +
+                '<form id="asRegForm">' +
+                  '<div class="sas-inline-row">' +
+                    '<input type="text" id="asName" class="sas-input" placeholder="Member full name..." required />' +
+                    '<input type="text" id="asRegNo" class="sas-input" placeholder="Reg. No. (e.g. ED/ART/1200/24)" required />' +
+                  '</div>' +
+                  '<button type="submit" class="sas-btn sas-btn-primary sas-btn-sm">Add to Registry</button>' +
+                '</form>' +
+                '<ul class="sas-item-list">' +
+                  regList.map(function (r) {
+                    return (
+                      '<li class="sas-item-row">' +
+                        '<div>' +
+                          '<div class="sas-item-title">' + escapeHtml(r.name) + '</div>' +
+                          '<div class="sas-item-sub">Reg: ' + escapeHtml(r.reg) + ' • Status: ' + escapeHtml(r.status) + '</div>' +
+                        '</div>' +
+                        '<button type="button" class="sas-btn sas-btn-danger sas-btn-sm" data-as-del="' + escapeHtml(r.id) + '">Remove</button>' +
+                      '</li>'
+                    );
+                  }).join("") +
+                '</ul>' +
+              '</div>' +
+              renderNotesBox("asst_sec", d.notes || "") +
+            '</div>';
+        } else if (official.id === "treasurer") {
+          var ledger = d.ledger || [];
+          var reqs = d.requisitions || [];
+          var inflow = 0;
+          var outflow = 0;
+          ledger.forEach(function (row) {
+            var amt = Number(row.amountKES) || 0;
+            if (row.type === "Inflow") inflow += amt;
+            else outflow += amt;
+          });
+          var netBalance = inflow - outflow;
+
+          bodyHtml =
+            '<div class="sas-desk-grid">' +
+              '<div class="sas-desk-box">' +
+                '<h4>KES Financial Ledger &amp; Statement</h4>' +
+                '<p class="sas-item-sub" style="margin-bottom:12px;">' +
+                  'Inflows: <strong>' + formatKes(inflow) + '</strong> &bull; ' +
+                  'Outflows: <strong>' + formatKes(outflow) + '</strong> &bull; ' +
+                  'Net Balance: <strong>' + formatKes(netBalance) + '</strong>' +
+                '</p>' +
+                '<form id="trLedgerForm">' +
+                  '<div class="sas-inline-row">' +
+                    '<select id="trType" class="sas-select"><option value="Inflow">Inflow (+)</option><option value="Outflow">Outflow (-)</option></select>' +
+                    '<input type="number" id="trAmount" class="sas-input" min="1" step="1" placeholder="Amount (KES)" required />' +
+                    '<input type="text" id="trRef" class="sas-input" placeholder="Receipt / Ref" required />' +
+                  '</div>' +
+                  '<div class="sas-form-group">' +
+                    '<input type="text" id="trDesc" class="sas-input" placeholder="Transaction description..." required />' +
+                  '</div>' +
+                  '<button type="submit" class="sas-btn sas-btn-primary sas-btn-sm">Record Transaction</button>' +
+                '</form>' +
+                '<div class="sas-table-wrap">' +
+                  '<table>' +
+                    '<thead><tr><th>Type</th><th>Description</th><th>Ref</th><th>Amount</th><th></th></tr></thead>' +
+                    '<tbody>' +
+                      ledger.map(function (row) {
+                        return (
+                          '<tr>' +
+                            '<td>' + escapeHtml(row.type) + '</td>' +
+                            '<td>' + escapeHtml(row.desc) + '</td>' +
+                            '<td><code>' + escapeHtml(row.ref) + '</code></td>' +
+                            '<td><strong>' + formatKes(row.amountKES) + '</strong></td>' +
+                            '<td><button type="button" class="sas-btn sas-btn-danger sas-btn-sm" data-tr-del="' + escapeHtml(row.id) + '">X</button></td>' +
+                          '</tr>'
+                        );
+                      }).join("") +
+                    '</tbody>' +
+                  '</table>' +
+                '</div>' +
+              '</div>' +
+              '<div class="sas-desk-box">' +
+                '<h4>Budget Requisitions</h4>' +
+                '<form id="trReqForm" class="sas-inline-row">' +
+                  '<input type="text" id="trReqItem" class="sas-input" placeholder="Requisition item..." required />' +
+                  '<input type="number" id="trReqAmt" class="sas-input" min="1" step="1" placeholder="KES" required />' +
+                  '<button type="submit" class="sas-btn sas-btn-primary sas-btn-sm">Add Req</button>' +
+                '</form>' +
+                '<ul class="sas-item-list">' +
+                  reqs.map(function (rq) {
+                    return (
+                      '<li class="sas-item-row">' +
+                        '<div>' +
+                          '<div class="sas-item-title">' + escapeHtml(rq.item) + ' — ' + formatKes(rq.amountKES) + '</div>' +
+                          '<div class="sas-item-sub">Status: ' + escapeHtml(rq.status) + '</div>' +
+                        '</div>' +
+                        '<button type="button" class="sas-btn sas-btn-danger sas-btn-sm" data-tr-del-req="' + escapeHtml(rq.id) + '">Del</button>' +
+                      '</li>'
+                    );
+                  }).join("") +
+                '</ul>' +
+                '<div style="margin-top:16px;">' + renderNotesBox("treasurer", d.notes || "") + '</div>' +
+              '</div>' +
+            '</div>';
+        } else if (official.id === "organising_sec") {
+          var logs = d.logistics || [];
+          bodyHtml =
+            '<div class="sas-desk-grid">' +
+              '<div class="sas-desk-box">' +
+                '<h4>Venue, Logistics &amp; Duty Roster</h4>' +
+                '<form id="ogForm" class="sas-inline-row">' +
+                  '<input type="text" id="ogItem" class="sas-input" placeholder="Venue, equipment, or duty assignment..." required />' +
+                  '<input type="text" id="ogStatus" class="sas-input" placeholder="Status (e.g. Confirmed)" value="Confirmed" required />' +
+                  '<button type="submit" class="sas-btn sas-btn-primary sas-btn-sm">Add Item</button>' +
+                '</form>' +
+                '<ul class="sas-item-list">' +
+                  logs.map(function (l) {
+                    return (
+                      '<li class="sas-item-row">' +
+                        '<div>' +
+                          '<div class="sas-item-title">' + escapeHtml(l.item) + '</div>' +
+                          '<div class="sas-item-sub">Status: ' + escapeHtml(l.status) + '</div>' +
+                        '</div>' +
+                        '<button type="button" class="sas-btn sas-btn-danger sas-btn-sm" data-og-del="' + escapeHtml(l.id) + '">Remove</button>' +
+                      '</li>'
+                    );
+                  }).join("") +
+                '</ul>' +
+              '</div>' +
+              renderNotesBox("organising_sec", d.notes || "") +
+            '</div>';
+        } else if (official.id === "publicity_officer") {
+          var camps = d.campaigns || [];
+          var merch = d.merch || [];
+          bodyHtml =
+            '<div class="sas-desk-grid">' +
+              '<div class="sas-desk-box">' +
+                '<h4>Media &amp; Announcements</h4>' +
+                '<form id="prCampForm" class="sas-inline-row">' +
+                  '<input type="text" id="prTitle" class="sas-input" placeholder="Announcement / poster / post..." required />' +
+                  '<input type="text" id="prChannel" class="sas-input" placeholder="Channel (WhatsApp / Noticeboard)" value="WhatsApp & Campus" required />' +
+                  '<button type="submit" class="sas-btn sas-btn-primary sas-btn-sm">Add Notice</button>' +
+                '</form>' +
+                '<ul class="sas-item-list">' +
+                  camps.map(function (c) {
+                    return (
+                      '<li class="sas-item-row">' +
+                        '<div>' +
+                          '<div class="sas-item-title">' + escapeHtml(c.title) + '</div>' +
+                          '<div class="sas-item-sub">' + escapeHtml(c.channel) + ' • ' + escapeHtml(c.status) + '</div>' +
+                        '</div>' +
+                        '<button type="button" class="sas-btn sas-btn-danger sas-btn-sm" data-pr-del-c="' + escapeHtml(c.id) + '">Del</button>' +
+                      '</li>'
+                    );
+                  }).join("") +
+                '</ul>' +
+              '</div>' +
+              '<div class="sas-desk-box">' +
+                '<h4>Merchandise Tracking</h4>' +
+                '<form id="prMerchForm" class="sas-inline-row">' +
+                  '<input type="text" id="prMerchItem" class="sas-input" placeholder="Merch item (e.g. Hoodie, T-Shirt)..." required />' +
+                  '<input type="number" id="prMerchQty" class="sas-input" min="1" value="1" required />' +
+                  '<button type="submit" class="sas-btn sas-btn-primary sas-btn-sm">Track Merch</button>' +
+                '</form>' +
+                '<ul class="sas-item-list">' +
+                  merch.map(function (m) {
+                    return (
+                      '<li class="sas-item-row">' +
+                        '<div>' +
+                          '<div class="sas-item-title">' + escapeHtml(m.item) + ' (Qty: ' + escapeHtml(m.qty) + ')</div>' +
+                          '<div class="sas-item-sub">Status: ' + escapeHtml(m.status) + '</div>' +
+                        '</div>' +
+                        '<button type="button" class="sas-btn sas-btn-danger sas-btn-sm" data-pr-del-m="' + escapeHtml(m.id) + '">Del</button>' +
+                      '</li>'
+                    );
+                  }).join("") +
+                '</ul>' +
+                '<div style="margin-top:16px;">' + renderNotesBox("publicity_officer", d.notes || "") + '</div>' +
+              '</div>' +
+            '</div>';
+        } else if (official.id === "projects_coord") {
+          var projs = d.projects || [];
+          bodyHtml =
+            '<div class="sas-desk-grid">' +
+              '<div class="sas-desk-box">' +
+                '<h4>Community Outreach &amp; Project Milestones</h4>' +
+                '<form id="pjForm" class="sas-inline-row">' +
+                  '<input type="text" id="pjName" class="sas-input" placeholder="Outreach project name..." required />' +
+                  '<input type="text" id="pjTime" class="sas-input" placeholder="Target date / phase..." required />' +
+                  '<button type="submit" class="sas-btn sas-btn-primary sas-btn-sm">Add Project</button>' +
+                '</form>' +
+                '<ul class="sas-item-list">' +
+                  projs.map(function (p) {
+                    return (
+                      '<li class="sas-item-row">' +
+                        '<div>' +
+                          '<div class="sas-item-title">' + escapeHtml(p.name) + '</div>' +
+                          '<div class="sas-item-sub">' + escapeHtml(p.timeline) + ' • ' + escapeHtml(p.status) + '</div>' +
+                        '</div>' +
+                        '<button type="button" class="sas-btn sas-btn-danger sas-btn-sm" data-pj-del="' + escapeHtml(p.id) + '">Remove</button>' +
+                      '</li>'
+                    );
+                  }).join("") +
+                '</ul>' +
+              '</div>' +
+              renderNotesBox("projects_coord", d.notes || "") +
+            '</div>';
+        } else if (official.id === "welfare_coord") {
+          var casesList = d.cases || [];
+          bodyHtml =
+            '<div class="sas-desk-grid">' +
+              '<div class="sas-desk-box">' +
+                '<h4>Member Welfare &amp; Support Cases</h4>' +
+                '<form id="wfForm" class="sas-inline-row">' +
+                  '<input type="text" id="wfSubj" class="sas-input" placeholder="Welfare case or support summary..." required />' +
+                  '<input type="text" id="wfCat" class="sas-input" placeholder="Category (e.g. Medical, Emergency)" value="Support" required />' +
+                  '<button type="submit" class="sas-btn sas-btn-primary sas-btn-sm">Log Case</button>' +
+                '</form>' +
+                '<ul class="sas-item-list">' +
+                  casesList.map(function (c) {
+                    return (
+                      '<li class="sas-item-row">' +
+                        '<div>' +
+                          '<div class="sas-item-title">' + escapeHtml(c.subject) + '</div>' +
+                          '<div class="sas-item-sub">' + escapeHtml(c.category) + ' • ' + escapeHtml(c.status) + '</div>' +
+                        '</div>' +
+                        '<button type="button" class="sas-btn sas-btn-danger sas-btn-sm" data-wf-del="' + escapeHtml(c.id) + '">Remove</button>' +
+                      '</li>'
+                    );
+                  }).join("") +
+                '</ul>' +
+              '</div>' +
+              renderNotesBox("welfare_coord", d.notes || "") +
+            '</div>';
+        } else if (official.id === "partnership_coord") {
+          var partners = d.partners || [];
+          bodyHtml =
+            '<div class="sas-desk-grid">' +
+              '<div class="sas-desk-box">' +
+                '<h4>External Partners, Sponsors &amp; NGO Outreach</h4>' +
+                '<form id="ptForm" class="sas-inline-row">' +
+                  '<input type="text" id="ptOrg" class="sas-input" placeholder="Partner / sponsor / NGO name..." required />' +
+                  '<input type="text" id="ptFocus" class="sas-input" placeholder="Partnership focus..." required />' +
+                  '<button type="submit" class="sas-btn sas-btn-primary sas-btn-sm">Add Partner</button>' +
+                '</form>' +
+                '<ul class="sas-item-list">' +
+                  partners.map(function (pt) {
+                    return (
+                      '<li class="sas-item-row">' +
+                        '<div>' +
+                          '<div class="sas-item-title">' + escapeHtml(pt.org) + '</div>' +
+                          '<div class="sas-item-sub">' + escapeHtml(pt.focus) + ' • ' + escapeHtml(pt.status) + '</div>' +
+                        '</div>' +
+                        '<button type="button" class="sas-btn sas-btn-danger sas-btn-sm" data-pt-del="' + escapeHtml(pt.id) + '">Remove</button>' +
+                      '</li>'
+                    );
+                  }).join("") +
+                '</ul>' +
+              '</div>' +
+              renderNotesBox("partnership_coord", d.notes || "") +
+            '</div>';
+        } else if (official.id === "faculty_patron") {
+          var ends = d.endorsements || [];
+          bodyHtml =
+            '<div class="sas-desk-grid">' +
+              '<div class="sas-desk-box">' +
+                '<h4>Faculty Patron Advisory &amp; Endorsement Log</h4>' +
+                '<form id="fpForm">' +
+                  '<div class="sas-inline-row">' +
+                    '<input type="text" id="fpTitle" class="sas-input" placeholder="Endorsement or advisory subject..." required />' +
+                    '<input type="text" id="fpDate" class="sas-input" placeholder="Date (e.g. 2026-11-28)" required />' +
+                  '</div>' +
+                  '<div class="sas-form-group">' +
+                    '<input type="text" id="fpNote" class="sas-input" placeholder="Patron guidance / endorsement statement..." required />' +
+                  '</div>' +
+                  '<button type="submit" class="sas-btn sas-btn-primary sas-btn-sm">Record Endorsement</button>' +
+                '</form>' +
+                '<ul class="sas-item-list">' +
+                  ends.map(function (en) {
+                    return (
+                      '<li class="sas-item-row">' +
+                        '<div>' +
+                          '<div class="sas-item-title">' + escapeHtml(en.title) + ' <span class="sas-item-sub">(' + escapeHtml(en.date) + ')</span></div>' +
+                          '<div class="sas-item-sub">' + escapeHtml(en.note) + '</div>' +
+                        '</div>' +
+                        '<button type="button" class="sas-btn sas-btn-danger sas-btn-sm" data-fp-del="' + escapeHtml(en.id) + '">Del</button>' +
+                      '</li>'
+                    );
+                  }).join("") +
+                '</ul>' +
+              '</div>' +
+              renderNotesBox("faculty_patron", d.notes || "") +
+            '</div>';
+        }
+
+        elActiveDeskPanel.innerHTML = headerHtml + bodyHtml;
+        bindDeskEvents(official.id);
+      }
+
+      function renderNotesBox(officeId, notesValue) {
+        return (
+          '<div class="sas-desk-box">' +
+            '<h4>Private Office Notes (Saved Locally)</h4>' +
+            '<textarea id="sasOfficeNotesInput" class="sas-textarea" rows="5" placeholder="Write private desk notes for this office...">' + escapeHtml(notesValue) + '</textarea>' +
+            '<div style="margin-top:10px;display:flex;gap:8px;align-items:center;">' +
+              '<button type="button" id="sasSaveNotesBtn" class="sas-btn sas-btn-primary sas-btn-sm" data-notes-office="' + escapeHtml(officeId) + '">Save Office Notes</button>' +
+              '<span id="sasNotesSavedMsg" class="sas-item-sub"></span>' +
+            '</div>' +
+          '</div>'
+        );
+      }
+
+      function bindDeskEvents(officeId) {
+        var signOutBtn = document.getElementById("sasSignOutDeskBtn");
+        if (signOutBtn) {
+          signOutBtn.addEventListener("click", function () {
+            state.signedInOfficeId = null;
+            saveState();
+            renderDeskView();
+            renderChrome();
+          });
+        }
+
+        var saveNotesBtn = document.getElementById("sasSaveNotesBtn");
+        if (saveNotesBtn) {
+          saveNotesBtn.addEventListener("click", function () {
+            var ta = document.getElementById("sasOfficeNotesInput");
+            var msg = document.getElementById("sasNotesSavedMsg");
+            if (!ta) return;
+            state.officeData[officeId].notes = ta.value;
+            saveState();
+            if (msg) {
+              msg.textContent = "Saved to browser storage.";
+              setTimeout(function () {
+                if (msg) msg.textContent = "";
+              }, 2500);
+            }
+          });
+        }
+
+        // Chairperson handlers
+        var chairForm = document.getElementById("chairDirForm");
+        if (chairForm) {
+          chairForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            var inp = document.getElementById("chairDirInput");
+            if (!inp || !inp.value.trim()) return;
+            state.officeData.chairperson.directives.unshift({
+              id: "c_" + Date.now(),
+              text: inp.value.trim(),
+              done: false
+            });
+            saveState();
+            renderDeskView();
+          });
+          elActiveDeskPanel.querySelectorAll("[data-chair-toggle]").forEach(function (cb) {
+            cb.addEventListener("change", function () {
+              var id = cb.getAttribute("data-chair-toggle");
+              state.officeData.chairperson.directives.forEach(function (item) {
+                if (item.id === id) item.done = cb.checked;
+              });
+              saveState();
+              renderDeskView();
+            });
+          });
+          elActiveDeskPanel.querySelectorAll("[data-chair-del]").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+              var id = btn.getAttribute("data-chair-del");
+              state.officeData.chairperson.directives = state.officeData.chairperson.directives.filter(function (item) {
+                return item.id !== id;
+              });
+              saveState();
+              renderDeskView();
+            });
+          });
+        }
+
+        // Vice Chair handlers
+        var vcForm = document.getElementById("vcTaskForm");
+        if (vcForm) {
+          vcForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            var inp = document.getElementById("vcTaskInput");
+            if (!inp || !inp.value.trim()) return;
+            state.officeData.vice_chair.tasks.unshift({
+              id: "vc_" + Date.now(),
+              text: inp.value.trim(),
+              done: false
+            });
+            saveState();
+            renderDeskView();
+          });
+          elActiveDeskPanel.querySelectorAll("[data-vc-toggle]").forEach(function (cb) {
+            cb.addEventListener("change", function () {
+              var id = cb.getAttribute("data-vc-toggle");
+              state.officeData.vice_chair.tasks.forEach(function (t) {
+                if (t.id === id) t.done = cb.checked;
+              });
+              saveState();
+              renderDeskView();
+            });
+          });
+          elActiveDeskPanel.querySelectorAll("[data-vc-del]").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+              var id = btn.getAttribute("data-vc-del");
+              state.officeData.vice_chair.tasks = state.officeData.vice_chair.tasks.filter(function (t) {
+                return t.id !== id;
+              });
+              saveState();
+              renderDeskView();
+            });
+          });
+        }
+
+        // Secretary General handlers
+        var sgMinForm = document.getElementById("sgMinForm");
+        if (sgMinForm) {
+          sgMinForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            var titleEl = document.getElementById("sgMinTitle");
+            var dateEl = document.getElementById("sgMinDate");
+            var detEl = document.getElementById("sgMinDetail");
+            if (!titleEl.value.trim() || !detEl.value.trim()) return;
+            state.officeData.sec_gen.minutes.unshift({
+              id: "sgm_" + Date.now(),
+              title: titleEl.value.trim(),
+              date: dateEl.value.trim() || "2026/2027",
+              detail: detEl.value.trim()
+            });
+            saveState();
+            renderDeskView();
+          });
+          elActiveDeskPanel.querySelectorAll("[data-sg-del-min]").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+              var id = btn.getAttribute("data-sg-del-min");
+              state.officeData.sec_gen.minutes = state.officeData.sec_gen.minutes.filter(function (m) {
+                return m.id !== id;
+              });
+              saveState();
+              renderDeskView();
+            });
+          });
+        }
+
+        var sgAttForm = document.getElementById("sgAttForm");
+        if (sgAttForm) {
+          sgAttForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            var memEl = document.getElementById("sgAttMember");
+            if (!memEl.value.trim()) return;
+            state.officeData.sec_gen.attendance.unshift({
+              id: "sga_" + Date.now(),
+              member: memEl.value.trim(),
+              status: "Present"
+            });
+            saveState();
+            renderDeskView();
+          });
+          elActiveDeskPanel.querySelectorAll("[data-sg-del-att]").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+              var id = btn.getAttribute("data-sg-del-att");
+              state.officeData.sec_gen.attendance = state.officeData.sec_gen.attendance.filter(function (a) {
+                return a.id !== id;
+              });
+              saveState();
+              renderDeskView();
+            });
+          });
+        }
+
+        // Assistant Secretary handlers
+        var asRegForm = document.getElementById("asRegForm");
+        if (asRegForm) {
+          asRegForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            var nameEl = document.getElementById("asName");
+            var regEl = document.getElementById("asRegNo");
+            if (!nameEl.value.trim() || !regEl.value.trim()) return;
+            state.officeData.asst_sec.registry.unshift({
+              id: "as_" + Date.now(),
+              name: nameEl.value.trim(),
+              reg: regEl.value.trim(),
+              status: "Recorded"
+            });
+            saveState();
+            renderDeskView();
+          });
+          elActiveDeskPanel.querySelectorAll("[data-as-del]").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+              var id = btn.getAttribute("data-as-del");
+              state.officeData.asst_sec.registry = state.officeData.asst_sec.registry.filter(function (r) {
+                return r.id !== id;
+              });
+              saveState();
+              renderDeskView();
+            });
+          });
+        }
+
+        // Treasurer handlers
+        var trLedgerForm = document.getElementById("trLedgerForm");
+        if (trLedgerForm) {
+          trLedgerForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            var typeEl = document.getElementById("trType");
+            var amtEl = document.getElementById("trAmount");
+            var refEl = document.getElementById("trRef");
+            var descEl = document.getElementById("trDesc");
+            var amt = Number(amtEl.value);
+            if (!amt || amt <= 0 || !descEl.value.trim()) return;
+            state.officeData.treasurer.ledger.unshift({
+              id: "trl_" + Date.now(),
+              type: typeEl.value,
+              amountKES: amt,
+              ref: refEl.value.trim() || "REF",
+              desc: descEl.value.trim()
+            });
+            saveState();
+            renderDeskView();
+          });
+          elActiveDeskPanel.querySelectorAll("[data-tr-del]").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+              var id = btn.getAttribute("data-tr-del");
+              state.officeData.treasurer.ledger = state.officeData.treasurer.ledger.filter(function (row) {
+                return row.id !== id;
+              });
+              saveState();
+              renderDeskView();
+            });
+          });
+        }
+
+        var trReqForm = document.getElementById("trReqForm");
+        if (trReqForm) {
+          trReqForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            var itemEl = document.getElementById("trReqItem");
+            var amtEl = document.getElementById("trReqAmt");
+            var amt = Number(amtEl.value);
+            if (!itemEl.value.trim() || !amt || amt <= 0) return;
+            state.officeData.treasurer.requisitions.unshift({
+              id: "trq_" + Date.now(),
+              item: itemEl.value.trim(),
+              amountKES: amt,
+              status: "Submitted"
+            });
+            saveState();
+            renderDeskView();
+          });
+          elActiveDeskPanel.querySelectorAll("[data-tr-del-req]").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+              var id = btn.getAttribute("data-tr-del-req");
+              state.officeData.treasurer.requisitions = state.officeData.treasurer.requisitions.filter(function (rq) {
+                return rq.id !== id;
+              });
+              saveState();
+              renderDeskView();
+            });
+          });
+        }
+
+        // Organising Secretary handlers
+        var ogForm = document.getElementById("ogForm");
+        if (ogForm) {
+          ogForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            var itemEl = document.getElementById("ogItem");
+            var stEl = document.getElementById("ogStatus");
+            if (!itemEl.value.trim()) return;
+            state.officeData.organising_sec.logistics.unshift({
+              id: "og_" + Date.now(),
+              item: itemEl.value.trim(),
+              status: stEl.value.trim() || "Scheduled"
+            });
+            saveState();
+            renderDeskView();
+          });
+          elActiveDeskPanel.querySelectorAll("[data-og-del]").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+              var id = btn.getAttribute("data-og-del");
+              state.officeData.organising_sec.logistics = state.officeData.organising_sec.logistics.filter(function (l) {
+                return l.id !== id;
+              });
+              saveState();
+              renderDeskView();
+            });
+          });
+        }
+
+        // Publicity Officer handlers
+        var prCampForm = document.getElementById("prCampForm");
+        if (prCampForm) {
+          prCampForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            var titleEl = document.getElementById("prTitle");
+            var chEl = document.getElementById("prChannel");
+            if (!titleEl.value.trim()) return;
+            state.officeData.publicity_officer.campaigns.unshift({
+              id: "prc_" + Date.now(),
+              title: titleEl.value.trim(),
+              channel: chEl.value.trim() || "Campus Media",
+              status: "Published"
+            });
+            saveState();
+            renderDeskView();
+          });
+          elActiveDeskPanel.querySelectorAll("[data-pr-del-c]").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+              var id = btn.getAttribute("data-pr-del-c");
+              state.officeData.publicity_officer.campaigns = state.officeData.publicity_officer.campaigns.filter(function (c) {
+                return c.id !== id;
+              });
+              saveState();
+              renderDeskView();
+            });
+          });
+        }
+
+        var prMerchForm = document.getElementById("prMerchForm");
+        if (prMerchForm) {
+          prMerchForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            var itemEl = document.getElementById("prMerchItem");
+            var qtyEl = document.getElementById("prMerchQty");
+            var qty = Number(qtyEl.value) || 1;
+            if (!itemEl.value.trim()) return;
+            state.officeData.publicity_officer.merch.unshift({
+              id: "prm_" + Date.now(),
+              item: itemEl.value.trim(),
+              qty: qty,
+              status: "Tracked"
+            });
+            saveState();
+            renderDeskView();
+          });
+          elActiveDeskPanel.querySelectorAll("[data-pr-del-m]").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+              var id = btn.getAttribute("data-pr-del-m");
+              state.officeData.publicity_officer.merch = state.officeData.publicity_officer.merch.filter(function (m) {
+                return m.id !== id;
+              });
+              saveState();
+              renderDeskView();
+            });
+          });
+        }
+
+        // Projects Coordinator handlers
+        var pjForm = document.getElementById("pjForm");
+        if (pjForm) {
+          pjForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            var nameEl = document.getElementById("pjName");
+            var timeEl = document.getElementById("pjTime");
+            if (!nameEl.value.trim()) return;
+            state.officeData.projects_coord.projects.unshift({
+              id: "pj_" + Date.now(),
+              name: nameEl.value.trim(),
+              timeline: timeEl.value.trim() || "2026/2027",
+              status: "Active"
+            });
+            saveState();
+            renderDeskView();
+          });
+          elActiveDeskPanel.querySelectorAll("[data-pj-del]").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+              var id = btn.getAttribute("data-pj-del");
+              state.officeData.projects_coord.projects = state.officeData.projects_coord.projects.filter(function (p) {
+                return p.id !== id;
+              });
+              saveState();
+              renderDeskView();
+            });
+          });
+        }
+
+        // Welfare Coordinator handlers
+        var wfForm = document.getElementById("wfForm");
+        if (wfForm) {
+          wfForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            var subEl = document.getElementById("wfSubj");
+            var catEl = document.getElementById("wfCat");
+            if (!subEl.value.trim()) return;
+            state.officeData.welfare_coord.cases.unshift({
+              id: "wf_" + Date.now(),
+              subject: subEl.value.trim(),
+              category: catEl.value.trim() || "Support",
+              status: "Open"
+            });
+            saveState();
+            renderDeskView();
+          });
+          elActiveDeskPanel.querySelectorAll("[data-wf-del]").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+              var id = btn.getAttribute("data-wf-del");
+              state.officeData.welfare_coord.cases = state.officeData.welfare_coord.cases.filter(function (c) {
+                return c.id !== id;
+              });
+              saveState();
+              renderDeskView();
+            });
+          });
+        }
+
+        // Partnership Coordinator handlers
+        var ptForm = document.getElementById("ptForm");
+        if (ptForm) {
+          ptForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            var orgEl = document.getElementById("ptOrg");
+            var focEl = document.getElementById("ptFocus");
+            if (!orgEl.value.trim()) return;
+            state.officeData.partnership_coord.partners.unshift({
+              id: "pt_" + Date.now(),
+              org: orgEl.value.trim(),
+              focus: focEl.value.trim() || "Collaboration",
+              status: "Active"
+            });
+            saveState();
+            renderDeskView();
+          });
+          elActiveDeskPanel.querySelectorAll("[data-pt-del]").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+              var id = btn.getAttribute("data-pt-del");
+              state.officeData.partnership_coord.partners = state.officeData.partnership_coord.partners.filter(function (pt) {
+                return pt.id !== id;
+              });
+              saveState();
+              renderDeskView();
+            });
+          });
+        }
+
+        // Faculty Patron handlers
+        var fpForm = document.getElementById("fpForm");
+        if (fpForm) {
+          fpForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            var titleEl = document.getElementById("fpTitle");
+            var dateEl = document.getElementById("fpDate");
+            var noteEl = document.getElementById("fpNote");
+            if (!titleEl.value.trim() || !noteEl.value.trim()) return;
+            state.officeData.faculty_patron.endorsements.unshift({
+              id: "fp_" + Date.now(),
+              title: titleEl.value.trim(),
+              date: dateEl.value.trim() || "2026/2027",
+              note: noteEl.value.trim()
+            });
+            saveState();
+            renderDeskView();
+          });
+          elActiveDeskPanel.querySelectorAll("[data-fp-del]").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+              var id = btn.getAttribute("data-fp-del");
+              state.officeData.faculty_patron.endorsements = state.officeData.faculty_patron.endorsements.filter(function (en) {
+                return en.id !== id;
+              });
+              saveState();
+              renderDeskView();
+            });
+          });
+        }
+      }
+
+      function renderDeskView() {
+        var signedOff = state.signedInOfficeId ? findOfficialById(state.signedInOfficeId) : null;
+        if (!signedOff) {
+          state.signedInOfficeId = null;
+          elLoginPanel.classList.remove("sas-hidden");
+          elActiveDeskPanel.classList.add("sas-hidden");
+          elActiveDeskPanel.innerHTML = "";
+        } else {
+          elLoginPanel.classList.add("sas-hidden");
+          elActiveDeskPanel.classList.remove("sas-hidden");
+          renderDeskContent(signedOff);
+        }
+      }
+
+      function renderChrome() {
+        if (state.collapsed) {
+          elSectionBody.classList.add("sas-hidden");
+          elCollapseBtn.textContent = "Expand Section";
+          elCollapseBtn.setAttribute("aria-expanded", "false");
+        } else {
+          elSectionBody.classList.remove("sas-hidden");
+          elCollapseBtn.textContent = "Collapse Section";
+          elCollapseBtn.setAttribute("aria-expanded", "true");
+        }
+
+        var isDesk = state.activeTab === "desk";
+        elTabDirectory.setAttribute("aria-selected", String(!isDesk));
+        elTabDesk.setAttribute("aria-selected", String(isDesk));
+
+        if (isDesk) {
+          elDirectoryView.classList.add("sas-hidden");
+          elDeskView.classList.remove("sas-hidden");
+        } else {
+          elDirectoryView.classList.remove("sas-hidden");
+          elDeskView.classList.add("sas-hidden");
+        }
+
+        var signedOff = state.signedInOfficeId ? findOfficialById(state.signedInOfficeId) : null;
+        if (signedOff) {
+          elStatusBadge.textContent = "Locked Office: " + signedOff.position + " (" + signedOff.name + ")";
+          elStatusBadge.classList.add("locked-active");
+        } else {
+          elStatusBadge.textContent = "Public Directory Mode • Office Locked";
+          elStatusBadge.classList.remove("locked-active");
+        }
+      }
+
+      function copyTextHelper(text, onSuccess) {
+        if (navigator.clipboard && typeof navigator.clipboard.writeText === "function") {
+          navigator.clipboard.writeText(text).then(function () {
+            if (onSuccess) onSuccess();
+          }).catch(function () {
+            fallbackCopy(text, onSuccess);
+          });
+        } else {
+          fallbackCopy(text, onSuccess);
+        }
+      }
+
+      function fallbackCopy(text, onSuccess) {
+        try {
+          var ta = document.createElement("textarea");
+          ta.value = text;
+          ta.setAttribute("readonly", "");
+          ta.style.position = "fixed";
+          ta.style.left = "-9999px";
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          document.body.removeChild(ta);
+          if (onSuccess) onSuccess();
+        } catch (err) {
+          // Copy fallback ignored
+        }
+      }
+
+      function copyEmbedSnippet() {
+        var sectionEl = document.getElementById("executive-governance-section");
+        if (!sectionEl) return;
+        copyTextHelper(sectionEl.outerHTML, function () {
+          elSnippetFeedback.textContent = "Copied #executive-governance-section HTML snippet to clipboard.";
+        });
+      }
+
+      function syncVaultModalView() {
+        if (vaultUnlocked) {
+          elVaultGateBox.classList.add("sas-hidden");
+          elVaultUnlockedBox.classList.remove("sas-hidden");
+          renderVaultTable();
+        } else {
+          elVaultGateBox.classList.remove("sas-hidden");
+          elVaultUnlockedBox.classList.add("sas-hidden");
+          elVaultDispatchFeedback.classList.add("sas-hidden");
+        }
+      }
+
+      // Event Listeners
+      elCollapseBtn.addEventListener("click", function () {
+        state.collapsed = !state.collapsed;
+        saveState();
+        renderChrome();
+      });
+
+      elGuideBtn.addEventListener("click", function () {
+        elGuideBox.classList.toggle("sas-hidden");
+      });
+
+      elCopySnippetBtn.addEventListener("click", function () {
+        elGuideBox.classList.remove("sas-hidden");
+        copyEmbedSnippet();
+      });
+
+      elTabDirectory.addEventListener("click", function () {
+        state.activeTab = "directory";
+        saveState();
+        renderChrome();
+        renderDirectory();
+      });
+
+      elTabDesk.addEventListener("click", function () {
+        state.activeTab = "desk";
+        saveState();
+        renderChrome();
+        renderDeskView();
+      });
+
+      elSearchInput.addEventListener("input", renderDirectory);
+      elFilterSelect.addEventListener("change", renderDirectory);
+
+      elLoginForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var matched = authenticateOfficial(elLoginIdentifier.value, elLoginPin.value);
+        if (!matched) {
+          showAuthMessage("Invalid Reg. Number / Phone No. / Office ID or 4-digit PIN.", true);
+          return;
+        }
+        state.signedInOfficeId = matched.id;
+        state.activeTab = "desk";
+        saveState();
+        elLoginPin.value = "";
+        showAuthMessage("", false);
+        renderChrome();
+        renderDeskView();
+      });
+
+      // Chairperson Master PIN Vault Modal Listeners
+      elChairVaultBtn.addEventListener("click", function () {
+        elChairVaultModal.classList.remove("sas-hidden");
+        elVaultErrorMsg.classList.add("sas-hidden");
+        elMasterPinInput.value = "";
+        syncVaultModalView();
+        if (!vaultUnlocked) {
+          elMasterPinInput.focus();
+        }
+      });
+
+      elCloseVaultBtn.addEventListener("click", function () {
+        elChairVaultModal.classList.add("sas-hidden");
+      });
+
+      elChairVaultModal.addEventListener("click", function (e) {
+        if (e.target === elChairVaultModal) {
+          elChairVaultModal.classList.add("sas-hidden");
+        }
+      });
+
+      elVaultUnlockForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (elMasterPinInput.value.trim() !== CHAIR_MASTER_PIN) {
+          elVaultErrorMsg.textContent = "Invalid Chairperson Master PIN.";
+          elVaultErrorMsg.classList.remove("sas-hidden");
+          return;
+        }
+        vaultUnlocked = true;
+        elVaultErrorMsg.classList.add("sas-hidden");
+        elMasterPinInput.value = "";
+        syncVaultModalView();
+      });
+
+      elLockVaultBtn.addEventListener("click", function () {
+        vaultUnlocked = false;
+        syncVaultModalView();
+      });
+
+      // Initial render
+      renderChrome();
+      renderDirectory();
+      renderDeskView();
+    })();
+  </script>
+</section>
  
  </section>
  <!-- Club Merchandise -->
