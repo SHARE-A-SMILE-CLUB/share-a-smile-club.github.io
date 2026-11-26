@@ -1135,7 +1135,7 @@
         <span class="badge" style="background: var(--amber-500); color: var(--ink-900);">06 • Executives Only</span>
         <h2 style="font-size: clamp(1.6rem, 3vw, 2.2rem); margin-top: 8px;">Executive Office Portal</h2>
         <p style="color: #f1f5f9; max-width: 65ch; margin-top: 6px;">
-          Restricted to executive officials. Sign in with your Office ID or Registration Number and PIN to open your respective office in a pop-up window.
+          One shared general portal for all executive officials. Sign in with your Office ID or Registration Number and PIN to open the General Executive Portal in a pop-up window.
         </p>
 
         <div class="portal-color-chips">
@@ -1163,7 +1163,7 @@
               <input type="password" id="execPinInput" placeholder="Enter PIN" required />
             </div>
             <div class="field full" style="display: flex; gap: 10px; flex-wrap: wrap;">
-              <button type="submit" class="btn btn-indigo">Sign In &amp; Open My Office</button>
+              <button type="submit" class="btn btn-indigo">Sign In &amp; Open General Portal</button>
             </div>
           </form>
           <div id="execLoginMsg" class="msg-note"></div>
@@ -2194,107 +2194,117 @@
         return false;
       };
 
-      // 3. Executive Office Pop-Up Window
+      // 3. Shared General Executive Portal Pop-Up Window (Accessible to All Executives)
       function renderOfficeWorkspace(account) {
         const container = document.getElementById("officeWorkspaceContent");
         if (!container || !account) return;
 
-        const savedNotes = Array.isArray(state.officeNotes[account.id]) ? state.officeNotes[account.id] : [];
-        const dutiesHtml = account.responsibilities.map(function (item) {
-          return "<li>" + esc(item) + "</li>";
+        const sharedNotes = Array.isArray(state.officeNotes["GENERAL_EXEC"]) ? state.officeNotes["GENERAL_EXEC"] : [];
+
+        const execDirectoryHtml = EXEC_OFFICES.map(function (off) {
+          const isCurrent = off.id === account.id;
+          return (
+            '<div style="padding:10px 12px; border:1px solid var(--border); border-radius:8px; background:' + (isCurrent ? '#f0fdfa' : '#ffffff') + ';">' +
+              '<div style="font-weight:700; font-size:0.9rem;">' + esc(off.role) + ' — ' + esc(off.name) + (isCurrent ? ' <span style="color:var(--teal-700);">(Signed In)</span>' : '') + '</div>' +
+              '<div style="font-size:0.8rem; color:var(--ink-500);">' + esc(off.officeName) + ' &bull; Reg: ' + esc(off.reg) + ' &bull; ' + esc(off.phone) + '</div>' +
+            '</div>'
+          );
         }).join("");
 
-        const notesHtml = savedNotes.length === 0
-          ? "<p style='color:var(--ink-500); font-size:0.9rem;'>No office notes recorded yet.</p>"
-          : savedNotes.map(function (n) {
+        const notesHtml = sharedNotes.length === 0
+          ? "<p style='color:var(--ink-500); font-size:0.9rem;'>No general executive notes recorded yet.</p>"
+          : sharedNotes.map(function (n) {
               return (
                 '<div class="wall-post">' +
-                  '<div class="wall-post-meta">' + esc(n.title) + ' &bull; ' + esc(n.time) + '</div>' +
+                  '<div class="wall-post-meta">' + esc(n.title) + ' &bull; By ' + esc(n.author || account.name) + ' &bull; ' + esc(n.time) + '</div>' +
                   '<div style="font-size:0.9rem;">' + esc(n.body) + '</div>' +
                 '</div>'
               );
             }).join("");
 
-        const isWeeklyReporter = account.role === "Secretary General" || account.role === "Treasurer";
-        const isChairperson = account.role === "Chairperson";
+        const paidMembers = state.members.filter(function (m) { return Boolean(m.mpesaRef); });
+        const unpaidMembers = state.members.filter(function (m) { return !m.mpesaRef; });
 
-        let weeklyReportCardHtml = "";
-        if (isWeeklyReporter) {
-          const lastTs = state.lastReportSubmittedAt ? state.lastReportSubmittedAt[account.role] : null;
-          const isOverdue = !lastTs || (Date.now() - Number(lastTs)) >= WEEK_MS;
-          const statusLabel = lastTs
-            ? (isOverdue ? "Overdue (7+ days since last submission)" : "Up to date (" + new Date(Number(lastTs)).toLocaleString() + ")")
-            : "No weekly report submitted yet";
+        const weeklyReportCardHtml =
+          '<div class="card" style="margin-bottom:18px; border-top:4px solid var(--indigo-600);">' +
+            '<h3>General Weekly Report — Download PDF &amp; Submit to Chairperson</h3>' +
+            '<p style="font-size:0.86rem; color:var(--ink-500); margin-bottom:12px;">Available to all executive members in the shared portal. Active session: <strong>' + esc(account.name) + ' (' + esc(account.role) + ')</strong></p>' +
+            '<form id="weeklyReportForm" class="form-grid" novalidate>' +
+              '<div class="field">' +
+                '<label for="repWeekLabel">Reporting Week</label>' +
+                '<input type="text" id="repWeekLabel" placeholder="e.g. Week of Nov 26, 2026" required />' +
+              '</div>' +
+              '<div class="field">' +
+                '<label for="repTitle">Report Title</label>' +
+                '<input type="text" id="repTitle" placeholder="Weekly Executive / Secretariat / Finance Report" required />' +
+              '</div>' +
+              '<div class="field full">' +
+                '<label for="repSummary">Weekly Report Summary</label>' +
+                '<textarea id="repSummary" rows="3" placeholder="Enter key activities, figures, or updates for the Chairperson..." required></textarea>' +
+              '</div>' +
+              '<div class="field full" style="display:flex; gap:10px; flex-wrap:wrap;">' +
+                '<button type="button" class="btn btn-secondary btn-sm" id="downloadReportPdfBtn">Download Report PDF</button>' +
+                '<button type="submit" class="btn btn-indigo btn-sm">Submit Weekly Report to Chairperson</button>' +
+              '</div>' +
+            '</form>' +
+            '<div id="weeklyReportMsg" class="msg-note"></div>' +
+          '</div>';
 
-          weeklyReportCardHtml =
-            '<div class="card" style="margin-bottom:18px; border-top:4px solid var(--indigo-600);">' +
-              '<h3>Weekly Report — Download PDF &amp; Submit to Chairperson</h3>' +
-              '<p style="font-size:0.86rem; color:var(--ink-500); margin-bottom:12px;">Status: <strong>' + esc(statusLabel) + '</strong></p>' +
-              '<form id="weeklyReportForm" class="form-grid" novalidate>' +
-                '<div class="field">' +
-                  '<label for="repWeekLabel">Reporting Week</label>' +
-                  '<input type="text" id="repWeekLabel" placeholder="e.g. Week of Nov 26, 2026" required />' +
-                '</div>' +
-                '<div class="field">' +
-                  '<label for="repTitle">Report Title</label>' +
-                  '<input type="text" id="repTitle" placeholder="' + (account.role === "Treasurer" ? "Weekly Financial Summary" : "Weekly Secretariat & Minutes Report") + '" required />' +
-                '</div>' +
-                '<div class="field full">' +
-                  '<label for="repSummary">Weekly Report Summary</label>' +
-                  '<textarea id="repSummary" rows="3" placeholder="Enter key activities, figures, or updates for the Chairperson..." required></textarea>' +
-                '</div>' +
-                '<div class="field full" style="display:flex; gap:10px; flex-wrap:wrap;">' +
-                  '<button type="button" class="btn btn-secondary btn-sm" id="downloadReportPdfBtn">Download Report PDF</button>' +
-                  '<button type="submit" class="btn btn-indigo btn-sm">Submit Weekly Report to Chairperson</button>' +
-                '</div>' +
-              '</form>' +
-              '<div id="weeklyReportMsg" class="msg-note"></div>' +
-            '</div>';
-        }
+        const chairSubmissionsListHtml = state.chairReports.length === 0
+          ? "<p style='color:var(--ink-500); font-size:0.9rem;'>No weekly reports submitted yet.</p>"
+          : state.chairReports.map(function (r) {
+              return (
+                '<div class="wall-post">' +
+                  '<div class="wall-post-meta">' + esc(r.submittedBy) + ' (' + esc(r.role) + ') &bull; ' + esc(r.weekLabel) + ' &bull; ' + esc(r.submittedAt) + '</div>' +
+                  '<div style="font-weight:700; margin-bottom:4px;">' + esc(r.title) + '</div>' +
+                  '<div style="font-size:0.9rem;">' + esc(r.summary) + '</div>' +
+                '</div>'
+              );
+            }).join("");
 
-        let chairSubmissionsCardHtml = "";
-        if (isChairperson) {
-          const listHtml = state.chairReports.length === 0
-            ? "<p style='color:var(--ink-500); font-size:0.9rem;'>No weekly reports submitted to the Chairperson yet.</p>"
-            : state.chairReports.map(function (r) {
-                return (
-                  '<div class="wall-post">' +
-                    '<div class="wall-post-meta">' + esc(r.submittedBy) + ' (' + esc(r.role) + ') &bull; ' + esc(r.weekLabel) + ' &bull; ' + esc(r.submittedAt) + '</div>' +
-                    '<div style="font-weight:700; margin-bottom:4px;">' + esc(r.title) + '</div>' +
-                    '<div style="font-size:0.9rem;">' + esc(r.summary) + '</div>' +
-                  '</div>'
-                );
-              }).join("");
-
-          chairSubmissionsCardHtml =
-            '<div class="card" style="margin-bottom:18px; border-top:4px solid var(--amber-500);">' +
-              '<h3>Weekly Reports Submitted to Chairperson</h3>' +
-              listHtml +
-            '</div>';
-        }
+        const chairSubmissionsCardHtml =
+          '<div class="card" style="margin-bottom:18px; border-top:4px solid var(--amber-500);">' +
+            '<h3>Submitted Weekly Reports Log (' + state.chairReports.length + ')</h3>' +
+            chairSubmissionsListHtml +
+          '</div>';
 
         container.innerHTML =
-          '<div class="grid-2" style="margin-bottom:18px;">' +
+          '<div class="grid-3" style="margin-bottom:18px;">' +
             '<div class="card">' +
-              '<h3>' + esc(account.officeName) + '</h3>' +
-              '<p style="margin-bottom:8px;"><strong>Officer:</strong> ' + esc(account.name) + ' (' + esc(account.role) + ')</p>' +
-              '<p style="margin-bottom:8px;"><strong>Reg. No.:</strong> ' + esc(account.reg) + ' &bull; <strong>Phone:</strong> ' + esc(account.phone) + '</p>' +
-              '<p style="font-weight:700; margin-bottom:6px;">Role &amp; Office Mandate:</p>' +
-              '<ul style="padding-left:18px; display:grid; gap:6px; font-size:0.9rem; color:var(--ink-700);">' + dutiesHtml + '</ul>' +
+              '<div class="priority-num">Total Roster</div>' +
+              '<h3>' + state.members.length + ' Registered Members</h3>' +
+              '<p>All active and founding members on record.</p>' +
             '</div>' +
             '<div class="card">' +
-              '<h3>Save Office Record / Note</h3>' +
+              '<div class="priority-num">M-Pesa Ref Submitted</div>' +
+              '<h3>' + paidMembers.length + ' Members</h3>' +
+              '<p>Members with an M-Pesa reference code recorded.</p>' +
+            '</div>' +
+            '<div class="card">' +
+              '<div class="priority-num">Awaiting M-Pesa Ref</div>' +
+              '<h3>' + unpaidMembers.length + ' Members</h3>' +
+              '<p>Members yet to submit an M-Pesa reference code.</p>' +
+            '</div>' +
+          '</div>' +
+          '<div class="grid-2" style="margin-bottom:18px;">' +
+            '<div class="card">' +
+              '<h3>General Executive Committee (' + EXEC_OFFICES.length + ' Offices)</h3>' +
+              '<p style="font-size:0.86rem; color:var(--ink-500); margin-bottom:10px;">Shared access across all executive officials in one portal.</p>' +
+              '<div style="display:grid; gap:8px; max-height:320px; overflow-y:auto;">' + execDirectoryHtml + '</div>' +
+            '</div>' +
+            '<div class="card">' +
+              '<h3>Post to General Executive Board</h3>' +
               '<form id="officeNoteForm" class="form-grid" novalidate>' +
                 '<div class="field full">' +
                   '<label for="officeNoteTitle">Subject</label>' +
-                  '<input type="text" id="officeNoteTitle" placeholder="e.g. Action item or schedule note" required />' +
+                  '<input type="text" id="officeNoteTitle" placeholder="e.g. Saturday meeting logistics or outreach update" required />' +
                 '</div>' +
                 '<div class="field full">' +
                   '<label for="officeNoteBody">Details</label>' +
-                  '<textarea id="officeNoteBody" rows="3" placeholder="Record an office note..." required></textarea>' +
+                  '<textarea id="officeNoteBody" rows="3" placeholder="Share an update visible to all executive members..." required></textarea>' +
                 '</div>' +
                 '<div class="field full">' +
-                  '<button type="submit" class="btn btn-teal btn-sm">Save to My Office</button>' +
+                  '<button type="submit" class="btn btn-teal btn-sm">Post to General Portal</button>' +
                 '</div>' +
               '</form>' +
             '</div>' +
@@ -2302,7 +2312,7 @@
           weeklyReportCardHtml +
           chairSubmissionsCardHtml +
           '<div class="card">' +
-            '<h3 style="margin-bottom:10px;">' + esc(account.officeName) + ' — Saved Notes</h3>' +
+            '<h3 style="margin-bottom:10px;">General Executive Board — Shared Notes &amp; Updates</h3>' +
             notesHtml +
           '</div>';
 
@@ -2314,81 +2324,82 @@
             const body = document.getElementById("officeNoteBody").value.trim();
             if (!title || !body) return;
 
-            const current = Array.isArray(state.officeNotes[account.id]) ? state.officeNotes[account.id] : [];
+            const current = Array.isArray(state.officeNotes["GENERAL_EXEC"]) ? state.officeNotes["GENERAL_EXEC"] : [];
             current.unshift({
               title: title,
               body: body,
+              author: account.name + " (" + account.role + ")",
               time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
             });
-            state.officeNotes[account.id] = current;
+            state.officeNotes["GENERAL_EXEC"] = current;
             saveState();
             renderOfficeWorkspace(account);
           });
         }
 
-        if (isWeeklyReporter) {
-          const dlBtn = document.getElementById("downloadReportPdfBtn");
-          const repForm = document.getElementById("weeklyReportForm");
+        const dlBtn = document.getElementById("downloadReportPdfBtn");
+        const repForm = document.getElementById("weeklyReportForm");
 
-          function getReportFields() {
-            return {
-              weekLabel: (document.getElementById("repWeekLabel").value || "Current Week").trim(),
-              title: (document.getElementById("repTitle").value || (account.role + " Weekly Report")).trim(),
-              summary: (document.getElementById("repSummary").value || "Weekly update submitted to Chairperson.").trim()
-            };
-          }
+        function getReportFields() {
+          return {
+            weekLabel: (document.getElementById("repWeekLabel").value || "Current Week").trim(),
+            title: (document.getElementById("repTitle").value || (account.role + " Weekly Report")).trim(),
+            summary: (document.getElementById("repSummary").value || "Weekly update submitted to Chairperson.").trim()
+          };
+        }
 
-          if (dlBtn) {
-            dlBtn.addEventListener("click", function () {
-              const data = getReportFields();
-              const pdfBlob = buildSimplePdfBlob([
-                "SHARE A SMILE CHARITY CLUB - LAIKIPIA UNIVERSITY",
-                account.officeName.toUpperCase() + " - WEEKLY REPORT",
-                "Submitted By: " + account.name + " (" + account.role + ")",
-                "Reg. Number: " + account.reg,
-                "To: Chairperson (Rooney Ogongo)",
-                "Reporting Week: " + data.weekLabel,
-                "Report Title: " + data.title,
-                "------------------------------------------------------------",
-                "Summary:",
-                data.summary
-              ]);
-              const url = URL.createObjectURL(pdfBlob);
-              const link = document.createElement("a");
-              link.href = url;
-              link.download = account.role.toLowerCase().replace(/\s+/g, "-") + "-weekly-report.pdf";
-              document.body.appendChild(link);
-              link.click();
-              document.body.removeChild(link);
-              setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+        if (dlBtn) {
+          dlBtn.addEventListener("click", function () {
+            const data = getReportFields();
+            const pdfBlob = buildSimplePdfBlob([
+              "SHARE A SMILE CHARITY CLUB - LAIKIPIA UNIVERSITY",
+              "GENERAL EXECUTIVE PORTAL - WEEKLY REPORT",
+              "Submitted By: " + account.name + " (" + account.role + ")",
+              "Reg. Number: " + account.reg,
+              "To: Chairperson (Rooney Ogongo)",
+              "Reporting Week: " + data.weekLabel,
+              "Report Title: " + data.title,
+              "------------------------------------------------------------",
+              "Summary:",
+              data.summary
+            ]);
+            const url = URL.createObjectURL(pdfBlob);
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = "general-executive-weekly-report.pdf";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+          });
+        }
+
+        if (repForm) {
+          repForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const data = getReportFields();
+            const msgEl = document.getElementById("weeklyReportMsg");
+
+            state.chairReports.unshift({
+              submittedBy: account.name,
+              role: account.role,
+              reg: account.reg,
+              weekLabel: data.weekLabel,
+              title: data.title,
+              summary: data.summary,
+              submittedAt: new Date().toLocaleString()
             });
-          }
-
-          if (repForm) {
-            repForm.addEventListener("submit", function (e) {
-              e.preventDefault();
-              const data = getReportFields();
-              const msgEl = document.getElementById("weeklyReportMsg");
-
-              state.chairReports.unshift({
-                submittedBy: account.name,
-                role: account.role,
-                reg: account.reg,
-                weekLabel: data.weekLabel,
-                title: data.title,
-                summary: data.summary,
-                submittedAt: new Date().toLocaleString()
-              });
+            if (state.lastReportSubmittedAt && Object.prototype.hasOwnProperty.call(state.lastReportSubmittedAt, account.role)) {
               state.lastReportSubmittedAt[account.role] = Date.now();
-              saveState();
+            }
+            saveState();
 
-              if (msgEl) {
-                msgEl.className = "msg-note msg-ok";
-                msgEl.textContent = "Weekly report submitted to Chairperson (Rooney Ogongo).";
-              }
-              renderOfficeWorkspace(account);
-            });
-          }
+            if (msgEl) {
+              msgEl.className = "msg-note msg-ok";
+              msgEl.textContent = "Weekly report submitted to Chairperson (Rooney Ogongo).";
+            }
+            renderOfficeWorkspace(account);
+          });
         }
       }
 
@@ -2404,8 +2415,8 @@
         const backdrop = document.getElementById("execPopupBackdrop");
         const title = document.getElementById("popupTitle");
         const sub = document.getElementById("popupSubtitle");
-        if (title) title.textContent = state.loggedInExec.officeName;
-        if (sub) sub.textContent = state.loggedInExec.name + " (" + state.loggedInExec.role + ") — " + state.loggedInExec.reg;
+        if (title) title.textContent = "General Executive Portal";
+        if (sub) sub.textContent = "Signed in as " + state.loggedInExec.name + " (" + state.loggedInExec.role + ") • Shared Access for All Executives";
         renderOfficeWorkspace(state.loggedInExec);
         backdrop.classList.add("open");
 
