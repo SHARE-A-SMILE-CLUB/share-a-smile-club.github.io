@@ -775,6 +775,59 @@
       gap: 14px;
     }
 
+
+    .overdue-alert-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.72);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .overdue-alert-backdrop.open {
+      display: flex;
+    }
+
+    .overdue-alert-card {
+      width: 100%;
+      max-width: 520px;
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      border: 3px solid var(--rose-600);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+
+    .overdue-alert-head {
+      background: linear-gradient(90deg, #9f1239 0%, #e11d48 100%);
+      color: #ffffff;
+      padding: 14px 18px;
+      font-weight: 800;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .overdue-alert-body {
+      padding: 18px;
+      font-size: 0.92rem;
+      color: var(--ink-700);
+    }
+
+    .report-entry {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--teal-600);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      margin-bottom: 10px;
+    }
+
     @media (max-width: 900px) {
       .hero-inner, .grid-3, .grid-2, .priority-row, .form-grid {
         grid-template-columns: 1fr;
@@ -1051,10 +1104,16 @@
         </p>
 
         <div class="portal-color-chips">
-          <span class="chip chip-amber">Chairperson Office</span>
-          <span class="chip chip-indigo">Vice Chairperson Office</span>
-          <span class="chip chip-rose">Secretary General Office</span>
-          <span class="chip chip-teal">Treasurer Office</span>
+          <span class="chip chip-amber">Chairperson</span>
+          <span class="chip chip-indigo">Vice Chairperson</span>
+          <span class="chip chip-rose">Secretary General</span>
+          <span class="chip chip-teal">Assistant Secretary</span>
+          <span class="chip chip-amber">Treasurer</span>
+          <span class="chip chip-indigo">Organising Secretary</span>
+          <span class="chip chip-rose">Publicity Officer</span>
+          <span class="chip chip-teal">Projects Coordinator</span>
+          <span class="chip chip-amber">Welfare Coordinator</span>
+          <span class="chip chip-indigo">Partnership Coordinator</span>
         </div>
 
         <div class="portal-login-box">
@@ -1077,6 +1136,20 @@
       </div>
     </div>
   </section>
+
+  <!-- WEEKLY REPORT OVERDUE POP-UP NOTIFICATION -->
+  <div id="overdueNotifyBackdrop" class="overdue-alert-backdrop" role="dialog" aria-modal="true" aria-labelledby="overdueNotifyTitle">
+    <div class="overdue-alert-card">
+      <div class="overdue-alert-head">
+        <span id="overdueNotifyTitle">Weekly Report Reminder</span>
+        <button type="button" onclick="closeOverdueNotify()" style="background:none; border:none; color:#fff; font-size:1.25rem; cursor:pointer;">&times;</button>
+      </div>
+      <div id="overdueNotifyBody" class="overdue-alert-body"></div>
+      <div style="padding: 0 18px 18px; display: flex; justify-content: flex-end; gap: 8px;">
+        <button type="button" class="btn btn-indigo btn-sm" onclick="closeOverdueNotify()">Acknowledge</button>
+      </div>
+    </div>
+  </div>
 
   <!-- POP-UP EXECUTIVE OFFICE WINDOW -->
   <div id="execPopupBackdrop" class="popup-backdrop" role="dialog" aria-modal="true" aria-labelledby="popupTitle">
@@ -1139,67 +1212,157 @@
       const WA_URL = "https://chat.whatsapp.com/Dty1LdhdHwv1JTfGJETtdW";
       const STORE_KEY = "sas_club_structured_v1";
 
+      const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
+
       const EXEC_OFFICES = [
         {
-          id: "CHAIR-01",
-          reg: "ED/ART/1591/24",
+          id: "EXEC-01",
+          reg: "ED/ART1591//24",
+          altReg: "ED/ART/1591/24",
           pin: "1591",
+          phone: "0769529801",
           name: "Rooney Ogongo",
           role: "Chairperson",
           officeName: "Office of the Chairperson",
           responsibilities: [
             "Preside over executive and general club meetings",
-            "Oversee club governance, representation, and strategic planning",
-            "Coordinate outreach schedules and official club correspondence"
+            "Oversee club governance, representation, and compliance with Dean of Students regulations",
+            "Review weekly reports submitted by the Secretary General and Treasurer"
           ]
         },
         {
-          id: "VCHAIR-02",
+          id: "EXEC-02",
           reg: "ED/ART/4377/25",
           pin: "4377",
+          phone: "0725729609",
           name: "Ivy Bundi",
           role: "Vice Chairperson",
           officeName: "Office of the Vice Chairperson",
           responsibilities: [
-            "Assist and deputize for the Chairperson",
-            "Coordinate committee activities and member engagement",
-            "Support logistics for campus and field outreach programs"
+            "Deputize for the Chairperson and support executive coordination",
+            "Assist with member mobilization and outreach readiness"
           ]
         },
         {
-          id: "SECGEN-03",
+          id: "EXEC-03",
           reg: "BE/EST/2495/24",
           pin: "2495",
+          phone: "0758523759",
           name: "Immanuel Mesocho",
           role: "Secretary General",
           officeName: "Office of the Secretary General",
           responsibilities: [
             "Maintain official minutes, records, and club correspondence",
-            "Manage membership registers and meeting notices",
-            "Archive club documents and activity reports"
+            "Download weekly report PDFs and submit weekly reports to the Chairperson"
           ]
         },
         {
-          id: "TREAS-05",
+          id: "EXEC-04",
+          reg: "ED/ART/1658/24",
+          pin: "1658",
+          phone: "0708563143",
+          name: "Silvia Osore",
+          role: "Assistant Secretary",
+          officeName: "Office of the Assistant Secretary",
+          responsibilities: [
+            "Support the Secretary General in recording minutes and notices",
+            "Assist in maintaining club attendance and activity records"
+          ]
+        },
+        {
+          id: "EXEC-05",
           reg: "ED/ART/1807/24",
           pin: "1807",
+          phone: "0758712751",
           name: "Lewis Ogachi",
           role: "Treasurer",
           officeName: "Office of the Treasurer",
           responsibilities: [
-            "Manage club funds, budgets, and financial records",
-            "Track contributions, expenses, and disbursement approvals",
-            "Prepare financial summaries for executive review"
+            "Manage club finances, budgets, and expenditure records",
+            "Download weekly financial report PDFs and submit weekly reports to the Chairperson"
+          ]
+        },
+        {
+          id: "EXEC-06",
+          reg: "ORGSEC-06",
+          pin: "6743",
+          phone: "0113466743",
+          name: "Ebenezar Kiproto",
+          role: "Organising Secretary",
+          officeName: "Office of the Organising Secretary",
+          responsibilities: [
+            "Coordinate event logistics, venues, and meeting arrangements",
+            "Organize operational schedules for club activities"
+          ]
+        },
+        {
+          id: "EXEC-07",
+          reg: "ED/ART/1670/24",
+          pin: "1670",
+          phone: "0115940377",
+          name: "Caleb Orobo",
+          role: "Publicity Officer",
+          officeName: "Office of the Publicity Officer",
+          responsibilities: [
+            "Handle club announcements, communications, and event publicity",
+            "Share accurate updates on approved club initiatives"
+          ]
+        },
+        {
+          id: "EXEC-08",
+          reg: "ED/ART/1460/24",
+          pin: "1460",
+          phone: "0706846072",
+          name: "Damaris Akinyi",
+          role: "Projects Coordinator",
+          officeName: "Office of the Projects Coordinator",
+          responsibilities: [
+            "Plan and track outreach and community service projects",
+            "Coordinate project execution timelines and deliverables"
+          ]
+        },
+        {
+          id: "EXEC-09",
+          reg: "ED/ART/1593/24",
+          pin: "1593",
+          phone: "0714388618",
+          name: "Faith Matongo",
+          role: "Welfare Coordinator",
+          officeName: "Office of the Welfare Coordinator",
+          responsibilities: [
+            "Coordinate member welfare support and peer care initiatives",
+            "Monitor member well-being during campus and outreach activities"
+          ]
+        },
+        {
+          id: "EXEC-10",
+          reg: "ED/ART/0931/24",
+          pin: "0931",
+          phone: "0798872049",
+          name: "Rose Khaemba",
+          role: "Partnership Coordinator",
+          officeName: "Office of the Partnership Coordinator",
+          responsibilities: [
+            "Cultivate partnerships with sponsors, institutions, and community groups",
+            "Support collaborative outreach and resource mobilization"
           ]
         }
       ];
 
+      function normalizeReg(val) {
+        return String(val || "").trim().toUpperCase().replace(/\s+/g, "");
+      }
+
       function resolveExecutiveAccount(idVal, pinVal) {
-        const cleanId = String(idVal || "").trim().toUpperCase();
+        const cleanId = normalizeReg(idVal);
         const cleanPin = String(pinVal || "").trim();
         if (!cleanId || !cleanPin) return null;
         return EXEC_OFFICES.find(function (acc) {
-          return (acc.id === cleanId || acc.reg.toUpperCase() === cleanId) && acc.pin === cleanPin;
+          const matchesId =
+            normalizeReg(acc.id) === cleanId ||
+            normalizeReg(acc.reg) === cleanId ||
+            (acc.altReg && normalizeReg(acc.altReg) === cleanId);
+          return matchesId && acc.pin === cleanPin;
         }) || null;
       }
 
@@ -1208,9 +1371,14 @@
       function defaultState() {
         return {
           members: [
-            { name: "Rooney David Ogongo", reg: "ED/ART/1591/24", role: "Outreach & Visits" }
+            { name: "Rooney Ogongo", reg: "ED/ART1591//24", role: "Chairperson" }
           ],
           officeNotes: {},
+          chairReports: [],
+          lastReportSubmittedAt: {
+            "Secretary General": null,
+            "Treasurer": null
+          },
           loggedInExec: null
         };
       }
@@ -1224,6 +1392,10 @@
           return {
             members: Array.isArray(parsed.members) ? parsed.members : base.members,
             officeNotes: parsed.officeNotes && typeof parsed.officeNotes === "object" ? parsed.officeNotes : {},
+            chairReports: Array.isArray(parsed.chairReports) ? parsed.chairReports : [],
+            lastReportSubmittedAt: parsed.lastReportSubmittedAt && typeof parsed.lastReportSubmittedAt === "object"
+              ? Object.assign(base.lastReportSubmittedAt, parsed.lastReportSubmittedAt)
+              : base.lastReportSubmittedAt,
             loggedInExec: parsed.loggedInExec || null
           };
         } catch (e) {
@@ -1244,6 +1416,86 @@
           .replace(/>/g, "&gt;")
           .replace(/"/g, "&quot;");
       }
+
+      function pdfEscape(text) {
+        return String(text || "")
+          .replace(/[^\x20-\x7E]/g, " ")
+          .replace(/\\/g, "\\\\")
+          .replace(/\(/g, "\\(")
+          .replace(/\)/g, "\\)");
+      }
+
+      function buildSimplePdfBlob(lines) {
+        const contentStreams = ["BT", "/F1 12 Tf", "50 750 Td", "16 TL"];
+        lines.forEach(function (line, idx) {
+          if (idx === 0) {
+            contentStreams.push("(" + pdfEscape(line) + ") Tj");
+          } else {
+            contentStreams.push("T* (" + pdfEscape(line) + ") Tj");
+          }
+        });
+        contentStreams.push("ET");
+        const streamBody = contentStreams.join("\n");
+        const streamLen = streamBody.length;
+
+        const objects = [
+          "1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj\n",
+          "2 0 obj\n<< /Type /Pages /Kids [3 0 R] /Count 1 >>\nendobj\n",
+          "3 0 obj\n<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>\nendobj\n",
+          "4 0 obj\n<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>\nendobj\n",
+          "5 0 obj\n<< /Length " + streamLen + " >>\nstream\n" + streamBody + "\nendstream\nendobj\n"
+        ];
+
+        let pdf = "%PDF-1.4\n";
+        const offsets = [0];
+        objects.forEach(function (obj) {
+          offsets.push(pdf.length);
+          pdf += obj;
+        });
+        const xrefStart = pdf.length;
+        pdf += "xref\n0 " + (objects.length + 1) + "\n";
+        pdf += "0000000000 65535 f \n";
+        for (let i = 1; i < offsets.length; i++) {
+          pdf += String(offsets[i]).padStart(10, "0") + " 00000 n \n";
+        }
+        pdf += "trailer\n<< /Size " + (objects.length + 1) + " /Root 1 0 R >>\nstartxref\n" + xrefStart + "\n%%EOF";
+
+        return new Blob([pdf], { type: "application/pdf" });
+      }
+
+      function getOverdueReportingRoles() {
+        const now = Date.now();
+        return ["Secretary General", "Treasurer"].filter(function (roleName) {
+          const lastTs = state.lastReportSubmittedAt ? state.lastReportSubmittedAt[roleName] : null;
+          return !lastTs || (now - Number(lastTs)) >= WEEK_MS;
+        });
+      }
+
+      window.showOverdueNotify = function (rolesList, contextLabel) {
+        const backdrop = document.getElementById("overdueNotifyBackdrop");
+        const titleEl = document.getElementById("overdueNotifyTitle");
+        const bodyEl = document.getElementById("overdueNotifyBody");
+        if (!backdrop || !bodyEl) return;
+
+        const itemsHtml = rolesList.map(function (r) {
+          const officer = EXEC_OFFICES.find(function (o) { return o.role === r; });
+          const who = officer ? officer.name + " (" + r + ")" : r;
+          return "<li><strong>" + esc(who) + "</strong> — Weekly report not submitted within the 7-day cycle.</li>";
+        }).join("");
+
+        if (titleEl) titleEl.textContent = contextLabel || "Weekly Report Not Submitted";
+        bodyEl.innerHTML =
+          "<p style='margin-bottom:10px;'>A weekly report submission to the <strong>Chairperson (Rooney Ogongo)</strong> is due or overdue for:</p>" +
+          "<ul style='padding-left:18px; display:grid; gap:6px; margin-bottom:10px;'>" + itemsHtml + "</ul>" +
+          "<p style='font-size:0.85rem; color:var(--ink-500);'>Secretary General and Treasurer can generate/download a PDF and submit their weekly report inside their office window.</p>";
+
+        backdrop.classList.add("open");
+      };
+
+      window.closeOverdueNotify = function () {
+        const backdrop = document.getElementById("overdueNotifyBackdrop");
+        if (backdrop) backdrop.classList.remove("open");
+      };
 
       // 1. Member Registration + Clean Next-Step WhatsApp Button
       const joinForm = document.getElementById("joinForm");
@@ -1320,13 +1572,71 @@
               );
             }).join("");
 
+        const isWeeklyReporter = account.role === "Secretary General" || account.role === "Treasurer";
+        const isChairperson = account.role === "Chairperson";
+
+        let weeklyReportCardHtml = "";
+        if (isWeeklyReporter) {
+          const lastTs = state.lastReportSubmittedAt ? state.lastReportSubmittedAt[account.role] : null;
+          const isOverdue = !lastTs || (Date.now() - Number(lastTs)) >= WEEK_MS;
+          const statusLabel = lastTs
+            ? (isOverdue ? "Overdue (7+ days since last submission)" : "Up to date (" + new Date(Number(lastTs)).toLocaleString() + ")")
+            : "No weekly report submitted yet";
+
+          weeklyReportCardHtml =
+            '<div class="card" style="margin-bottom:18px; border-top:4px solid var(--indigo-600);">' +
+              '<h3>Weekly Report — Download PDF &amp; Submit to Chairperson</h3>' +
+              '<p style="font-size:0.86rem; color:var(--ink-500); margin-bottom:12px;">Status: <strong>' + esc(statusLabel) + '</strong></p>' +
+              '<form id="weeklyReportForm" class="form-grid" novalidate>' +
+                '<div class="field">' +
+                  '<label for="repWeekLabel">Reporting Week</label>' +
+                  '<input type="text" id="repWeekLabel" placeholder="e.g. Week of Nov 26, 2026" required />' +
+                '</div>' +
+                '<div class="field">' +
+                  '<label for="repTitle">Report Title</label>' +
+                  '<input type="text" id="repTitle" placeholder="' + (account.role === "Treasurer" ? "Weekly Financial Summary" : "Weekly Secretariat & Minutes Report") + '" required />' +
+                '</div>' +
+                '<div class="field full">' +
+                  '<label for="repSummary">Weekly Report Summary</label>' +
+                  '<textarea id="repSummary" rows="3" placeholder="Enter key activities, figures, or updates for the Chairperson..." required></textarea>' +
+                '</div>' +
+                '<div class="field full" style="display:flex; gap:10px; flex-wrap:wrap;">' +
+                  '<button type="button" class="btn btn-secondary btn-sm" id="downloadReportPdfBtn">Download Report PDF</button>' +
+                  '<button type="submit" class="btn btn-indigo btn-sm">Submit Weekly Report to Chairperson</button>' +
+                '</div>' +
+              '</form>' +
+              '<div id="weeklyReportMsg" class="msg-note"></div>' +
+            '</div>';
+        }
+
+        let chairSubmissionsCardHtml = "";
+        if (isChairperson) {
+          const listHtml = state.chairReports.length === 0
+            ? "<p style='color:var(--ink-500); font-size:0.9rem;'>No weekly reports submitted to the Chairperson yet.</p>"
+            : state.chairReports.map(function (r) {
+                return (
+                  '<div class="wall-post">' +
+                    '<div class="wall-post-meta">' + esc(r.submittedBy) + ' (' + esc(r.role) + ') &bull; ' + esc(r.weekLabel) + ' &bull; ' + esc(r.submittedAt) + '</div>' +
+                    '<div style="font-weight:700; margin-bottom:4px;">' + esc(r.title) + '</div>' +
+                    '<div style="font-size:0.9rem;">' + esc(r.summary) + '</div>' +
+                  '</div>'
+                );
+              }).join("");
+
+          chairSubmissionsCardHtml =
+            '<div class="card" style="margin-bottom:18px; border-top:4px solid var(--amber-500);">' +
+              '<h3>Weekly Reports Submitted to Chairperson</h3>' +
+              listHtml +
+            '</div>';
+        }
+
         container.innerHTML =
           '<div class="grid-2" style="margin-bottom:18px;">' +
             '<div class="card">' +
               '<h3>' + esc(account.officeName) + '</h3>' +
-              '<p style="margin-bottom:10px;"><strong>Officer:</strong> ' + esc(account.name) + ' (' + esc(account.role) + ')</p>' +
-              '<p style="margin-bottom:10px;"><strong>Office ID:</strong> ' + esc(account.id) + ' &bull; <strong>Reg. No.:</strong> ' + esc(account.reg) + '</p>' +
-              '<p style="font-weight:700; margin-bottom:6px;">Core Office Mandate:</p>' +
+              '<p style="margin-bottom:8px;"><strong>Officer:</strong> ' + esc(account.name) + ' (' + esc(account.role) + ')</p>' +
+              '<p style="margin-bottom:8px;"><strong>Reg. No.:</strong> ' + esc(account.reg) + ' &bull; <strong>Phone:</strong> ' + esc(account.phone) + '</p>' +
+              '<p style="font-weight:700; margin-bottom:6px;">Role &amp; Office Mandate:</p>' +
               '<ul style="padding-left:18px; display:grid; gap:6px; font-size:0.9rem; color:var(--ink-700);">' + dutiesHtml + '</ul>' +
             '</div>' +
             '<div class="card">' +
@@ -1346,6 +1656,8 @@
               '</form>' +
             '</div>' +
           '</div>' +
+          weeklyReportCardHtml +
+          chairSubmissionsCardHtml +
           '<div class="card">' +
             '<h3 style="margin-bottom:10px;">' + esc(account.officeName) + ' — Saved Notes</h3>' +
             notesHtml +
@@ -1370,6 +1682,71 @@
             renderOfficeWorkspace(account);
           });
         }
+
+        if (isWeeklyReporter) {
+          const dlBtn = document.getElementById("downloadReportPdfBtn");
+          const repForm = document.getElementById("weeklyReportForm");
+
+          function getReportFields() {
+            return {
+              weekLabel: (document.getElementById("repWeekLabel").value || "Current Week").trim(),
+              title: (document.getElementById("repTitle").value || (account.role + " Weekly Report")).trim(),
+              summary: (document.getElementById("repSummary").value || "Weekly update submitted to Chairperson.").trim()
+            };
+          }
+
+          if (dlBtn) {
+            dlBtn.addEventListener("click", function () {
+              const data = getReportFields();
+              const pdfBlob = buildSimplePdfBlob([
+                "SHARE A SMILE CHARITY CLUB - LAIKIPIA UNIVERSITY",
+                account.officeName.toUpperCase() + " - WEEKLY REPORT",
+                "Submitted By: " + account.name + " (" + account.role + ")",
+                "Reg. Number: " + account.reg,
+                "To: Chairperson (Rooney Ogongo)",
+                "Reporting Week: " + data.weekLabel,
+                "Report Title: " + data.title,
+                "------------------------------------------------------------",
+                "Summary:",
+                data.summary
+              ]);
+              const url = URL.createObjectURL(pdfBlob);
+              const link = document.createElement("a");
+              link.href = url;
+              link.download = account.role.toLowerCase().replace(/\s+/g, "-") + "-weekly-report.pdf";
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+              setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+            });
+          }
+
+          if (repForm) {
+            repForm.addEventListener("submit", function (e) {
+              e.preventDefault();
+              const data = getReportFields();
+              const msgEl = document.getElementById("weeklyReportMsg");
+
+              state.chairReports.unshift({
+                submittedBy: account.name,
+                role: account.role,
+                reg: account.reg,
+                weekLabel: data.weekLabel,
+                title: data.title,
+                summary: data.summary,
+                submittedAt: new Date().toLocaleString()
+              });
+              state.lastReportSubmittedAt[account.role] = Date.now();
+              saveState();
+
+              if (msgEl) {
+                msgEl.className = "msg-note msg-ok";
+                msgEl.textContent = "Weekly report submitted to Chairperson (Rooney Ogongo).";
+              }
+              renderOfficeWorkspace(account);
+            });
+          }
+        }
       }
 
       window.openExecPopup = function () {
@@ -1385,9 +1762,21 @@
         const title = document.getElementById("popupTitle");
         const sub = document.getElementById("popupSubtitle");
         if (title) title.textContent = state.loggedInExec.officeName;
-        if (sub) sub.textContent = state.loggedInExec.name + " (" + state.loggedInExec.role + ") — Authorized Executive Office";
+        if (sub) sub.textContent = state.loggedInExec.name + " (" + state.loggedInExec.role + ") — " + state.loggedInExec.reg;
         renderOfficeWorkspace(state.loggedInExec);
         backdrop.classList.add("open");
+
+        if (state.loggedInExec.role === "Secretary General" || state.loggedInExec.role === "Treasurer") {
+          const lastTs = state.lastReportSubmittedAt[state.loggedInExec.role];
+          if (!lastTs || (Date.now() - Number(lastTs)) >= WEEK_MS) {
+            window.showOverdueNotify([state.loggedInExec.role], "Weekly Report Due");
+          }
+        } else if (state.loggedInExec.role === "Chairperson") {
+          const overdue = getOverdueReportingRoles();
+          if (overdue.length > 0) {
+            window.showOverdueNotify(overdue, "Weekly Reports Not Submitted");
+          }
+        }
       };
 
       window.closeExecPopup = function () {
@@ -1425,10 +1814,18 @@
           state.loggedInExec = account;
           saveState();
           msgEl.className = "msg-note msg-ok";
-          msgEl.textContent = "Authenticated: " + account.officeName + ". Opening pop-up office...";
+          msgEl.textContent = "Authenticated: " + account.officeName + " (" + account.name + "). Opening office...";
           document.getElementById("execPinInput").value = "";
           window.openExecPopup();
         });
+      }
+
+      // Check weekly report submission status on load and trigger pop-up notification if not submitted within 7 days
+      const initialOverdue = getOverdueReportingRoles();
+      if (initialOverdue.length > 0) {
+        setTimeout(function () {
+          window.showOverdueNotify(initialOverdue, "Weekly Report Not Submitted");
+        }, 400);
       }
 
       // 5. Club Chatbot
