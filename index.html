@@ -578,30 +578,6 @@
       padding: 22px;
     }
 
-    .popup-tabs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 18px;
-    }
-
-    .tab-btn {
-      padding: 8px 14px;
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--border);
-      background: #ffffff;
-      color: var(--ink-700);
-      font-weight: 700;
-      font-size: 0.86rem;
-      cursor: pointer;
-    }
-
-    .tab-btn.active {
-      background: var(--indigo-600);
-      color: #ffffff;
-      border-color: var(--indigo-600);
-    }
-
     .wall-post {
       background: #ffffff;
       border-left: 4px solid var(--indigo-600);
@@ -619,34 +595,6 @@
       font-weight: 700;
       margin-bottom: 4px;
     }
-
-    .feedback-item {
-      background: #ffffff;
-      border-left: 4px solid var(--amber-500);
-      border-top: 1px solid var(--border);
-      border-right: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 12px 14px;
-      margin-bottom: 10px;
-    }
-
-    .feedback-item.complaint {
-      border-left-color: var(--rose-600);
-    }
-
-    .tag-pill {
-      display: inline-block;
-      font-size: 0.72rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      padding: 2px 8px;
-      border-radius: 999px;
-      margin-right: 6px;
-    }
-
-    .tag-suggestion { background: var(--amber-100); color: #92400e; }
-    .tag-complaint { background: var(--rose-100); color: #9f1239; }
 
     /* Floating & Docked Chatbot */
     .chatbot-fab {
@@ -775,7 +723,6 @@
       gap: 14px;
     }
 
-
     .overdue-alert-backdrop {
       position: fixed;
       inset: 0;
@@ -819,16 +766,7 @@
       color: var(--ink-700);
     }
 
-    .report-entry {
-      background: #ffffff;
-      border: 1px solid var(--border);
-      border-left: 4px solid var(--teal-600);
-      border-radius: var(--radius-sm);
-      padding: 12px 14px;
-      margin-bottom: 10px;
-    }
-
-.mobile-dots-btn {
+    .mobile-dots-btn {
       display: none;
       align-items: center;
       justify-content: center;
@@ -949,7 +887,7 @@
     </div>
   </section>
 
-  <!-- 1. WHO WE ARE (First Main Section) -->
+  <!-- 1. WHO WE ARE -->
   <section id="who-we-are" class="band white">
     <div class="container">
       <div class="band-head">
@@ -978,7 +916,7 @@
     </div>
   </section>
 
-  <!-- 2. OUTREACH PHOTOS (Second Main Section) -->
+  <!-- 2. OUTREACH PHOTOS -->
   <section id="outreach-photos" class="band">
     <div class="container">
       <div class="band-head">
@@ -1082,7 +1020,7 @@
     </div>
   </section>
 
-  <!-- 4. JOIN US (WhatsApp is just a clean button right after registering) -->
+  <!-- 4. JOIN US -->
   <section id="join" class="band">
     <div class="container">
       <div class="band-head">
@@ -1120,7 +1058,6 @@
 
         <div id="joinMsg" class="msg-note"></div>
 
-        <!-- Clean button right after registering -->
         <div id="afterRegWaBar" class="post-reg-wa-bar muted">
           <span id="afterRegText" style="font-size: 0.9rem; font-weight: 600;">
             Register above to enable your next-step WhatsApp button:
@@ -1145,15 +1082,15 @@
       <div class="band-head">
         <span class="band-tag">05 • Verification &amp; Merch</span>
         <h2>Verify Membership &amp; Club Apparel</h2>
-        <p>Check a member's registration status or view club apparel items.</p>
+        <p>Check a member's registration status by registration number, or view club apparel items.</p>
       </div>
 
       <div class="grid-2" style="margin-bottom: 24px;">
         <div class="card">
           <h3>Verify Member Status</h3>
-          <p style="margin-bottom: 12px;">Enter your registration / reference number (or name / phone number) to verify your membership status privately.</p>
+          <p style="margin-bottom: 12px;">Enter a registration number (or name / phone number) to check membership status privately.</p>
           <form id="verifyMemberForm" onsubmit="return verifyMember(event);" style="display: flex; gap: 8px; flex-wrap: wrap;">
-            <input type="text" id="verifyQuery" placeholder="e.g. ED/ART/1591/24, REG-001/26, Name, or Phone" style="flex: 1; min-width: 180px;" />
+            <input type="text" id="verifyQuery" placeholder="e.g. ED/ART/1591/24 or REG-001/26" style="flex: 1; min-width: 180px;" />
             <button type="submit" id="verifyMemberBtn" class="btn btn-teal">Verify</button>
           </form>
           <div id="verifyOut" class="msg-note" aria-live="polite" style="display:none;"></div>
@@ -1172,8 +1109,6 @@
           </a>
         </div>
       </div>
-
-
 
       <div class="grid-3">
         <div class="card">
@@ -1313,8 +1248,7 @@
   <script>
     (function () {
       const WA_URL = "https://chat.whatsapp.com/Dty1LdhdHwv1JTfGJETtdW";
-      const STORE_KEY = "sas_club_structured_v1";
-
+      const STORE_KEY = "sas_club_structured_v2";
       const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
 
       const EXEC_OFFICES = [
@@ -1452,8 +1386,372 @@
         }
       ];
 
+      const OFFICIAL_SEED_MEMBERS = [
+        {
+                "name": "Abigael Wanjuru",
+                "reg": "REG-001/26",
+                "phone": "0798196693",
+                "role": "Member"
+        },
+        {
+                "name": "Brian James",
+                "reg": "REG-002/26",
+                "phone": "0741447412",
+                "role": "Member"
+        },
+        {
+                "name": "Caleb Mbata Orobo",
+                "reg": "ED/ART/1670/24",
+                "phone": "0115940377",
+                "role": "Publicity Officer"
+        },
+        {
+                "name": "Joycaren Njogu",
+                "reg": "REG-004/26",
+                "phone": "0115066240",
+                "role": "Member"
+        },
+        {
+                "name": "Catherine Wangui",
+                "reg": "REG-005/26",
+                "phone": "0111484928",
+                "role": "Member"
+        },
+        {
+                "name": "Cyprian King'oina",
+                "reg": "REG-006/26",
+                "phone": "0796580442",
+                "role": "Member"
+        },
+        {
+                "name": "Damaris Molyne",
+                "reg": "ED/ART/1460/24",
+                "phone": "0706846072",
+                "role": "Projects Coordinator"
+        },
+        {
+                "name": "Dancan Njiri",
+                "reg": "REG-008/26",
+                "phone": "0718192841",
+                "role": "Member"
+        },
+        {
+                "name": "Diana Muya",
+                "reg": "REG-009/26",
+                "phone": "0714094800",
+                "role": "Member"
+        },
+        {
+                "name": "Douglas Yego",
+                "reg": "REG-010/26",
+                "phone": "+254 792 206238",
+                "role": "Member"
+        },
+        {
+                "name": "Ebenezer Kiprutoh",
+                "reg": "ORGSEC-06",
+                "phone": "0113466743",
+                "role": "Organising Secretary"
+        },
+        {
+                "name": "Elvins Otieno Odeyo",
+                "reg": "REG-012/26",
+                "phone": "0705759257",
+                "role": "Member"
+        },
+        {
+                "name": "Ezekiel Kipsang",
+                "reg": "REG-013/26",
+                "phone": "0111234550",
+                "role": "Member"
+        },
+        {
+                "name": "Faith Kwamboka Matongo",
+                "reg": "ED/ART/1593/24",
+                "phone": "0714388618",
+                "role": "Welfare Coordinator"
+        },
+        {
+                "name": "Festus Kiprotich",
+                "reg": "REG-015/26",
+                "phone": "0745120943",
+                "role": "Member"
+        },
+        {
+                "name": "Hellen Mokeira",
+                "reg": "REG-016/26",
+                "phone": "0701496869",
+                "role": "Member"
+        },
+        {
+                "name": "Hilder Ongondi",
+                "reg": "REG-017/26",
+                "phone": "0790475235",
+                "role": "Member"
+        },
+        {
+                "name": "Immanuel Mesocho",
+                "reg": "BE/EST/2495/24",
+                "phone": "0758523759",
+                "role": "Secretary General"
+        },
+        {
+                "name": "Ivy Bundi",
+                "reg": "ED/ART/4377/25",
+                "phone": "0725729609",
+                "role": "Vice Chairperson"
+        },
+        {
+                "name": "James Mwendwa",
+                "reg": "REG-020/26",
+                "phone": "0117238699",
+                "role": "Member"
+        },
+        {
+                "name": "Jamesdavidson Mukhwana",
+                "reg": "REG-021/26",
+                "phone": "0712729894",
+                "role": "Member"
+        },
+        {
+                "name": "Jimmie Muange",
+                "reg": "REG-022/26",
+                "phone": "0104420148",
+                "role": "Member"
+        },
+        {
+                "name": "Joseph Gitahi",
+                "reg": "REG-023/26",
+                "phone": "0706009086",
+                "role": "Member"
+        },
+        {
+                "name": "Joshua Mark",
+                "reg": "REG-024/26",
+                "phone": "0759689909",
+                "role": "Member"
+        },
+        {
+                "name": "Joshua Ndiema",
+                "reg": "REG-025/26",
+                "phone": "0795287293 / +254 770 864149",
+                "role": "Member"
+        },
+        {
+                "name": "Kipkemoi Rotich",
+                "reg": "REG-026/26",
+                "phone": "0707917434",
+                "role": "Member"
+        },
+        {
+                "name": "Kiplagat Ethel",
+                "reg": "REG-027/26",
+                "phone": "0745049553",
+                "role": "Member"
+        },
+        {
+                "name": "Lavender Omwange",
+                "reg": "REG-028/26",
+                "phone": "0745263552",
+                "role": "Member"
+        },
+        {
+                "name": "Lee Bungei",
+                "reg": "REG-029/26",
+                "phone": "0723617436",
+                "role": "Member"
+        },
+        {
+                "name": "Lewis Gaitho",
+                "reg": "REG-030/26",
+                "phone": "0113622752",
+                "role": "Member"
+        },
+        {
+                "name": "Lewis Ogachi",
+                "reg": "ED/ART/1807/24",
+                "phone": "0758712751",
+                "role": "Treasurer"
+        },
+        {
+                "name": "Lucas Okeyo Oganda",
+                "reg": "REG-032/26",
+                "phone": "0708417079",
+                "role": "Member"
+        },
+        {
+                "name": "Maria Juma",
+                "reg": "REG-033/26",
+                "phone": "0797072362",
+                "role": "Member"
+        },
+        {
+                "name": "Melvin Goga",
+                "reg": "REG-034/26",
+                "phone": "0758037007",
+                "role": "Member"
+        },
+        {
+                "name": "Mical Jepchumba",
+                "reg": "REG-035/26",
+                "phone": "0721949720",
+                "role": "Member"
+        },
+        {
+                "name": "Mildred Nyaboke",
+                "reg": "REG-036/26",
+                "phone": "0742536068",
+                "role": "Member"
+        },
+        {
+                "name": "Millicent Wambui",
+                "reg": "REG-037/26",
+                "phone": "0141035290",
+                "role": "Member"
+        },
+        {
+                "name": "Ndanu Destiny",
+                "reg": "REG-038/26",
+                "phone": "0111656853",
+                "role": "Member"
+        },
+        {
+                "name": "Phineas Muriungi",
+                "reg": "REG-039/26",
+                "phone": "0703705572",
+                "role": "Member"
+        },
+        {
+                "name": "Phoebe Nyaboke",
+                "reg": "REG-040/26",
+                "phone": "0110593198",
+                "role": "Member"
+        },
+        {
+                "name": "Risper Mukami",
+                "reg": "REG-041/26",
+                "phone": "0758251169",
+                "role": "Member"
+        },
+        {
+                "name": "Rooney David Ogongo",
+                "reg": "ED/ART1591//24",
+                "phone": "0769529801",
+                "role": "Chairperson",
+                "altReg": "ED/ART/1591/24"
+        },
+        {
+                "name": "Rose Khaemba",
+                "reg": "ED/ART/0931/24",
+                "phone": "0798872049",
+                "role": "Partnership Coordinator"
+        },
+        {
+                "name": "Rutto Mark",
+                "reg": "REG-044/26",
+                "phone": "0792816731",
+                "role": "Member"
+        },
+        {
+                "name": "Saviour Oboo",
+                "reg": "REG-045/26",
+                "phone": "0742067820 / 0794092061",
+                "role": "Member"
+        },
+        {
+                "name": "Sharon",
+                "reg": "REG-046/26",
+                "phone": "0727043186",
+                "role": "Member"
+        },
+        {
+                "name": "Sharon Moraa",
+                "reg": "REG-047/26",
+                "phone": "0705607529",
+                "role": "Member"
+        },
+        {
+                "name": "Sheila Moraa",
+                "reg": "REG-048/26",
+                "phone": "0106538141",
+                "role": "Member"
+        },
+        {
+                "name": "Sophia Kerubo",
+                "reg": "REG-049/26",
+                "phone": "0741474320",
+                "role": "Member"
+        },
+        {
+                "name": "Stephen Okoth",
+                "reg": "REG-050/26",
+                "phone": "0712 209796",
+                "role": "Member"
+        },
+        {
+                "name": "Susan Cherotich",
+                "reg": "REG-051/26",
+                "phone": "0792462443",
+                "role": "Member"
+        },
+        {
+                "name": "Sylvia Moraa",
+                "reg": "REG-052/26",
+                "phone": "0702741759",
+                "role": "Member"
+        },
+        {
+                "name": "Sylvia Osore",
+                "reg": "ED/ART/1658/24",
+                "phone": "0708563143",
+                "role": "Assistant Secretary"
+        },
+        {
+                "name": "Valeria Mokamba",
+                "reg": "REG-054/26",
+                "phone": "0715844880",
+                "role": "Member"
+        },
+        {
+                "name": "Vincent Kipkemboi",
+                "reg": "REG-055/26",
+                "phone": "0793533271",
+                "role": "Member"
+        },
+        {
+                "name": "Wakili Zablon",
+                "reg": "REG-056/26",
+                "phone": "0748797476",
+                "role": "Member"
+        },
+        {
+                "name": "Wilfred Korir",
+                "reg": "REG-057/26",
+                "phone": "0794284441",
+                "role": "Member"
+        },
+        {
+                "name": "Yvonne Mueni",
+                "reg": "REG-058/26",
+                "phone": "0110169774",
+                "role": "Member"
+        },
+        {
+                "name": "Yvonne Ndanu",
+                "reg": "REG-059/26",
+                "phone": "0111656853",
+                "role": "Member"
+        },
+        {
+                "name": "Zawadii",
+                "reg": "REG-060/26",
+                "phone": "0717174096",
+                "role": "Member"
+        }
+];
+
       function normalizeReg(val) {
-        return String(val || "").trim().toUpperCase().replace(/\s+/g, "");
+        return String(val || "").trim().toUpperCase().replace(/[^A-Z0-9]/g, "");
       }
 
       function resolveExecutiveAccount(idVal, pinVal) {
@@ -1468,372 +1766,6 @@
           return matchesId && acc.pin === cleanPin;
         }) || null;
       }
-
-      const state = loadState();
-
-const OFFICIAL_SEED_MEMBERS = [
-              {
-                      "name": "Abigael Wanjuru",
-                      "reg": "REG-001/26",
-                      "phone": "0798196693",
-                      "role": "Member"
-              },
-              {
-                      "name": "Brian James",
-                      "reg": "REG-002/26",
-                      "phone": "0741447412",
-                      "role": "Member"
-              },
-              {
-                      "name": "Caleb Mbata Orobo",
-                      "reg": "ED/ART/1670/24",
-                      "phone": "0115940377",
-                      "role": "Publicity Officer"
-              },
-              {
-                      "name": "Joycaren Njogu",
-                      "reg": "REG-004/26",
-                      "phone": "0115066240",
-                      "role": "Member"
-              },
-              {
-                      "name": "Catherine Wangui",
-                      "reg": "REG-005/26",
-                      "phone": "0111484928",
-                      "role": "Member"
-              },
-              {
-                      "name": "Cyprian King'oina",
-                      "reg": "REG-006/26",
-                      "phone": "0796580442",
-                      "role": "Member"
-              },
-              {
-                      "name": "Damaris Molyne",
-                      "reg": "ED/ART/1460/24",
-                      "phone": "0706846072",
-                      "role": "Projects Coordinator"
-              },
-              {
-                      "name": "Dancan Njiri",
-                      "reg": "REG-008/26",
-                      "phone": "0718192841",
-                      "role": "Member"
-              },
-              {
-                      "name": "Diana Muya",
-                      "reg": "REG-009/26",
-                      "phone": "0714094800",
-                      "role": "Member"
-              },
-              {
-                      "name": "Douglas Yego",
-                      "reg": "REG-010/26",
-                      "phone": "+254 792 206238",
-                      "role": "Member"
-              },
-              {
-                      "name": "Ebenezer Kiprutoh",
-                      "reg": "ORGSEC-06",
-                      "phone": "0113466743",
-                      "role": "Organising Secretary"
-              },
-              {
-                      "name": "Elvins Otieno Odeyo",
-                      "reg": "REG-012/26",
-                      "phone": "0705759257",
-                      "role": "Member"
-              },
-              {
-                      "name": "Ezekiel Kipsang",
-                      "reg": "REG-013/26",
-                      "phone": "0111234550",
-                      "role": "Member"
-              },
-              {
-                      "name": "Faith Kwamboka Matongo",
-                      "reg": "ED/ART/1593/24",
-                      "phone": "0714388618",
-                      "role": "Welfare Coordinator"
-              },
-              {
-                      "name": "Festus Kiprotich",
-                      "reg": "REG-015/26",
-                      "phone": "0745120943",
-                      "role": "Member"
-              },
-              {
-                      "name": "Hellen Mokeira",
-                      "reg": "REG-016/26",
-                      "phone": "0701496869",
-                      "role": "Member"
-              },
-              {
-                      "name": "Hilder Ongondi",
-                      "reg": "REG-017/26",
-                      "phone": "0790475235",
-                      "role": "Member"
-              },
-              {
-                      "name": "Immanuel Mesocho",
-                      "reg": "BE/EST/2495/24",
-                      "phone": "0758523759",
-                      "role": "Secretary General"
-              },
-              {
-                      "name": "Ivy Bundi",
-                      "reg": "ED/ART/4377/25",
-                      "phone": "0725729609",
-                      "role": "Vice Chairperson"
-              },
-              {
-                      "name": "James Mwendwa",
-                      "reg": "REG-020/26",
-                      "phone": "0117238699",
-                      "role": "Member"
-              },
-              {
-                      "name": "Jamesdavidson Mukhwana",
-                      "reg": "REG-021/26",
-                      "phone": "0712729894",
-                      "role": "Member"
-              },
-              {
-                      "name": "Jimmie Muange",
-                      "reg": "REG-022/26",
-                      "phone": "0104420148",
-                      "role": "Member"
-              },
-              {
-                      "name": "Joseph Gitahi",
-                      "reg": "REG-023/26",
-                      "phone": "0706009086",
-                      "role": "Member"
-              },
-              {
-                      "name": "Joshua Mark",
-                      "reg": "REG-024/26",
-                      "phone": "0759689909",
-                      "role": "Member"
-              },
-              {
-                      "name": "Joshua Ndiema",
-                      "reg": "REG-025/26",
-                      "phone": "0795287293 / +254 770 864149",
-                      "role": "Member"
-              },
-              {
-                      "name": "Kipkemoi Rotich",
-                      "reg": "REG-026/26",
-                      "phone": "0707917434",
-                      "role": "Member"
-              },
-              {
-                      "name": "Kiplagat Ethel",
-                      "reg": "REG-027/26",
-                      "phone": "0745049553",
-                      "role": "Member"
-              },
-              {
-                      "name": "Lavender Omwange",
-                      "reg": "REG-028/26",
-                      "phone": "0745263552",
-                      "role": "Member"
-              },
-              {
-                      "name": "Lee Bungei",
-                      "reg": "REG-029/26",
-                      "phone": "0723617436",
-                      "role": "Member"
-              },
-              {
-                      "name": "Lewis Gaitho",
-                      "reg": "REG-030/26",
-                      "phone": "0113622752",
-                      "role": "Member"
-              },
-              {
-                      "name": "Lewis Ogachi",
-                      "reg": "ED/ART/1807/24",
-                      "phone": "0758712751",
-                      "role": "Treasurer"
-              },
-              {
-                      "name": "Lucas Okeyo Oganda",
-                      "reg": "REG-032/26",
-                      "phone": "0708417079",
-                      "role": "Member"
-              },
-              {
-                      "name": "Maria Juma",
-                      "reg": "REG-033/26",
-                      "phone": "0797072362",
-                      "role": "Member"
-              },
-              {
-                      "name": "Melvin Goga",
-                      "reg": "REG-034/26",
-                      "phone": "0758037007",
-                      "role": "Member"
-              },
-              {
-                      "name": "Mical Jepchumba",
-                      "reg": "REG-035/26",
-                      "phone": "0721949720",
-                      "role": "Member"
-              },
-              {
-                      "name": "Mildred Nyaboke",
-                      "reg": "REG-036/26",
-                      "phone": "0742536068",
-                      "role": "Member"
-              },
-              {
-                      "name": "Millicent Wambui",
-                      "reg": "REG-037/26",
-                      "phone": "0141035290",
-                      "role": "Member"
-              },
-              {
-                      "name": "Ndanu Destiny",
-                      "reg": "REG-038/26",
-                      "phone": "0111656853",
-                      "role": "Member"
-              },
-              {
-                      "name": "Phineas Muriungi",
-                      "reg": "REG-039/26",
-                      "phone": "0703705572",
-                      "role": "Member"
-              },
-              {
-                      "name": "Phoebe Nyaboke",
-                      "reg": "REG-040/26",
-                      "phone": "0110593198",
-                      "role": "Member"
-              },
-              {
-                      "name": "Risper Mukami",
-                      "reg": "REG-041/26",
-                      "phone": "0758251169",
-                      "role": "Member"
-              },
-              {
-                      "name": "Rooney David Ogongo",
-                      "reg": "ED/ART1591//24",
-                      "phone": "0769529801",
-                      "role": "Chairperson",
-                      "altReg": "ED/ART/1591/24"
-              },
-              {
-                      "name": "Rose Khaemba",
-                      "reg": "ED/ART/0931/24",
-                      "phone": "0798872049",
-                      "role": "Partnership Coordinator"
-              },
-              {
-                      "name": "Rutto Mark",
-                      "reg": "REG-044/26",
-                      "phone": "0792816731",
-                      "role": "Member"
-              },
-              {
-                      "name": "Saviour Oboo",
-                      "reg": "REG-045/26",
-                      "phone": "0742067820 / 0794092061",
-                      "role": "Member"
-              },
-              {
-                      "name": "Sharon",
-                      "reg": "REG-046/26",
-                      "phone": "0727043186",
-                      "role": "Member"
-              },
-              {
-                      "name": "Sharon Moraa",
-                      "reg": "REG-047/26",
-                      "phone": "0705607529",
-                      "role": "Member"
-              },
-              {
-                      "name": "Sheila Moraa",
-                      "reg": "REG-048/26",
-                      "phone": "0106538141",
-                      "role": "Member"
-              },
-              {
-                      "name": "Sophia Kerubo",
-                      "reg": "REG-049/26",
-                      "phone": "0741474320",
-                      "role": "Member"
-              },
-              {
-                      "name": "Stephen Okoth",
-                      "reg": "REG-050/26",
-                      "phone": "0712 209796",
-                      "role": "Member"
-              },
-              {
-                      "name": "Susan Cherotich",
-                      "reg": "REG-051/26",
-                      "phone": "0792462443",
-                      "role": "Member"
-              },
-              {
-                      "name": "Sylvia Moraa",
-                      "reg": "REG-052/26",
-                      "phone": "0702741759",
-                      "role": "Member"
-              },
-              {
-                      "name": "Sylvia Osore",
-                      "reg": "ED/ART/1658/24",
-                      "phone": "0708563143",
-                      "role": "Assistant Secretary"
-              },
-              {
-                      "name": "Valeria Mokamba",
-                      "reg": "REG-054/26",
-                      "phone": "0715844880",
-                      "role": "Member"
-              },
-              {
-                      "name": "Vincent Kipkemboi",
-                      "reg": "REG-055/26",
-                      "phone": "0793533271",
-                      "role": "Member"
-              },
-              {
-                      "name": "Wakili Zablon",
-                      "reg": "REG-056/26",
-                      "phone": "0748797476",
-                      "role": "Member"
-              },
-              {
-                      "name": "Wilfred Korir",
-                      "reg": "REG-057/26",
-                      "phone": "0794284441",
-                      "role": "Member"
-              },
-              {
-                      "name": "Yvonne Mueni",
-                      "reg": "REG-058/26",
-                      "phone": "0110169774",
-                      "role": "Member"
-              },
-              {
-                      "name": "Yvonne Ndanu",
-                      "reg": "REG-059/26",
-                      "phone": "0111656853",
-                      "role": "Member"
-              },
-              {
-                      "name": "Zawadii",
-                      "reg": "REG-060/26",
-                      "phone": "0717174096",
-                      "role": "Member"
-              }
-      ];
 
       function mergeSeedMembers(savedList) {
         const merged = OFFICIAL_SEED_MEMBERS.map(function (m) { return Object.assign({}, m); });
@@ -1893,6 +1825,8 @@ const OFFICIAL_SEED_MEMBERS = [
           localStorage.setItem(STORE_KEY, JSON.stringify(state));
         } catch (e) {}
       }
+
+      const state = loadState();
 
       function esc(str) {
         return String(str || "")
@@ -1999,9 +1933,17 @@ const OFFICIAL_SEED_MEMBERS = [
             return;
           }
 
-          state.members.push({ name: name, reg: reg, phone: phone, role: role });
+          const existingIdx = state.members.findIndex(function (m) {
+            return normalizeReg(m.reg) === normalizeReg(reg) || (m.altReg && normalizeReg(m.altReg) === normalizeReg(reg));
+          });
+          if (existingIdx >= 0) {
+            state.members[existingIdx].name = name;
+            state.members[existingIdx].phone = phone;
+            state.members[existingIdx].role = role;
+          } else {
+            state.members.push({ name: name, reg: reg, phone: phone, role: role });
+          }
           saveState();
-          renderMemberDirectory();
 
           msgEl.className = "msg-note msg-ok";
           msgEl.textContent = "Registered " + name + " (" + reg + "). Click the button below to join WhatsApp.";
@@ -2016,15 +1958,7 @@ const OFFICIAL_SEED_MEMBERS = [
         });
       }
 
-      // 2. Verify Member & Render Directory
-      function stripSlashes(val) {
-        return String(val || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
-      }
-
-      window.renderMemberDirectory = function () {
-        // Public member list intentionally hidden for member privacy; verification remains active.
-      };
-
+      // 2. Verify Member by Registration Number (plus Name / Phone)
       window.verifyMember = function (ev) {
         if (ev && typeof ev.preventDefault === "function") {
           ev.preventDefault();
@@ -2033,7 +1967,7 @@ const OFFICIAL_SEED_MEMBERS = [
         const out = document.getElementById("verifyOut");
         const rawQ = inputEl ? String(inputEl.value || "").trim() : "";
         const q = rawQ.toLowerCase();
-        const qClean = stripSlashes(rawQ);
+        const qClean = normalizeReg(rawQ);
         const digitsOnly = rawQ.replace(/[^0-9]/g, "");
 
         if (!out) return false;
@@ -2044,7 +1978,7 @@ const OFFICIAL_SEED_MEMBERS = [
         if (!q) {
           out.className = "msg-note msg-err";
           out.style.background = "#ffe4e6";
-          out.textContent = "Please enter your name, phone number, or registration/reference number.";
+          out.textContent = "Please enter a registration number, name, or phone number.";
           return false;
         }
 
@@ -2053,16 +1987,17 @@ const OFFICIAL_SEED_MEMBERS = [
           : OFFICIAL_SEED_MEMBERS;
 
         const found = roster.find(function (m) {
-          const nameMatch = m.name && m.name.toLowerCase().includes(q);
-          const regMatch = (m.reg && m.reg.toLowerCase().includes(q)) ||
+          const regExactOrSub =
+            (m.reg && m.reg.toLowerCase().includes(q)) ||
             (m.altReg && m.altReg.toLowerCase().includes(q));
-          const compactRegMatch = qClean.length >= 2 && (
-            (m.reg && stripSlashes(m.reg).includes(qClean)) ||
-            (m.altReg && stripSlashes(m.altReg).includes(qClean))
+          const regCompact = qClean.length >= 2 && (
+            (m.reg && normalizeReg(m.reg).includes(qClean)) ||
+            (m.altReg && normalizeReg(m.altReg).includes(qClean))
           );
+          const nameMatch = m.name && m.name.toLowerCase().includes(q);
           const memberDigits = m.phone ? String(m.phone).replace(/[^0-9]/g, "") : "";
           const phoneMatch = digitsOnly.length >= 4 && memberDigits.includes(digitsOnly);
-          return nameMatch || regMatch || compactRegMatch || phoneMatch;
+          return regExactOrSub || regCompact || nameMatch || phoneMatch;
         });
 
         if (found) {
@@ -2070,20 +2005,18 @@ const OFFICIAL_SEED_MEMBERS = [
           out.className = "msg-note msg-ok";
           out.style.background = "#dcfce7";
           out.textContent =
-            "You're already registered! Member #" + memberIdx +
+            "Verified! Member #" + memberIdx +
             " — Name: " + found.name +
+            " | Reg. No.: " + (found.reg || "—") +
             " | Phone: " + (found.phone || "—") +
-            " | Reg/Ref No.: " + (found.reg || "—") +
             " | Role: " + (found.role || "Member") + ".";
         } else {
           out.className = "msg-note msg-err";
           out.style.background = "#ffe4e6";
-          out.textContent = "Member not found in club records. You can register using the New Member Registration form above.";
+          out.textContent = "Registration number not found in club records. You can register using the New Member Registration form above.";
         }
         return false;
       };
-
-      renderMemberDirectory();
 
       // 3. Executive Office Pop-Up Window
       function renderOfficeWorkspace(account) {
@@ -2435,18 +2368,10 @@ const OFFICIAL_SEED_MEMBERS = [
         });
       }
 
-      const verifyInputEl = document.getElementById("verifyQuery");
       const verifyFormEl = document.getElementById("verifyMemberForm");
       if (verifyFormEl) {
         verifyFormEl.addEventListener("submit", function (e) {
           window.verifyMember(e);
-        });
-      }
-      if (verifyInputEl) {
-        verifyInputEl.addEventListener("keydown", function (e) {
-          if (e.key === "Enter") {
-            window.verifyMember(e);
-          }
         });
       }
     })();
