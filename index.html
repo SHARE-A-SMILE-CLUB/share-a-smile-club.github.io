@@ -570,7 +570,7 @@
        DEDICATED SINGLE-OFFICE EXECUTIVE GOVERNANCE PORTAL SECTION
        ===================================================================== */
     .sas-portal-wrapper {
-      background: var(--yellow);
+      background: var(--white);
       border: 1px solid var(--slate-200);
       border-top: 6px solid var(--slate-900);
       border-radius: var(--radius-lg);
@@ -1239,27 +1239,6 @@
         </div>
 
         <div class="sas-panel">
-          <h4>Member Verification Desk</h4>
-          <p class="sas-panel-sub">
-            Members can verify their Laikipia University registration number directly here in the portal.
-          </p>
-          <div class="form-group">
-            <label for="portalMemberRegInput">Member Registration Number</label>
-            <input
-              type="text"
-              id="portalMemberRegInput"
-              placeholder="e.g. ED/ART/1591/24"
-              autocomplete="off"
-              style="text-transform: uppercase; font-weight: 600;"
-            />
-          </div>
-          <button type="button" class="btn btn-teal" style="width: 100%;" onclick="checkPortalMembership()">
-            Verify Membership
-          </button>
-          <div id="portalMemberVerifyResult" class="verify-result sas-hidden"></div>
-        </div>
-
-        <div class="sas-panel">
           <h4>2026/2027 Executive Committee &amp; Patron Directory</h4>
           <p class="sas-panel-sub">
             Official 10-seat executive line-up plus Faculty Patron. PINs are not displayed publicly;
@@ -1280,9 +1259,7 @@
           <button type="button" id="navMyOfficeBtn" class="sas-nav-btn" onclick="switchDeskTab('my_office')">
             My Assigned Office
           </button>
-          <button type="button" id="navVerifyMemberBtn" class="sas-nav-btn" onclick="switchDeskTab('verify_member')">
-            Verify Member
-          </button>
+
         </aside>
 
         <main id="deskMainContent" class="sas-desk-main"></main>
@@ -1636,14 +1613,24 @@
         };
       }
 
+      const WEEKLY_REPORT_OFFICES = {
+        chairperson: "Weekly Executive Governance & Compliance Report due every Sunday.",
+        vice_chair: "Weekly Committee Alignment & Constitutional Review Report due every Sunday.",
+        sec_gen: "Weekly Minutes, Attendance & Correspondence Report due every Sunday.",
+        asst_sec: "Weekly Registry & Documentation Check Report due every Sunday.",
+        treasurer: "Weekly Financial Ledger & Contributions Report due every Sunday.",
+        organising_sec: "Weekly Venue, Logistics & Duty Roster Report due every Sunday.",
+        publicity_officer: "Weekly Publicity, Media & Merchandise Report due every Sunday.",
+        projects_coord: "Weekly Outreach & Projects Progress Report due every Sunday.",
+        welfare_coord: "Weekly Comrade Welfare & Solidarity Report due every Sunday.",
+        partnership_coord: "Weekly Partnerships & Well-Wisher Outreach Report due every Sunday."
+      };
+
       function createDefaultState() {
         return {
           officials: DEFAULT_OFFICIALS.map(function (o) { return Object.assign({}, o); }),
           officeItems: buildDefaultOfficeItems(),
-          ledger: [
-            { id: "tx1", type: "INFLOW", desc: "Initial Member & Founding Contributions", amount: 14500, ref: "SAS-001" },
-            { id: "tx2", type: "OUTFLOW", desc: "Registration & Meeting Logistics Prep", amount: 3200, ref: "SAS-002" }
-          ],
+          ledger: [],
           joinRequests: [],
           session: {
             authenticated: false,
@@ -1748,10 +1735,39 @@
       };
 
       window.checkMembership = function () {
-        runMembershipLookup(
-          document.getElementById("regInput"),
-          document.getElementById("verifyResult")
-        );
+        const inputEl = document.getElementById("regInput");
+        const resultEl = document.getElementById("verifyResult");
+        if (!inputEl || !resultEl) return;
+
+        const code = normCode(inputEl.value);
+        const members = getAllMembers();
+
+        resultEl.classList.remove("sas-hidden");
+        if (!code) {
+          resultEl.style.background = "#fef3c7";
+          resultEl.style.border = "1px solid #f59e0b";
+          resultEl.style.color = "#92400e";
+          resultEl.innerHTML = "Please enter a registration number first (for example: <strong>ED/ART/1591/24</strong>).";
+          return;
+        }
+
+        if (members[code]) {
+          resultEl.style.background = "#ecfdf5";
+          resultEl.style.border = "1px solid #10b981";
+          resultEl.style.color = "#065f46";
+          resultEl.innerHTML =
+            "<strong>Verified Member Record</strong><br>" +
+            "<strong>Name:</strong> " + esc(members[code]) + "<br>" +
+            "<strong>Reg. Number:</strong> " + esc(code) + "<br>" +
+            "<strong>Club:</strong> Share a Smile Charity Club (Laikipia University)";
+        } else {
+          resultEl.style.background = "#fef2f2";
+          resultEl.style.border = "1px solid #ef4444";
+          resultEl.style.color = "#991b1b";
+          resultEl.innerHTML =
+            "<strong>Record Not Found</strong><br>" +
+            "No record matching <strong>" + esc(code) + "</strong> was found. Check the format or submit a request below.";
+        }
       };
 
       const regInputEl = document.getElementById("regInput");
@@ -1760,16 +1776,6 @@
           if (e.key === "Enter") {
             e.preventDefault();
             window.checkMembership();
-          }
-        });
-      }
-
-      const portalMemberRegEl = document.getElementById("portalMemberRegInput");
-      if (portalMemberRegEl) {
-        portalMemberRegEl.addEventListener("keypress", function (e) {
-          if (e.key === "Enter") {
-            e.preventDefault();
-            window.checkPortalMembership();
           }
         });
       }
@@ -1859,10 +1865,11 @@
       }
 
       function calculateBalance() {
-        return state.ledger.reduce(function (sum, item) {
+        const total = state.ledger.reduce(function (sum, item) {
           const amt = Number(item.amount) || 0;
           return item.type === "INFLOW" ? sum + amt : sum - amt;
         }, 0);
+        return Number(total).toFixed(2);
       }
 
       function renderPortalUI() {
@@ -1916,13 +1923,9 @@
 
         const navOverview = document.getElementById("navOverviewBtn");
         const navMyOffice = document.getElementById("navMyOfficeBtn");
-        const navVerifyMember = document.getElementById("navVerifyMemberBtn");
         if (navOverview && navMyOffice) {
           navOverview.classList.toggle("active", state.session.tab === "overview");
           navMyOffice.classList.toggle("active", state.session.tab === "my_office");
-          if (navVerifyMember) {
-            navVerifyMember.classList.toggle("active", state.session.tab === "verify_member");
-          }
         }
 
         const mainEl = document.getElementById("deskMainContent");
@@ -1930,8 +1933,6 @@
 
         if (state.session.tab === "my_office") {
           mainEl.innerHTML = renderAssignedOfficeHtml(official);
-        } else if (state.session.tab === "verify_member") {
-          mainEl.innerHTML = renderDeskMemberVerifyHtml();
         } else {
           mainEl.innerHTML = renderOverviewHtml(official);
         }
@@ -1945,7 +1946,7 @@
           '<div class="sas-kpis">' +
             '<div class="sas-kpi"><div class="sas-kpi-label">Verified + Pending</div><div class="sas-kpi-val">' + totalMembers + '</div></div>' +
             '<div class="sas-kpi"><div class="sas-kpi-label">Executive Seats</div><div class="sas-kpi-val">10 + Patron</div></div>' +
-            '<div class="sas-kpi"><div class="sas-kpi-label">Net Club Balance</div><div class="sas-kpi-val">KES ' + balance.toLocaleString() + '</div></div>' +
+            '<div class="sas-kpi"><div class="sas-kpi-label">Net Club Balance</div><div class="sas-kpi-val">KES ' + balance + '</div></div>' +
             '<div class="sas-kpi"><div class="sas-kpi-label">Assigned Office</div><div class="sas-kpi-val" style="font-size:1rem;">' + esc(official.position) + '</div></div>' +
           '</div>' +
           '<div class="sas-card">' +
@@ -2005,20 +2006,30 @@
             '</div>';
         }
 
+        const weeklyNote = WEEKLY_REPORT_OFFICES[official.id]
+          ? '<div class="alert-box alert-success" style="margin-bottom:14px;">' +
+              '<strong>Weekly Report Notification:</strong> ' + esc(WEEKLY_REPORT_OFFICES[official.id]) +
+            '</div>'
+          : '';
+
         return (
+          weeklyNote +
           '<div class="sas-card">' +
-            '<h4>' + esc(official.position) + ' Desk &mdash; Action Items</h4>' +
+            '<h4>' + esc(official.position) + ' Desk &mdash; Concerns &amp; Action Items</h4>' +
             '<form onsubmit="handleAddOfficeTask(event)" style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px;">' +
-              '<input type="text" id="newOfficeTaskInput" required placeholder="Add action item for ' + esc(official.position) + '..." style="flex:1; min-width:200px; padding:9px 12px; border:1px solid var(--slate-300); border-radius:8px;" />' +
+              '<input type="text" id="newOfficeTaskInput" required placeholder="Add a concern or action item for ' + esc(official.position) + '..." style="flex:1; min-width:200px; padding:9px 12px; border:1px solid var(--slate-300); border-radius:8px;" />' +
               '<button type="submit" class="btn btn-teal btn-sm">Add Item</button>' +
             '</form>' +
             (items.length === 0
-              ? '<p style="font-size:0.88rem; color:var(--slate-600);">No action items recorded for this office yet.</p>'
+              ? '<p style="font-size:0.88rem; color:var(--slate-600);">No concerns or action items recorded for this office yet.</p>'
               : items.map(function (task, idx) {
                   return (
                     '<div class="sas-list-item">' +
                       '<span>' + esc(task) + '</span>' +
-                      '<button type="button" class="btn btn-sm" style="background:var(--slate-200); color:var(--slate-900);" onclick="removeOfficeTask(' + idx + ')">Remove</button>' +
+                      '<div style="display:flex; gap:6px;">' +
+                        '<button type="button" class="btn btn-sm btn-teal" onclick="editOfficeTask(' + idx + ')">Edit</button>' +
+                        '<button type="button" class="btn btn-sm" style="background:var(--slate-200); color:var(--slate-900);" onclick="removeOfficeTask(' + idx + ')">Remove</button>' +
+                      '</div>' +
                     '</div>'
                   );
                 }).join("")) +
@@ -2068,81 +2079,8 @@
         renderPortalUI();
       };
 
-      function renderMemberLookupCardHtml(inputId, resultId, btnHandlerName) {
-        return (
-          '<div class="sas-card">' +
-            '<h4>Member Registration Verification</h4>' +
-            '<p style="font-size:0.88rem; color:var(--slate-600); margin-bottom:12px;">' +
-              'Enter a member registration number to confirm active status on the Share a Smile register.' +
-            '</p>' +
-            '<div class="verify-row" style="margin-top:8px; justify-content:flex-start;">' +
-              '<input type="text" id="' + inputId + '" placeholder="e.g. ED/ART/1591/24" autocomplete="off" />' +
-              '<button type="button" class="btn btn-teal" onclick="' + btnHandlerName + '()">Check Status</button>' +
-            '</div>' +
-            '<div id="' + resultId + '" class="verify-result sas-hidden"></div>' +
-          '</div>'
-        );
-      }
-
-      function runMembershipLookup(inputEl, resultEl) {
-        if (!inputEl || !resultEl) return;
-        const code = normCode(inputEl.value);
-        const members = getAllMembers();
-
-        resultEl.classList.remove("sas-hidden");
-        if (!code) {
-          resultEl.style.background = "#fef3c7";
-          resultEl.style.border = "1px solid #f59e0b";
-          resultEl.style.color = "#92400e";
-          resultEl.innerHTML = "Please enter a registration number first (for example: <strong>ED/ART/1591/24</strong>).";
-          return;
-        }
-
-        if (members[code]) {
-          resultEl.style.background = "#ecfdf5";
-          resultEl.style.border = "1px solid #10b981";
-          resultEl.style.color = "#065f46";
-          resultEl.innerHTML =
-            "<strong>Verified Member Record</strong><br>" +
-            "<strong>Name:</strong> " + esc(members[code]) + "<br>" +
-            "<strong>Reg. Number:</strong> " + esc(code) + "<br>" +
-            "<strong>Club:</strong> Share a Smile Charity Club (Laikipia University)";
-        } else {
-          resultEl.style.background = "#fef2f2";
-          resultEl.style.border = "1px solid #ef4444";
-          resultEl.style.color = "#991b1b";
-          resultEl.innerHTML =
-            "<strong>Record Not Found</strong><br>" +
-            "No record matching <strong>" + esc(code) + "</strong> was found. Check the format or submit a membership request.";
-        }
-      }
-
-      window.checkPortalMembership = function () {
-        runMembershipLookup(
-          document.getElementById("portalMemberRegInput"),
-          document.getElementById("portalMemberVerifyResult")
-        );
-      };
-
-      window.checkDeskMembership = function () {
-        runMembershipLookup(
-          document.getElementById("deskMemberRegInput"),
-          document.getElementById("deskMemberVerifyResult")
-        );
-      };
-
-      function renderDeskMemberVerifyHtml() {
-        return renderMemberLookupCardHtml("deskMemberRegInput", "deskMemberVerifyResult", "checkDeskMembership");
-      }
-
       window.switchDeskTab = function (tabName) {
-        if (tabName === "my_office") {
-          state.session.tab = "my_office";
-        } else if (tabName === "verify_member") {
-          state.session.tab = "verify_member";
-        } else {
-          state.session.tab = "overview";
-        }
+        state.session.tab = tabName === "my_office" ? "my_office" : "overview";
         saveState();
         renderPortalUI();
       };
@@ -2159,6 +2097,20 @@
           state.officeItems[official.id] = [];
         }
         state.officeItems[official.id].unshift(text);
+        saveState();
+        renderPortalUI();
+      };
+
+      window.editOfficeTask = function (idx) {
+        const official = getCurrentOfficial();
+        if (!official || !Array.isArray(state.officeItems[official.id])) return;
+        const currentText = state.officeItems[official.id][idx];
+        if (typeof currentText !== "string") return;
+        const updated = window.prompt("Edit concern / action item:", currentText);
+        if (updated === null) return;
+        const cleaned = updated.trim();
+        if (!cleaned) return;
+        state.officeItems[official.id][idx] = cleaned;
         saveState();
         renderPortalUI();
       };
