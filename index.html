@@ -1042,67 +1042,6 @@
         </div>
       </div>
 
-      <div class="card" style="max-width: 720px;">
-        <div style="background: var(--bg-subtle); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; margin-bottom: 16px; font-size: 0.88rem; color: var(--ink-700);">
-          <strong>Step 1 — Pay via M-Pesa &amp; Note Your Reference Code:</strong> Pay <strong>KES 100</strong> (One-Time Registration Fee) and/or <strong>KES 50</strong> (Semester Subscription), then enter your <strong>M-Pesa Reference Number</strong> below to complete registration.
-          <div id="feeSummaryBadge" style="margin-top: 6px; font-weight: 700; color: var(--teal-800);">Selected Payable Amount: KES 100 (KES 100 One-Time Registration Fee)</div>
-        </div>
-
-        <form id="joinForm" class="form-grid" novalidate>
-          <div class="field">
-            <label for="regName">Full Name *</label>
-            <input type="text" id="regName" placeholder="e.g. Rooney David Ogongo" required />
-          </div>
-          <div class="field">
-            <label for="regNo">Registration Number *</label>
-            <input type="text" id="regNo" placeholder="e.g. ED/ART/1591/24" required />
-          </div>
-          <div class="field">
-            <label for="regPhone">Phone / WhatsApp *</label>
-            <input type="tel" id="regPhone" placeholder="e.g. 0769529801" required />
-          </div>
-          <div class="field">
-            <label for="regRole">Interest Area</label>
-            <select id="regRole">
-              <option value="Outreach & Visits">Outreach &amp; Visits</option>
-              <option value="Mentorship">Mentorship</option>
-              <option value="Welfare & Logistics">Welfare &amp; Logistics</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="regFeePlan">Fee / Subscription Option *</label>
-            <select id="regFeePlan">
-              <option value="KES 100 One-Time Registration Fee" data-amount="KES 100">KES 100 One-Time Registration Fee</option>
-              <option value="KES 100 One-Time + KES 50 / Semester Subscription" data-amount="KES 150">KES 100 One-Time + KES 50 / Semester Subscription</option>
-              <option value="KES 50 / Semester Subscription Option" data-amount="KES 50">KES 50 / Semester Subscription Option</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="regMpesaRef">M-Pesa Reference Number *</label>
-            <input type="text" id="regMpesaRef" placeholder="e.g. TKL89ABC12" maxlength="14" style="text-transform: uppercase;" required />
-          </div>
-          <div class="field full" style="display:flex; gap:10px; flex-wrap:wrap;">
-            <button type="submit" id="finishRegBtn" class="btn btn-teal">Verify M-Pesa Ref &amp; Finish Registration</button>
-          </div>
-        </form>
-
-        <div id="joinMsg" class="msg-note"></div>
-
-        <div id="afterRegWaBar" class="post-reg-wa-bar muted">
-          <span id="afterRegText" style="font-size: 0.9rem; font-weight: 600;">
-            Enter your details and M-Pesa reference number above to finish registration and unlock WhatsApp:
-          </span>
-          <a
-            id="afterRegWaBtn"
-            href="https://chat.whatsapp.com/Dty1LdhdHwv1JTfGJETtdW"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn btn-wa btn-sm"
-          >
-            Join WhatsApp Group
-          </a>
-        </div>
-      </div>
       <div class="card" style="max-width: 720px; margin-top: 20px; border-top: 4px solid var(--amber-500);">
         <h3>Existing Members — Complete M-Pesa Payment</h3>
         <p style="font-size: 0.9rem; color: var(--ink-700); margin-bottom: 14px;">
