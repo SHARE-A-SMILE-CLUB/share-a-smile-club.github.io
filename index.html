@@ -1151,9 +1151,9 @@
       <div class="grid-2" style="margin-bottom: 24px;">
         <div class="card">
           <h3>Verify Member Status</h3>
-          <p style="margin-bottom: 12px;">Enter your full name, phone number, or registration/reference number to check your status privately.</p>
+          <p style="margin-bottom: 12px;">Enter your registration / reference number (or name / phone number) to verify your membership status privately.</p>
           <form id="verifyMemberForm" onsubmit="return verifyMember(event);" style="display: flex; gap: 8px; flex-wrap: wrap;">
-            <input type="text" id="verifyQuery" placeholder="e.g. Name, 0769529801, or ED/ART/1591/24" style="flex: 1; min-width: 180px;" />
+            <input type="text" id="verifyQuery" placeholder="e.g. ED/ART/1591/24, REG-001/26, Name, or Phone" style="flex: 1; min-width: 180px;" />
             <button type="submit" id="verifyMemberBtn" class="btn btn-teal">Verify</button>
           </form>
           <div id="verifyOut" class="msg-note" aria-live="polite" style="display:none;"></div>
@@ -2435,6 +2435,20 @@ const OFFICIAL_SEED_MEMBERS = [
         });
       }
 
+      const verifyInputEl = document.getElementById("verifyQuery");
+      const verifyFormEl = document.getElementById("verifyMemberForm");
+      if (verifyFormEl) {
+        verifyFormEl.addEventListener("submit", function (e) {
+          window.verifyMember(e);
+        });
+      }
+      if (verifyInputEl) {
+        verifyInputEl.addEventListener("keydown", function (e) {
+          if (e.key === "Enter") {
+            window.verifyMember(e);
+          }
+        });
+      }
     })();
   </script>
 </body>
