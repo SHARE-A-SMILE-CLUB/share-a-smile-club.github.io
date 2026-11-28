@@ -71,13 +71,25 @@
       padding: 0 20px;
     }
 
-    /* Top Announcement Ribbon */
+    /* Sticky Top Registration Announcement Bar */
     .top-ribbon {
+      position: sticky;
+      top: 0;
+      z-index: 950;
       background: linear-gradient(90deg, #0f172a 0%, #0f766e 55%, #0d9488 100%);
       color: #ffffff;
-      padding: 9px 16px;
+      padding: 10px 16px;
       font-size: 0.88rem;
       text-align: center;
+      border-bottom: 2px solid var(--amber-500);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .top-ribbon .bell-icon {
+      display: inline-block;
+      margin-right: 6px;
+      font-size: 1rem;
+      vertical-align: middle;
     }
 
     .top-ribbon span.badge {
@@ -91,10 +103,27 @@
       text-transform: uppercase;
     }
 
+    .top-ribbon a.ribbon-cta {
+      display: inline-block;
+      margin-left: 8px;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      color: #fde68a;
+      font-weight: 700;
+      font-size: 0.78rem;
+      padding: 2px 10px;
+      border-radius: 999px;
+      transition: background-color 0.2s ease;
+    }
+
+    .top-ribbon a.ribbon-cta:hover {
+      background: rgba(255, 255, 255, 0.28);
+    }
+
     /* Navigation */
     header.site-nav {
       position: sticky;
-      top: 0;
+      top: 42px;
       z-index: 900;
       background: rgba(255, 255, 255, 0.96);
       backdrop-filter: blur(10px);
@@ -465,7 +494,6 @@
       border-color: var(--teal-600);
     }
 
-    /* Compact Next-Step WhatsApp Button Strip After Registration */
     .post-reg-wa-bar {
       margin-top: 16px;
       padding: 14px 16px;
@@ -477,11 +505,6 @@
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 12px;
-    }
-
-    .post-reg-wa-bar.muted {
-      background: var(--bg-subtle);
-      border-color: var(--border);
     }
 
     .msg-note {
@@ -523,13 +546,47 @@
     .chip-indigo { background: var(--indigo-100); }
     .chip-rose { background: var(--rose-100); }
 
+    .portal-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+      margin-top: 18px;
+    }
+
     .portal-login-box {
       background: rgba(255, 255, 255, 0.97);
       color: var(--ink-900);
       border-radius: var(--radius-md);
       padding: 22px;
-      max-width: 540px;
       box-shadow: var(--shadow-md);
+    }
+
+    .portal-features-box {
+      background: rgba(15, 23, 42, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: var(--radius-md);
+      padding: 22px;
+    }
+
+    .portal-feature-list {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .portal-feature-list li {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 11px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+    }
+
+    .portal-feature-list strong {
+      color: #fde68a;
+      display: block;
+      margin-bottom: 2px;
     }
 
     /* Full-Screen / Pop-Up Executive Workspace Modal */
@@ -551,7 +608,7 @@
 
     .popup-window {
       width: 100%;
-      max-width: 1020px;
+      max-width: 1060px;
       max-height: 92vh;
       overflow-y: auto;
       background: #f8fafc;
@@ -574,8 +631,107 @@
       gap: 12px;
     }
 
+    .popup-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 14px 22px 0;
+      border-bottom: 1px solid var(--border);
+      background: #ffffff;
+    }
+
+    .tab-btn {
+      padding: 9px 14px;
+      border: none;
+      background: transparent;
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--ink-500);
+      border-bottom: 3px solid transparent;
+      cursor: pointer;
+    }
+
+    .tab-btn.active {
+      color: var(--teal-800);
+      border-bottom-color: var(--teal-600);
+    }
+
     .popup-body {
       padding: 22px;
+    }
+
+    .tab-pane {
+      display: none;
+    }
+
+    .tab-pane.active {
+      display: block;
+    }
+
+    .stat-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .stat-tile {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+    }
+
+    .stat-tile .num {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--teal-800);
+    }
+
+    .stat-tile .lbl {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--ink-500);
+      text-transform: uppercase;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #ffffff;
+      font-size: 0.86rem;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+
+    .data-table th, .data-table td {
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .data-table th {
+      background: var(--bg-subtle);
+      font-weight: 700;
+      color: var(--ink-700);
+    }
+
+    .pill-paid {
+      background: var(--wa-100);
+      color: var(--wa-700);
+      font-weight: 700;
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+
+    .pill-pending {
+      background: var(--amber-100);
+      color: #92400e;
+      font-weight: 700;
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 999px;
     }
 
     .wall-post {
@@ -723,49 +879,6 @@
       gap: 14px;
     }
 
-    .overdue-alert-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(15, 23, 42, 0.72);
-      backdrop-filter: blur(4px);
-      z-index: 2000;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-    }
-
-    .overdue-alert-backdrop.open {
-      display: flex;
-    }
-
-    .overdue-alert-card {
-      width: 100%;
-      max-width: 520px;
-      background: #ffffff;
-      border-radius: var(--radius-md);
-      border: 3px solid var(--rose-600);
-      box-shadow: var(--shadow-lg);
-      overflow: hidden;
-    }
-
-    .overdue-alert-head {
-      background: linear-gradient(90deg, #9f1239 0%, #e11d48 100%);
-      color: #ffffff;
-      padding: 14px 18px;
-      font-weight: 800;
-      font-size: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .overdue-alert-body {
-      padding: 18px;
-      font-size: 0.92rem;
-      color: var(--ink-700);
-    }
-
     .mobile-dots-btn {
       display: none;
       align-items: center;
@@ -787,7 +900,11 @@
     }
 
     @media (max-width: 900px) {
-      .hero-inner, .grid-3, .grid-2, .priority-row, .form-grid {
+      header.site-nav {
+        top: 56px;
+      }
+
+      .hero-inner, .grid-3, .grid-2, .priority-row, .form-grid, .portal-grid, .stat-strip {
         grid-template-columns: 1fr;
       }
 
@@ -824,9 +941,12 @@
 </head>
 <body>
 
-  <div class="top-ribbon">
-    <span class="badge">Saturday Meeting</span>
-    <strong>Share a Smile Charity Club</strong> — General Meeting this <strong>Saturday, Nov 28, 2026</strong> at <strong>Serene Court Grounds (Nyumba Tatu)</strong> • 2027 Elections in late February 2027.
+  <!-- Sticky Top Registration Announcement Bar -->
+  <div class="top-ribbon" role="region" aria-label="Member Registration Announcement">
+    <span class="bell-icon" aria-hidden="true">&#128276;</span>
+    <span class="badge">Registration Notice</span>
+    Every member is required to complete their <strong>KES 100 registration fee</strong> on or before <strong>31st December, 2026</strong>.
+    <a href="#join" class="ribbon-cta">Pay Now &rarr;</a>
   </div>
 
   <header class="site-nav">
@@ -839,7 +959,7 @@
         <a href="#who-we-are">Who We Are</a>
         <a href="#outreach-photos">Outreach</a>
         <a href="#priorities">Priorities</a>
-        <a href="#club-calendar">Calendar &amp; Meetings</a>
+        <a href="#club-calendar">Calendar</a>
         <a href="#join">Join Us</a>
         <a href="#verify-member">Verify</a>
         <a href="https://chat.whatsapp.com/Dty1LdhdHwv1JTfGJETtdW" target="_blank" rel="noopener noreferrer" class="nav-wa-btn">WhatsApp Group</a>
@@ -979,37 +1099,25 @@
     </div>
   </section>
 
-  <!-- 3B. CLUB CALENDAR & SATURDAY MEETING ANNOUNCEMENT -->
+  <!-- 3B. CLUB CALENDAR -->
   <section id="club-calendar" class="band">
     <div class="container">
       <div class="band-head">
-        <span class="band-tag">Calendar &amp; Announcements</span>
-        <h2>Club Calendar &amp; Saturday Meeting</h2>
-        <p>Upcoming club schedule, Saturday general meeting announcement, and key dates for the 2026/2027 academic year.</p>
-      </div>
-
-      <div class="card" style="margin-bottom: 22px; border-left: 5px solid var(--amber-500);">
-        <span class="badge" style="background: var(--amber-100); color: #92400e; margin-bottom: 8px; display: inline-block;">Meeting Announcement</span>
-        <h3>First General Meeting — Saturday, November 28, 2026</h3>
-        <p style="margin-bottom: 8px;">
-          All members and executive officials of <strong>Share a Smile Charity Club</strong> are invited to the First General Meeting
-          this <strong>Saturday, November 28, 2026</strong> at <strong>Serene Court Grounds, Nyumba Tatu</strong> (near Laikipia University).
-        </p>
-        <p style="font-size: 0.88rem; color: var(--ink-500);">
-          Agenda: Member onboarding, outreach &amp; mentorship planning, weekly executive reporting, and 2027 roadmap.
-        </p>
+        <span class="band-tag">Calendar &amp; Milestones</span>
+        <h2>Club Calendar &amp; Key Dates</h2>
+        <p>Key registration milestones, fee deadlines, and upcoming dates for the 2026/2027 academic year.</p>
       </div>
 
       <div class="grid-3">
         <div class="card">
           <div class="priority-num">Nov 25, 2026</div>
           <h3>Registration Package Submitted</h3>
-          <p>Constitution, patron endorsement, and member list submitted to the Office of the Dean of Students.</p>
+          <p>Constitution, patron endorsement, and founding member list submitted to the Office of the Dean of Students.</p>
         </div>
-        <div class="card">
-          <div class="priority-num">Sat, Nov 28, 2026</div>
-          <h3>Saturday General Meeting</h3>
-          <p>In-person club gathering at Serene Court Grounds, Nyumba Tatu for members and executives.</p>
+        <div class="card" style="border-top: 4px solid var(--amber-500);">
+          <div class="priority-num">Dec 31, 2026</div>
+          <h3>KES 100 Registration Deadline</h3>
+          <p>Final deadline for all members to complete their KES 100 one-time registration fee via M-Pesa.</p>
         </div>
         <div class="card">
           <div class="priority-num">Late Feb 2027</div>
@@ -1021,19 +1129,19 @@
   </section>
 
   <!-- 4. JOIN US -->
-  <section id="join" class="band">
+  <section id="join" class="band white">
     <div class="container">
       <div class="band-head">
         <span class="band-tag">04 • Join the Club</span>
         <h2>New Member Registration &amp; Dues</h2>
-        <p>Register below. After submitting, a clean <strong>Join WhatsApp Group</strong> button appears right below.</p>
+        <p>Register below or submit your M-Pesa payment reference before <strong>31st December, 2026</strong>.</p>
       </div>
 
-      <div class="grid-2" style="max-width: 720px; margin-bottom: 18px;">
+      <div class="grid-2" style="margin-bottom: 22px;">
         <div class="card" style="border-top: 4px solid var(--amber-500);">
-          <div class="priority-num">One-Time Fee</div>
+          <div class="priority-num">One-Time Fee • Deadline: 31st Dec</div>
           <h3>KES 100 Registration Fee</h3>
-          <p>A one-time registration fee of <strong>KES 100</strong> upon joining Share a Smile Charity Club.</p>
+          <p>A one-time registration fee of <strong>KES 100</strong> required for every member by <strong>31st December, 2026</strong>.</p>
         </div>
         <div class="card" style="border-top: 4px solid var(--teal-600);">
           <div class="priority-num">Semester Option</div>
@@ -1042,51 +1150,95 @@
         </div>
       </div>
 
-      <div class="card" style="max-width: 720px; margin-top: 20px; border-top: 4px solid var(--amber-500);">
-        <h3>Existing Members — Complete M-Pesa Payment</h3>
-        <p style="font-size: 0.9rem; color: var(--ink-700); margin-bottom: 14px;">
-          Already on the club register and haven&apos;t submitted an M-Pesa reference yet? Search your name, registration number, or phone number, select your fee plan, and enter your <strong>M-Pesa Reference Number</strong> to finish.
-        </p>
+      <div class="grid-2">
+        <!-- New Member Sign-Up -->
+        <div class="card" style="border-top: 4px solid var(--teal-600);">
+          <h3>New Member Sign-Up</h3>
+          <p style="font-size: 0.9rem; color: var(--ink-700); margin-bottom: 14px;">
+            Fill in your student details and M-Pesa reference number to register as a member.
+          </p>
+          <form id="newMemberForm" class="form-grid" novalidate>
+            <div class="field full">
+              <label for="newFullName">Full Name *</label>
+              <input type="text" id="newFullName" placeholder="e.g. Jane Wanjiku" required />
+            </div>
+            <div class="field">
+              <label for="newRegNo">University Reg. No. *</label>
+              <input type="text" id="newRegNo" placeholder="e.g. ED/ART/1234/24" required />
+            </div>
+            <div class="field">
+              <label for="newPhone">Phone Number (WhatsApp) *</label>
+              <input type="tel" id="newPhone" placeholder="e.g. 0712345678" required />
+            </div>
+            <div class="field">
+              <label for="newFeePlan">Fee Option *</label>
+              <select id="newFeePlan">
+                <option value="KES 100 Registration Fee">KES 100 One-Time Registration Fee</option>
+                <option value="KES 150 Reg + Semester">KES 100 Reg + KES 50 Semester</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="newMpesaRef">M-Pesa Reference Code *</label>
+              <input type="text" id="newMpesaRef" placeholder="e.g. TKL89ABC12" maxlength="14" style="text-transform: uppercase;" required />
+            </div>
+            <div class="field full">
+              <button type="submit" class="btn btn-teal">Complete Registration</button>
+            </div>
+          </form>
+          <div id="newRegMsg" class="msg-note"></div>
+          <div id="postRegWaBar" class="post-reg-wa-bar" style="display: none;">
+            <span style="font-size: 0.88rem; font-weight: 700; color: var(--wa-700);">Welcome aboard! Join our WhatsApp community next:</span>
+            <a href="https://chat.whatsapp.com/Dty1LdhdHwv1JTfGJETtdW" target="_blank" rel="noopener noreferrer" class="btn btn-wa btn-sm">Join WhatsApp Group</a>
+          </div>
+        </div>
 
-        <form id="existingPayForm" class="form-grid" novalidate>
-          <div class="field full">
-            <label for="existingLookup">Find Existing Member (Name, Reg. No., or Phone) *</label>
-            <input type="text" id="existingLookup" placeholder="e.g. Cyprian King'oina or ED/ART/1713/24 or 0796580442" required />
-          </div>
-          <div class="field">
-            <label for="existingFeePlan">Fee / Subscription Option *</label>
-            <select id="existingFeePlan">
-              <option value="KES 100 One-Time Registration Fee" data-amount="KES 100">KES 100 One-Time Registration Fee</option>
-              <option value="KES 100 One-Time + KES 50 / Semester Subscription" data-amount="KES 150">KES 100 One-Time + KES 50 / Semester Subscription</option>
-              <option value="KES 50 / Semester Subscription Option" data-amount="KES 50">KES 50 / Semester Subscription Option</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="existingMpesaRef">M-Pesa Reference Number *</label>
-            <input type="text" id="existingMpesaRef" placeholder="e.g. TKL89ABC12" maxlength="14" style="text-transform: uppercase;" required />
-          </div>
-          <div class="field full">
-            <button type="submit" id="existingPayBtn" class="btn btn-amber">Submit M-Pesa Ref &amp; Mark Paid</button>
-          </div>
-        </form>
-        <div id="existingPayMsg" class="msg-note"></div>
+        <!-- Existing Member Payment -->
+        <div class="card" style="border-top: 4px solid var(--amber-500);">
+          <h3>Existing Members — Complete M-Pesa Payment</h3>
+          <p style="font-size: 0.9rem; color: var(--ink-700); margin-bottom: 14px;">
+            Already on the club register and haven&apos;t submitted an M-Pesa reference yet? Enter your details below to mark your registration fee as paid before <strong>31st December</strong>.
+          </p>
+
+          <form id="existingPayForm" class="form-grid" novalidate>
+            <div class="field full">
+              <label for="existingLookup">Find Existing Member (Name, Reg. No., or Phone) *</label>
+              <input type="text" id="existingLookup" placeholder="e.g. Cyprian King'oina or ED/ART/1713/24" required />
+            </div>
+            <div class="field">
+              <label for="existingFeePlan">Fee / Subscription Option *</label>
+              <select id="existingFeePlan">
+                <option value="KES 100 One-Time Registration Fee">KES 100 One-Time Registration Fee</option>
+                <option value="KES 100 One-Time + KES 50 / Semester Subscription">KES 100 One-Time + KES 50 / Semester Subscription</option>
+                <option value="KES 50 / Semester Subscription Option">KES 50 / Semester Subscription Option</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="existingMpesaRef">M-Pesa Reference Number *</label>
+              <input type="text" id="existingMpesaRef" placeholder="e.g. TKL89ABC12" maxlength="14" style="text-transform: uppercase;" required />
+            </div>
+            <div class="field full">
+              <button type="submit" id="existingPayBtn" class="btn btn-amber">Submit M-Pesa Ref &amp; Mark Paid</button>
+            </div>
+          </form>
+          <div id="existingPayMsg" class="msg-note"></div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- 5. VERIFY MEMBER & MERCHANDISE -->
-  <section id="verify-member" class="band white">
+  <section id="verify-member" class="band">
     <div class="container">
       <div class="band-head">
         <span class="band-tag">05 • Verification &amp; Merch</span>
         <h2>Verify Membership &amp; Club Apparel</h2>
-        <p>Check a member's registration status by registration number, or view club apparel items.</p>
+        <p>Check a member's registration and KES 100 fee clearance status, or view club apparel items.</p>
       </div>
 
       <div class="grid-2" style="margin-bottom: 24px;">
         <div class="card">
           <h3>Verify Member Status</h3>
-          <p style="margin-bottom: 12px;">Enter a registration number (or name / phone number) to check membership status privately.</p>
+          <p style="margin-bottom: 12px;">Enter a registration number, full name, or phone number to check membership and payment clearance.</p>
           <form id="verifyMemberForm" onsubmit="return verifyMember(event);" style="display: flex; gap: 8px; flex-wrap: wrap;">
             <input type="text" id="verifyQuery" placeholder="e.g. ED/ART/1591/24 or REG-001/26" style="flex: 1; min-width: 180px;" />
             <button type="submit" id="verifyMemberBtn" class="btn btn-teal">Verify</button>
@@ -1096,7 +1248,7 @@
 
         <div class="card">
           <h3>Official WhatsApp Group</h3>
-          <p style="margin-bottom: 14px;">Connect with members for meetings, outreach planning, and updates.</p>
+          <p style="margin-bottom: 14px;">Connect with members for outreach planning, mentorship schedules, and official announcements.</p>
           <a
             href="https://chat.whatsapp.com/Dty1LdhdHwv1JTfGJETtdW"
             target="_blank"
@@ -1132,1943 +1284,602 @@
   <section id="executive-portal" class="band white">
     <div class="container">
       <div class="colorful-portal-banner">
-        <span class="badge" style="background: var(--amber-500); color: var(--ink-900);">06 • Executives Only</span>
-        <h2 style="font-size: clamp(1.6rem, 3vw, 2.2rem); margin-top: 8px;">Executive Office Portal</h2>
-        <p style="color: #f1f5f9; max-width: 65ch; margin-top: 6px;">
-          Restricted to executive officials. Sign in with your Office ID or Registration Number and PIN to open your own dedicated office portal in a pop-up window with department-specific tools.
+        <span class="badge" style="background: var(--amber-500); color: var(--ink-900); padding: 3px 10px; border-radius: 999px; font-weight: 800; font-size: 0.74rem; text-transform: uppercase;">06 • Officials Only</span>
+        <h2 style="font-size: clamp(1.5rem, 3vw, 2.1rem); margin-top: 8px; margin-bottom: 6px;">Executive Office Portal &amp; Workspace</h2>
+        <p style="color: #e2e8f0; max-width: 66ch;">
+          Central command center for club officials to track KES 100 registration fee compliance ahead of the December 31 deadline, log weekly reports, and coordinate member welfare.
         </p>
 
         <div class="portal-color-chips">
-          <span class="chip chip-amber">Chairperson</span>
-          <span class="chip chip-indigo">Vice Chairperson</span>
-          <span class="chip chip-rose">Secretary General</span>
-          <span class="chip chip-teal">Assistant Secretary</span>
-          <span class="chip chip-amber">Treasurer</span>
-          <span class="chip chip-indigo">Organising Secretary</span>
-          <span class="chip chip-rose">Publicity Officer</span>
-          <span class="chip chip-teal">Projects Coordinator</span>
-          <span class="chip chip-amber">Welfare Coordinator</span>
-          <span class="chip chip-indigo">Partnership Coordinator</span>
+          <span class="chip chip-amber">KES 100 Dues Tracker</span>
+          <span class="chip chip-teal">Live Member Register</span>
+          <span class="chip chip-indigo">Weekly Docket Reports</span>
+          <span class="chip chip-rose">Welfare &amp; Feedback Log</span>
         </div>
 
-        <div class="portal-login-box">
-          <h3 style="margin-bottom: 12px;">Executive Office Sign-In</h3>
-          <form id="execPopupLoginForm" class="form-grid" novalidate>
-            <div class="field">
-              <label for="execIdInput">Office ID or Reg. No.</label>
-              <input type="text" id="execIdInput" placeholder="Enter Office ID or Reg. No." required />
-            </div>
-            <div class="field">
-              <label for="execPinInput">Office PIN</label>
-              <input type="password" id="execPinInput" placeholder="Enter PIN" required />
-            </div>
-            <div class="field full" style="display: flex; gap: 10px; flex-wrap: wrap;">
-              <button type="submit" class="btn btn-indigo">Sign In &amp; Open My Office Portal</button>
-            </div>
-          </form>
-          <div id="execLoginMsg" class="msg-note"></div>
+        <div class="portal-grid">
+          <div class="portal-login-box">
+            <h3 style="margin-bottom: 6px; color: var(--ink-900);">Official Sign-In</h3>
+            <p style="font-size: 0.86rem; color: var(--ink-500); margin-bottom: 14px;">
+              Select your executive docket and enter the official access passcode to launch the full workspace.
+            </p>
+            <form id="execLoginForm" class="form-grid" novalidate>
+              <div class="field full">
+                <label for="execRole">Executive Docket *</label>
+                <select id="execRole" required>
+                  <option value="Chairperson">Chairperson</option>
+                  <option value="Vice Chairperson">Vice Chairperson</option>
+                  <option value="Secretary General">Secretary General</option>
+                  <option value="Treasurer">Treasurer</option>
+                  <option value="Organizing Secretary">Organizing Secretary</option>
+                  <option value="Welfare & Mentorship Coordinator">Welfare &amp; Mentorship Coordinator</option>
+                  <option value="Club Patron">Club Patron</option>
+                </select>
+              </div>
+              <div class="field full">
+                <label for="execPasscode">Executive Access Passcode *</label>
+                <input type="password" id="execPasscode" placeholder="Enter official passcode (e.g. SCC2026)" required />
+              </div>
+              <div class="field full">
+                <button type="submit" class="btn btn-indigo" style="width: 100%;">Launch Executive Workspace</button>
+              </div>
+            </form>
+            <div id="execLoginMsg" class="msg-note"></div>
+          </div>
+
+          <div class="portal-features-box">
+            <h3 style="font-size: 1.08rem; color: #ffffff;">What&apos;s Inside the Executive Workspace</h3>
+            <ul class="portal-feature-list">
+              <li>
+                <strong>1. Live Register &amp; M-Pesa Verification</strong>
+                View all registered members, verify M-Pesa transaction codes, and filter unpaid members before Dec 31.
+              </li>
+              <li>
+                <strong>2. Weekly Docket Accountability Reports</strong>
+                Submit and review weekly progress updates across Finance, Organizing, Secretary, and Welfare dockets.
+              </li>
+              <li>
+                <strong>3. Executive Noticeboard &amp; Decisions Wall</strong>
+                Post internal action items, outreach budgets, and February 2027 election preparations.
+              </li>
+              <li>
+                <strong>4. Member Welfare &amp; Suggestion Tracker</strong>
+                Log comrade welfare cases and track resolution status transparently.
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- WEEKLY REPORT OVERDUE POP-UP NOTIFICATION -->
-  <div id="overdueNotifyBackdrop" class="overdue-alert-backdrop" role="dialog" aria-modal="true" aria-labelledby="overdueNotifyTitle">
-    <div class="overdue-alert-card">
-      <div class="overdue-alert-head">
-        <span id="overdueNotifyTitle">Weekly Report Reminder</span>
-        <button type="button" onclick="closeOverdueNotify()" style="background:none; border:none; color:#fff; font-size:1.25rem; cursor:pointer;">&times;</button>
-      </div>
-      <div id="overdueNotifyBody" class="overdue-alert-body"></div>
-      <div style="padding: 0 18px 18px; display: flex; justify-content: flex-end; gap: 8px;">
-        <button type="button" class="btn btn-indigo btn-sm" onclick="closeOverdueNotify()">Acknowledge</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- POP-UP EXECUTIVE OFFICE WINDOW -->
-  <div id="execPopupBackdrop" class="popup-backdrop" role="dialog" aria-modal="true" aria-labelledby="popupTitle">
+  <!-- EXECUTIVE WORKSPACE MODAL POP-UP -->
+  <div id="execWorkspaceModal" class="popup-backdrop" role="dialog" aria-modal="true" aria-labelledby="execModalTitle">
     <div class="popup-window">
       <div class="popup-topbar">
         <div>
-          <div id="popupTitle" style="font-size: 1.15rem; font-weight: 800;">Executive Office</div>
-          <div id="popupSubtitle" style="font-size: 0.82rem; color: #e2e8f0;">Share a Smile Charity Club — Authorized Office Access</div>
+          <span style="font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.06em; color: #fde68a; font-weight: 800;">Share a Smile • Official Workspace</span>
+          <h3 id="execModalTitle" style="font-size: 1.2rem;">Executive Dashboard</h3>
         </div>
         <div style="display: flex; gap: 8px; align-items: center;">
-          <button type="button" class="btn btn-amber btn-sm" onclick="logoutExecPopup()">Sign Out</button>
-          <button type="button" class="btn btn-secondary btn-sm" onclick="closeExecPopup()">Close Office &times;</button>
+          <span id="execActiveBadge" class="chip chip-teal">Signed In</span>
+          <button type="button" class="btn btn-amber btn-sm" onclick="closeExecModal()">Close Workspace</button>
         </div>
       </div>
 
+      <div class="popup-tabs" role="tablist">
+        <button type="button" class="tab-btn active" onclick="switchExecTab('tab-members', this)">Member Register &amp; Dues</button>
+        <button type="button" class="tab-btn" onclick="switchExecTab('tab-reports', this)">Weekly Docket Reports</button>
+        <button type="button" class="tab-btn" onclick="switchExecTab('tab-wall', this)">Executive Noticeboard</button>
+        <button type="button" class="tab-btn" onclick="switchExecTab('tab-welfare', this)">Welfare &amp; Feedback</button>
+      </div>
+
       <div class="popup-body">
-        <div id="officeWorkspaceContent"></div>
+        <!-- TAB 1: MEMBER REGISTER & DUES -->
+        <div id="tab-members" class="tab-pane active">
+          <div class="stat-strip">
+            <div class="stat-tile">
+              <div class="num" id="statTotalMembers">0</div>
+              <div class="lbl">Total Registered</div>
+            </div>
+            <div class="stat-tile">
+              <div class="num" id="statPaidMembers" style="color: var(--wa-700);">0</div>
+              <div class="lbl">KES 100 Paid</div>
+            </div>
+            <div class="stat-tile">
+              <div class="num" id="statPendingMembers" style="color: var(--amber-600);">0</div>
+              <div class="lbl">Pending Dec 31</div>
+            </div>
+            <div class="stat-tile">
+              <div class="num" id="statTotalCollected">KES 0</div>
+              <div class="lbl">Verified Dues</div>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 12px;">
+            <input type="text" id="execMemberSearch" placeholder="Filter by name, reg no, or M-Pesa ref..." oninput="renderExecMembers()" style="max-width: 320px;" />
+            <select id="execPaymentFilter" onchange="renderExecMembers()" style="max-width: 220px;">
+              <option value="ALL">All Payment Statuses</option>
+              <option value="Paid">Paid (Verified)</option>
+              <option value="Pending">Pending (Due Dec 31)</option>
+            </select>
+          </div>
+
+          <div style="overflow-x: auto;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Member Name</th>
+                  <th>Reg. No.</th>
+                  <th>Phone</th>
+                  <th>M-Pesa Ref</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="execMembersTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TAB 2: WEEKLY DOCKET REPORTS -->
+        <div id="tab-reports" class="tab-pane">
+          <div class="grid-2">
+            <div class="card">
+              <h3>Submit Weekly Docket Report</h3>
+              <form id="execReportForm" class="form-grid" style="margin-top: 10px;">
+                <div class="field full">
+                  <label for="reportSummary">Key Activities &amp; Milestones This Week *</label>
+                  <textarea id="reportSummary" rows="3" placeholder="Summarize outreach prep, member follow-ups, or treasury updates..." required></textarea>
+                </div>
+                <div class="field full">
+                  <label for="reportNextAction">Next Week Priority Action *</label>
+                  <input type="text" id="reportNextAction" placeholder="e.g. Follow up with 12 members on KES 100 fee before Dec 31" required />
+                </div>
+                <div class="field full">
+                  <button type="submit" class="btn btn-teal">Log Weekly Report</button>
+                </div>
+              </form>
+            </div>
+            <div>
+              <h3 style="margin-bottom: 10px;">Submitted Weekly Reports</h3>
+              <div id="execReportsFeed"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 3: EXECUTIVE NOTICEBOARD -->
+        <div id="tab-wall" class="tab-pane">
+          <div class="card" style="margin-bottom: 16px;">
+            <h3>Post Official Directive / Notice</h3>
+            <form id="execWallForm" style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
+              <input type="text" id="wallPostInput" placeholder="Write an update for all executive officials..." style="flex: 1; min-width: 240px;" required />
+              <button type="submit" class="btn btn-indigo">Post to Wall</button>
+            </form>
+          </div>
+          <div id="execWallFeed"></div>
+        </div>
+
+        <!-- TAB 4: WELFARE & FEEDBACK -->
+        <div id="tab-welfare" class="tab-pane">
+          <div class="card" style="margin-bottom: 16px;">
+            <h3>Log Comrade Welfare / Member Feedback</h3>
+            <form id="execWelfareForm" class="form-grid" style="margin-top: 10px;">
+              <div class="field">
+                <label for="welfareMemberName">Member Name / Group *</label>
+                <input type="text" id="welfareMemberName" placeholder="e.g. Member Welfare Inquiry" required />
+              </div>
+              <div class="field">
+                <label for="welfareCategory">Category *</label>
+                <select id="welfareCategory">
+                  <option value="Comrade Support">Comrade Support</option>
+                  <option value="Registration / Fee Query">Registration / Fee Query</option>
+                  <option value="Outreach Suggestion">Outreach Suggestion</option>
+                </select>
+              </div>
+              <div class="field full">
+                <label for="welfareNotes">Details &amp; Action Needed *</label>
+                <textarea id="welfareNotes" rows="2" placeholder="Describe the issue or suggestion..." required></textarea>
+              </div>
+              <div class="field full">
+                <button type="submit" class="btn btn-amber">Save Welfare Entry</button>
+              </div>
+            </form>
+          </div>
+          <div id="execWelfareFeed"></div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- CHATBOT -->
-  <button type="button" class="chatbot-fab" onclick="toggleChatbot()">Club Chatbot</button>
-
-  <div id="chatbotPanel" class="chatbot-panel" role="region" aria-label="Share a Smile Club Chatbot">
+  <!-- FLOATING CLUB CHATBOT -->
+  <button type="button" class="chatbot-fab" onclick="toggleChatbot()">Ask Club Chatbot</button>
+  <div id="chatbotPanel" class="chatbot-panel" aria-label="Share a Smile Assistant">
     <div class="chatbot-head">
       <span>Share a Smile Assistant</span>
-      <button type="button" onclick="toggleChatbot(false)" style="background: none; border: none; color: #fff; font-size: 1.2rem; cursor: pointer;">&times;</button>
+      <button type="button" onclick="toggleChatbot(false)" style="background:none; border:none; color:#fff; font-weight:800; cursor:pointer;">&#10005;</button>
     </div>
-    <div id="chatbotMessages" class="chatbot-messages">
+    <div id="chatMessages" class="chatbot-messages">
       <div class="chat-bubble bot">
-        Hi! Ask me about <strong>who we are</strong>, <strong>outreach</strong>, <strong>joining &amp; WhatsApp</strong>, or the <strong>Executive Office Portal</strong>.
+        Habari! Ask me about the <strong>KES 100 registration fee</strong>, the <strong>31st December deadline</strong>, joining our WhatsApp group, or verifying your membership.
       </div>
     </div>
     <div class="chat-quick-row">
-      <button type="button" class="chat-chip" onclick="sendQuickChat('Saturday meeting')">Saturday meeting</button>
-      <button type="button" class="chat-chip" onclick="sendQuickChat('Club calendar')">Club calendar</button>
-      <button type="button" class="chat-chip" onclick="sendQuickChat('WhatsApp link')">WhatsApp link</button>
-      <button type="button" class="chat-chip" onclick="sendQuickChat('Executive portal')">Executive portal</button>
+      <button type="button" class="chat-chip" onclick="sendQuickChat('Registration fee & deadline')">KES 100 Deadline</button>
+      <button type="button" class="chat-chip" onclick="sendQuickChat('How do I join WhatsApp?')">WhatsApp Link</button>
+      <button type="button" class="chat-chip" onclick="sendQuickChat('When are club elections?')">2027 Elections</button>
     </div>
-    <form id="chatbotForm" class="chat-input-form">
-      <input type="text" id="chatbotInput" placeholder="Type a question..." required />
+    <form class="chat-input-form" onsubmit="handleChatSubmit(event)">
+      <input type="text" id="chatInput" placeholder="Type a question..." required />
       <button type="submit" class="btn btn-teal btn-sm">Send</button>
     </form>
   </div>
 
+  <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container footer-row">
-      <div><strong>Share a Smile Charity Club</strong> • Laikipia University</div>
-      <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-        <a href="#who-we-are">Who We Are</a>
-        <a href="#outreach-photos">Outreach</a>
-        <a href="#join">Join Us</a>
-        <a href="https://chat.whatsapp.com/Dty1LdhdHwv1JTfGJETtdW" target="_blank" rel="noopener noreferrer">WhatsApp Group</a>
+      <div>
+        <strong>Share a Smile Charity Club</strong> • Laikipia University Student Chapter
+      </div>
+      <div>
+        Registration Fee: KES 100 (Deadline: 31st December, 2026) • Elections: Late February 2027
       </div>
     </div>
   </footer>
 
   <script>
-    (function () {
-      const WA_URL = "https://chat.whatsapp.com/Dty1LdhdHwv1JTfGJETtdW";
-      const STORE_KEY = "sas_club_structured_v3";
-      const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
+    // Mobile Navigation Toggle
+    function toggleMobileNav() {
+      const nav = document.getElementById('mainNavLinks');
+      const btn = document.getElementById('mobileMenuDotsBtn');
+      const isOpen = nav.classList.toggle('open');
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    }
 
-      const EXEC_OFFICES = [
-        {
-          id: "EXEC-01",
-          reg: "ED/ART1591//24",
-          altReg: "ED/ART/1591/24",
-          pin: "1591",
-          phone: "0769529801",
-          name: "Rooney Ogongo",
-          role: "Chairperson",
-          officeName: "Office of the Chairperson",
-          responsibilities: [
-            "Preside over executive and general club meetings",
-            "Oversee club governance, representation, and compliance with Dean of Students regulations",
-            "Review weekly reports submitted by the Secretary General and Treasurer"
-          ]
-        },
-        {
-          id: "EXEC-02",
-          reg: "ED/ART/4377/25",
-          pin: "4377",
-          phone: "0725729609",
-          name: "Ivy Bundi",
-          role: "Vice Chairperson",
-          officeName: "Office of the Vice Chairperson",
-          responsibilities: [
-            "Deputize for the Chairperson and support executive coordination",
-            "Assist with member mobilization and outreach readiness"
-          ]
-        },
-        {
-          id: "EXEC-03",
-          reg: "BE/EST/2495/24",
-          pin: "2495",
-          phone: "0758523759",
-          name: "Immanuel Mesocho",
-          role: "Secretary General",
-          officeName: "Office of the Secretary General",
-          responsibilities: [
-            "Maintain official minutes, records, and club correspondence",
-            "Download weekly report PDFs and submit weekly reports to the Chairperson"
-          ]
-        },
-        {
-          id: "EXEC-04",
-          reg: "ED/ART/1658/24",
-          pin: "1658",
-          phone: "0708563143",
-          name: "Silvia Osore",
-          role: "Assistant Secretary",
-          officeName: "Office of the Assistant Secretary",
-          responsibilities: [
-            "Support the Secretary General in recording minutes and notices",
-            "Assist in maintaining club attendance and activity records"
-          ]
-        },
-        {
-          id: "EXEC-05",
-          reg: "ED/ART/1807/24",
-          pin: "1807",
-          phone: "0758712751",
-          name: "Lewis Ogachi",
-          role: "Treasurer",
-          officeName: "Office of the Treasurer",
-          responsibilities: [
-            "Manage club finances, budgets, and expenditure records",
-            "Download weekly financial report PDFs and submit weekly reports to the Chairperson"
-          ]
-        },
-        {
-          id: "EXEC-06",
-          reg: "ORGSEC-06",
-          pin: "6743",
-          phone: "0113466743",
-          name: "Ebenezar Kiproto",
-          role: "Organising Secretary",
-          officeName: "Office of the Organising Secretary",
-          responsibilities: [
-            "Coordinate event logistics, venues, and meeting arrangements",
-            "Organize operational schedules for club activities"
-          ]
-        },
-        {
-          id: "EXEC-07",
-          reg: "ED/ART/1670/24",
-          pin: "1670",
-          phone: "0115940377",
-          name: "Caleb Orobo",
-          role: "Publicity Officer",
-          officeName: "Office of the Publicity Officer",
-          responsibilities: [
-            "Handle club announcements, communications, and event publicity",
-            "Share accurate updates on approved club initiatives"
-          ]
-        },
-        {
-          id: "EXEC-08",
-          reg: "ED/ART/1460/24",
-          pin: "1460",
-          phone: "0706846072",
-          name: "Damaris Akinyi",
-          role: "Projects Coordinator",
-          officeName: "Office of the Projects Coordinator",
-          responsibilities: [
-            "Plan and track outreach and community service projects",
-            "Coordinate project execution timelines and deliverables"
-          ]
-        },
-        {
-          id: "EXEC-09",
-          reg: "ED/ART/1593/24",
-          pin: "1593",
-          phone: "0714388618",
-          name: "Faith Matongo",
-          role: "Welfare Coordinator",
-          officeName: "Office of the Welfare Coordinator",
-          responsibilities: [
-            "Coordinate member welfare support and peer care initiatives",
-            "Monitor member well-being during campus and outreach activities"
-          ]
-        },
-        {
-          id: "EXEC-10",
-          reg: "ED/ART/0931/24",
-          pin: "0931",
-          phone: "0798872049",
-          name: "Rose Khaemba",
-          role: "Partnership Coordinator",
-          officeName: "Office of the Partnership Coordinator",
-          responsibilities: [
-            "Cultivate partnerships with sponsors, institutions, and community groups",
-            "Support collaborative outreach and resource mobilization"
-          ]
-        }
-      ];
+    // Seed Member Register (persisted in localStorage)
+    const defaultMembers = [
+      { name: "Cyprian King'oina", regNo: "ED/ART/1713/24", phone: "0796580442", mpesaRef: "TKL45MP901", status: "Paid", amount: 100 },
+      { name: "Faith Ngeno", regNo: "ED/ART/1604/24", phone: "0711223344", mpesaRef: "TKL48XY210", status: "Paid", amount: 100 },
+      { name: "Brian Otieno", regNo: "SC/COM/0412/25", phone: "0722334455", mpesaRef: "", status: "Pending", amount: 0 },
+      { name: "Mercy Chepkoech", regNo: "ED/SCI/0891/24", phone: "0733445566", mpesaRef: "", status: "Pending", amount: 0 }
+    ];
 
-      const OFFICIAL_SEED_MEMBERS = [
-        {
-                "name": "Abigael Wanjiru",
-                "reg": "ED/ART/3618/24",
-                "phone": "0798196693",
-                "role": "Member"
-        },
-        {
-                "name": "Brian James",
-                "reg": "ED/ART/1571/24",
-                "phone": "0741447412",
-                "role": "Member"
-        },
-        {
-                "name": "Caleb Mbata Orobo",
-                "reg": "ED/ART/1670/24",
-                "phone": "0115940377",
-                "role": "Publicity Officer"
-        },
-        {
-                "name": "Joycaren Njogu",
-                "reg": "ED/ART/3330/24",
-                "phone": "0115066240",
-                "role": "Member"
-        },
-        {
-                "name": "Catherine Wangui",
-                "reg": "ED/ART/1326/24",
-                "phone": "0111484928",
-                "role": "Member"
-        },
-        {
-                "name": "Collens Nyamwaka",
-                "reg": "ED/ART/3367/24",
-                "phone": "0790424231",
-                "role": "Member"
-        },
-        {
-                "name": "Cyprian King'oina",
-                "reg": "ED/ART/1713/24",
-                "phone": "0796580442",
-                "role": "Member"
-        },
-        {
-                "name": "Damaris Molyne",
-                "reg": "ED/ART/1480/24",
-                "phone": "0706846072",
-                "role": "Projects Coordinator"
-        },
-        {
-                "name": "Dancan Njiri",
-                "reg": "ED/ART/0483/22",
-                "phone": "0718192841",
-                "role": "Member"
-        },
-        {
-                "name": "Diana Muya",
-                "reg": "HD/KIC/2454/23",
-                "phone": "0714094800",
-                "role": "Member"
-        },
-        {
-                "name": "Douglas Yego",
-                "reg": "ED/ART/0924/24",
-                "phone": "+254 792 206238",
-                "role": "Member"
-        },
-        {
-                "name": "Ebenezer Kiprutoh",
-                "reg": "ED/ART/2079/24",
-                "phone": "0113466743",
-                "role": "Organising Secretary"
-        },
-        {
-                "name": "Elvins Otieno Odeyo",
-                "reg": "ED/ART/1699/24",
-                "phone": "0705759257",
-                "role": "Member"
-        },
-        {
-                "name": "Ezekiel Kipsang",
-                "reg": "ED/ART/1412/24",
-                "phone": "0111234550",
-                "role": "Member"
-        },
-        {
-                "name": "Ezekiel Ombati",
-                "reg": "HD/COM/3205/26",
-                "phone": "0723166917",
-                "role": "Member"
-        },
-        {
-                "name": "Faith Kwamboka Matongo",
-                "reg": "ED/ART/1583/24",
-                "phone": "0714388618",
-                "role": "Welfare Coordinator"
-        },
-        {
-                "name": "Festus Kiprotich",
-                "reg": "BE/CMC/0576/24",
-                "phone": "0745120943",
-                "role": "Member"
-        },
-        {
-                "name": "Hellen Mokeira",
-                "reg": "ED/ART/1793/24",
-                "phone": "0701496869",
-                "role": "Member"
-        },
-        {
-                "name": "Hilder Ongondi",
-                "reg": "ED/ART/1530/25",
-                "phone": "0790475235",
-                "role": "Member"
-        },
-        {
-                "name": "Immanuel Mesocho",
-                "reg": "BE/EST/2495/24",
-                "phone": "0758523759",
-                "role": "Secretary General"
-        },
-        {
-                "name": "Ivy Bundi",
-                "reg": "ED/ART/4377/25",
-                "phone": "0725729609",
-                "role": "Vice Chairperson"
-        },
-        {
-                "name": "James Mwendwa",
-                "reg": "ED/ART/0849/24",
-                "phone": "0117238699",
-                "role": "Member"
-        },
-        {
-                "name": "Jamesdavidson Mukhwana",
-                "reg": "ED/ART/0361/22",
-                "phone": "0712729894",
-                "role": "Member"
-        },
-        {
-                "name": "Jenipher Nenkai",
-                "reg": "ED/ART/4466/25",
-                "phone": "0769371223",
-                "role": "Member"
-        },
-        {
-                "name": "Jimmie Muange",
-                "reg": "ED/ART/4575/26",
-                "phone": "0104420148",
-                "role": "Member"
-        },
-        {
-                "name": "Joseph Gitahi",
-                "reg": "ED/ART/0217/23",
-                "phone": "0706009086",
-                "role": "Member"
-        },
-        {
-                "name": "Joshua Mark",
-                "reg": "ED/SCI/2175/24",
-                "phone": "0759689909",
-                "role": "Member"
-        },
-        {
-                "name": "Joshua Ndiema",
-                "reg": "ED/ART/3665/24",
-                "phone": "0795287293 / +254 770 864149",
-                "role": "Member"
-        },
-        {
-                "name": "Kipkemoi Rotich",
-                "reg": "ED/ART/0956/25",
-                "phone": "0707917434",
-                "role": "Member"
-        },
-        {
-                "name": "Kiplagat Ethel",
-                "reg": "ED/ART/0923/24",
-                "phone": "0745049553",
-                "role": "Member"
-        },
-        {
-                "name": "Lavender Omwange",
-                "reg": "ED/ART/1574/24",
-                "phone": "0745263552",
-                "role": "Member"
-        },
-        {
-                "name": "Lee Bungei",
-                "reg": "ED/ART/1158/25",
-                "phone": "0723617436",
-                "role": "Member"
-        },
-        {
-                "name": "Lewis Gaitho",
-                "reg": "ED/ART/3644/24",
-                "phone": "0113622752",
-                "role": "Member"
-        },
-        {
-                "name": "Lewis Ogachi",
-                "reg": "ED/ART/1807/24",
-                "phone": "0758712751",
-                "role": "Treasurer"
-        },
-        {
-                "name": "Lucas Okeyo Oganda",
-                "reg": "ED/ART/1678/24",
-                "phone": "0708417079",
-                "role": "Member"
-        },
-        {
-                "name": "Maria Juma",
-                "reg": "ED/ART/2676/24",
-                "phone": "0797072362",
-                "role": "Member"
-        },
-        {
-                "name": "Melvin Goga",
-                "reg": "ED/ART/3403/24",
-                "phone": "0758037007",
-                "role": "Member"
-        },
-        {
-                "name": "Mical Jepchumba",
-                "reg": "ED/ART/1451/24",
-                "phone": "0721949720",
-                "role": "Member"
-        },
-        {
-                "name": "Mildred Nyaboke",
-                "reg": "ED/ART/1595/25",
-                "phone": "0742536068",
-                "role": "Member"
-        },
-        {
-                "name": "Millicent Wambui",
-                "reg": "ED/ART/4510/26",
-                "phone": "0141035290",
-                "role": "Member"
-        },
-        {
-                "name": "Perpetual Ivonne",
-                "reg": "ED/ART/1026/24",
-                "phone": "0729947114",
-                "role": "Member"
-        },
-        {
-                "name": "Phineas Muriungi",
-                "reg": "ED/ART/0824/24",
-                "phone": "0703705572",
-                "role": "Member"
-        },
-        {
-                "name": "Phoebe Nyaboke",
-                "reg": "ED/ART/1670/25",
-                "phone": "0110593198",
-                "role": "Member"
-        },
-        {
-                "name": "Risper Mukami",
-                "reg": "ED/ART/0877/24",
-                "phone": "0758251169",
-                "role": "Member"
-        },
-        {
-                "name": "Rooney David Ogongo",
-                "reg": "ED/ART/1591/24",
-                "phone": "0769529801",
-                "role": "Chairperson",
-                "altReg": "ED/ART1591//24"
-        },
-        {
-                "name": "Rose Khembu",
-                "reg": "ED/ART/0431/24",
-                "phone": "0798872049",
-                "role": "Partnership Coordinator"
-        },
-        {
-                "name": "Ruth Oseheri",
-                "reg": "ED/ART/1684/24",
-                "phone": "0729957741",
-                "role": "Member"
-        },
-        {
-                "name": "Rutto Mark",
-                "reg": "ED/AGD/3012/24",
-                "phone": "0792816731",
-                "role": "Member"
-        },
-        {
-                "name": "Saviour Oboo",
-                "reg": "ED/ART/3720/24",
-                "phone": "0742067820 / 0794892061",
-                "role": "Member"
-        },
-        {
-                "name": "Sharon Mong'are",
-                "reg": "BE/CMC/0641/24",
-                "phone": "0727043186",
-                "role": "Member"
-        },
-        {
-                "name": "Sharon Moraa",
-                "reg": "BE/EST/2494/24",
-                "phone": "0705607529",
-                "role": "Member"
-        },
-        {
-                "name": "Sheila Moraa",
-                "reg": "ED/ART/1127/24",
-                "phone": "0106538141",
-                "role": "Member"
-        },
-        {
-                "name": "Sophia Kerubo",
-                "reg": "ED/ART/1792/24",
-                "phone": "0741474320",
-                "role": "Member"
-        },
-        {
-                "name": "Stephen Okioth",
-                "reg": "ED/ART/1847/24",
-                "phone": "0712 209796",
-                "role": "Member"
-        },
-        {
-                "name": "Susan Cheroich",
-                "reg": "BE/EST/2454/24",
-                "phone": "0792462443",
-                "role": "Member"
-        },
-        {
-                "name": "Sylvia Ratandi",
-                "reg": "ED/ART/1580/25",
-                "phone": "0702741759",
-                "role": "Member"
-        },
-        {
-                "name": "Sylvia Osore",
-                "reg": "ED/ART/1658/24",
-                "phone": "0708563143",
-                "role": "Assistant Secretary"
-        },
-        {
-                "name": "Valaria Mokamba",
-                "reg": "ED/ART/1664/24",
-                "phone": "0715844880",
-                "role": "Member"
-        },
-        {
-                "name": "Vincent Kipkemboi",
-                "reg": "ED/ART/0092/24",
-                "phone": "0793533271",
-                "role": "Member"
-        },
-        {
-                "name": "Wakili Zablon",
-                "reg": "ED/ART/1519/24",
-                "phone": "0748797476",
-                "role": "Member"
-        },
-        {
-                "name": "Wilfred Korir",
-                "reg": "ED/ART/1219/24",
-                "phone": "0794284441",
-                "role": "Member"
-        },
-        {
-                "name": "Yvonne Mueni",
-                "reg": "ED/ART/2783/24",
-                "phone": "0110169774",
-                "role": "Member"
-        },
-        {
-                "name": "Yvonne Ndanu",
-                "reg": "ED/ART/2675/24",
-                "phone": "0111656853",
-                "role": "Member"
-        },
-        {
-                "name": "Zawadii",
-                "reg": "ED/ART/1638/24",
-                "phone": "0717174096",
-                "role": "Member"
-        }
-];
+    let clubMembers = JSON.parse(localStorage.getItem('scc_members_v1')) || defaultMembers;
+    let execReports = JSON.parse(localStorage.getItem('scc_reports_v1')) || [
+      { role: "Organizing Secretary", date: "Nov 28, 2026", summary: "Successfully coordinated member attendance (46 members present) and onboarding follow-ups.", nextAction: "Send SMS reminders for KES 100 registration fee before Dec 31." }
+    ];
+    let execWallPosts = JSON.parse(localStorage.getItem('scc_wall_v1')) || [
+      { role: "Chairperson", time: "Nov 28, 2026", text: "Great turnout of 46 members! Every official should follow up with their cohorts to clear the KES 100 registration fee by 31st December." }
+    ];
+    let execWelfareItems = JSON.parse(localStorage.getItem('scc_welfare_v1')) || [
+      { member: "General Cohort", category: "Registration / Fee Query", notes: "Members paying KES 100 via M-Pesa can submit their transaction code directly on the homepage.", status: "Active" }
+    ];
 
-      function normalizeReg(val) {
-        return String(val || "").trim().toUpperCase().replace(/[^A-Z0-9]/g, "");
+    let activeExecRole = "";
+
+    function saveAllData() {
+      localStorage.setItem('scc_members_v1', JSON.stringify(clubMembers));
+      localStorage.setItem('scc_reports_v1', JSON.stringify(execReports));
+      localStorage.setItem('scc_wall_v1', JSON.stringify(execWallPosts));
+      localStorage.setItem('scc_welfare_v1', JSON.stringify(execWelfareItems));
+    }
+
+    // New Member Registration Form
+    document.getElementById('newMemberForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const name = document.getElementById('newFullName').value.trim();
+      const regNo = document.getElementById('newRegNo').value.trim().toUpperCase();
+      const phone = document.getElementById('newPhone').value.trim();
+      const mpesaRef = document.getElementById('newMpesaRef').value.trim().toUpperCase();
+      const msgEl = document.getElementById('newRegMsg');
+
+      if (!name || !regNo || !phone || !mpesaRef) {
+        msgEl.className = 'msg-note msg-err';
+        msgEl.textContent = 'Please complete all required fields including your M-Pesa reference code.';
+        return;
       }
 
-      function resolveExecutiveAccount(idVal, pinVal) {
-        const cleanId = normalizeReg(idVal);
-        const cleanPin = String(pinVal || "").trim();
-        if (!cleanId || !cleanPin) return null;
-        return EXEC_OFFICES.find(function (acc) {
-          const matchesId =
-            normalizeReg(acc.id) === cleanId ||
-            normalizeReg(acc.reg) === cleanId ||
-            (acc.altReg && normalizeReg(acc.altReg) === cleanId);
-          return matchesId && acc.pin === cleanPin;
-        }) || null;
+      clubMembers.unshift({
+        name,
+        regNo,
+        phone,
+        mpesaRef,
+        status: 'Paid',
+        amount: 100
+      });
+      saveAllData();
+
+      msgEl.className = 'msg-note msg-ok';
+      msgEl.textContent = `Registration recorded for ${name} (${regNo}) with M-Pesa Ref ${mpesaRef}.`;
+      document.getElementById('postRegWaBar').style.display = 'flex';
+      this.reset();
+    });
+
+    // Existing Member Payment Form
+    document.getElementById('existingPayForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const lookup = document.getElementById('existingLookup').value.trim().toLowerCase();
+      const mpesaRef = document.getElementById('existingMpesaRef').value.trim().toUpperCase();
+      const msgEl = document.getElementById('existingPayMsg');
+
+      if (!lookup || !mpesaRef) {
+        msgEl.className = 'msg-note msg-err';
+        msgEl.textContent = 'Please enter your name/reg number and your M-Pesa reference code.';
+        return;
       }
 
-      function mergeSeedMembers(savedList) {
-        const merged = OFFICIAL_SEED_MEMBERS.map(function (m) { return Object.assign({}, m); });
-        if (Array.isArray(savedList)) {
-          savedList.forEach(function (item) {
-            if (!item || !item.name) return;
-            const normItemReg = normalizeReg(item.reg);
-            const exists = merged.some(function (m) {
-              return (
-                (normItemReg && (normalizeReg(m.reg) === normItemReg || (m.altReg && normalizeReg(m.altReg) === normItemReg))) ||
-                m.name.toLowerCase() === String(item.name).trim().toLowerCase()
-              );
-            });
-            if (!exists) {
-              merged.push(item);
-            }
-          });
-        }
-        return merged;
-      }
+      const member = clubMembers.find(m =>
+        m.name.toLowerCase().includes(lookup) ||
+        m.regNo.toLowerCase().includes(lookup) ||
+        m.phone.includes(lookup)
+      );
 
-      function defaultState() {
-        return {
-          members: mergeSeedMembers([]),
-          officeNotes: {},
-          budgetItems: [
-            { id: "BDG-1", type: "Income", category: "Registration & Dues", title: "Initial Member Registration & Subscriptions", amount: 3250, ref: "SAS-INIT", date: "Nov 25, 2026" },
-            { id: "BDG-2", type: "Expense", category: "Meeting & Venue", title: "Serene Court Grounds Logistics & Printing", amount: 1200, ref: "EXP-01", date: "Nov 26, 2026" }
-          ],
-          budgetTarget: 15000,
-          deptRecords: {},
-          perfCadence: "Weekly (Every 7 Days)",
-          perfReviews: {},
-          chairReports: [],
-          lastReportSubmittedAt: {
-            "Secretary General": null,
-            "Treasurer": null
-          },
-          loggedInExec: null
-        };
-      }
-
-      function loadState() {
-        try {
-          const raw = localStorage.getItem(STORE_KEY);
-          if (!raw) return defaultState();
-          const parsed = JSON.parse(raw);
-          const base = defaultState();
-          return {
-            members: mergeSeedMembers(parsed.members),
-            officeNotes: parsed.officeNotes && typeof parsed.officeNotes === "object" ? parsed.officeNotes : {},
-            budgetItems: Array.isArray(parsed.budgetItems) ? parsed.budgetItems : base.budgetItems,
-            budgetTarget: typeof parsed.budgetTarget === "number" && parsed.budgetTarget > 0 ? parsed.budgetTarget : base.budgetTarget,
-            deptRecords: parsed.deptRecords && typeof parsed.deptRecords === "object" ? parsed.deptRecords : {},
-            perfCadence: typeof parsed.perfCadence === "string" && parsed.perfCadence ? parsed.perfCadence : base.perfCadence,
-            perfReviews: parsed.perfReviews && typeof parsed.perfReviews === "object" ? parsed.perfReviews : {},
-            chairReports: Array.isArray(parsed.chairReports) ? parsed.chairReports : [],
-            lastReportSubmittedAt: parsed.lastReportSubmittedAt && typeof parsed.lastReportSubmittedAt === "object"
-              ? Object.assign(base.lastReportSubmittedAt, parsed.lastReportSubmittedAt)
-              : base.lastReportSubmittedAt,
-            loggedInExec: parsed.loggedInExec || null
-          };
-        } catch (e) {
-          return defaultState();
-        }
-      }
-
-      function saveState() {
-        try {
-          localStorage.setItem(STORE_KEY, JSON.stringify(state));
-        } catch (e) {}
-      }
-
-      const state = loadState();
-
-      function esc(str) {
-        return String(str || "")
-          .replace(/&/g, "&amp;")
-          .replace(/</g, "&lt;")
-          .replace(/>/g, "&gt;")
-          .replace(/"/g, "&quot;");
-      }
-
-      function pdfEscape(text) {
-        return String(text || "")
-          .replace(/[^\x20-\x7E]/g, " ")
-          .replace(/\\/g, "\\\\")
-          .replace(/\(/g, "\\(")
-          .replace(/\)/g, "\\)");
-      }
-
-      function buildSimplePdfBlob(lines) {
-        const contentStreams = ["BT", "/F1 12 Tf", "50 750 Td", "16 TL"];
-        lines.forEach(function (line, idx) {
-          if (idx === 0) {
-            contentStreams.push("(" + pdfEscape(line) + ") Tj");
-          } else {
-            contentStreams.push("T* (" + pdfEscape(line) + ") Tj");
-          }
+      if (member) {
+        member.mpesaRef = mpesaRef;
+        member.status = 'Paid';
+        member.amount = 100;
+        saveAllData();
+        msgEl.className = 'msg-note msg-ok';
+        msgEl.textContent = `Payment updated! ${member.name} (${member.regNo}) is now marked PAID (Ref: ${mpesaRef}).`;
+      } else {
+        clubMembers.unshift({
+          name: document.getElementById('existingLookup').value.trim(),
+          regNo: "PENDING-REG",
+          phone: "-",
+          mpesaRef,
+          status: "Paid",
+          amount: 100
         });
-        contentStreams.push("ET");
-        const streamBody = contentStreams.join("\n");
-        const streamLen = streamBody.length;
-
-        const objects = [
-          "1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj\n",
-          "2 0 obj\n<< /Type /Pages /Kids [3 0 R] /Count 1 >>\nendobj\n",
-          "3 0 obj\n<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>\nendobj\n",
-          "4 0 obj\n<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>\nendobj\n",
-          "5 0 obj\n<< /Length " + streamLen + " >>\nstream\n" + streamBody + "\nendstream\nendobj\n"
-        ];
-
-        let pdf = "%PDF-1.4\n";
-        const offsets = [0];
-        objects.forEach(function (obj) {
-          offsets.push(pdf.length);
-          pdf += obj;
-        });
-        const xrefStart = pdf.length;
-        pdf += "xref\n0 " + (objects.length + 1) + "\n";
-        pdf += "0000000000 65535 f \n";
-        for (let i = 1; i < offsets.length; i++) {
-          pdf += String(offsets[i]).padStart(10, "0") + " 00000 n \n";
-        }
-        pdf += "trailer\n<< /Size " + (objects.length + 1) + " /Root 1 0 R >>\nstartxref\n" + xrefStart + "\n%%EOF";
-
-        return new Blob([pdf], { type: "application/pdf" });
+        saveAllData();
+        msgEl.className = 'msg-note msg-ok';
+        msgEl.textContent = `M-Pesa reference ${mpesaRef} recorded and queued for executive register matching.`;
       }
+      this.reset();
+    });
 
-      function getOverdueReportingRoles() {
-        const now = Date.now();
-        return ["Secretary General", "Treasurer"].filter(function (roleName) {
-          const lastTs = state.lastReportSubmittedAt ? state.lastReportSubmittedAt[roleName] : null;
-          return !lastTs || (now - Number(lastTs)) >= WEEK_MS;
-        });
-      }
+    // Verify Member Status
+    function verifyMember(e) {
+      e.preventDefault();
+      const q = document.getElementById('verifyQuery').value.trim().toLowerCase();
+      const out = document.getElementById('verifyOut');
+      out.style.display = 'block';
 
-      window.showOverdueNotify = function (rolesList, contextLabel) {
-        const backdrop = document.getElementById("overdueNotifyBackdrop");
-        const titleEl = document.getElementById("overdueNotifyTitle");
-        const bodyEl = document.getElementById("overdueNotifyBody");
-        if (!backdrop || !bodyEl) return;
-
-        const itemsHtml = rolesList.map(function (r) {
-          const officer = EXEC_OFFICES.find(function (o) { return o.role === r; });
-          const who = officer ? officer.name + " (" + r + ")" : r;
-          return "<li><strong>" + esc(who) + "</strong> — Weekly report not submitted within the 7-day cycle.</li>";
-        }).join("");
-
-        if (titleEl) titleEl.textContent = contextLabel || "Weekly Report Not Submitted";
-        bodyEl.innerHTML =
-          "<p style='margin-bottom:10px;'>A weekly report submission to the <strong>Chairperson (Rooney Ogongo)</strong> is due or overdue for:</p>" +
-          "<ul style='padding-left:18px; display:grid; gap:6px; margin-bottom:10px;'>" + itemsHtml + "</ul>" +
-          "<p style='font-size:0.85rem; color:var(--ink-500);'>Secretary General and Treasurer can generate/download a PDF and submit their weekly report inside their office window.</p>";
-
-        backdrop.classList.add("open");
-      };
-
-      window.closeOverdueNotify = function () {
-        const backdrop = document.getElementById("overdueNotifyBackdrop");
-        if (backdrop) backdrop.classList.remove("open");
-      };
-
-      // 1. Member Registration + M-Pesa Reference Verification + Next-Step WhatsApp Button
-      const feePlanSelect = document.getElementById("regFeePlan");
-      const feeSummaryBadge = document.getElementById("feeSummaryBadge");
-      function updateFeeSummary() {
-        if (!feePlanSelect || !feeSummaryBadge) return;
-        const opt = feePlanSelect.options[feePlanSelect.selectedIndex];
-        const amt = opt && opt.getAttribute("data-amount") ? opt.getAttribute("data-amount") : "KES 100";
-        feeSummaryBadge.textContent = "Selected Payable Amount: " + amt + " (" + feePlanSelect.value + ")";
-      }
-      if (feePlanSelect) {
-        feePlanSelect.addEventListener("change", updateFeeSummary);
-        updateFeeSummary();
-      }
-
-      const joinForm = document.getElementById("joinForm");
-      if (joinForm) {
-        joinForm.addEventListener("submit", function (e) {
-          e.preventDefault();
-          const name = document.getElementById("regName").value.trim();
-          const reg = document.getElementById("regNo").value.trim().toUpperCase();
-          const phone = document.getElementById("regPhone").value.trim();
-          const role = document.getElementById("regRole").value;
-          const feePlan = document.getElementById("regFeePlan") ? document.getElementById("regFeePlan").value : "KES 100 One-Time Registration Fee";
-          const mpesaInput = document.getElementById("regMpesaRef");
-          const mpesaRef = mpesaInput ? mpesaInput.value.trim().toUpperCase().replace(/[^A-Z0-9]/g, "") : "";
-          const msgEl = document.getElementById("joinMsg");
-
-          if (!name || !reg || !phone) {
-            msgEl.className = "msg-note msg-err";
-            msgEl.textContent = "Please fill in your name, registration number, and phone number.";
-            return;
-          }
-
-          if (!mpesaRef || !/^[A-Z0-9]{8,14}$/.test(mpesaRef)) {
-            msgEl.className = "msg-note msg-err";
-            msgEl.textContent = "Please enter a valid M-Pesa Reference Number (8–14 letters/digits, e.g., TKL89ABC12) to finish registration.";
-            if (mpesaInput) mpesaInput.focus();
-            return;
-          }
-
-          const cleanDigits = phone.replace(/[^0-9]/g, "");
-          const existingIdx = state.members.findIndex(function (m) {
-            const sameReg = normalizeReg(m.reg) === normalizeReg(reg) || (m.altReg && normalizeReg(m.altReg) === normalizeReg(reg));
-            const sameName = m.name && m.name.toLowerCase() === name.toLowerCase();
-            const mDigits = m.phone ? String(m.phone).replace(/[^0-9]/g, "") : "";
-            const samePhone = cleanDigits.length >= 9 && mDigits.includes(cleanDigits);
-            return sameReg || sameName || samePhone;
-          });
-          const recordObj = {
-            name: name,
-            reg: reg,
-            phone: phone,
-            role: role,
-            feePlan: feePlan,
-            mpesaRef: mpesaRef,
-            paymentStatus: "Ref Recorded (" + mpesaRef + ")",
-            registeredAt: new Date().toLocaleString()
-          };
-          if (existingIdx >= 0) {
-            const prevReg = state.members[existingIdx].reg;
-            state.members[existingIdx] = Object.assign({}, state.members[existingIdx], recordObj);
-            if (prevReg && normalizeReg(prevReg) !== normalizeReg(reg)) {
-              state.members[existingIdx].altReg = prevReg;
-            }
-          } else {
-            state.members.push(recordObj);
-          }
-          saveState();
-
-          msgEl.className = "msg-note msg-ok";
-          msgEl.textContent =
-            "Registration completed for " + name + " (" + reg + ") • " + feePlan +
-            " • M-Pesa Ref: " + mpesaRef + ". Click the button below to join WhatsApp.";
-
-          const bar = document.getElementById("afterRegWaBar");
-          const txt = document.getElementById("afterRegText");
-          const btn = document.getElementById("afterRegWaBtn");
-          bar.classList.remove("muted");
-          txt.textContent = "Registration complete (Ref: " + mpesaRef + ")! Next step — join the group:";
-          btn.href = WA_URL;
-          joinForm.reset();
-          updateFeeSummary();
-        });
-      }
-
-      // 1b. Existing Members Who Haven't Paid Yet — Submit M-Pesa Reference to Finish
-      const existingPayForm = document.getElementById("existingPayForm");
-      if (existingPayForm) {
-        existingPayForm.addEventListener("submit", function (e) {
-          e.preventDefault();
-          const lookupRaw = (document.getElementById("existingLookup").value || "").trim();
-          const lookupLower = lookupRaw.toLowerCase();
-          const lookupClean = normalizeReg(lookupRaw);
-          const lookupDigits = lookupRaw.replace(/[^0-9]/g, "");
-          const feePlanEl = document.getElementById("existingFeePlan");
-          const feePlan = feePlanEl ? feePlanEl.value : "KES 100 One-Time Registration Fee";
-          const refInput = document.getElementById("existingMpesaRef");
-          const mpesaRef = refInput ? refInput.value.trim().toUpperCase().replace(/[^A-Z0-9]/g, "") : "";
-          const msgEl = document.getElementById("existingPayMsg");
-
-          if (!lookupRaw) {
-            msgEl.className = "msg-note msg-err";
-            msgEl.textContent = "Please enter your name, registration number, or phone number.";
-            return;
-          }
-
-          if (!mpesaRef || !/^[A-Z0-9]{8,14}$/.test(mpesaRef)) {
-            msgEl.className = "msg-note msg-err";
-            msgEl.textContent = "Please enter a valid M-Pesa Reference Number (8–14 letters/digits, e.g., TKL89ABC12).";
-            if (refInput) refInput.focus();
-            return;
-          }
-
-          const idx = state.members.findIndex(function (m) {
-            const regHit =
-              (m.reg && (m.reg.toLowerCase().includes(lookupLower) || (lookupClean.length >= 3 && normalizeReg(m.reg).includes(lookupClean)))) ||
-              (m.altReg && (m.altReg.toLowerCase().includes(lookupLower) || (lookupClean.length >= 3 && normalizeReg(m.altReg).includes(lookupClean))));
-            const nameHit = m.name && m.name.toLowerCase().includes(lookupLower);
-            const mDigits = m.phone ? String(m.phone).replace(/[^0-9]/g, "") : "";
-            const phoneHit = lookupDigits.length >= 4 && mDigits.includes(lookupDigits);
-            return regHit || nameHit || phoneHit;
-          });
-
-          if (idx < 0) {
-            msgEl.className = "msg-note msg-err";
-            msgEl.textContent = "No existing member matched '" + lookupRaw + "'. Use the New Member Registration form above to register first.";
-            return;
-          }
-
-          state.members[idx] = Object.assign({}, state.members[idx], {
-            feePlan: feePlan,
-            mpesaRef: mpesaRef,
-            paymentStatus: "Paid — Ref " + mpesaRef,
-            paidAt: new Date().toLocaleString()
-          });
-          saveState();
-
-          msgEl.className = "msg-note msg-ok";
-          msgEl.textContent =
-            "Payment recorded for " + state.members[idx].name + " (" + (state.members[idx].reg || "—") + ") • " +
-            feePlan + " • M-Pesa Ref: " + mpesaRef + ".";
-          existingPayForm.reset();
-        });
-      }
-
-      // 2. Verify Member by Registration Number (plus Name / Phone)
-      window.verifyMember = function (ev) {
-        if (ev && typeof ev.preventDefault === "function") {
-          ev.preventDefault();
-        }
-        const inputEl = document.getElementById("verifyQuery");
-        const out = document.getElementById("verifyOut");
-        const rawQ = inputEl ? String(inputEl.value || "").trim() : "";
-        const q = rawQ.toLowerCase();
-        const qClean = normalizeReg(rawQ);
-        const digitsOnly = rawQ.replace(/[^0-9]/g, "");
-
-        if (!out) return false;
-        out.style.display = "block";
-        out.style.padding = "10px 12px";
-        out.style.borderRadius = "8px";
-
-        if (!q) {
-          out.className = "msg-note msg-err";
-          out.style.background = "#ffe4e6";
-          out.textContent = "Please enter a registration number, name, or phone number.";
-          return false;
-        }
-
-        const roster = Array.isArray(state.members) && state.members.length > 0
-          ? state.members
-          : OFFICIAL_SEED_MEMBERS;
-
-        const found = roster.find(function (m) {
-          const regExactOrSub =
-            (m.reg && m.reg.toLowerCase().includes(q)) ||
-            (m.altReg && m.altReg.toLowerCase().includes(q));
-          const regCompact = qClean.length >= 2 && (
-            (m.reg && normalizeReg(m.reg).includes(qClean)) ||
-            (m.altReg && normalizeReg(m.altReg).includes(qClean))
-          );
-          const nameMatch = m.name && m.name.toLowerCase().includes(q);
-          const memberDigits = m.phone ? String(m.phone).replace(/[^0-9]/g, "") : "";
-          const phoneMatch = digitsOnly.length >= 4 && memberDigits.includes(digitsOnly);
-          return regExactOrSub || regCompact || nameMatch || phoneMatch;
-        });
-
-        if (found) {
-          const memberIdx = roster.indexOf(found) + 1;
-          out.className = "msg-note msg-ok";
-          out.style.background = "#dcfce7";
-          out.textContent =
-            "Verified! Member #" + memberIdx +
-            " — Name: " + found.name +
-            " | Reg. No.: " + (found.reg || "—") +
-            " | Phone: " + (found.phone || "—") +
-            " | Role: " + (found.role || "Member") +
-            (found.mpesaRef ? " | M-Pesa Ref: " + found.mpesaRef : "") +
-            (found.feePlan ? " | Plan: " + found.feePlan : "") + ".";
-        } else {
-          out.className = "msg-note msg-err";
-          out.style.background = "#ffe4e6";
-          out.innerHTML =
-            "<div><strong>" + esc(rawQ.toUpperCase()) + "</strong> was not found in club records yet.</div>" +
-            "<div style='font-weight:500; color:#7f1d1d; margin-top:4px; font-size:0.84rem;'>" +
-              "Note: The uploaded PDF register only listed member names and phone numbers—not university registration numbers. " +
-              "You can search by your <strong>name</strong> or <strong>phone number</strong> above, or register/link <strong>" + esc(rawQ.toUpperCase()) + "</strong> below:" +
-            "</div>" +
-            "<div id='quickLinkBox' style='margin-top:10px; display:flex; flex-wrap:wrap; gap:8px; align-items:center;'>" +
-              "<input type='text' id='quickLinkName' placeholder='Full Name (e.g. from register)' style='flex:1; min-width:160px; padding:7px 10px; font-size:0.85rem; background:#fff;' />" +
-              "<input type='text' id='quickLinkPhone' placeholder='Phone Number' style='flex:1; min-width:140px; padding:7px 10px; font-size:0.85rem; background:#fff;' />" +
-              "<button type='button' id='quickLinkSaveBtn' class='btn btn-teal btn-sm'>Save &amp; Verify</button>" +
-            "</div>";
-
-          const saveBtn = document.getElementById("quickLinkSaveBtn");
-          if (saveBtn) {
-            saveBtn.addEventListener("click", function () {
-              const qName = (document.getElementById("quickLinkName").value || "").trim();
-              const qPhone = (document.getElementById("quickLinkPhone").value || "").trim();
-              const cleanReg = rawQ.toUpperCase();
-              if (!qName && !qPhone) {
-                out.innerHTML = "<span style='color:#9f1239;'>Please enter your name or phone number to link this registration number.</span>";
-                return;
-              }
-              const qDigits = qPhone.replace(/[^0-9]/g, "");
-              const matchIdx = state.members.findIndex(function (m) {
-                const nameHit = qName && m.name && m.name.toLowerCase().includes(qName.toLowerCase());
-                const mDigits = m.phone ? String(m.phone).replace(/[^0-9]/g, "") : "";
-                const phoneHit = qDigits.length >= 4 && mDigits.includes(qDigits);
-                return nameHit || phoneHit;
-              });
-              if (matchIdx >= 0) {
-                const prevReg = state.members[matchIdx].reg;
-                if (prevReg && normalizeReg(prevReg) !== normalizeReg(cleanReg)) {
-                  state.members[matchIdx].altReg = prevReg;
-                }
-                state.members[matchIdx].reg = cleanReg;
-                if (qName) state.members[matchIdx].name = qName;
-                if (qPhone) state.members[matchIdx].phone = qPhone;
-              } else {
-                state.members.push({
-                  name: qName || ("Member (" + cleanReg + ")"),
-                  reg: cleanReg,
-                  phone: qPhone || "—",
-                  role: "Member"
-                });
-              }
-              saveState();
-              if (inputEl) inputEl.value = cleanReg;
-              window.verifyMember(null);
-            });
-          }
-        }
+      if (!q) {
+        out.className = 'msg-note msg-err';
+        out.textContent = 'Enter a registration number, name, or phone number to verify.';
         return false;
-      };
-
-      // 3. Individual Executive Office Portal Pop-Up Window with Department Tools
-      function getDeptList(key) {
-        if (!state.deptRecords[key] || !Array.isArray(state.deptRecords[key])) {
-          state.deptRecords[key] = [];
-        }
-        return state.deptRecords[key];
       }
 
-      function renderTreasurerTools(account) {
-        const items = Array.isArray(state.budgetItems) ? state.budgetItems : [];
-        let totalIncome = 0;
-        let totalExpense = 0;
-        items.forEach(function (it) {
-          const amt = Number(it.amount) || 0;
-          if (it.type === "Income") totalIncome += amt;
-          else totalExpense += amt;
-        });
-        const netBalance = totalIncome - totalExpense;
-        const target = Number(state.budgetTarget) || 15000;
-        const pct = Math.max(0, Math.min(100, Math.round((totalIncome / target) * 100)));
+      const found = clubMembers.find(m =>
+        m.regNo.toLowerCase().includes(q) ||
+        m.name.toLowerCase().includes(q) ||
+        m.phone.includes(q)
+      );
 
-        const rowsHtml = items.length === 0
-          ? "<tr><td colspan='6' style='padding:10px; color:var(--ink-500);'>No budget or ledger entries yet.</td></tr>"
-          : items.map(function (it) {
-              const isInc = it.type === "Income";
-              return (
-                "<tr style='border-bottom:1px solid var(--border);'>" +
-                  "<td style='padding:8px; font-weight:700; color:" + (isInc ? "var(--wa-700)" : "var(--rose-600)") + ";'>" + esc(it.type) + "</td>" +
-                  "<td style='padding:8px;'>" + esc(it.category) + "</td>" +
-                  "<td style='padding:8px;'>" + esc(it.title) + "</td>" +
-                  "<td style='padding:8px; font-size:0.82rem; color:var(--ink-500);'>" + esc(it.ref || "—") + "</td>" +
-                  "<td style='padding:8px; font-weight:700;'>KES " + Number(it.amount || 0).toLocaleString() + "</td>" +
-                  "<td style='padding:8px;'><button type='button' class='btn btn-secondary btn-sm' data-del-budget='" + esc(it.id) + "'>Remove</button></td>" +
-                "</tr>"
-              );
-            }).join("");
+      if (found) {
+        out.className = found.status === 'Paid' ? 'msg-note msg-ok' : 'msg-note msg-err';
+        out.textContent = found.status === 'Paid'
+          ? `VERIFIED: ${found.name} (${found.regNo}) — Registration Fee PAID (Ref: ${found.mpesaRef}).`
+          : `REGISTERED (PENDING FEE): ${found.name} (${found.regNo}) — Please complete KES 100 fee before 31st December, 2026.`;
+      } else {
+        out.className = 'msg-note msg-err';
+        out.textContent = 'No matching record found. Please register under Section 04 above before 31st December, 2026.';
+      }
+      return false;
+    }
 
-        return (
-          "<div class='card' style='margin-bottom:18px; border-top:4px solid var(--wa-600);'>" +
-            "<h3>Treasurer Budget &amp; Financial Ledger Tool</h3>" +
-            "<p style='font-size:0.86rem; color:var(--ink-500); margin-bottom:14px;'>Track semester budget target, record income and expenses, compute net balance, and export a PDF financial statement.</p>" +
-            "<div class='grid-3' style='margin-bottom:14px;'>" +
-              "<div class='card' style='padding:14px;'>" +
-                "<div class='priority-num'>Total Inflows</div>" +
-                "<h3 style='color:var(--wa-700);'>KES " + totalIncome.toLocaleString() + "</h3>" +
-                "<p style='font-size:0.8rem;'>" + pct + "% of KES " + target.toLocaleString() + " term budget target</p>" +
-              "</div>" +
-              "<div class='card' style='padding:14px;'>" +
-                "<div class='priority-num'>Total Outflows</div>" +
-                "<h3 style='color:var(--rose-600);'>KES " + totalExpense.toLocaleString() + "</h3>" +
-                "<p style='font-size:0.8rem;'>Recorded club expenses</p>" +
-              "</div>" +
-              "<div class='card' style='padding:14px;'>" +
-                "<div class='priority-num'>Net Cash Balance</div>" +
-                "<h3>KES " + netBalance.toLocaleString() + "</h3>" +
-                "<p style='font-size:0.8rem;'>Income minus expenses</p>" +
-              "</div>" +
-            "</div>" +
-            "<form id='budgetTargetForm' style='display:flex; gap:8px; flex-wrap:wrap; align-items:flex-end; margin-bottom:16px;'>" +
-              "<div style='flex:1; min-width:190px;'>" +
-                "<label for='budgetTargetInput'>Term Budget Target (KES)</label>" +
-                "<input type='number' id='budgetTargetInput' min='100' step='100' value='" + esc(target) + "' />" +
-              "</div>" +
-              "<button type='submit' class='btn btn-secondary btn-sm'>Update Target</button>" +
-              "<button type='button' id='exportBudgetPdfBtn' class='btn btn-teal btn-sm'>Download Budget PDF</button>" +
-            "</form>" +
-            "<form id='budgetEntryForm' class='form-grid' novalidate style='margin-bottom:16px;'>" +
-              "<div class='field'>" +
-                "<label for='budgetType'>Entry Type</label>" +
-                "<select id='budgetType'>" +
-                  "<option value='Income'>Income (Inflow)</option>" +
-                  "<option value='Expense'>Expense (Outflow)</option>" +
-                "</select>" +
-              "</div>" +
-              "<div class='field'>" +
-                "<label for='budgetCategory'>Budget Line / Category</label>" +
-                "<select id='budgetCategory'>" +
-                  "<option value='Registration & Dues'>Registration &amp; Dues</option>" +
-                  "<option value='Outreach & Donations'>Outreach &amp; Donations</option>" +
-                  "<option value='Meeting & Venue'>Meeting &amp; Venue</option>" +
-                  "<option value='Printing & Publicity'>Printing &amp; Publicity</option>" +
-                  "<option value='Transport & Logistics'>Transport &amp; Logistics</option>" +
-                  "<option value='Merchandise'>Merchandise</option>" +
-                "</select>" +
-              "</div>" +
-              "<div class='field'>" +
-                "<label for='budgetTitle'>Description</label>" +
-                "<input type='text' id='budgetTitle' placeholder='e.g. Outreach supplies or member dues' required />" +
-              "</div>" +
-              "<div class='field'>" +
-                "<label for='budgetAmount'>Amount (KES)</label>" +
-                "<input type='number' id='budgetAmount' min='1' step='1' placeholder='e.g. 1500' required />" +
-              "</div>" +
-              "<div class='field full'>" +
-                "<label for='budgetRef'>M-Pesa / Receipt Reference (Optional)</label>" +
-                "<input type='text' id='budgetRef' placeholder='e.g. TKL89ABC12' />" +
-              "</div>" +
-              "<div class='field full'>" +
-                "<button type='submit' class='btn btn-indigo btn-sm'>Add Budget Entry</button>" +
-              "</div>" +
-            "</form>" +
-            "<div style='overflow-x:auto;'>" +
-              "<table style='width:100%; border-collapse:collapse; font-size:0.88rem;'>" +
-                "<thead>" +
-                  "<tr style='background:var(--bg-subtle); text-align:left; border-bottom:2px solid var(--border);'>" +
-                    "<th style='padding:8px;'>Type</th>" +
-                    "<th style='padding:8px;'>Category</th>" +
-                    "<th style='padding:8px;'>Description</th>" +
-                    "<th style='padding:8px;'>Ref</th>" +
-                    "<th style='padding:8px;'>Amount</th>" +
-                    "<th style='padding:8px;'>Action</th>" +
-                  "</tr>" +
-                "</thead>" +
-                "<tbody>" + rowsHtml + "</tbody>" +
-              "</table>" +
-            "</div>" +
-          "</div>"
-        );
+    // Executive Portal Login & Workspace
+    document.getElementById('execLoginForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const role = document.getElementById('execRole').value;
+      const code = document.getElementById('execPasscode').value.trim();
+      const msg = document.getElementById('execLoginMsg');
+
+      if (code.length < 4) {
+        msg.className = 'msg-note msg-err';
+        msg.textContent = 'Please enter a valid official passcode.';
+        return;
       }
 
-      function renderDeptSpecificTools(account) {
-        const role = account.role;
-        const key = account.id;
-        const records = getDeptList(key);
+      activeExecRole = role;
+      msg.textContent = '';
+      document.getElementById('execModalTitle').textContent = `${role} — Executive Workspace`;
+      document.getElementById('execActiveBadge').textContent = `Signed In: ${role}`;
+      document.getElementById('execWorkspaceModal').classList.add('open');
+      renderExecMembers();
+      renderExecReports();
+      renderExecWall();
+      renderExecWelfare();
+    });
 
-        if (role === "Treasurer") {
-          return renderTreasurerTools(account);
-        }
+    function closeExecModal() {
+      document.getElementById('execWorkspaceModal').classList.remove('open');
+    }
 
-        const deptConfigMap = {
-          "Chairperson": {
-            title: "Chairperson Governance &amp; Action Tracker",
-            desc: "Track executive directives, Dean of Students compliance items, and general meeting resolutions.",
-            field1Label: "Directive / Resolution Title",
-            field1Placeholder: "e.g. Approve Nov 28 General Meeting agenda",
-            field2Label: "Owner / Action Notes",
-            field2Placeholder: "Assign follow-up officer and deadline...",
-            btnText: "Log Governance Directive"
-          },
-          "Vice Chairperson": {
-            title: "Vice Chairperson Mobilization &amp; Readiness Log",
-            desc: "Track member mobilization targets, deputy assignments, and outreach readiness checks.",
-            field1Label: "Mobilization / Readiness Item",
-            field1Placeholder: "e.g. Confirm member attendance for Saturday meeting",
-            field2Label: "Status &amp; Notes",
-            field2Placeholder: "Enter mobilization details...",
-            btnText: "Save Mobilization Item"
-          },
-          "Secretary General": {
-            title: "Secretary General Minutes &amp; Correspondence Log",
-            desc: "Draft and log meeting minutes, official correspondence, and notices.",
-            field1Label: "Minutes / Correspondence Subject",
-            field1Placeholder: "e.g. Executive Pre-Meeting Minutes — Nov 2026",
-            field2Label: "Key Resolutions / Summary",
-            field2Placeholder: "Record key decisions and action points...",
-            btnText: "Save Minutes Record"
-          },
-          "Assistant Secretary": {
-            title: "Assistant Secretary Attendance &amp; Records Log",
-            desc: "Record attendance registers, supporting notes, and document checklists.",
-            field1Label: "Session / Record Title",
-            field1Placeholder: "e.g. General Meeting Attendance Checklist",
-            field2Label: "Attendance &amp; Record Notes",
-            field2Placeholder: "Record counts, absences, or filing updates...",
-            btnText: "Save Attendance Record"
-          },
-          "Organising Secretary": {
-            title: "Organising Secretary Event &amp; Venue Planner",
-            desc: "Plan meeting venues, seating/sound/logistics, and outreach schedules.",
-            field1Label: "Event / Venue Task",
-            field1Placeholder: "e.g. Serene Court Grounds setup &amp; time schedule",
-            field2Label: "Logistics &amp; Checklist",
-            field2Placeholder: "List equipment, venue contact, or timeline...",
-            btnText: "Add Logistics Item"
-          },
-          "Publicity Officer": {
-            title: "Publicity &amp; Announcements Planner",
-            desc: "Draft announcements, event posters/captions, and member communication schedules.",
-            field1Label: "Announcement / Campaign Title",
-            field1Placeholder: "e.g. Saturday General Meeting Poster &amp; WhatsApp Broadcast",
-            field2Label: "Message Copy &amp; Channel",
-            field2Placeholder: "Write announcement copy and target channel...",
-            btnText: "Save Publicity Item"
-          },
-          "Projects Coordinator": {
-            title: "Projects &amp; Outreach Activity Tracker",
-            desc: "Track community outreach drives, mentorship sessions, and project milestones.",
-            field1Label: "Project / Outreach Activity",
-            field1Placeholder: "e.g. Mentorship &amp; Donation Drive",
-            field2Label: "Milestones, Beneficiaries &amp; Needs",
-            field2Placeholder: "Record target group, supplies needed, and timeline...",
-            btnText: "Add Project Milestone"
-          },
-          "Welfare Coordinator": {
-            title: "Welfare &amp; Member Care Log",
-            desc: "Track member welfare check-ins, peer support cases, and safety/care arrangements.",
-            field1Label: "Welfare Check-In / Support Case",
-            field1Placeholder: "e.g. Member welfare follow-up &amp; event first-aid kit",
-            field2Label: "Support Action &amp; Follow-Up",
-            field2Placeholder: "Record support provided or next step...",
-            btnText: "Log Welfare Record"
-          },
-          "Partnership Coordinator": {
-            title: "Partnerships &amp; Resource Mobilization Log",
-            desc: "Track outreach partners, sponsors, school/institution contacts, and pledges.",
-            field1Label: "Partner / Sponsor / Institution",
-            field1Placeholder: "e.g. Local School / Community Partner",
-            field2Label: "Partnership Scope &amp; Follow-Up",
-            field2Placeholder: "Record contact notes, pledges, or next meeting...",
-            btnText: "Save Partnership Record"
-          }
-        };
+    function switchExecTab(paneId, btn) {
+      document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(paneId).classList.add('active');
+      btn.classList.add('active');
+    }
 
-        const cfg = deptConfigMap[role] || {
-          title: account.officeName + " — Department Tool",
-          desc: "Manage department tasks and records for your office.",
-          field1Label: "Item Title",
-          field1Placeholder: "Enter item title",
-          field2Label: "Details",
-          field2Placeholder: "Enter details",
-          btnText: "Save Record"
-        };
-
-        const listHtml = records.length === 0
-          ? "<p style='color:var(--ink-500); font-size:0.88rem;'>No department records logged yet.</p>"
-          : records.map(function (r, idx) {
-              return (
-                "<div class='wall-post'>" +
-                  "<div class='wall-post-meta'>" + esc(r.title) + " &bull; " + esc(r.time) + "</div>" +
-                  "<div style='font-size:0.9rem;'>" + esc(r.details) + "</div>" +
-                  "<div style='margin-top:6px;'><button type='button' class='btn btn-secondary btn-sm' data-del-dept='" + idx + "'>Delete</button></div>" +
-                "</div>"
-              );
-            }).join("");
-
-        return (
-          "<div class='card' style='margin-bottom:18px; border-top:4px solid var(--teal-600);'>" +
-            "<h3>" + cfg.title + "</h3>" +
-            "<p style='font-size:0.86rem; color:var(--ink-500); margin-bottom:12px;'>" + cfg.desc + "</p>" +
-            "<form id='deptToolForm' class='form-grid' novalidate style='margin-bottom:14px;'>" +
-              "<div class='field full'>" +
-                "<label for='deptField1'>" + cfg.field1Label + "</label>" +
-                "<input type='text' id='deptField1' placeholder='" + cfg.field1Placeholder + "' required />" +
-              "</div>" +
-              "<div class='field full'>" +
-                "<label for='deptField2'>" + cfg.field2Label + "</label>" +
-                "<textarea id='deptField2' rows='3' placeholder='" + cfg.field2Placeholder + "' required></textarea>" +
-              "</div>" +
-              "<div class='field full'>" +
-                "<button type='submit' class='btn btn-teal btn-sm'>" + cfg.btnText + "</button>" +
-              "</div>" +
-            "</form>" +
-            listHtml +
-          "</div>"
-        );
+    function toggleMemberPaid(index) {
+      const m = clubMembers[index];
+      if (m.status === 'Paid') {
+        m.status = 'Pending';
+        m.amount = 0;
+      } else {
+        m.status = 'Paid';
+        m.amount = 100;
+        if (!m.mpesaRef) m.mpesaRef = 'EXEC-VERIFIED';
       }
+      saveAllData();
+      renderExecMembers();
+    }
 
-      function bindDepartmentHandlers(account) {
-        if (account.role === "Treasurer") {
-          const targetForm = document.getElementById("budgetTargetForm");
-          if (targetForm) {
-            targetForm.addEventListener("submit", function (e) {
-              e.preventDefault();
-              const val = Number(document.getElementById("budgetTargetInput").value);
-              if (val > 0) {
-                state.budgetTarget = val;
-                saveState();
-                renderOfficeWorkspace(account);
-              }
-            });
-          }
+    function renderExecMembers() {
+      const search = (document.getElementById('execMemberSearch').value || '').toLowerCase();
+      const statusFilter = document.getElementById('execPaymentFilter').value;
+      const tbody = document.getElementById('execMembersTableBody');
 
-          const entryForm = document.getElementById("budgetEntryForm");
-          if (entryForm) {
-            entryForm.addEventListener("submit", function (e) {
-              e.preventDefault();
-              const typeVal = document.getElementById("budgetType").value;
-              const catVal = document.getElementById("budgetCategory").value;
-              const titleVal = document.getElementById("budgetTitle").value.trim();
-              const amtVal = Number(document.getElementById("budgetAmount").value);
-              const refVal = document.getElementById("budgetRef").value.trim().toUpperCase();
-              if (!titleVal || !(amtVal > 0)) return;
+      const paidCount = clubMembers.filter(m => m.status === 'Paid').length;
+      const pendingCount = clubMembers.length - paidCount;
+      document.getElementById('statTotalMembers').textContent = clubMembers.length;
+      document.getElementById('statPaidMembers').textContent = paidCount;
+      document.getElementById('statPendingMembers').textContent = pendingCount;
+      document.getElementById('statTotalCollected').textContent = `KES ${paidCount * 100}`;
 
-              state.budgetItems.unshift({
-                id: "BDG-" + Date.now(),
-                type: typeVal,
-                category: catVal,
-                title: titleVal,
-                amount: amtVal,
-                ref: refVal || "—",
-                date: new Date().toLocaleDateString()
-              });
-              saveState();
-              renderOfficeWorkspace(account);
-            });
-          }
+      tbody.innerHTML = '';
+      clubMembers.forEach((m, idx) => {
+        const matchesSearch = m.name.toLowerCase().includes(search) ||
+          m.regNo.toLowerCase().includes(search) ||
+          (m.mpesaRef || '').toLowerCase().includes(search);
+        const matchesStatus = statusFilter === 'ALL' || m.status === statusFilter;
 
-          document.querySelectorAll("[data-del-budget]").forEach(function (btn) {
-            btn.addEventListener("click", function () {
-              const delId = btn.getAttribute("data-del-budget");
-              state.budgetItems = state.budgetItems.filter(function (it) { return it.id !== delId; });
-              saveState();
-              renderOfficeWorkspace(account);
-            });
-          });
-
-          const exportPdfBtn = document.getElementById("exportBudgetPdfBtn");
-          if (exportPdfBtn) {
-            exportPdfBtn.addEventListener("click", function () {
-              let inc = 0;
-              let exp = 0;
-              const lines = [
-                "SHARE A SMILE CHARITY CLUB - LAIKIPIA UNIVERSITY",
-                "OFFICE OF THE TREASURER - BUDGET & FINANCIAL STATEMENT",
-                "Prepared By: " + account.name + " (" + account.role + ")",
-                "Term Budget Target: KES " + Number(state.budgetTarget || 15000).toLocaleString(),
-                "------------------------------------------------------------"
-              ];
-              state.budgetItems.forEach(function (it) {
-                const a = Number(it.amount) || 0;
-                if (it.type === "Income") inc += a; else exp += a;
-                lines.push("[" + it.type + "] " + it.category + " | " + it.title + " | KES " + a.toLocaleString() + " | Ref: " + (it.ref || "-"));
-              });
-              lines.push("------------------------------------------------------------");
-              lines.push("Total Inflows: KES " + inc.toLocaleString());
-              lines.push("Total Outflows: KES " + exp.toLocaleString());
-              lines.push("Net Balance: KES " + (inc - exp).toLocaleString());
-
-              const pdfBlob = buildSimplePdfBlob(lines);
-              const url = URL.createObjectURL(pdfBlob);
-              const link = document.createElement("a");
-              link.href = url;
-              link.download = "treasurer-budget-statement.pdf";
-              document.body.appendChild(link);
-              link.click();
-              document.body.removeChild(link);
-              setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
-            });
-          }
-        } else {
-          const deptForm = document.getElementById("deptToolForm");
-          if (deptForm) {
-            deptForm.addEventListener("submit", function (e) {
-              e.preventDefault();
-              const f1 = document.getElementById("deptField1").value.trim();
-              const f2 = document.getElementById("deptField2").value.trim();
-              if (!f1 || !f2) return;
-              const list = getDeptList(account.id);
-              list.unshift({
-                title: f1,
-                details: f2,
-                time: new Date().toLocaleString()
-              });
-              saveState();
-              renderOfficeWorkspace(account);
-            });
-          }
-
-          document.querySelectorAll("[data-del-dept]").forEach(function (btn) {
-            btn.addEventListener("click", function () {
-              const idx = Number(btn.getAttribute("data-del-dept"));
-              const list = getDeptList(account.id);
-              if (!Number.isNaN(idx) && idx >= 0 && idx < list.length) {
-                list.splice(idx, 1);
-                saveState();
-                renderOfficeWorkspace(account);
-              }
-            });
-          });
-        }
-      }
-
-      function renderChairpersonOversightSummary(account) {
-        if (!account || account.role !== "Chairperson") return "";
-
-        const cadence = state.perfCadence || "Weekly (Every 7 Days)";
-        const otherExecs = EXEC_OFFICES.filter(function (o) { return o.role !== "Chairperson"; });
-
-        const execRowsHtml = otherExecs.map(function (off) {
-          const notesCount = Array.isArray(state.officeNotes[off.id]) ? state.officeNotes[off.id].length : 0;
-          const deptCount = Array.isArray(state.deptRecords[off.id]) ? state.deptRecords[off.id].length : 0;
-          const reportsCount = state.chairReports.filter(function (r) {
-            return r.role === off.role || r.reg === off.reg;
-          }).length;
-          const activityScore = notesCount + deptCount + reportsCount;
-          const lastReview = state.perfReviews && state.perfReviews[off.id] ? state.perfReviews[off.id] : null;
-
-          return (
-            "<tr style='border-bottom:1px solid var(--border);'>" +
-              "<td style='padding:8px;'><strong>" + esc(off.name) + "</strong><br><span style='font-size:0.78rem; color:var(--ink-500);'>" + esc(off.role) + "</span></td>" +
-              "<td style='padding:8px; font-size:0.82rem;'>ID: <strong>" + esc(off.id) + "</strong><br>Reg: " + esc(off.reg) + "<br>PIN: <code>" + esc(off.pin) + "</code></td>" +
-              "<td style='padding:8px; font-size:0.82rem;'>Notes: " + notesCount + " &bull; Dept Logs: " + deptCount + " &bull; Reports: " + reportsCount + "<br><strong>Total Logged: " + activityScore + "</strong></td>" +
-              "<td style='padding:8px; font-size:0.8rem;'>" +
-                (lastReview
-                  ? "<strong>" + esc(lastReview.rating) + "</strong> (" + esc(lastReview.date) + ")<br><span style='color:var(--ink-700);'>" + esc(lastReview.note) + "</span>"
-                  : "<span style='color:var(--ink-500);'>No review logged yet</span>") +
-              "</td>" +
-            "</tr>"
-          );
-        }).join("");
-
-        const reviewOptionsHtml = otherExecs.map(function (off) {
-          return "<option value='" + esc(off.id) + "'>" + esc(off.name) + " — " + esc(off.role) + "</option>";
-        }).join("");
-
-        return (
-          "<div class='card' style='margin-bottom:18px; border-top:4px solid var(--indigo-600);'>" +
-            "<h3>Chairperson Summary: Executive Login Method &amp; Performance Frequency</h3>" +
-            "<p style='font-size:0.86rem; color:var(--ink-500); margin-bottom:12px;'>Overview of how executive members sign in to their separate portals and how often you review their performance.</p>" +
-            "<div class='grid-2' style='margin-bottom:14px;'>" +
-              "<div class='card' style='padding:14px;'>" +
-                "<div class='priority-num'>How Other Executives Log In</div>" +
-                "<h3 style='font-size:1rem;'>Office ID / Reg. No. + Office PIN</h3>" +
-                "<p style='font-size:0.84rem; margin-top:4px;'>Each executive member signs in on the <strong>Executive Office Portal</strong> using their assigned <strong>Office ID</strong> (e.g., <code>EXEC-03</code>) or <strong>Registration Number</strong> and their <strong>4-digit Office PIN</strong>. Authentication routes them directly into their own office workspace.</p>" +
-              "</div>" +
-              "<div class='card' style='padding:14px;'>" +
-                "<div class='priority-num'>Performance Check Frequency</div>" +
-                "<h3 style='font-size:1rem;'>Current Cadence: " + esc(cadence) + "</h3>" +
-                "<form id='perfCadenceForm' style='display:flex; gap:8px; flex-wrap:wrap; margin-top:8px;'>" +
-                  "<select id='perfCadenceSelect' style='flex:1; min-width:170px; padding:7px 10px; font-size:0.85rem;'>" +
-                    "<option value='Weekly (Every 7 Days)'" + (cadence === "Weekly (Every 7 Days)" ? " selected" : "") + ">Weekly (Every 7 Days)</option>" +
-                    "<option value='Bi-Weekly (Every 14 Days)'" + (cadence === "Bi-Weekly (Every 14 Days)" ? " selected" : "") + ">Bi-Weekly (Every 14 Days)</option>" +
-                    "<option value='Monthly (Every 30 Days)'" + (cadence === "Monthly (Every 30 Days)" ? " selected" : "") + ">Monthly (Every 30 Days)</option>" +
-                    "<option value='Before Every General / Outreach Event'" + (cadence === "Before Every General / Outreach Event" ? " selected" : "") + ">Before Every General / Outreach Event</option>" +
-                  "</select>" +
-                  "<button type='submit' class='btn btn-indigo btn-sm'>Save Frequency</button>" +
-                "</form>" +
-              "</div>" +
-            "</div>" +
-            "<form id='perfReviewForm' class='form-grid' novalidate style='margin-bottom:14px; background:var(--bg-subtle); padding:12px; border-radius:8px;'>" +
-              "<div class='field'>" +
-                "<label for='perfExecSelect'>Executive Officer</label>" +
-                "<select id='perfExecSelect'>" + reviewOptionsHtml + "</select>" +
-              "</div>" +
-              "<div class='field'>" +
-                "<label for='perfRatingSelect'>Performance Status</label>" +
-                "<select id='perfRatingSelect'>" +
-                  "<option value='On Track — Active &amp; Timely'>On Track — Active &amp; Timely</option>" +
-                  "<option value='Needs Follow-Up'>Needs Follow-Up</option>" +
-                  "<option value='Overdue / Action Required'>Overdue / Action Required</option>" +
-                "</select>" +
-              "</div>" +
-              "<div class='field full'>" +
-                "<label for='perfNoteInput'>Review Note (" + esc(cadence) + ")</label>" +
-                "<input type='text' id='perfNoteInput' placeholder='e.g. Minutes and weekly report submitted on time' required />" +
-              "</div>" +
-              "<div class='field full'>" +
-                "<button type='submit' class='btn btn-teal btn-sm'>Log Performance Check</button>" +
-              "</div>" +
-            "</form>" +
-            "<div style='overflow-x:auto;'>" +
-              "<table style='width:100%; border-collapse:collapse; font-size:0.86rem;'>" +
-                "<thead>" +
-                  "<tr style='background:var(--bg-subtle); text-align:left; border-bottom:2px solid var(--border);'>" +
-                    "<th style='padding:8px;'>Executive &amp; Role</th>" +
-                    "<th style='padding:8px;'>Portal Credentials</th>" +
-                    "<th style='padding:8px;'>Portal Activity</th>" +
-                    "<th style='padding:8px;'>Latest Performance Review</th>" +
-                  "</tr>" +
-                "</thead>" +
-                "<tbody>" + execRowsHtml + "</tbody>" +
-              "</table>" +
-            "</div>" +
-          "</div>"
-        );
-      }
-
-      function bindChairpersonOversightHandlers(account) {
-        if (!account || account.role !== "Chairperson") return;
-        const cadForm = document.getElementById("perfCadenceForm");
-        if (cadForm) {
-          cadForm.addEventListener("submit", function (e) {
-            e.preventDefault();
-            const sel = document.getElementById("perfCadenceSelect");
-            if (sel && sel.value) {
-              state.perfCadence = sel.value;
-              saveState();
-              renderOfficeWorkspace(account);
-            }
-          });
-        }
-        const revForm = document.getElementById("perfReviewForm");
-        if (revForm) {
-          revForm.addEventListener("submit", function (e) {
-            e.preventDefault();
-            const execId = document.getElementById("perfExecSelect").value;
-            const rating = document.getElementById("perfRatingSelect").value;
-            const note = document.getElementById("perfNoteInput").value.trim();
-            if (!execId || !note) return;
-            state.perfReviews[execId] = {
-              rating: rating,
-              note: note,
-              cadence: state.perfCadence || "Weekly (Every 7 Days)",
-              date: new Date().toLocaleDateString()
-            };
-            saveState();
-            renderOfficeWorkspace(account);
-          });
-        }
-      }
-
-      function renderOfficeWorkspace(account) {
-        const container = document.getElementById("officeWorkspaceContent");
-        if (!container || !account) return;
-
-        const savedNotes = Array.isArray(state.officeNotes[account.id]) ? state.officeNotes[account.id] : [];
-        const dutiesHtml = account.responsibilities.map(function (item) {
-          return "<li>" + esc(item) + "</li>";
-        }).join("");
-
-        const notesHtml = savedNotes.length === 0
-          ? "<p style='color:var(--ink-500); font-size:0.9rem;'>No office notes recorded yet.</p>"
-          : savedNotes.map(function (n) {
-              return (
-                '<div class="wall-post">' +
-                  '<div class="wall-post-meta">' + esc(n.title) + ' &bull; ' + esc(n.time) + '</div>' +
-                  '<div style="font-size:0.9rem;">' + esc(n.body) + '</div>' +
-                '</div>'
-              );
-            }).join("");
-
-        const isWeeklyReporter = account.role === "Secretary General" || account.role === "Treasurer";
-        const isChairperson = account.role === "Chairperson";
-
-        let weeklyReportCardHtml = "";
-        if (isWeeklyReporter) {
-          const lastTs = state.lastReportSubmittedAt ? state.lastReportSubmittedAt[account.role] : null;
-          const isOverdue = !lastTs || (Date.now() - Number(lastTs)) >= WEEK_MS;
-          const statusLabel = lastTs
-            ? (isOverdue ? "Overdue (7+ days since last submission)" : "Up to date (" + new Date(Number(lastTs)).toLocaleString() + ")")
-            : "No weekly report submitted yet";
-
-          weeklyReportCardHtml =
-            '<div class="card" style="margin-bottom:18px; border-top:4px solid var(--indigo-600);">' +
-              '<h3>Weekly Report — Download PDF &amp; Submit to Chairperson</h3>' +
-              '<p style="font-size:0.86rem; color:var(--ink-500); margin-bottom:12px;">Status: <strong>' + esc(statusLabel) + '</strong></p>' +
-              '<form id="weeklyReportForm" class="form-grid" novalidate>' +
-                '<div class="field">' +
-                  '<label for="repWeekLabel">Reporting Week</label>' +
-                  '<input type="text" id="repWeekLabel" placeholder="e.g. Week of Nov 26, 2026" required />' +
-                '</div>' +
-                '<div class="field">' +
-                  '<label for="repTitle">Report Title</label>' +
-                  '<input type="text" id="repTitle" placeholder="' + (account.role === "Treasurer" ? "Weekly Financial Summary" : "Weekly Secretariat & Minutes Report") + '" required />' +
-                '</div>' +
-                '<div class="field full">' +
-                  '<label for="repSummary">Weekly Report Summary</label>' +
-                  '<textarea id="repSummary" rows="3" placeholder="Enter key activities, figures, or updates for the Chairperson..." required></textarea>' +
-                '</div>' +
-                '<div class="field full" style="display:flex; gap:10px; flex-wrap:wrap;">' +
-                  '<button type="button" class="btn btn-secondary btn-sm" id="downloadReportPdfBtn">Download Report PDF</button>' +
-                  '<button type="submit" class="btn btn-indigo btn-sm">Submit Weekly Report to Chairperson</button>' +
-                '</div>' +
-              '</form>' +
-              '<div id="weeklyReportMsg" class="msg-note"></div>' +
-            '</div>';
-        }
-
-        let chairSubmissionsCardHtml = "";
-        if (isChairperson) {
-          const listHtml = state.chairReports.length === 0
-            ? "<p style='color:var(--ink-500); font-size:0.9rem;'>No weekly reports submitted to the Chairperson yet.</p>"
-            : state.chairReports.map(function (r) {
-                return (
-                  '<div class="wall-post">' +
-                    '<div class="wall-post-meta">' + esc(r.submittedBy) + ' (' + esc(r.role) + ') &bull; ' + esc(r.weekLabel) + ' &bull; ' + esc(r.submittedAt) + '</div>' +
-                    '<div style="font-weight:700; margin-bottom:4px;">' + esc(r.title) + '</div>' +
-                    '<div style="font-size:0.9rem;">' + esc(r.summary) + '</div>' +
-                  '</div>'
-                );
-              }).join("");
-
-          chairSubmissionsCardHtml =
-            '<div class="card" style="margin-bottom:18px; border-top:4px solid var(--amber-500);">' +
-              '<h3>Weekly Reports Submitted to Chairperson</h3>' +
-              listHtml +
-            '</div>';
-        }
-
-        container.innerHTML =
-          '<div class="grid-2" style="margin-bottom:18px;">' +
-            '<div class="card">' +
-              '<h3>' + esc(account.officeName) + '</h3>' +
-              '<p style="margin-bottom:8px;"><strong>Officer:</strong> ' + esc(account.name) + ' (' + esc(account.role) + ')</p>' +
-              '<p style="margin-bottom:8px;"><strong>Reg. No.:</strong> ' + esc(account.reg) + ' &bull; <strong>Phone:</strong> ' + esc(account.phone) + '</p>' +
-              '<p style="font-weight:700; margin-bottom:6px;">Role &amp; Office Mandate:</p>' +
-              '<ul style="padding-left:18px; display:grid; gap:6px; font-size:0.9rem; color:var(--ink-700);">' + dutiesHtml + '</ul>' +
-            '</div>' +
-            '<div class="card">' +
-              '<h3>Save Office Record / Note</h3>' +
-              '<form id="officeNoteForm" class="form-grid" novalidate>' +
-                '<div class="field full">' +
-                  '<label for="officeNoteTitle">Subject</label>' +
-                  '<input type="text" id="officeNoteTitle" placeholder="e.g. Action item or schedule note" required />' +
-                '</div>' +
-                '<div class="field full">' +
-                  '<label for="officeNoteBody">Details</label>' +
-                  '<textarea id="officeNoteBody" rows="3" placeholder="Record an office note..." required></textarea>' +
-                '</div>' +
-                '<div class="field full">' +
-                  '<button type="submit" class="btn btn-teal btn-sm">Save to My Office</button>' +
-                '</div>' +
-              '</form>' +
-            '</div>' +
-          '</div>' +
-          renderChairpersonOversightSummary(account) +
-          renderDeptSpecificTools(account) +
-          weeklyReportCardHtml +
-          chairSubmissionsCardHtml +
-          '<div class="card">' +
-            '<h3 style="margin-bottom:10px;">' + esc(account.officeName) + ' — Saved Notes</h3>' +
-            notesHtml +
-          '</div>';
-
-        bindDepartmentHandlers(account);
-        bindChairpersonOversightHandlers(account);
-
-        const noteForm = document.getElementById("officeNoteForm");
-        if (noteForm) {
-          noteForm.addEventListener("submit", function (e) {
-            e.preventDefault();
-            const title = document.getElementById("officeNoteTitle").value.trim();
-            const body = document.getElementById("officeNoteBody").value.trim();
-            if (!title || !body) return;
-
-            const current = Array.isArray(state.officeNotes[account.id]) ? state.officeNotes[account.id] : [];
-            current.unshift({
-              title: title,
-              body: body,
-              time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
-            });
-            state.officeNotes[account.id] = current;
-            saveState();
-            renderOfficeWorkspace(account);
-          });
-        }
-
-        if (isWeeklyReporter) {
-          const dlBtn = document.getElementById("downloadReportPdfBtn");
-          const repForm = document.getElementById("weeklyReportForm");
-
-          function getReportFields() {
-            return {
-              weekLabel: (document.getElementById("repWeekLabel").value || "Current Week").trim(),
-              title: (document.getElementById("repTitle").value || (account.role + " Weekly Report")).trim(),
-              summary: (document.getElementById("repSummary").value || "Weekly update submitted to Chairperson.").trim()
-            };
-          }
-
-          if (dlBtn) {
-            dlBtn.addEventListener("click", function () {
-              const data = getReportFields();
-              const pdfBlob = buildSimplePdfBlob([
-                "SHARE A SMILE CHARITY CLUB - LAIKIPIA UNIVERSITY",
-                account.officeName.toUpperCase() + " - WEEKLY REPORT",
-                "Submitted By: " + account.name + " (" + account.role + ")",
-                "Reg. Number: " + account.reg,
-                "To: Chairperson (Rooney Ogongo)",
-                "Reporting Week: " + data.weekLabel,
-                "Report Title: " + data.title,
-                "------------------------------------------------------------",
-                "Summary:",
-                data.summary
-              ]);
-              const url = URL.createObjectURL(pdfBlob);
-              const link = document.createElement("a");
-              link.href = url;
-              link.download = account.role.toLowerCase().replace(/\s+/g, "-") + "-weekly-report.pdf";
-              document.body.appendChild(link);
-              link.click();
-              document.body.removeChild(link);
-              setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
-            });
-          }
-
-          if (repForm) {
-            repForm.addEventListener("submit", function (e) {
-              e.preventDefault();
-              const data = getReportFields();
-              const msgEl = document.getElementById("weeklyReportMsg");
-
-              state.chairReports.unshift({
-                submittedBy: account.name,
-                role: account.role,
-                reg: account.reg,
-                weekLabel: data.weekLabel,
-                title: data.title,
-                summary: data.summary,
-                submittedAt: new Date().toLocaleString()
-              });
-              state.lastReportSubmittedAt[account.role] = Date.now();
-              saveState();
-
-              if (msgEl) {
-                msgEl.className = "msg-note msg-ok";
-                msgEl.textContent = "Weekly report submitted to Chairperson (Rooney Ogongo).";
-              }
-              renderOfficeWorkspace(account);
-            });
-          }
-        }
-      }
-
-      window.openExecPopup = function () {
-        if (!state.loggedInExec) {
-          const msgEl = document.getElementById("execLoginMsg");
-          if (msgEl) {
-            msgEl.className = "msg-note msg-err";
-            msgEl.textContent = "Executive sign-in required. Enter your Office ID / Reg. No. and PIN.";
-          }
-          return;
-        }
-        const backdrop = document.getElementById("execPopupBackdrop");
-        const title = document.getElementById("popupTitle");
-        const sub = document.getElementById("popupSubtitle");
-        if (title) title.textContent = state.loggedInExec.officeName;
-        if (sub) sub.textContent = state.loggedInExec.name + " (" + state.loggedInExec.role + ") — " + state.loggedInExec.reg;
-        renderOfficeWorkspace(state.loggedInExec);
-        backdrop.classList.add("open");
-
-        if (state.loggedInExec.role === "Secretary General" || state.loggedInExec.role === "Treasurer") {
-          const lastTs = state.lastReportSubmittedAt[state.loggedInExec.role];
-          if (!lastTs || (Date.now() - Number(lastTs)) >= WEEK_MS) {
-            window.showOverdueNotify([state.loggedInExec.role], "Weekly Report Due");
-          }
-        } else if (state.loggedInExec.role === "Chairperson") {
-          const overdue = getOverdueReportingRoles();
-          if (overdue.length > 0) {
-            window.showOverdueNotify(overdue, "Weekly Reports Not Submitted");
-          }
-        }
-      };
-
-      window.closeExecPopup = function () {
-        document.getElementById("execPopupBackdrop").classList.remove("open");
-      };
-
-      window.logoutExecPopup = function () {
-        state.loggedInExec = null;
-        saveState();
-        const msgEl = document.getElementById("execLoginMsg");
-        if (msgEl) {
-          msgEl.className = "msg-note";
-          msgEl.textContent = "Signed out of executive office.";
-        }
-        window.closeExecPopup();
-      };
-
-      const execLoginForm = document.getElementById("execPopupLoginForm");
-      if (execLoginForm) {
-        execLoginForm.addEventListener("submit", function (e) {
-          e.preventDefault();
-          const idVal = document.getElementById("execIdInput").value.trim();
-          const pinVal = document.getElementById("execPinInput").value.trim();
-          const msgEl = document.getElementById("execLoginMsg");
-
-          const account = resolveExecutiveAccount(idVal, pinVal);
-          if (!account) {
-            state.loggedInExec = null;
-            saveState();
-            msgEl.className = "msg-note msg-err";
-            msgEl.textContent = "Access denied. Check your Office ID / Reg. No. and PIN.";
-            return;
-          }
-
-          state.loggedInExec = account;
-          saveState();
-          msgEl.className = "msg-note msg-ok";
-          msgEl.textContent = "Authenticated: " + account.officeName + " (" + account.name + "). Opening office...";
-          document.getElementById("execPinInput").value = "";
-          window.openExecPopup();
-        });
-      }
-
-      window.toggleMobileNav = function (forceState) {
-        const nav = document.getElementById("mainNavLinks");
-        const btn = document.getElementById("mobileMenuDotsBtn");
-        if (!nav) return;
-        const nextOpen = typeof forceState === "boolean" ? forceState : !nav.classList.contains("open");
-        nav.classList.toggle("open", nextOpen);
-        if (btn) btn.setAttribute("aria-expanded", nextOpen ? "true" : "false");
-      };
-
-      document.querySelectorAll("#mainNavLinks a").forEach(function (link) {
-        link.addEventListener("click", function () {
-          window.toggleMobileNav(false);
-        });
-      });
-
-      document.addEventListener("click", function (e) {
-        const nav = document.getElementById("mainNavLinks");
-        const btn = document.getElementById("mobileMenuDotsBtn");
-        if (!nav || !btn) return;
-        if (!nav.contains(e.target) && !btn.contains(e.target)) {
-          window.toggleMobileNav(false);
+        if (matchesSearch && matchesStatus) {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td><strong>${m.name}</strong></td>
+            <td>${m.regNo}</td>
+            <td>${m.phone}</td>
+            <td>${m.mpesaRef || '—'}</td>
+            <td><span class="${m.status === 'Paid' ? 'pill-paid' : 'pill-pending'}">${m.status}</span></td>
+            <td><button type="button" class="btn btn-secondary btn-sm" onclick="toggleMemberPaid(${idx})">${m.status === 'Paid' ? 'Mark Pending' : 'Verify Paid'}</button></td>
+          `;
+          tbody.appendChild(tr);
         }
       });
+    }
 
-      // 5. Club Chatbot
-      window.toggleChatbot = function (forceState) {
-        const panel = document.getElementById("chatbotPanel");
-        if (typeof forceState === "boolean") {
-          panel.classList.toggle("open", forceState);
-        } else {
-          panel.classList.toggle("open");
-        }
-      };
+    // Weekly Reports
+    document.getElementById('execReportForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const summary = document.getElementById('reportSummary').value.trim();
+      const nextAction = document.getElementById('reportNextAction').value.trim();
+      if (!summary || !nextAction) return;
 
-      function appendChat(text, sender) {
-        const box = document.getElementById("chatbotMessages");
-        const div = document.createElement("div");
-        div.className = "chat-bubble " + (sender === "user" ? "user" : "bot");
-        div.textContent = text;
-        box.appendChild(div);
-        box.scrollTop = box.scrollHeight;
+      execReports.unshift({
+        role: activeExecRole || 'Official',
+        date: new Date().toLocaleDateString('en-KE', { month: 'short', day: 'numeric', year: 'numeric' }),
+        summary,
+        nextAction
+      });
+      saveAllData();
+      renderExecReports();
+      this.reset();
+    });
+
+    function renderExecReports() {
+      const feed = document.getElementById('execReportsFeed');
+      feed.innerHTML = execReports.map(r => `
+        <div class="wall-post">
+          <div class="wall-post-meta">${r.role} • ${r.date}</div>
+          <p style="font-size: 0.9rem; margin-bottom: 4px;">${r.summary}</p>
+          <p style="font-size: 0.82rem; color: var(--teal-800); font-weight: 700;">Next Action: ${r.nextAction}</p>
+        </div>
+      `).join('');
+    }
+
+    // Executive Noticeboard Wall
+    document.getElementById('execWallForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const text = document.getElementById('wallPostInput').value.trim();
+      if (!text) return;
+
+      execWallPosts.unshift({
+        role: activeExecRole || 'Official',
+        time: new Date().toLocaleDateString('en-KE', { month: 'short', day: 'numeric', year: 'numeric' }),
+        text
+      });
+      saveAllData();
+      renderExecWall();
+      this.reset();
+    });
+
+    function renderExecWall() {
+      const feed = document.getElementById('execWallFeed');
+      feed.innerHTML = execWallPosts.map(p => `
+        <div class="wall-post">
+          <div class="wall-post-meta">${p.role} • ${p.time}</div>
+          <p style="font-size: 0.92rem;">${p.text}</p>
+        </div>
+      `).join('');
+    }
+
+    // Welfare & Feedback
+    document.getElementById('execWelfareForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const member = document.getElementById('welfareMemberName').value.trim();
+      const category = document.getElementById('welfareCategory').value;
+      const notes = document.getElementById('welfareNotes').value.trim();
+      if (!member || !notes) return;
+
+      execWelfareItems.unshift({ member, category, notes, status: 'Open' });
+      saveAllData();
+      renderExecWelfare();
+      this.reset();
+    });
+
+    function renderExecWelfare() {
+      const feed = document.getElementById('execWelfareFeed');
+      feed.innerHTML = execWelfareItems.map(w => `
+        <div class="wall-post" style="border-left-color: var(--amber-500);">
+          <div class="wall-post-meta">${w.category} • ${w.member}</div>
+          <p style="font-size: 0.9rem;">${w.notes}</p>
+        </div>
+      `).join('');
+    }
+
+    // Chatbot Logic
+    function toggleChatbot(forceState) {
+      const panel = document.getElementById('chatbotPanel');
+      if (typeof forceState === 'boolean') {
+        panel.classList.toggle('open', forceState);
+      } else {
+        panel.classList.toggle('open');
       }
+    }
 
-      function replyToChat(question) {
-        const q = question.toLowerCase();
-        if (q.includes("who") || q.includes("about")) {
-          return "Share a Smile Charity Club is a student initiative at Laikipia University focused on outreach, mentorship, and solidarity.";
-        }
-        if (q.includes("whatsapp") || q.includes("join") || q.includes("register")) {
-          return "Register in the Join Us section first, then click the WhatsApp Group button right below or at the top to join: " + WA_URL;
-        }
-        if (q.includes("portal") || q.includes("exec") || q.includes("office")) {
-          return "The Executive Office Portal is for executives only. Sign in with your Office ID or Registration Number and PIN to open your office in a pop-up window.";
-        }
-        if (q.includes("saturday") || q.includes("meeting")) {
-          return "The First General Meeting is this Saturday, November 28, 2026 at Serene Court Grounds, Nyumba Tatu.";
-        }
-        if (q.includes("calendar") || q.includes("election") || q.includes("date")) {
-          return "Key dates: Saturday General Meeting on Nov 28, 2026 at Serene Court Grounds (Nyumba Tatu), and official elections in late February 2027.";
-        }
-        return "You can explore Who We Are, Outreach Photos, Priorities, Join Us, or the Executive Office Portal on this page.";
+    function appendChat(text, sender) {
+      const box = document.getElementById('chatMessages');
+      const div = document.createElement('div');
+      div.className = `chat-bubble ${sender}`;
+      div.innerHTML = text;
+      box.appendChild(div);
+      box.scrollTop = box.scrollHeight;
+    }
+
+    function getBotReply(q) {
+      const text = q.toLowerCase();
+      if (text.includes('100') || text.includes('fee') || text.includes('deadline') || text.includes('december') || text.includes('pay')) {
+        return 'Every member is required to pay a one-time <strong>KES 100 registration fee</strong> on or before <strong>31st December, 2026</strong>. Submit your M-Pesa reference in the <em>Join Us</em> section.';
       }
-
-      window.sendQuickChat = function (text) {
-        appendChat(text, "user");
-        appendChat(replyToChat(text), "bot");
-      };
-
-      const chatForm = document.getElementById("chatbotForm");
-      if (chatForm) {
-        chatForm.addEventListener("submit", function (e) {
-          e.preventDefault();
-          const input = document.getElementById("chatbotInput");
-          const val = input.value.trim();
-          if (!val) return;
-          appendChat(val, "user");
-          appendChat(replyToChat(val), "bot");
-          input.value = "";
-        });
+      if (text.includes('whatsapp') || text.includes('group')) {
+        return 'Click the green <strong>WhatsApp Group</strong> button in the navigation bar or registration section to join our official member group.';
       }
-
-      const verifyFormEl = document.getElementById("verifyMemberForm");
-      if (verifyFormEl) {
-        verifyFormEl.addEventListener("submit", function (e) {
-          window.verifyMember(e);
-        });
+      if (text.includes('election') || text.includes('2027')) {
+        return 'Official Share a Smile Charity Club elections are scheduled for <strong>late February 2027</strong>.';
       }
-    })();
+      if (text.includes('verify') || text.includes('status')) {
+        return 'Use the <strong>Verify Membership</strong> box in Section 05 with your university registration number or full name.';
+      }
+      return 'You can register and submit your <strong>KES 100 registration fee</strong> before <strong>31st December, 2026</strong> in Section 04, or verify your status in Section 05.';
+    }
+
+    function handleChatSubmit(e) {
+      e.preventDefault();
+      const input = document.getElementById('chatInput');
+      const val = input.value.trim();
+      if (!val) return;
+      appendChat(val, 'user');
+      input.value = '';
+      setTimeout(() => appendChat(getBotReply(val), 'bot'), 250);
+    }
+
+    function sendQuickChat(promptText) {
+      appendChat(promptText, 'user');
+      setTimeout(() => appendChat(getBotReply(promptText), 'bot'), 250);
+    }
   </script>
 </body>
 </html>
