@@ -4,9 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Share a Smile Charity Club — Laikipia University</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/jpeg" href="logo scc.jpeg" />
   <style>
     :root {
       --bg-page: #f4f7fb;
@@ -19,7 +17,6 @@
       --teal-700: #0f766e;
       --teal-800: #115e59;
       --teal-100: #ccfbf1;
-      --amber-400: #fbbf24;
       --amber-500: #f59e0b;
       --amber-600: #d97706;
       --amber-100: #fef3c7;
@@ -51,11 +48,10 @@
     }
 
     body {
-      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, Arial, sans-serif;
+      font-family: 'Segoe UI', system-ui, -apple-system, Arial, sans-serif;
       background-color: var(--bg-page);
       color: var(--ink-900);
       line-height: 1.6;
-      overflow-x: hidden;
     }
 
     a {
@@ -75,25 +71,13 @@
       padding: 0 20px;
     }
 
-    /* 1. Sticky Top Announcement Bar Hanging From Top */
+    /* Top Announcement Ribbon */
     .top-ribbon {
-      position: sticky;
-      top: 0;
-      z-index: 950;
       background: linear-gradient(90deg, #0f172a 0%, #0f766e 55%, #0d9488 100%);
       color: #ffffff;
-      padding: 10px 16px;
+      padding: 9px 16px;
       font-size: 0.88rem;
       text-align: center;
-      border-bottom: 2px solid var(--amber-500);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .top-ribbon .bell-icon {
-      display: inline-block;
-      margin-right: 6px;
-      font-size: 1rem;
-      vertical-align: middle;
     }
 
     .top-ribbon span.badge {
@@ -107,27 +91,10 @@
       text-transform: uppercase;
     }
 
-    .top-ribbon a.ribbon-cta {
-      display: inline-block;
-      margin-left: 8px;
-      background: rgba(255, 255, 255, 0.16);
-      border: 1px solid rgba(255, 255, 255, 0.35);
-      color: #fde68a;
-      font-weight: 700;
-      font-size: 0.78rem;
-      padding: 2px 11px;
-      border-radius: 999px;
-      transition: background-color 0.2s ease;
-    }
-
-    .top-ribbon a.ribbon-cta:hover {
-      background: rgba(255, 255, 255, 0.28);
-    }
-
-    /* 2. Navigation Header */
+    /* Navigation */
     header.site-nav {
       position: sticky;
-      top: 42px;
+      top: 0;
       z-index: 900;
       background: rgba(255, 255, 255, 0.96);
       backdrop-filter: blur(10px);
@@ -139,10 +106,9 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 14px;
       min-height: 68px;
       padding: 8px 0;
-      position: relative;
     }
 
     .brand {
@@ -150,22 +116,15 @@
       align-items: center;
       gap: 10px;
       font-weight: 800;
-      font-size: 1.02rem;
+      font-size: 1.05rem;
       color: var(--teal-800);
-      shrink: 0;
     }
 
-    .brand-mark {
+    .brand img {
       width: 38px;
       height: 38px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--teal-600), var(--indigo-600));
-      color: #ffffff;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      font-size: 0.85rem;
+      object-fit: cover;
       border: 2px solid var(--teal-600);
     }
 
@@ -173,14 +132,14 @@
       display: flex;
       align-items: center;
       flex-wrap: wrap;
-      gap: 5px;
+      gap: 6px;
     }
 
     .nav-links a {
-      font-size: 0.84rem;
+      font-size: 0.88rem;
       font-weight: 600;
       color: var(--ink-700);
-      padding: 6px 10px;
+      padding: 7px 11px;
       border-radius: var(--radius-sm);
       transition: background-color 0.2s ease, color 0.2s ease;
     }
@@ -204,27 +163,11 @@
       color: #ffffff;
     }
 
-    .mobile-dots-btn {
-      display: none;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--border);
-      background: var(--bg-surface);
-      color: var(--ink-900);
-      font-size: 1.35rem;
-      font-weight: 800;
-      cursor: pointer;
-      line-height: 1;
-    }
-
     /* Hero */
     .hero {
       background: linear-gradient(125deg, #0f172a 0%, #115e59 55%, #0284c7 100%);
       color: #ffffff;
-      padding: 56px 0;
+      padding: 58px 0;
     }
 
     .hero-inner {
@@ -257,7 +200,7 @@
 
     .hero p {
       color: #e2e8f0;
-      font-size: 1.02rem;
+      font-size: 1.03rem;
       max-width: 60ch;
       margin-bottom: 22px;
     }
@@ -275,7 +218,7 @@
       gap: 7px;
       padding: 10px 18px;
       border-radius: var(--radius-sm);
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       font-weight: 700;
       border: 1px solid transparent;
       cursor: pointer;
@@ -345,7 +288,7 @@
 
     .btn-sm {
       padding: 6px 12px;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
     }
 
     .hero-side-card {
@@ -364,14 +307,14 @@
     .hero-side-card ol {
       padding-left: 18px;
       display: grid;
-      gap: 7px;
-      font-size: 0.88rem;
+      gap: 8px;
+      font-size: 0.9rem;
       color: #f1f5f9;
     }
 
     /* Sections */
     section.band {
-      padding: 54px 0;
+      padding: 58px 0;
       border-bottom: 1px solid var(--border);
     }
 
@@ -380,8 +323,8 @@
     }
 
     .band-head {
-      margin-bottom: 24px;
-      max-width: 74ch;
+      margin-bottom: 28px;
+      max-width: 72ch;
     }
 
     .band-tag {
@@ -406,19 +349,20 @@
 
     .band-head p {
       color: var(--ink-700);
-      font-size: 0.96rem;
+      font-size: 0.98rem;
     }
 
+    /* Grids & Cards */
     .grid-3 {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      gap: 22px;
     }
 
     .grid-2 {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
+      gap: 22px;
     }
 
     .card {
@@ -433,30 +377,24 @@
       background: var(--bg-page);
     }
 
-    .card .photo-placeholder {
+    .card img.photo {
       width: 100%;
-      height: 165px;
+      height: 195px;
+      object-fit: cover;
       border-radius: var(--radius-sm);
       margin-bottom: 14px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      font-weight: 800;
-      font-size: 0.88rem;
-      border: 1px dashed rgba(15, 23, 42, 0.18);
+      background: var(--bg-subtle);
     }
 
     .card h3 {
-      font-size: 1.08rem;
+      font-size: 1.1rem;
       font-weight: 700;
       margin-bottom: 6px;
       color: var(--ink-900);
     }
 
     .card p {
-      font-size: 0.92rem;
+      font-size: 0.93rem;
       color: var(--ink-700);
     }
 
@@ -481,113 +419,14 @@
     .priority-box:nth-child(4) { border-top-color: var(--wa-600); }
 
     .priority-num {
-      font-size: 0.74rem;
+      font-size: 0.75rem;
       font-weight: 800;
       text-transform: uppercase;
       color: var(--ink-500);
       margin-bottom: 4px;
     }
 
-    /* 146+ Register Directory Controls & Table */
-    .section-tabs-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 16px;
-    }
-
-    .sec-tab-btn {
-      padding: 8px 14px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: var(--bg-surface);
-      color: var(--ink-700);
-      font-size: 0.82rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    .sec-tab-btn.active {
-      background: var(--teal-700);
-      color: #ffffff;
-      border-color: var(--teal-700);
-    }
-
-    .directory-toolbar {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 14px;
-    }
-
-    .table-wrap {
-      width: 100%;
-      overflow-x: auto;
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      box-shadow: var(--shadow-sm);
-    }
-
-    table.roster-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.86rem;
-    }
-
-    table.roster-table th {
-      background: var(--bg-subtle);
-      color: var(--ink-700);
-      font-weight: 800;
-      text-transform: uppercase;
-      font-size: 0.73rem;
-      letter-spacing: 0.04em;
-      padding: 11px 12px;
-      text-align: left;
-      border-bottom: 1px solid var(--border);
-    }
-
-    table.roster-table td {
-      padding: 10px 12px;
-      border-bottom: 1px solid var(--border);
-      color: var(--ink-700);
-      vertical-align: middle;
-    }
-
-    table.roster-table tr:hover {
-      background: #f0fdfa;
-    }
-
-    .sec-badge {
-      display: inline-block;
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 2px 8px;
-      border-radius: 999px;
-      background: var(--indigo-100);
-      color: #3730a3;
-    }
-
-    .sec-badge.alt {
-      background: var(--amber-100);
-      color: #92400e;
-    }
-
-    .pagination-bar {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-top: 14px;
-      font-size: 0.85rem;
-      color: var(--ink-700);
-    }
-
-    /* Forms */
+    /* Forms & Registration */
     .form-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -605,7 +444,7 @@
     }
 
     label {
-      font-size: 0.85rem;
+      font-size: 0.86rem;
       font-weight: 700;
       color: var(--ink-700);
     }
@@ -615,7 +454,7 @@
       padding: 10px 12px;
       border: 1px solid #cbd5e1;
       border-radius: var(--radius-sm);
-      font-size: 0.92rem;
+      font-size: 0.94rem;
       font-family: inherit;
       background: #ffffff;
       color: var(--ink-900);
@@ -626,29 +465,10 @@
       border-color: var(--teal-600);
     }
 
-    .msg-note {
-      margin-top: 12px;
-      padding: 12px 14px;
-      border-radius: var(--radius-sm);
-      font-size: 0.88rem;
-      font-weight: 600;
-    }
-
-    .msg-ok {
-      background: var(--wa-100);
-      border: 1px solid #86efac;
-      color: var(--wa-700);
-    }
-
-    .msg-err {
-      background: var(--rose-100);
-      border: 1px solid #fda4af;
-      color: var(--rose-600);
-    }
-
+    /* Compact Next-Step WhatsApp Button Strip After Registration */
     .post-reg-wa-bar {
-      margin-top: 14px;
-      padding: 12px 14px;
+      margin-top: 16px;
+      padding: 14px 16px;
       border-radius: var(--radius-sm);
       background: var(--wa-100);
       border: 1px solid #86efac;
@@ -656,15 +476,29 @@
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 12px;
     }
 
-    /* Executive Portal */
+    .post-reg-wa-bar.muted {
+      background: var(--bg-subtle);
+      border-color: var(--border);
+    }
+
+    .msg-note {
+      margin-top: 10px;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .msg-ok { color: var(--wa-700); }
+    .msg-err { color: var(--rose-600); }
+
+    /* Colorful Executive Portal Section */
     .colorful-portal-banner {
       background: linear-gradient(120deg, #1e1b4b 0%, #0f766e 52%, #b45309 100%);
       color: #ffffff;
       border-radius: var(--radius-lg);
-      padding: 30px 26px;
+      padding: 32px 28px;
       box-shadow: var(--shadow-lg);
       border: 2px solid rgba(255, 255, 255, 0.25);
     }
@@ -694,11 +528,11 @@
       color: var(--ink-900);
       border-radius: var(--radius-md);
       padding: 22px;
-      max-width: 560px;
+      max-width: 540px;
       box-shadow: var(--shadow-md);
     }
 
-    /* Modals */
+    /* Full-Screen / Pop-Up Executive Workspace Modal */
     .popup-backdrop {
       position: fixed;
       inset: 0;
@@ -717,37 +551,13 @@
 
     .popup-window {
       width: 100%;
-      max-width: 1040px;
+      max-width: 1020px;
       max-height: 92vh;
       overflow-y: auto;
       background: #f8fafc;
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-lg);
       border: 3px solid var(--teal-600);
-    }
-
-    .fee-modal-card {
-      width: 100%;
-      max-width: 540px;
-      background: #ffffff;
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-lg);
-      border: 3px solid var(--amber-500);
-      overflow: hidden;
-    }
-
-    .fee-modal-head {
-      background: linear-gradient(90deg, #b45309 0%, #d97706 55%, #f59e0b 100%);
-      color: #ffffff;
-      padding: 16px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .fee-modal-body {
-      padding: 20px;
     }
 
     .popup-topbar {
@@ -764,68 +574,8 @@
       gap: 12px;
     }
 
-    .popup-tabs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      padding: 12px 22px 0;
-      background: #ffffff;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .exec-tab-btn {
-      padding: 9px 14px;
-      border: none;
-      background: transparent;
-      font-weight: 700;
-      font-size: 0.86rem;
-      color: var(--ink-500);
-      border-bottom: 3px solid transparent;
-      cursor: pointer;
-    }
-
-    .exec-tab-btn.active {
-      color: var(--teal-800);
-      border-bottom-color: var(--teal-600);
-    }
-
     .popup-body {
       padding: 22px;
-    }
-
-    .exec-pane {
-      display: none;
-    }
-
-    .exec-pane.active {
-      display: block;
-    }
-
-    .stat-strip {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-bottom: 16px;
-    }
-
-    .stat-box {
-      background: #ffffff;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 12px 14px;
-    }
-
-    .stat-box .num {
-      font-size: 1.35rem;
-      font-weight: 800;
-      color: var(--teal-800);
-    }
-
-    .stat-box .lbl {
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--ink-500);
-      text-transform: uppercase;
     }
 
     .wall-post {
@@ -846,7 +596,7 @@
       margin-bottom: 4px;
     }
 
-    /* Chatbot */
+    /* Floating & Docked Chatbot */
     .chatbot-fab {
       position: fixed;
       right: 20px;
@@ -896,13 +646,13 @@
 
     .chatbot-messages {
       padding: 12px;
-      height: 240px;
+      height: 250px;
       overflow-y: auto;
       display: flex;
       flex-direction: column;
       gap: 8px;
       background: var(--bg-page);
-      font-size: 0.86rem;
+      font-size: 0.88rem;
     }
 
     .chat-bubble {
@@ -939,7 +689,7 @@
       border: 1px solid var(--border);
       border-radius: 999px;
       padding: 4px 9px;
-      font-size: 0.74rem;
+      font-size: 0.75rem;
       font-weight: 600;
       cursor: pointer;
       color: var(--ink-700);
@@ -955,7 +705,7 @@
 
     .chat-input-form input {
       padding: 8px 10px;
-      font-size: 0.85rem;
+      font-size: 0.86rem;
     }
 
     footer.site-footer {
@@ -973,12 +723,71 @@
       gap: 14px;
     }
 
-    @media (max-width: 960px) {
-      header.site-nav {
-        top: 56px;
-      }
+    .overdue-alert-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.72);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
 
-      .hero-inner, .grid-3, .grid-2, .priority-row, .form-grid, .stat-strip {
+    .overdue-alert-backdrop.open {
+      display: flex;
+    }
+
+    .overdue-alert-card {
+      width: 100%;
+      max-width: 520px;
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      border: 3px solid var(--rose-600);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+
+    .overdue-alert-head {
+      background: linear-gradient(90deg, #9f1239 0%, #e11d48 100%);
+      color: #ffffff;
+      padding: 14px 18px;
+      font-weight: 800;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .overdue-alert-body {
+      padding: 18px;
+      font-size: 0.92rem;
+      color: var(--ink-700);
+    }
+
+    .mobile-dots-btn {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--bg-surface);
+      color: var(--ink-900);
+      font-size: 1.35rem;
+      font-weight: 800;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .mobile-dots-btn:hover {
+      background: var(--bg-subtle);
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner, .grid-3, .grid-2, .priority-row, .form-grid {
         grid-template-columns: 1fr;
       }
 
@@ -990,8 +799,8 @@
         display: none;
         position: absolute;
         top: 100%;
-        right: 0;
-        left: 0;
+        right: 16px;
+        left: 16px;
         background: #ffffff;
         border: 1px solid var(--border);
         border-radius: var(--radius-md);
@@ -1015,27 +824,22 @@
 </head>
 <body>
 
-  <!-- 1. Sticky Top Announcement Bar Hanging From Top -->
-  <div class="top-ribbon" role="region" aria-label="Registration Fee Announcement">
-    <span class="bell-icon" aria-hidden="true">&#128276;</span>
-    <span class="badge">Registration Fee Notice</span>
-    <strong>KES 100 Registration Fee</strong> required for every member — Deadline: <strong>31st December, 2026</strong>.
-    <a href="#join" class="ribbon-cta">Pay / Register &rarr;</a>
+  <div class="top-ribbon">
+    <span class="badge">Saturday Meeting</span>
+    <strong>Share a Smile Charity Club</strong> — General Meeting this <strong>Saturday, Nov 28, 2026</strong> at <strong>Serene Court Grounds (Nyumba Tatu)</strong> • 2027 Elections in late February 2027.
   </div>
 
-  <!-- 2. Navigation Header -->
   <header class="site-nav">
     <div class="container nav-wrap">
       <a href="#who-we-are" class="brand">
-        <span class="brand-mark">SAS</span>
+        <img src="logo scc.jpeg" alt="Share a Smile Logo" />
         <span>Share a Smile</span>
       </a>
       <nav id="mainNavLinks" class="nav-links" aria-label="Main navigation">
         <a href="#who-we-are">Who We Are</a>
         <a href="#outreach-photos">Outreach</a>
         <a href="#priorities">Priorities</a>
-        <a href="#club-calendar">Calendar</a>
-        <a href="#registered-directory">146+ Register</a>
+        <a href="#club-calendar">Calendar &amp; Meetings</a>
         <a href="#join">Join Us</a>
         <a href="#verify-member">Verify</a>
         <a href="https://chat.whatsapp.com/Dty1LdhdHwv1JTfGJETtdW" target="_blank" rel="noopener noreferrer" class="nav-wa-btn">WhatsApp Group</a>
@@ -1045,7 +849,7 @@
         type="button"
         id="mobileMenuDotsBtn"
         class="mobile-dots-btn"
-        aria-label="Toggle navigation menu"
+        aria-label="Open navigation menu"
         aria-expanded="false"
         aria-controls="mainNavLinks"
         onclick="toggleMobileNav()"
@@ -1053,258 +857,246 @@
     </div>
   </header>
 
-  <!-- 3. Hero -->
+  <!-- Hero -->
   <section class="hero">
     <div class="container hero-inner">
       <div>
         <span class="hero-kicker">Laikipia University Student Chapter</span>
         <h1>Share a Smile Charity Club</h1>
         <p>
-          Bringing Laikipia University students together for structured outreach, mentorship, member solidarity,
-          and transparent governance across our <strong>146+ registered members</strong>.
+          Starting with who we are and the outreach moments that define us—bringing students together
+          for service, mentorship, member care, and accountable leadership.
         </p>
         <div class="hero-btns">
-          <a href="#verify-member" class="btn btn-amber">Verify Membership</a>
-          <a href="#registered-directory" class="btn btn-teal">View 146+ Register</a>
+          <a href="#join" class="btn btn-amber">Become a Member</a>
           <a href="https://chat.whatsapp.com/Dty1LdhdHwv1JTfGJETtdW" target="_blank" rel="noopener noreferrer" class="btn btn-wa">WhatsApp Group</a>
           <button type="button" class="btn btn-ghost-light" onclick="toggleChatbot(true)">Ask Club Chatbot</button>
         </div>
       </div>
 
       <div class="hero-side-card">
-        <h2>Club Overview &amp; Key Dates</h2>
+        <h2>Section Flow &amp; Priorities</h2>
         <ol>
-          <li>146+ Registered Members Across Intake &amp; Roster</li>
-          <li>KES 100 Registration Fee Due: 31st Dec, 2026</li>
-          <li>Instant Verification + Fee Clearance Pop-Up</li>
-          <li>Official Elections: Late February 2027</li>
-          <li>Executive Office Portal &amp; Weekly Reports</li>
+          <li>Who We Are &amp; Core Mission</li>
+          <li>Outreach Photos &amp; Field Action</li>
+          <li>Ordered Club Priorities &amp; Calendar</li>
+          <li>Member Sign-Up + WhatsApp Button</li>
+          <li>Executive Office Pop-Up Portal</li>
         </ol>
       </div>
     </div>
   </section>
 
-  <!-- WHO WE ARE -->
+  <!-- 1. WHO WE ARE -->
   <section id="who-we-are" class="band white">
     <div class="container">
       <div class="band-head">
         <span class="band-tag">01 • Who We Are</span>
         <h2>Who We Are</h2>
         <p>
-          Share a Smile Charity Club is a student-led organization at Laikipia University committed to compassionate
-          community service, youth mentorship, environmental care, and peer support.
+          Share a Smile Charity Club is a student-led initiative at Laikipia University dedicated to practical
+          compassion, youth mentorship, environmental care, and peer solidarity.
         </p>
       </div>
 
       <div class="grid-3">
         <article class="card">
           <h3>Compassion in Action</h3>
-          <p>We mobilize practical support, foodstuff pledges, and time to uplift vulnerable families and learners.</p>
+          <p>We turn goodwill into organized outreach drives, supporting learners, families, and communities with dignity.</p>
         </article>
         <article class="card">
           <h3>Student Mentorship</h3>
-          <p>We foster peer encouragement, academic guidance, and leadership growth among university comrades.</p>
+          <p>We guide and encourage students through peer mentorship, academic support, and positive decision-making.</p>
         </article>
         <article class="card">
           <h3>Comrade Solidarity</h3>
-          <p>We stand together as one body across all 146+ registered members through accountability and care.</p>
+          <p>We stand together as members during challenges and celebrations so every member feels supported.</p>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- OUTREACH & FIELD MOMENTS -->
+  <!-- 2. OUTREACH PHOTOS -->
   <section id="outreach-photos" class="band">
     <div class="container">
       <div class="band-head">
-        <span class="band-tag">02 • Outreach &amp; Field Moments</span>
+        <span class="band-tag">02 • Outreach Photos</span>
         <h2>Outreach &amp; Field Moments</h2>
-        <p>Key service pillars tracked across our multi-day contributor logs, foodstuff pledges, and field drives.</p>
+        <p>Highlights from our community outreach, mentorship sessions, and sustainability efforts.</p>
       </div>
 
       <div class="grid-3">
         <article class="card">
-          <div class="photo-placeholder" style="background: #ccfbf1; color: #115e59;">
-            <span>COMMUNITY OUTREACH &amp; PLEDGES</span>
-          </div>
-          <h3>Community &amp; Foodstuff Drives</h3>
-          <p>Coordinating contributor commitments, essentials, and foodstuff pledges for targeted outreach.</p>
+          <img src="outreach.jpg" alt="Community outreach visit" class="photo" />
+          <h3>Community Outreach</h3>
+          <p>Mobilizing essentials, time, and care for beneficiaries and local households.</p>
         </article>
         <article class="card">
-          <div class="photo-placeholder" style="background: #e0e7ff; color: #3730a3;">
-            <span>MENTORSHIP &amp; YOUTH TALKS</span>
-          </div>
+          <img src="mentorship.jpg" alt="Student mentorship engagement" class="photo" />
           <h3>Mentorship Sessions</h3>
-          <p>Structured guidance and encouragement sessions supporting students and community youth.</p>
+          <p>Interactive talks and guidance sessions empowering students and younger learners.</p>
         </article>
         <article class="card">
-          <div class="photo-placeholder" style="background: #fef3c7; color: #92400e;">
-            <span>SUSTAINABILITY &amp; SERVICE</span>
-          </div>
-          <h3>Green &amp; Campus Service</h3>
-          <p>Environmental care and practical campus/community initiatives led by active members.</p>
+          <img src="trees.jpg" alt="Environmental and tree care activity" class="photo" />
+          <h3>Green &amp; Service Drives</h3>
+          <p>Environmental stewardship and practical community service across our region.</p>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- PRIORITIES -->
+  <!-- 3. PRIORITIES -->
   <section id="priorities" class="band white">
     <div class="container">
       <div class="band-head">
         <span class="band-tag">03 • Club Priorities</span>
         <h2>Our Priorities in Order</h2>
-        <p>Ordered priorities guide our executive dockets and member engagement through the 2026/2027 term.</p>
+        <p>Clear priorities keep our members, executives, and activities focused on what matters most.</p>
       </div>
 
       <div class="priority-row">
         <div class="priority-box">
           <div class="priority-num">Priority 1</div>
-          <h3>Active Membership &amp; Dues</h3>
-          <p>Confirming all 146+ registered members and completing KES 100 registration fees by 31st December, 2026.</p>
+          <h3>Active Membership</h3>
+          <p>Onboarding new members smoothly and connecting them on WhatsApp right away.</p>
         </div>
         <div class="priority-box">
           <div class="priority-num">Priority 2</div>
           <h3>Outreach &amp; Mentorship</h3>
-          <p>Executing organized community outreach, contributor pledges, and mentorship activities.</p>
+          <p>Delivering timely community visits, mentorship talks, and service drives.</p>
         </div>
         <div class="priority-box">
           <div class="priority-num">Priority 3</div>
-          <h3>Member Voice &amp; Welfare</h3>
-          <p>Addressing member suggestions, questions, and comrade welfare matters promptly.</p>
+          <h3>Member Voice &amp; Care</h3>
+          <p>Listening to complaints and suggestions and acting on them fairly.</p>
         </div>
         <div class="priority-box">
           <div class="priority-num">Priority 4</div>
-          <h3>Accountability &amp; Elections</h3>
-          <p>Maintaining clear weekly docket reports and preparing for official elections in late February 2027.</p>
+          <h3>Accountability</h3>
+          <p>Transparent executive coordination and preparation for the February 2027 elections.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CLUB CALENDAR -->
+  <!-- 3B. CLUB CALENDAR & SATURDAY MEETING ANNOUNCEMENT -->
   <section id="club-calendar" class="band">
     <div class="container">
       <div class="band-head">
-        <span class="band-tag">Calendar &amp; Milestones</span>
-        <h2>Club Calendar &amp; Key Dates</h2>
-        <p>Official milestones for registration submission, member fee clearance, and upcoming elections.</p>
+        <span class="band-tag">Calendar &amp; Announcements</span>
+        <h2>Club Calendar &amp; Saturday Meeting</h2>
+        <p>Upcoming club schedule, Saturday general meeting announcement, and key dates for the 2026/2027 academic year.</p>
+      </div>
+
+      <div class="card" style="margin-bottom: 22px; border-left: 5px solid var(--amber-500);">
+        <span class="badge" style="background: var(--amber-100); color: #92400e; margin-bottom: 8px; display: inline-block;">Meeting Announcement</span>
+        <h3>First General Meeting — Saturday, November 28, 2026</h3>
+        <p style="margin-bottom: 8px;">
+          All members and executive officials of <strong>Share a Smile Charity Club</strong> are invited to the First General Meeting
+          this <strong>Saturday, November 28, 2026</strong> at <strong>Serene Court Grounds, Nyumba Tatu</strong> (near Laikipia University).
+        </p>
+        <p style="font-size: 0.88rem; color: var(--ink-500);">
+          Agenda: Member onboarding, outreach &amp; mentorship planning, weekly executive reporting, and 2027 roadmap.
+        </p>
       </div>
 
       <div class="grid-3">
         <div class="card">
           <div class="priority-num">Nov 25, 2026</div>
           <h3>Registration Package Submitted</h3>
-          <p>Constitution, patron endorsement, and member records submitted to the Office of the Dean of Students.</p>
+          <p>Constitution, patron endorsement, and member list submitted to the Office of the Dean of Students.</p>
         </div>
-        <div class="card" style="border-top: 4px solid var(--amber-500);">
-          <div class="priority-num">Dec 31, 2026</div>
-          <h3>KES 100 Registration Deadline</h3>
-          <p>Final deadline for every member to complete the mandatory KES 100 one-time registration fee.</p>
+        <div class="card">
+          <div class="priority-num">Sat, Nov 28, 2026</div>
+          <h3>Saturday General Meeting</h3>
+          <p>In-person club gathering at Serene Court Grounds, Nyumba Tatu for members and executives.</p>
         </div>
-        <div class="card" style="border-top: 4px solid var(--indigo-600);">
+        <div class="card">
           <div class="priority-num">Late Feb 2027</div>
           <h3>Official Club Elections</h3>
-          <p>General executive elections for the incoming term per the club constitution and calendar.</p>
+          <p>General executive elections for the next term as scheduled on the 2027 club calendar.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 4. 146+ REGISTERED MEMBERS DIRECTORY -->
-  <section id="registered-directory" class="band white">
+  <!-- 4. JOIN US -->
+  <section id="join" class="band">
     <div class="container">
       <div class="band-head">
-        <span class="band-tag">04 • 146+ Registered Members Directory</span>
-        <h2>146+ Registered Members Directory</h2>
-        <p>
-          All members from the November 2026 Official Membership Register (with phone numbers) plus unique members/contributors
-          from the Master Contributors (Day 1–8), 5-Day Matrix, and Foodstuff Pledges rosters are marked <strong>Registered</strong>.
-          Click <strong>Verify / Select</strong> on any member to verify them and open the <strong>Registration Fee Required</strong> prompt.
+        <span class="band-tag">04 • Join the Club</span>
+        <h2>New Member Registration &amp; Dues</h2>
+        <p>Register below. After submitting, a clean <strong>Join WhatsApp Group</strong> button appears right below.</p>
+      </div>
+
+      <div class="grid-2" style="max-width: 720px; margin-bottom: 18px;">
+        <div class="card" style="border-top: 4px solid var(--amber-500);">
+          <div class="priority-num">One-Time Fee</div>
+          <h3>KES 100 Registration Fee</h3>
+          <p>A one-time registration fee of <strong>KES 100</strong> upon joining Share a Smile Charity Club.</p>
+        </div>
+        <div class="card" style="border-top: 4px solid var(--teal-600);">
+          <div class="priority-num">Semester Option</div>
+          <h3>KES 50 Subscription / Semester</h3>
+          <p>Optional recurring subscription of <strong>KES 50 per semester</strong> to support ongoing club activities.</p>
+        </div>
+      </div>
+
+      <div class="card" style="max-width: 720px; margin-top: 20px; border-top: 4px solid var(--amber-500);">
+        <h3>Existing Members — Complete M-Pesa Payment</h3>
+        <p style="font-size: 0.9rem; color: var(--ink-700); margin-bottom: 14px;">
+          Already on the club register and haven&apos;t submitted an M-Pesa reference yet? Search your name, registration number, or phone number, select your fee plan, and enter your <strong>M-Pesa Reference Number</strong> to finish.
         </p>
-      </div>
 
-      <!-- Section Filter Tabs -->
-      <div class="section-tabs-bar" role="tablist" aria-label="Registered Member Sections">
-        <button type="button" class="sec-tab-btn active" data-sec="ALL" onclick="selectRosterSection('ALL', this)">
-          All Registered (<span id="tabCountAll">0</span>)
-        </button>
-        <button type="button" class="sec-tab-btn" data-sec="Nov 2026 Official Register" onclick="selectRosterSection('Nov 2026 Official Register', this)">
-          Nov 2026 Official Register (<span id="tabCountOfficial">0</span>)
-        </button>
-        <button type="button" class="sec-tab-btn" data-sec="Master Contributors (Day 1–8)" onclick="selectRosterSection('Master Contributors (Day 1–8)', this)">
-          Master Contributors Day 1–8 (<span id="tabCountContrib">0</span>)
-        </button>
-        <button type="button" class="sec-tab-btn" data-sec="5-Day Matrix & Foodstuff Pledges" onclick="selectRosterSection('5-Day Matrix & Foodstuff Pledges', this)">
-          5-Day Matrix &amp; Foodstuff Pledges (<span id="tabCountMatrix">0</span>)
-        </button>
-      </div>
-
-      <div class="directory-toolbar">
-        <input
-          type="text"
-          id="rosterSearchInput"
-          oninput="renderRosterDirectory()"
-          placeholder="Search directory by name, reg no., phone, or section..."
-          style="max-width: 380px;"
-        />
-        <span id="rosterSummaryBadge" style="font-size: 0.85rem; font-weight: 700; color: var(--teal-800);"></span>
-      </div>
-
-      <div class="table-wrap">
-        <table class="roster-table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Full Name</th>
-              <th>Reg. No.</th>
-              <th>Phone Number</th>
-              <th>Roster Section</th>
-              <th>Fee Status</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody id="rosterTableBody"></tbody>
-        </table>
-      </div>
-
-      <div class="pagination-bar">
-        <div id="rosterPageInfo">Showing records</div>
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <button type="button" id="rosterPrevBtn" class="btn btn-secondary btn-sm" onclick="changeRosterPage(-1)">&larr; Prev</button>
-          <span id="rosterPageNum" style="font-weight: 700;">Page 1</span>
-          <button type="button" id="rosterNextBtn" class="btn btn-secondary btn-sm" onclick="changeRosterPage(1)">Next &rarr;</button>
-        </div>
+        <form id="existingPayForm" class="form-grid" novalidate>
+          <div class="field full">
+            <label for="existingLookup">Find Existing Member (Name, Reg. No., or Phone) *</label>
+            <input type="text" id="existingLookup" placeholder="e.g. Cyprian King'oina or ED/ART/1713/24 or 0796580442" required />
+          </div>
+          <div class="field">
+            <label for="existingFeePlan">Fee / Subscription Option *</label>
+            <select id="existingFeePlan">
+              <option value="KES 100 One-Time Registration Fee" data-amount="KES 100">KES 100 One-Time Registration Fee</option>
+              <option value="KES 100 One-Time + KES 50 / Semester Subscription" data-amount="KES 150">KES 100 One-Time + KES 50 / Semester Subscription</option>
+              <option value="KES 50 / Semester Subscription Option" data-amount="KES 50">KES 50 / Semester Subscription Option</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="existingMpesaRef">M-Pesa Reference Number *</label>
+            <input type="text" id="existingMpesaRef" placeholder="e.g. TKL89ABC12" maxlength="14" style="text-transform: uppercase;" required />
+          </div>
+          <div class="field full">
+            <button type="submit" id="existingPayBtn" class="btn btn-amber">Submit M-Pesa Ref &amp; Mark Paid</button>
+          </div>
+        </form>
+        <div id="existingPayMsg" class="msg-note"></div>
       </div>
     </div>
   </section>
 
-  <!-- 5. VERIFY MEMBER & CLUB APPAREL -->
-  <section id="verify-member" class="band">
+  <!-- 5. VERIFY MEMBER & MERCHANDISE -->
+  <section id="verify-member" class="band white">
     <div class="container">
       <div class="band-head">
-        <span class="band-tag">05 • Member Verification &amp; Apparel</span>
+        <span class="band-tag">05 • Verification &amp; Merch</span>
         <h2>Verify Membership &amp; Club Apparel</h2>
-        <p>
-          Search any registered member by name, registration number, or phone number to confirm <strong>MEMBER FOUND</strong>
-          with their details and trigger the <strong>Registration Fee Required</strong> pop-up prompt.
-        </p>
+        <p>Check a member's registration status by registration number, or view club apparel items.</p>
       </div>
 
       <div class="grid-2" style="margin-bottom: 24px;">
-        <div class="card" style="border-top: 4px solid var(--teal-600);">
+        <div class="card">
           <h3>Verify Member Status</h3>
-          <p style="margin-bottom: 12px;">Enter a full name, registration number (e.g. <code>ED/ART/1713/24</code>), or phone number.</p>
-          <form id="verifyMemberForm" onsubmit="return verifyMemberSearch(event);" style="display: flex; gap: 8px; flex-wrap: wrap;">
-            <input type="text" id="verifyQueryInput" placeholder="e.g. Cyprian King'oina or ED/ART/1713/24 or 0796580442" style="flex: 1; min-width: 200px;" />
-            <button type="submit" class="btn btn-teal">Verify Member</button>
+          <p style="margin-bottom: 12px;">Enter a registration number (or name / phone number) to check membership status privately.</p>
+          <form id="verifyMemberForm" onsubmit="return verifyMember(event);" style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <input type="text" id="verifyQuery" placeholder="e.g. ED/ART/1591/24 or REG-001/26" style="flex: 1; min-width: 180px;" />
+            <button type="submit" id="verifyMemberBtn" class="btn btn-teal">Verify</button>
           </form>
-          <div id="verifyInlineResult" style="display: none;" class="msg-note"></div>
+          <div id="verifyOut" class="msg-note" aria-live="polite" style="display:none;"></div>
         </div>
 
-        <div class="card" style="border-top: 4px solid var(--wa-600);">
+        <div class="card">
           <h3>Official WhatsApp Group</h3>
-          <p style="margin-bottom: 14px;">Stay connected with fellow members for updates, outreach planning, and fee clearance notices.</p>
+          <p style="margin-bottom: 14px;">Connect with members for meetings, outreach planning, and updates.</p>
           <a
             href="https://chat.whatsapp.com/Dty1LdhdHwv1JTfGJETtdW"
             target="_blank"
@@ -1318,23 +1110,17 @@
 
       <div class="grid-3">
         <div class="card">
-          <div class="photo-placeholder" style="background: #eef3f8; color: #0f172a;">
-            <span>CLUB T-SHIRT</span>
-          </div>
+          <img src="shirt.jpg" alt="Club T-Shirt" class="photo" />
           <h3>Club T-Shirt</h3>
           <p>Lightweight shirt for campus days and outreach activities.</p>
         </div>
         <div class="card">
-          <div class="photo-placeholder" style="background: #eef3f8; color: #0f172a;">
-            <span>CLUB HOODIE</span>
-          </div>
+          <img src="hoodie.jpg" alt="Club Hoodie" class="photo" />
           <h3>Club Hoodie</h3>
           <p>Warm hoodie suited for cool mornings and field trips.</p>
         </div>
         <div class="card">
-          <div class="photo-placeholder" style="background: #eef3f8; color: #0f172a;">
-            <span>CLUB TOTE BAG</span>
-          </div>
+          <img src="tote.jpg" alt="Club Tote Bag" class="photo" />
           <h3>Club Tote Bag</h3>
           <p>Practical carry bag for outreach materials and everyday use.</p>
         </div>
@@ -1342,994 +1128,7 @@
     </div>
   </section>
 
-  <!-- 6. JOIN US — NEW MEMBER REGISTRATION & EXISTING MEMBER M-PESA PAYMENT -->
-  <section id="join" class="band white">
+  <!-- 6. EXECUTIVE OFFICE PORTAL (Executives Only) -->
+  <section id="executive-portal" class="band white">
     <div class="container">
-      <div class="band-head">
-        <span class="band-tag">06 • Join Us &amp; Fee Clearance</span>
-        <h2>New Member Registration &amp; KES 100 Fee Payment</h2>
-        <p>
-          Every member is required to pay the <strong>KES 100 registration fee</strong> on or before <strong>31st December, 2026</strong>.
-          Already-registered members can submit their M-Pesa reference directly below.
-        </p>
-      </div>
-
-      <div class="grid-2">
-        <!-- New Member Sign-Up -->
-        <div class="card" style="border-top: 4px solid var(--teal-600);">
-          <h3>New Member Registration</h3>
-          <p style="font-size: 0.88rem; color: var(--ink-700); margin-bottom: 14px;">
-            Register a new student member with your details and M-Pesa transaction code.
-          </p>
-          <form id="newMemberRegForm" class="form-grid" novalidate>
-            <div class="field full">
-              <label for="regFullName">Full Name *</label>
-              <input type="text" id="regFullName" placeholder="e.g. Amina Hassan" required />
-            </div>
-            <div class="field">
-              <label for="regAdmNo">University Reg. No. *</label>
-              <input type="text" id="regAdmNo" placeholder="e.g. ED/ART/2045/25" required />
-            </div>
-            <div class="field">
-              <label for="regPhone">Phone Number *</label>
-              <input type="tel" id="regPhone" placeholder="e.g. 0712345678" required />
-            </div>
-            <div class="field">
-              <label for="regFeeOption">Fee Option *</label>
-              <select id="regFeeOption">
-                <option value="KES 100 One-Time Registration Fee">KES 100 One-Time Registration Fee</option>
-                <option value="KES 100 Reg + KES 50 Semester">KES 100 Reg + KES 50 Semester</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="regMpesaRef">M-Pesa Reference Code *</label>
-              <input type="text" id="regMpesaRef" placeholder="e.g. TKL89ABC12" maxlength="14" style="text-transform: uppercase;" required />
-            </div>
-            <div class="field full">
-              <button type="submit" class="btn btn-teal">Submit Registration</button>
-            </div>
-          </form>
-          <div id="newRegFeedback" style="display: none;" class="msg-note"></div>
-          <div id="postRegWaBox" class="post-reg-wa-bar" style="display: none;">
-            <span style="font-size: 0.86rem; font-weight: 700; color: var(--wa-700);">Next step: Join our official WhatsApp group</span>
-            <a href="https://chat.whatsapp.com/Dty1LdhdHwv1JTfGJETtdW" target="_blank" rel="noopener noreferrer" class="btn btn-wa btn-sm">Join WhatsApp Group</a>
-          </div>
-        </div>
-
-        <!-- Existing Member M-Pesa Payment -->
-        <div class="card" style="border-top: 4px solid var(--amber-500);">
-          <h3>Existing Members — Submit KES 100 M-Pesa Ref</h3>
-          <p style="font-size: 0.88rem; color: var(--ink-700); margin-bottom: 14px;">
-            Already in the 146+ registered members list? Enter your name, reg. number, or phone number and your <strong>M-Pesa Reference Number</strong> before <strong>31st December, 2026</strong>.
-          </p>
-          <form id="existingPayForm" class="form-grid" novalidate>
-            <div class="field full">
-              <label for="existingLookup">Registered Member (Name, Reg. No., or Phone) *</label>
-              <input type="text" id="existingLookup" placeholder="e.g. Cyprian King'oina or ED/ART/1713/24 or 0796580442" required />
-            </div>
-            <div class="field">
-              <label for="existingFeePlan">Fee Option *</label>
-              <select id="existingFeePlan">
-                <option value="KES 100 One-Time Registration Fee">KES 100 One-Time Registration Fee</option>
-                <option value="KES 100 One-Time + KES 50 / Semester Subscription">KES 100 One-Time + KES 50 / Semester Subscription</option>
-                <option value="KES 50 / Semester Subscription Option">KES 50 / Semester Subscription Option</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="existingMpesaRef">M-Pesa Reference Number *</label>
-              <input type="text" id="existingMpesaRef" placeholder="e.g. TKL89ABC12" maxlength="14" style="text-transform: uppercase;" required />
-            </div>
-            <div class="field full">
-              <button type="submit" class="btn btn-amber">Submit M-Pesa Ref &amp; Mark Paid</button>
-            </div>
-          </form>
-          <div id="existingPayMsg" style="display: none;" class="msg-note"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- EXECUTIVE OFFICE PORTAL -->
-  <section id="executive-portal" class="band">
-    <div class="container">
-      <div class="colorful-portal-banner">
-        <span class="badge" style="background: var(--amber-500); color: var(--ink-900); padding: 3px 10px; border-radius: 999px; font-weight: 800; font-size: 0.74rem; text-transform: uppercase;">Officials Workspace</span>
-        <h2 style="font-size: clamp(1.5rem, 3vw, 2.05rem); margin-top: 8px; margin-bottom: 6px;">Executive Office Portal</h2>
-        <p style="color: #e2e8f0; max-width: 66ch;">
-          Manage the 146+ member register, verify KES 100 fee payments ahead of the 31st December deadline, post weekly docket reports, and track member welfare.
-        </p>
-
-        <div class="portal-color-chips">
-          <span class="chip chip-amber">Member Register &amp; Dues</span>
-          <span class="chip chip-teal">Weekly Docket Reports</span>
-          <span class="chip chip-indigo">Executive Noticeboard</span>
-          <span class="chip chip-rose">Welfare &amp; Feedback</span>
-        </div>
-
-        <div class="portal-login-box">
-          <h3 style="margin-bottom: 6px; color: var(--ink-900);">Official Sign-In</h3>
-          <p style="font-size: 0.85rem; color: var(--ink-500); margin-bottom: 14px;">
-            Choose your executive role and enter your passcode to open the workspace modal.
-          </p>
-          <form id="execLoginForm" class="form-grid" novalidate>
-            <div class="field">
-              <label for="execRoleSelect">Executive Docket *</label>
-              <select id="execRoleSelect">
-                <option value="Chairperson">Chairperson</option>
-                <option value="Vice Chairperson">Vice Chairperson</option>
-                <option value="Secretary General">Secretary General</option>
-                <option value="Treasurer">Treasurer</option>
-                <option value="Organizing Secretary">Organizing Secretary</option>
-                <option value="Welfare & Mentorship Lead">Welfare &amp; Mentorship Lead</option>
-                <option value="Club Patron">Club Patron</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="execPassInput">Passcode *</label>
-              <input type="password" id="execPassInput" placeholder="Enter passcode (e.g. SMILE2026)" required />
-            </div>
-            <div class="field full">
-              <button type="submit" class="btn btn-indigo">Open Executive Workspace</button>
-            </div>
-          </form>
-          <div id="execLoginFeedback" style="display: none;" class="msg-note"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- REGISTRATION FEE REQUIRED POP-UP MODAL -->
-  <div id="feeRequiredModal" class="popup-backdrop" role="dialog" aria-modal="true" aria-labelledby="feePopupTitle">
-    <div class="fee-modal-card">
-      <div class="fee-modal-head">
-        <div>
-          <span style="font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #fef3c7;">MEMBER FOUND • FEE NOTICE</span>
-          <h3 id="feePopupTitle" style="font-size: 1.15rem; font-weight: 800;">&#9888; Registration Fee Required</h3>
-        </div>
-        <button type="button" onclick="closeFeeModal()" aria-label="Close fee prompt" style="background: rgba(0,0,0,0.2); border:none; color:#fff; width:32px; height:32px; border-radius:999px; font-weight:800; cursor:pointer;">&times;</button>
-      </div>
-      <div class="fee-modal-body">
-        <div style="background: var(--wa-100); border: 1px solid #86efac; border-radius: var(--radius-sm); padding: 12px 14px; margin-bottom: 14px;">
-          <div style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--wa-700);">MEMBER FOUND IN REGISTER</div>
-          <div id="popupMemberSummary" style="font-size: 0.92rem; font-weight: 700; color: var(--ink-900); margin-top: 2px;"></div>
-          <div id="popupMemberSub" style="font-size: 0.82rem; color: var(--ink-700); margin-top: 2px;"></div>
-        </div>
-
-        <p style="font-size: 0.9rem; color: var(--ink-700); margin-bottom: 12px;">
-          Your registration record is confirmed. Please complete the mandatory <strong>KES 100 Registration Fee</strong> on or before <strong>31st December, 2026</strong>.
-        </p>
-
-        <form id="modalQuickPayForm" class="form-grid" style="margin-bottom: 12px;" novalidate>
-          <div class="field full">
-            <label for="modalMpesaInput">Submit M-Pesa Reference Code Now (Optional)</label>
-            <input type="text" id="modalMpesaInput" placeholder="e.g. TKL89ABC12" maxlength="14" style="text-transform: uppercase;" />
-          </div>
-          <div class="field full" style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 8px;">
-            <button type="submit" class="btn btn-amber btn-sm">Record KES 100 Payment</button>
-            <a href="#join" onclick="closeFeeModal()" class="btn btn-teal btn-sm">Go to Payment Form</a>
-            <button type="button" onclick="closeFeeModal()" class="btn btn-secondary btn-sm">Close</button>
-          </div>
-        </form>
-        <div id="modalPayStatus" style="display: none;" class="msg-note"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- EXECUTIVE WORKSPACE MODAL -->
-  <div id="execWorkspaceModal" class="popup-backdrop" role="dialog" aria-modal="true" aria-labelledby="execWorkspaceHeading">
-    <div class="popup-window">
-      <div class="popup-topbar">
-        <div>
-          <span style="font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.06em; color: #fde68a; font-weight: 800;">Share a Smile • Official Workspace</span>
-          <h3 id="execWorkspaceHeading" style="font-size: 1.18rem;">Executive Workspace</h3>
-        </div>
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <span id="execActiveRoleTag" class="chip chip-teal">Official</span>
-          <button type="button" class="btn btn-amber btn-sm" onclick="closeExecWorkspace()">Close</button>
-        </div>
-      </div>
-
-      <div class="popup-tabs" role="tablist">
-        <button type="button" class="exec-tab-btn active" onclick="switchExecPane('pane-register', this)">Member Register &amp; Dues</button>
-        <button type="button" class="exec-tab-btn" onclick="switchExecPane('pane-reports', this)">Weekly Docket Reports</button>
-        <button type="button" class="exec-tab-btn" onclick="switchExecPane('pane-noticeboard', this)">Executive Noticeboard</button>
-        <button type="button" class="exec-tab-btn" onclick="switchExecPane('pane-welfare', this)">Welfare &amp; Feedback</button>
-      </div>
-
-      <div class="popup-body">
-        <!-- Tab 1: Member Register & Dues -->
-        <div id="pane-register" class="exec-pane active">
-          <div class="stat-strip">
-            <div class="stat-box">
-              <div class="num" id="execStatTotal">0</div>
-              <div class="lbl">Total Registered</div>
-            </div>
-            <div class="stat-box">
-              <div class="num" id="execStatPaid" style="color: var(--wa-700);">0</div>
-              <div class="lbl">KES 100 Paid</div>
-            </div>
-            <div class="stat-box">
-              <div class="num" id="execStatPending" style="color: var(--amber-600);">0</div>
-              <div class="lbl">Fee Required</div>
-            </div>
-            <div class="stat-box">
-              <div class="num" id="execStatCollected">KES 0</div>
-              <div class="lbl">Recorded Dues</div>
-            </div>
-          </div>
-
-          <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 12px;">
-            <input type="text" id="execRegisterFilter" oninput="renderExecRegisterTable()" placeholder="Filter members in workspace..." style="max-width: 300px;" />
-            <select id="execFeeStatusFilter" onchange="renderExecRegisterTable()" style="max-width: 220px;">
-              <option value="ALL">All Fee Statuses</option>
-              <option value="Paid">Paid (KES 100)</option>
-              <option value="Registration Fee Required">Registration Fee Required</option>
-            </select>
-          </div>
-
-          <div class="table-wrap">
-            <table class="roster-table">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Reg. No.</th>
-                  <th>Phone</th>
-                  <th>M-Pesa Ref</th>
-                  <th>Fee Status</th>
-                  <th>Toggle</th>
-                </tr>
-              </thead>
-              <tbody id="execRegisterTbody"></tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- Tab 2: Weekly Docket Reports -->
-        <div id="pane-reports" class="exec-pane">
-          <div class="grid-2">
-            <div class="card">
-              <h3>Submit Weekly Docket Report</h3>
-              <form id="execReportForm" class="form-grid" style="margin-top: 10px;">
-                <div class="field full">
-                  <label for="execReportText">Weekly Progress &amp; Outreach Summary *</label>
-                  <textarea id="execReportText" rows="3" placeholder="Enter weekly activities, contributor follow-ups, or finance notes..." required></textarea>
-                </div>
-                <div class="field full">
-                  <label for="execReportNext">Next Action Item *</label>
-                  <input type="text" id="execReportNext" placeholder="e.g. Follow up on KES 100 fee before Dec 31" required />
-                </div>
-                <div class="field full">
-                  <button type="submit" class="btn btn-teal">Save Weekly Report</button>
-                </div>
-              </form>
-            </div>
-            <div>
-              <h3 style="margin-bottom: 10px;">Recent Docket Reports</h3>
-              <div id="execReportsList"></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tab 3: Executive Noticeboard -->
-        <div id="pane-noticeboard" class="exec-pane">
-          <div class="card" style="margin-bottom: 14px;">
-            <h3>Post Official Executive Notice</h3>
-            <form id="execNoticeForm" style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
-              <input type="text" id="execNoticeInput" placeholder="Write an internal notice for executives..." style="flex: 1; min-width: 220px;" required />
-              <button type="submit" class="btn btn-indigo">Post Notice</button>
-            </form>
-          </div>
-          <div id="execNoticeList"></div>
-        </div>
-
-        <!-- Tab 4: Welfare & Feedback -->
-        <div id="pane-welfare" class="exec-pane">
-          <div class="card" style="margin-bottom: 14px;">
-            <h3>Log Member Welfare / Feedback</h3>
-            <form id="execWelfareForm" class="form-grid" style="margin-top: 10px;">
-              <div class="field">
-                <label for="execWelfareMember">Member / Cohort *</label>
-                <input type="text" id="execWelfareMember" placeholder="e.g. Member Name or Cohort" required />
-              </div>
-              <div class="field">
-                <label for="execWelfareType">Type *</label>
-                <select id="execWelfareType">
-                  <option value="Comrade Welfare">Comrade Welfare</option>
-                  <option value="Fee / Registration Query">Fee / Registration Query</option>
-                  <option value="Outreach Suggestion">Outreach Suggestion</option>
-                </select>
-              </div>
-              <div class="field full">
-                <label for="execWelfareNote">Notes *</label>
-                <textarea id="execWelfareNote" rows="2" placeholder="Enter details..." required></textarea>
-              </div>
-              <div class="field full">
-                <button type="submit" class="btn btn-amber">Log Welfare Entry</button>
-              </div>
-            </form>
-          </div>
-          <div id="execWelfareList"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Floating Club Chatbot -->
-  <button type="button" class="chatbot-fab" onclick="toggleChatbot()">Ask Club Chatbot</button>
-  <div id="chatbotPanel" class="chatbot-panel" aria-label="Share a Smile Club Chatbot">
-    <div class="chatbot-head">
-      <span>Share a Smile Assistant</span>
-      <button type="button" onclick="toggleChatbot(false)" style="background:none; border:none; color:#fff; font-weight:800; cursor:pointer;">&times;</button>
-    </div>
-    <div id="chatMessages" class="chatbot-messages">
-      <div class="chat-bubble bot">
-        Habari! Ask me about the <strong>146+ registered members</strong>, the <strong>KES 100 registration fee</strong> due by <strong>31st December, 2026</strong>, or the <strong>late February 2027 elections</strong>.
-      </div>
-    </div>
-    <div class="chat-quick-row">
-      <button type="button" class="chat-chip" onclick="sendChatPrompt('KES 100 fee & Dec 31 deadline')">KES 100 Deadline</button>
-      <button type="button" class="chat-chip" onclick="sendChatPrompt('146+ registered members')">146+ Register</button>
-      <button type="button" class="chat-chip" onclick="sendChatPrompt('2027 club elections')">2027 Elections</button>
-    </div>
-    <form class="chat-input-form" onsubmit="handleChatForm(event)">
-      <input type="text" id="chatInputField" placeholder="Ask a question..." required />
-      <button type="submit" class="btn btn-teal btn-sm">Send</button>
-    </form>
-  </div>
-
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container footer-row">
-      <div>
-        <strong>Share a Smile Charity Club</strong> • Laikipia University Student Chapter
-      </div>
-      <div>
-        146+ Registered Members • KES 100 Registration Deadline: 31st December, 2026 • Elections: Late Feb 2027
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    // Mobile nav toggle
-    function toggleMobileNav() {
-      const nav = document.getElementById('mainNavLinks');
-      const btn = document.getElementById('mobileMenuDotsBtn');
-      const open = nav.classList.toggle('open');
-      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    }
-
-    // All 55 Members from November 2026 Official Membership Register (with phone numbers)
-    // + Additional unique members/contributors from Master Contributors (Day 1-8), 5-Day Matrix, and Foodstuff Pledges (155 total entries)
-    const INITIAL_MEMBERS = [
-      // Section A: Nov 2026 Official Register (55 members with phone numbers)
-      { name: "Cyprian King'oina", regNo: "ED/ART/1713/24", phone: "0796580442", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Rooney David Ogongo", regNo: "ED/ART/1591/24", phone: "0769529801", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Faith Kwamboka Matongo", regNo: "ED/ART/1593/24", phone: "0714388618", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Festus Kirui", regNo: "ED/ART/3611/24", phone: "0745120943", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Korir Wilfred", regNo: "ED/ART/1219/24", phone: "0794284441", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Hellen Mokeira", regNo: "ED/ART/1793/24", phone: "0701496869", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Lucas Okeyo Oganda", regNo: "ED/ART/1678/24", phone: "0708417079", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Rose Khaemba", regNo: "ED/ART/0931/24", phone: "0798872049", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Sophia Kerubo", regNo: "ED/ART/1792/24", phone: "0741474320", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Abigael Wanjuru", regNo: "REG-010/26", phone: "0798196693", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Brian James", regNo: "REG-011/26", phone: "0741447412", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Caleb Mbata Orobo", regNo: "REG-012/26", phone: "0115940377", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Caren Chebet", regNo: "REG-013/26", phone: "0115066240", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Catherine Wangui", regNo: "REG-014/26", phone: "0111484928", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Collens Nyamwaka", regNo: "REG-015/26", phone: "0790424231", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Damaris Molyne", regNo: "REG-016/26", phone: "0706846072", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Dancan Njiri", regNo: "REG-017/26", phone: "0718192841", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Diana Muya", regNo: "REG-018/26", phone: "0714094800", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Douglas Yego", regNo: "REG-019/26", phone: "+254792206238", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Ebenezer Kiprutoh", regNo: "REG-020/26", phone: "0113466743", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Elvins Otieno Odeyo", regNo: "REG-021/26", phone: "0705759257", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Ezekiel Kipsang", regNo: "REG-022/26", phone: "0111234550", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Immanuel Mesocho", regNo: "REG-023/26", phone: "0758523759", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Ivy Bundi", regNo: "REG-024/26", phone: "0725729609", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Jamesdavidson Mukhwana", regNo: "REG-025/26", phone: "0712729894", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Jimmie Kamau", regNo: "REG-026/26", phone: "0104420148", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Joseph Gitahi", regNo: "REG-027/26", phone: "0706009086", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Joshua Mark", regNo: "REG-028/26", phone: "0759689909", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Joshua Ndiema", regNo: "REG-029/26", phone: "0795287293", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Kipkemoi Rotich", regNo: "REG-030/26", phone: "0707917434", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Kiplagat Ethel", regNo: "REG-031/26", phone: "0745049553", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Lavender Akinyi", regNo: "REG-032/26", phone: "0745263552", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Lee Bungei", regNo: "REG-033/26", phone: "0723617436", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Lewis Ogachi", regNo: "REG-034/26", phone: "0758712751", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Maria Juma", regNo: "REG-035/26", phone: "0797072362", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Melvin Goga", regNo: "REG-036/26", phone: "0758037007", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Mical Jepchumba", regNo: "REG-037/26", phone: "0721949720", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Millicent Wambui", regNo: "REG-038/26", phone: "0141035290", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Ndanu Destiny", regNo: "REG-039/26", phone: "0111656853", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Phineas Muriungi", regNo: "REG-040/26", phone: "0703705572", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Risper Mukami", regNo: "REG-041/26", phone: "0758251169", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Rutto Mark", regNo: "REG-042/26", phone: "0792816731", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Saviour Oboo", regNo: "REG-043/26", phone: "0742067820", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Sharon Wanjiku", regNo: "REG-044/26", phone: "0727043186", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Sharon Moraa", regNo: "REG-045/26", phone: "0705607529", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Sheila Moraa", regNo: "REG-046/26", phone: "0106538141", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Stephen Okoth", regNo: "REG-047/26", phone: "0712209796", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Susan Cherotich", regNo: "REG-048/26", phone: "0792462443", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Sylvia Osore", regNo: "REG-049/26", phone: "0708563143", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Valeria Mokamba", regNo: "REG-050/26", phone: "0715844880", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Vincent Kipkemboi", regNo: "REG-051/26", phone: "0793533271", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Wakili Zablon", regNo: "REG-052/26", phone: "0748797476", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Yvonne Mueni", regNo: "REG-053/26", phone: "0110169774", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Yvonne Ndanu", regNo: "REG-054/26", phone: "0111656853", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Zawadii Njeri", regNo: "REG-055/26", phone: "0717174096", section: "Nov 2026 Official Register", feeStatus: "Registration Fee Required", mpesaRef: "" },
-
-      // Section B: Master Contributors (Day 1-8)
-      { name: "Lewis Gaitho Weru", regNo: "ED/ART/3644/24", phone: "0113622752", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Charles Maina", regNo: "ED/ART/1330/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Kevin Oyugi Mokaya", regNo: "ED/ART/3332/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Mercy Nyaboke", regNo: "ED/ART/1631/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Gichana Abednego Getuma", regNo: "ED/ART/1761/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Titus Kipkoroi Kiplagat", regNo: "ED/ART/3844/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Daisy Chepkoech", regNo: "ED/ART/1299/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Maroa Alex Mwita", regNo: "ED/ART/1836/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Linus Poghisho", regNo: "ED/ART/0969/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Tabitha Kerubo Otwori", regNo: "ED/ART/1718/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Felix Omache Makabe", regNo: "ED/ART/1644/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Michael Jepchumba", regNo: "ED/ART/1451/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Alexina Ogora", regNo: "ED/ART/3837/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Bett Emmanuel Kipkorir", regNo: "ED/ART/1237/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Billy Koech", regNo: "ED/ART/1403/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Pasaka Hamad Learapo", regNo: "ED/ART/0835/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Daniel Ilpaisin Ledelea", regNo: "ED/ART/0836/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Benjamin Muimi", regNo: "ED/ART/2531/23", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Abongotum Jackline", regNo: "ED/ART/0993/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Grace Mulwa", regNo: "ED/ART/0854/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Vanessa Rukia", regNo: "ED/3563/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Emmanuel Kibet", regNo: "ED/ART/1173/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Roselyne Chepengat", regNo: "ED/ART/0983/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Galgallo Kalicha Wario", regNo: "ED/ART/0833/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Brendah Achieng Ouma", regNo: "ED/ART/1702/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Chacha Dennis Mwita", regNo: "ED/ART/1173/23", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Doreen Saloyia", regNo: "ED/ART/1355/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Domnic Kakitony Kelimon", regNo: "ED/ART/3564/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Fridah Abraham", regNo: "ED/ART/1633/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Esbon Kipngetich", regNo: "ED/ART/1309/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Brian Orora Peter", regNo: "ED/ART/1617/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Keziah Temo", regNo: "ED/ART/1385/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Kevin Mogondo", regNo: "ED/ART/1763/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Linacent Kinya", regNo: "ED/ART/3491/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Miriam Cherono", regNo: "ED/ART/1225/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Jane Mugoiri", regNo: "ED/ART/3836/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Esther Karimi Francis", regNo: "ED/ART/0814/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Malcolm Kipyegon Cheruiyot", regNo: "ED/ART/1187/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Juma Brian", regNo: "ED/ART/0778/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Terryanne Mutheu", regNo: "ED/ART/0742/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Shadency Limo", regNo: "ED/ART/2126/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Clare Kibet", regNo: "ED/ART/1384/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Joycaren Njogu", regNo: "ED/ART/3336/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Wanda Mildred", regNo: "ED/ART/3888/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Milka Chepngetich", regNo: "ED/ART/1051/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Kiprop Noah", regNo: "ED/ART/1439/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Abdinoor Haro", regNo: "ED/ART/3818/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Simon Maina", regNo: "ED/ART/1110/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Alex Ngundo", regNo: "ED/ART/0768/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Malvine Omondi", regNo: "ED/ART/3808/24", phone: "On File", section: "Master Contributors (Day 1–8)", feeStatus: "Registration Fee Required", mpesaRef: "" },
-
-      // Section C: 5-Day Matrix & Foodstuff Pledges
-      { name: "Ismael Kipyegon Rono", regNo: "ED/ART/1220/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Morgan Kemboi", regNo: "ED/ART/1228/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Faith Ngeno", regNo: "ED/ART/1416/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Dorothy Rutto", regNo: "ED/ART/1452/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Millicent George", regNo: "ED/ART/1778/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Naomi Kwamboka Ongaga", regNo: "ED/ART/1775/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Karen Sawadi Muthengi", regNo: "ED/ART/0879/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Francis Ogweno", regNo: "ED/ART/1723/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Garbole Kosi Jarso", regNo: "ED/ART/0839/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Gloria Kemuma", regNo: "ED/ART/1804/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Christine Ndolo", regNo: "ED/ART/3388/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Kipson Masika", regNo: "ED/ART/1483/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Silvia Chemutai", regNo: "ED/ART/1019/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Joseph Stanley Nyamai", regNo: "ED/ART/0853/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Chepkemoi Joy", regNo: "ED/ART/1703/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Daniel Mwengi", regNo: "ED/ART/0766/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Faith Chebet", regNo: "ED/ART/1217/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Cherotich Sheila", regNo: "ED/ART/1215/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Purity Jepleting", regNo: "ED/ART/3718/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Cynthiah Ochanda", regNo: "ED/ART/1809/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Frankline Sungu", regNo: "ED/ART/1310/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Mercy Jelimo Kipkenei", regNo: "ED/ART/1389/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Agneta Chenangat", regNo: "ED/ART/0985/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Cindy Awuor Agwenge", regNo: "ED/ART/3421/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Esther Muia", regNo: "ED/ART/0858/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Agneta Cheruto", regNo: "ED/ART/3412/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Brian Momanyi", regNo: "ED/ART/1756/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Phina Akoth", regNo: "ED/ART/1707/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Solomon Lokula", regNo: "ED/ART/1352/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Ivyne Cherotich", regNo: "ED/ART/1026/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Idah Chepkemoi", regNo: "ED/ART/1179/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Sylivia Nyaboke Osiemo", regNo: "ED/ART/1812/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Nagodia Abong", regNo: "ED/ART/0905/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Francis Kaperur Ling'an", regNo: "ED/ART/0964/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Lucy Ong'angi Moraa", regNo: "ED/ART/3534/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Barasa Victor", regNo: "ED/ART/1501/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Mwebi Celestine Kemunto", regNo: "ED/ART/1064/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Vincent Kiplimo Kiplagat", regNo: "ED/ART/3833/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Chepkemoi Faith Sigira", regNo: "ED/ART/1357/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Reuben Zablon Okello", regNo: "ED/ART/1519/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Grace Mumbua Kavive", regNo: "ED/ART/0771/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Kevin Manoti Nyandema", regNo: "ED/ART/1592/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Willyrane Moraa", regNo: "ED/ART/1754/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Dorcas Kimaiyo", regNo: "ED/ART/1437/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Ivvone Kwamboka", regNo: "ED/ART/3812/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Elvis Kiprotich", regNo: "ED/ART/1050/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Prestone Othieno", regNo: "ED/ART/1314/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Mary Onkendi", regNo: "ED/ART/1627/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Agrey Mongare", regNo: "ED/ART/3549/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" },
-      { name: "Amos Ocharo", regNo: "ED/ART/1797/24", phone: "On File", section: "5-Day Matrix & Foodstuff Pledges", feeStatus: "Registration Fee Required", mpesaRef: "" }
-    ];
-
-    let membersData = JSON.parse(localStorage.getItem('sas_full_members_v1')) || INITIAL_MEMBERS;
-    let docketReports = JSON.parse(localStorage.getItem('sas_docket_reports_v1')) || [
-      { role: "Organizing Secretary", date: "Nov 28, 2026", summary: "46 members attended today's meeting; 146+ total members consolidated across official register, contributors, and pledge logs.", nextAction: "Remind members to clear KES 100 registration fee before 31st December, 2026." }
-    ];
-    let execNotices = JSON.parse(localStorage.getItem('sas_exec_notices_v1')) || [
-      { role: "Chairperson", date: "Nov 28, 2026", text: "All members on the uploaded registers are confirmed as Registered. KES 100 registration fee deadline is 31st December, 2026." }
-    ];
-    let welfareLogs = JSON.parse(localStorage.getItem('sas_welfare_logs_v1')) || [
-      { member: "Registered Cohorts", type: "Fee / Registration Query", notes: "Members verifying their details receive a Registration Fee Required prompt with quick M-Pesa submission." }
-    ];
-
-    let activeRosterSection = 'ALL';
-    let rosterPage = 1;
-    const ROSTER_PAGE_SIZE = 20;
-    let selectedModalMemberIndex = -1;
-    let currentExecDocket = '';
-
-    function persistState() {
-      localStorage.setItem('sas_full_members_v1', JSON.stringify(membersData));
-      localStorage.setItem('sas_docket_reports_v1', JSON.stringify(docketReports));
-      localStorage.setItem('sas_exec_notices_v1', JSON.stringify(execNotices));
-      localStorage.setItem('sas_welfare_logs_v1', JSON.stringify(welfareLogs));
-    }
-
-    function updateSectionCounts() {
-      const officialCount = membersData.filter(m => m.section === 'Nov 2026 Official Register').length;
-      const contribCount = membersData.filter(m => m.section === 'Master Contributors (Day 1–8)').length;
-      const matrixCount = membersData.filter(m => m.section === '5-Day Matrix & Foodstuff Pledges').length;
-      document.getElementById('tabCountAll').textContent = membersData.length;
-      document.getElementById('tabCountOfficial').textContent = officialCount;
-      document.getElementById('tabCountContrib').textContent = contribCount;
-      document.getElementById('tabCountMatrix').textContent = matrixCount;
-    }
-
-    function selectRosterSection(sec, btnEl) {
-      activeRosterSection = sec;
-      rosterPage = 1;
-      document.querySelectorAll('.sec-tab-btn').forEach(b => b.classList.remove('active'));
-      if (btnEl) {
-        btnEl.classList.add('active');
-      } else {
-        const target = document.querySelector(`.sec-tab-btn[data-sec="${sec}"]`);
-        if (target) target.classList.add('active');
-      }
-      renderRosterDirectory();
-    }
-
-    function changeRosterPage(delta) {
-      rosterPage += delta;
-      renderRosterDirectory();
-    }
-
-    function renderRosterDirectory() {
-      const q = (document.getElementById('rosterSearchInput').value || '').trim().toLowerCase();
-      const filtered = membersData.filter(m => {
-        const secMatch = activeRosterSection === 'ALL' || m.section === activeRosterSection;
-        const textMatch = !q ||
-          m.name.toLowerCase().includes(q) ||
-          m.regNo.toLowerCase().includes(q) ||
-          m.phone.toLowerCase().includes(q) ||
-          m.section.toLowerCase().includes(q);
-        return secMatch && textMatch;
-      });
-
-      const totalPages = Math.max(1, Math.ceil(filtered.length / ROSTER_PAGE_SIZE));
-      if (rosterPage > totalPages) rosterPage = totalPages;
-      if (rosterPage < 1) rosterPage = 1;
-
-      const start = (rosterPage - 1) * ROSTER_PAGE_SIZE;
-      const slice = filtered.slice(start, start + ROSTER_PAGE_SIZE);
-
-      document.getElementById('rosterSummaryBadge').textContent =
-        `${filtered.length} matching records (${membersData.length} total in 146+ register)`;
-      document.getElementById('rosterPageInfo').textContent = filtered.length === 0
-        ? 'No records found'
-        : `Showing ${start + 1}–${Math.min(start + ROSTER_PAGE_SIZE, filtered.length)} of ${filtered.length}`;
-      document.getElementById('rosterPageNum').textContent = `Page ${rosterPage} of ${totalPages}`;
-      document.getElementById('rosterPrevBtn').disabled = rosterPage <= 1;
-      document.getElementById('rosterNextBtn').disabled = rosterPage >= totalPages;
-
-      const tbody = document.getElementById('rosterTableBody');
-      if (slice.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding: 20px;">No registered member matches this filter.</td></tr>`;
-        return;
-      }
-
-      tbody.innerHTML = slice.map((m, idx) => {
-        const globalIdx = membersData.indexOf(m);
-        const statusLabel = m.feeStatus === 'Paid'
-          ? `<span style="color: var(--wa-700); font-weight: 800;">Paid (${m.mpesaRef || 'Cleared'})</span>`
-          : `<span style="color: #b45309; font-weight: 700;">Registration Fee Required</span>`;
-        const badgeClass = m.section === 'Nov 2026 Official Register' ? 'sec-badge alt' : 'sec-badge';
-
-        return `
-          <tr>
-            <td>${start + idx + 1}</td>
-            <td><strong>${m.name}</strong></td>
-            <td><code>${m.regNo}</code></td>
-            <td>${m.phone}</td>
-            <td><span class="${badgeClass}">${m.section}</span></td>
-            <td>${statusLabel}</td>
-            <td>
-              <button type="button" class="btn btn-teal btn-sm" onclick="verifyMemberByIndex(${globalIdx})">Verify / Select</button>
-            </td>
-          </tr>
-        `;
-      }).join('');
-    }
-
-    function verifyMemberByIndex(idx) {
-      const m = membersData[idx];
-      if (!m) return;
-      selectedModalMemberIndex = idx;
-
-      const inlineEl = document.getElementById('verifyInlineResult');
-      inlineEl.style.display = 'block';
-      inlineEl.className = 'msg-note msg-ok';
-      inlineEl.innerHTML = `
-        <strong>MEMBER FOUND:</strong> ${m.name} • Reg. No: <code>${m.regNo}</code> • Phone: <strong>${m.phone}</strong> • Section: <em>${m.section}</em> • Fee Status: <strong>${m.feeStatus}</strong>.
-      `;
-
-      document.getElementById('popupMemberSummary').textContent = `${m.name} — ${m.regNo}`;
-      document.getElementById('popupMemberSub').textContent = `Phone: ${m.phone} | Section: ${m.section} | Status: ${m.feeStatus}`;
-      document.getElementById('modalPayStatus').style.display = 'none';
-      document.getElementById('modalMpesaInput').value = '';
-      document.getElementById('feeRequiredModal').classList.add('open');
-    }
-
-    function verifyMemberSearch(e) {
-      e.preventDefault();
-      const q = document.getElementById('verifyQueryInput').value.trim().toLowerCase();
-      const inlineEl = document.getElementById('verifyInlineResult');
-      inlineEl.style.display = 'block';
-
-      if (!q) {
-        inlineEl.className = 'msg-note msg-err';
-        inlineEl.textContent = 'Please enter a full name, registration number, or phone number to verify.';
-        return false;
-      }
-
-      const foundIndex = membersData.findIndex(m =>
-        m.name.toLowerCase().includes(q) ||
-        m.regNo.toLowerCase().includes(q) ||
-        m.phone.toLowerCase().includes(q)
-      );
-
-      if (foundIndex === -1) {
-        inlineEl.className = 'msg-note msg-err';
-        inlineEl.textContent = `No registered member matched "${q}". Check spelling or register in Section 06 below.`;
-        return false;
-      }
-
-      verifyMemberByIndex(foundIndex);
-      return false;
-    }
-
-    function closeFeeModal() {
-      document.getElementById('feeRequiredModal').classList.remove('open');
-    }
-
-    // Quick M-Pesa submission inside Registration Fee Required Modal
-    document.getElementById('modalQuickPayForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      const ref = document.getElementById('modalMpesaInput').value.trim().toUpperCase();
-      const statusEl = document.getElementById('modalPayStatus');
-      statusEl.style.display = 'block';
-
-      if (!ref) {
-        statusEl.className = 'msg-note msg-err';
-        statusEl.textContent = 'Enter an M-Pesa reference code to record payment, or click "Go to Payment Form".';
-        return;
-      }
-
-      if (selectedModalMemberIndex >= 0 && membersData[selectedModalMemberIndex]) {
-        membersData[selectedModalMemberIndex].feeStatus = 'Paid';
-        membersData[selectedModalMemberIndex].mpesaRef = ref;
-        persistState();
-        updateSectionCounts();
-        renderRosterDirectory();
-        if (document.getElementById('execWorkspaceModal').classList.contains('open')) {
-          renderExecRegisterTable();
-        }
-        statusEl.className = 'msg-note msg-ok';
-        statusEl.textContent = `Recorded KES 100 payment (Ref: ${ref}) for ${membersData[selectedModalMemberIndex].name}.`;
-      }
-    });
-
-    // New Member Registration Form
-    document.getElementById('newMemberRegForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      const name = document.getElementById('regFullName').value.trim();
-      const regNo = document.getElementById('regAdmNo').value.trim().toUpperCase();
-      const phone = document.getElementById('regPhone').value.trim();
-      const ref = document.getElementById('regMpesaRef').value.trim().toUpperCase();
-      const fb = document.getElementById('newRegFeedback');
-      fb.style.display = 'block';
-
-      if (!name || !regNo || !phone || !ref) {
-        fb.className = 'msg-note msg-err';
-        fb.textContent = 'Please fill in all fields including your M-Pesa reference code.';
-        return;
-      }
-
-      membersData.unshift({
-        name,
-        regNo,
-        phone,
-        section: 'Nov 2026 Official Register',
-        feeStatus: 'Paid',
-        mpesaRef: ref
-      });
-      persistState();
-      updateSectionCounts();
-      renderRosterDirectory();
-
-      fb.className = 'msg-note msg-ok';
-      fb.textContent = `Registered ${name} (${regNo}) with M-Pesa Ref ${ref}.`;
-      document.getElementById('postRegWaBox').style.display = 'flex';
-      this.reset();
-    });
-
-    // Existing Member Payment Form
-    document.getElementById('existingPayForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      const lookup = document.getElementById('existingLookup').value.trim().toLowerCase();
-      const ref = document.getElementById('existingMpesaRef').value.trim().toUpperCase();
-      const msg = document.getElementById('existingPayMsg');
-      msg.style.display = 'block';
-
-      if (!lookup || !ref) {
-        msg.className = 'msg-note msg-err';
-        msg.textContent = 'Please enter your member name/reg no./phone and your M-Pesa reference number.';
-        return;
-      }
-
-      const found = membersData.find(m =>
-        m.name.toLowerCase().includes(lookup) ||
-        m.regNo.toLowerCase().includes(lookup) ||
-        m.phone.toLowerCase().includes(lookup)
-      );
-
-      if (found) {
-        found.feeStatus = 'Paid';
-        found.mpesaRef = ref;
-        persistState();
-        renderRosterDirectory();
-        msg.className = 'msg-note msg-ok';
-        msg.textContent = `MEMBER FOUND & UPDATED: ${found.name} (${found.regNo}) is now marked Paid with M-Pesa Ref ${ref}.`;
-      } else {
-        membersData.unshift({
-          name: document.getElementById('existingLookup').value.trim(),
-          regNo: 'PENDING-VERIFY',
-          phone: 'On File',
-          section: 'Nov 2026 Official Register',
-          feeStatus: 'Paid',
-          mpesaRef: ref
-        });
-        persistState();
-        updateSectionCounts();
-        renderRosterDirectory();
-        msg.className = 'msg-note msg-ok';
-        msg.textContent = `Recorded M-Pesa Ref ${ref} for "${lookup}".`;
-      }
-      this.reset();
-    });
-
-    // Executive Portal Login & Workspace
-    document.getElementById('execLoginForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      const role = document.getElementById('execRoleSelect').value;
-      const pass = document.getElementById('execPassInput').value.trim();
-      const fb = document.getElementById('execLoginFeedback');
-
-      if (!pass) {
-        fb.style.display = 'block';
-        fb.className = 'msg-note msg-err';
-        fb.textContent = 'Please enter the executive passcode.';
-        return;
-      }
-
-      fb.style.display = 'none';
-      currentExecDocket = role;
-      document.getElementById('execWorkspaceHeading').textContent = `${role} — Executive Workspace`;
-      document.getElementById('execActiveRoleTag').textContent = role;
-      document.getElementById('execWorkspaceModal').classList.add('open');
-      renderExecRegisterTable();
-      renderExecReportsList();
-      renderExecNoticeList();
-      renderExecWelfareList();
-    });
-
-    function closeExecWorkspace() {
-      document.getElementById('execWorkspaceModal').classList.remove('open');
-    }
-
-    function switchExecPane(paneId, btnEl) {
-      document.querySelectorAll('.exec-pane').forEach(p => p.classList.remove('active'));
-      document.querySelectorAll('.exec-tab-btn').forEach(b => b.classList.remove('active'));
-      document.getElementById(paneId).classList.add('active');
-      if (btnEl) btnEl.classList.add('active');
-    }
-
-    function toggleExecFee(idx) {
-      const m = membersData[idx];
-      if (!m) return;
-      if (m.feeStatus === 'Paid') {
-        m.feeStatus = 'Registration Fee Required';
-      } else {
-        m.feeStatus = 'Paid';
-        if (!m.mpesaRef) m.mpesaRef = 'EXEC-CLEARED';
-      }
-      persistState();
-      renderRosterDirectory();
-      renderExecRegisterTable();
-    }
-
-    function renderExecRegisterTable() {
-      const q = (document.getElementById('execRegisterFilter').value || '').trim().toLowerCase();
-      const statusFilter = document.getElementById('execFeeStatusFilter').value;
-
-      const paidCount = membersData.filter(m => m.feeStatus === 'Paid').length;
-      const reqCount = membersData.length - paidCount;
-      document.getElementById('execStatTotal').textContent = membersData.length;
-      document.getElementById('execStatPaid').textContent = paidCount;
-      document.getElementById('execStatPending').textContent = reqCount;
-      document.getElementById('execStatCollected').textContent = `KES ${paidCount * 100}`;
-
-      const tbody = document.getElementById('execRegisterTbody');
-      const rows = [];
-      membersData.forEach((m, idx) => {
-        const textOk = !q || m.name.toLowerCase().includes(q) || m.regNo.toLowerCase().includes(q) || m.phone.toLowerCase().includes(q);
-        const statusOk = statusFilter === 'ALL' || m.feeStatus === statusFilter;
-        if (textOk && statusOk) {
-          rows.push(`
-            <tr>
-              <td><strong>${m.name}</strong></td>
-              <td><code>${m.regNo}</code></td>
-              <td>${m.phone}</td>
-              <td>${m.mpesaRef || '—'}</td>
-              <td>${m.feeStatus}</td>
-              <td><button type="button" class="btn btn-secondary btn-sm" onclick="toggleExecFee(${idx})">${m.feeStatus === 'Paid' ? 'Set Fee Required' : 'Mark Paid'}</button></td>
-            </tr>
-          `);
-        }
-      });
-      tbody.innerHTML = rows.join('') || `<tr><td colspan="6" style="text-align:center; padding:16px;">No matching records.</td></tr>`;
-    }
-
-    document.getElementById('execReportForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      const summary = document.getElementById('execReportText').value.trim();
-      const nextAction = document.getElementById('execReportNext').value.trim();
-      if (!summary || !nextAction) return;
-
-      docketReports.unshift({
-        role: currentExecDocket || 'Executive',
-        date: 'Nov 28, 2026',
-        summary,
-        nextAction
-      });
-      persistState();
-      renderExecReportsList();
-      this.reset();
-    });
-
-    function renderExecReportsList() {
-      document.getElementById('execReportsList').innerHTML = docketReports.map(r => `
-        <div class="wall-post">
-          <div class="wall-post-meta">${r.role} • ${r.date}</div>
-          <p style="font-size:0.88rem; margin-bottom:4px;">${r.summary}</p>
-          <p style="font-size:0.8rem; color:var(--teal-800); font-weight:700;">Next: ${r.nextAction}</p>
-        </div>
-      `).join('');
-    }
-
-    document.getElementById('execNoticeForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      const text = document.getElementById('execNoticeInput').value.trim();
-      if (!text) return;
-      execNotices.unshift({
-        role: currentExecDocket || 'Executive',
-        date: 'Nov 28, 2026',
-        text
-      });
-      persistState();
-      renderExecNoticeList();
-      this.reset();
-    });
-
-    function renderExecNoticeList() {
-      document.getElementById('execNoticeList').innerHTML = execNotices.map(n => `
-        <div class="wall-post">
-          <div class="wall-post-meta">${n.role} • ${n.date}</div>
-          <p style="font-size:0.9rem;">${n.text}</p>
-        </div>
-      `).join('');
-    }
-
-    document.getElementById('execWelfareForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      const member = document.getElementById('execWelfareMember').value.trim();
-      const type = document.getElementById('execWelfareType').value;
-      const notes = document.getElementById('execWelfareNote').value.trim();
-      if (!member || !notes) return;
-      welfareLogs.unshift({ member, type, notes });
-      persistState();
-      renderExecWelfareList();
-      this.reset();
-    });
-
-    function renderExecWelfareList() {
-      document.getElementById('execWelfareList').innerHTML = welfareLogs.map(w => `
-        <div class="wall-post" style="border-left-color: var(--amber-500);">
-          <div class="wall-post-meta">${w.type} • ${w.member}</div>
-          <p style="font-size:0.88rem;">${w.notes}</p>
-        </div>
-      `).join('');
-    }
-
-    // Club Chatbot
-    function toggleChatbot(force) {
-      const panel = document.getElementById('chatbotPanel');
-      if (typeof force === 'boolean') panel.classList.toggle('open', force);
-      else panel.classList.toggle('open');
-    }
-
-    function appendChatBubble(html, sender) {
-      const box = document.getElementById('chatMessages');
-      const div = document.createElement('div');
-      div.className = `chat-bubble ${sender}`;
-      div.innerHTML = html;
-      box.appendChild(div);
-      box.scrollTop = box.scrollHeight;
-    }
-
-    function replyToChat(msg) {
-      const q = msg.toLowerCase();
-      if (q.includes('100') || q.includes('fee') || q.includes('dec') || q.includes('deadline')) {
-        return 'Every member must pay the <strong>KES 100 registration fee</strong> on or before <strong>31st December, 2026</strong>. When you verify your name or reg. number, a <strong>Registration Fee Required</strong> prompt appears with quick M-Pesa recording.';
-      }
-      if (q.includes('146') || q.includes('register') || q.includes('member')) {
-        return `There are <strong>${membersData.length} registered entries</strong> across the <em>Nov 2026 Official Register</em>, <em>Master Contributors (Day 1–8)</em>, and <em>5-Day Matrix &amp; Foodstuff Pledges</em> sections.`;
-      }
-      if (q.includes('election') || q.includes('2027') || q.includes('feb')) {
-        return 'Official Share a Smile Charity Club elections are scheduled for <strong>late February 2027</strong>.';
-      }
-      return 'You can check the <strong>146+ Register</strong> section, verify your details in <strong>#verify-member</strong>, or submit your KES 100 M-Pesa reference in <strong>#join</strong> before <strong>31st December, 2026</strong>.';
-    }
-
-    function handleChatForm(e) {
-      e.preventDefault();
-      const input = document.getElementById('chatInputField');
-      const val = input.value.trim();
-      if (!val) return;
-      appendChatBubble(val, 'user');
-      input.value = '';
-      setTimeout(() => appendChatBubble(replyToChat(val), 'bot'), 220);
-    }
-
-    function sendChatPrompt(text) {
-      appendChatBubble(text, 'user');
-      setTimeout(() => appendChatBubble(replyToChat(text), 'bot'), 220);
-    }
-
-    // Boot
-    updateSectionCounts();
-    renderRosterDirectory();
-  </script>
-</body>
-</html>
+      <div class="colorful-por
